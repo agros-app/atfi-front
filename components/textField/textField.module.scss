@@ -1,0 +1,26 @@
+@import "@/styles/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.helperText {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.error {
+  input {
+    border-color: $red;
+  }
+  .helperText {
+    color: $red;
+  }
+}
