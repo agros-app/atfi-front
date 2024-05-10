@@ -1,8 +1,8 @@
-const Logo = (props: any) => (
+const Logo = ({size=50,...props}: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={50}
-    height={50}
+    width={size}
+    height={size}
     viewBox="0 0 48 48"
     {...props}
   >
