@@ -1,32 +1,65 @@
 @import "@/styles/variables.scss";
 
-.btn{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.button {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px;
+  transition: 0.4s;
+  text-align: center;
 }
 
-.lg{
-    padding: 12px 16px;
-    font-size: 16px;
+.lg {
+  padding: 12px 16px;
+  font-size: 16px;
 }
 
-.md{
-    padding: 10px 14px;
-    font-size: 14px;
+.md {
+  padding: 10px 14px;
+  font-size: 14px;
 }
 
-.sm{
-    padding: 8px 12px;
-    font-size: 12px;
+.sm {
+  padding: 8px 12px;
+  font-size: 12px;
 }
 
-.primary{
-    background-color: $primary-green;
-    color: $black;
+.primary {
+  background-color: $primary-green;
+  color: $black;
 }
 
-.secondary{
-    background-color: $primary-yellow;
-    color: $black;
+.primary:hover {
+  background-color: darken($primary-green, 10%);
+}
+
+.secondary {
+  background-color: $primary-yellow;
+  color: $black;
+}
+
+.secondary:hover {
+  background-color: darken($primary-yellow, 10%);
+}
+
+.ghost {
+  background-color: transparent;
+  color: $black;
+}
+
+.ghost:hover {
+  background-color: darken($primary-green, 10%);
+}
+
+.outlined{
+  border: 1px solid $primary-green;
+  background-color: transparent;
+  color: $primary-green;
+}
+
+.outlined:hover{
+  background-color: color-mix(in srgb, $primary-green 40%, transparent);
+  color: $black;
 }
