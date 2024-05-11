@@ -2,14 +2,18 @@
 import Button from "@/components/button/button";
 import TextField from "@/components/textField/textField";
 import {useState} from "react";
+import {ethers} from "ethers";
+import mockUSDT from "@/abis/MockUSDT.json";
 
 export default function WalletConnect() {
 
     const [amount, setAmount] = useState(0)
 
-    const handleInvest = () => {
-        console.log('Investing', amount)
+    const isValidInvestment = () => {
+        return amount > 0;
     }
+
+
 
     return (
         <div style={{maxWidth: '300px'}}>
