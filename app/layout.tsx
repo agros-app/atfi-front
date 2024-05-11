@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "@/styles/globals.scss";
+import React from "react";
+import {Web3ContextProvider} from "@/context/web3Modal";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
+      <body className={outfit.className}>
+        <Web3ContextProvider>
+          {children}
+        </Web3ContextProvider>
+      </body>
     </html>
   );
 }
