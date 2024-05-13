@@ -1,12 +1,11 @@
-'use client';
+import {ethers} from "ethers";
 
-import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
-import {useParams} from "next/navigation";
-import {Property} from "csstype";
+interface ContractObject {
+    address: string;
+    abi: any;
+}
 
-// Define la función de aprobación
-const approveToken = async (amount: ethers.BigNumber, tokenContract : ethers.Contract , lendingAddress : string) => {
+const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract, lendingAddress: string) => {
     try {
         const tx = await tokenContract.approve(lendingAddress, amount);
         await tx.wait();
@@ -18,58 +17,69 @@ const approveToken = async (amount: ethers.BigNumber, tokenContract : ethers.Con
     }
 };
 
+const isNumberPositive = (amount: string) => {
+    const numberAmount = Number(amount);
+    return !isNaN(numberAmount) && numberAmount > 0;
+}
 
+export const investInLending = async (
+    amount: string,
+    mockUSDTObject: ContractObject,
+    lendingObject: ContractObject,
+) => {
 
-const investInLending = async (amount: string, lendingAddress: string, LendingAbi:string, mockUsdtAddress: string, MockUsdtAbi: any) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const tokenContract = new ethers.Contract(mockUsdtAddress, MockUsdtAbi, signer);
-    const lendingContract = new ethers.Contract(lendingAddress, LendingAbi, signer);
+    const tokenContract = new ethers.Contract(mockUSDTObject.address, mockUSDTObject.abi, signer);
+    const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
+
     if (!lendingContract || !isNumberPositive(amount)) {
         console.error('Monto de inversión no válido');
         return;
     }
+
     const amountInWei = ethers.utils.parseUnits(amount, 6);
-    const approvalSuccess = await approveToken(amountInWei, tokenContract, lendingAddress);
+    const approvalSuccess = await approveToken(amountInWei, tokenContract, lendingObject.address);
+
     if (!approvalSuccess) {
         console.log('La aprobación del token falló o fue rechazada');
         return;
     }
-    try {
-        const transaction = await lendingContract.invest(amountInWei);
-        console.log(transaction);
 
+    try {
+        const transaction = await lendingContract.invest(amountInWei, { gasLimit: 2000000 });
+        console.log(transaction);
     } catch (error) {
         console.error('Error al invertir en el lending:', error);
     }
 };
 
+export const regretInvestment = async (amount: string, lendingObject: ContractObject) => {
+    const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.address);
 
-const regretInvestment = async (amount: string, lendingAddress: string, LendingAbi:string) => {
-    const lendingContract = new ethers.Contract(lendingAddress, LendingAbi);
     if (!lendingContract || !isNumberPositive(amount)) {
         console.error('Monto de inversión no válido');
         return;
     }
-    try{
+
+    try {
         const amountInWei = ethers.utils.parseUnits(amount, 6);
         const transaction = await lendingContract.regretInvestment(amountInWei);
         console.log(transaction);
-    }
-    catch (error) {
+    } catch (error) {
         console.error('Error al retirar la inversión:', error);
     }
-
-
 }
 
-const claimReturns = async (lendingAddress: string, LendingAbi:string) => {
-    const lendingContract = new ethers.Contract(lendingAddress, LendingAbi);
+export const claimReturns = async (lendingObject: ContractObject) => {
+    const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi);
+
     if (!lendingContract) {
         console.error('Contrato de lending no válido');
         return;
     }
+
     try {
         const transaction = await lendingContract.claimReturns();
         console.log(transaction);
@@ -77,10 +87,4 @@ const claimReturns = async (lendingAddress: string, LendingAbi:string) => {
         console.error('Error al reclamar los retornos:', error);
     }
 }
-
-
-const isNumberPositive = (amount: string) => {
-    const numberAmount = Number(amount);
-    return !isNaN(numberAmount) && numberAmount > 0;
-};
 
