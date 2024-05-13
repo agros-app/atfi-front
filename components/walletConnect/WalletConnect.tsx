@@ -2,18 +2,20 @@
 import Button from "@/components/button/button";
 import TextField from "@/components/textField/textField";
 import {useState} from "react";
-import {ethers} from "ethers";
-import mockUSDT from "@/abis/MockUSDT.json";
+import mockUSDT from "@/contracts/MockUSDT.json";
+import lending from "@/contracts/lendingTest.json";
+import {useWeb3} from "@/context/web3Modal";
+import {investInLending} from "@/utils/contractInteractions/user";
 
 export default function WalletConnect() {
 
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState<number>(0);
 
-    const isValidInvestment = () => {
-        return amount > 0;
+    const { connectWallet } = useWeb3();
+
+    const handleInvest = async () => {
+        await investInLending(amount.toString(), mockUSDT, lending);
     }
-
-
 
     return (
         <div style={{maxWidth: '300px'}}>
@@ -24,6 +26,7 @@ export default function WalletConnect() {
                        name={'Invest'}
             />
             <Button size={'md'} onClick={handleInvest}>Invest</Button>
+            <Button size={'md'} onClick={connectWallet}>Connect Wallet</Button>
         </div>
     );
 }

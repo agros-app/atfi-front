@@ -11,12 +11,12 @@ import {
 
 const projectId = 'dbd9c43d66e4c9498e408154729c019f'
 
-const Mumbai = {
-    chainId: 80001,
-    name: 'Mumbai',
+const Amoy = {
+    chainId: 80002,
+    name: 'Amoy',
     currency: 'MATIC',
-    explorerUrl: 'https://mumbai.polygonscan.com',
-    rpcUrl: `https://polygon-mumbai.infura.io/v3/dadb6a4065cf455dab9f6b28efb660bd`
+    explorerUrl: 'https://amoy.polygonscan.com',
+    rpcUrl: `https://polygon-amoy.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
 };
 
 const Polygon = {
@@ -24,7 +24,7 @@ const Polygon = {
     name: 'Polygon Mainnet',
     currency: 'MATIC',
     explorerUrl: 'https://polygonscan.com',
-    rpcUrl: `https://polygon-mainnet.infura.io/v3/dadb6a4065cf455dab9f6b28efb660bd`
+    rpcUrl: `https://polygon-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
 };
 
 const metadata = {
@@ -61,13 +61,13 @@ export const Web3ContextProvider = ({children}) => {
     createWeb3Modal({
         ethersConfig: defaultConfig({
             metadata,
-            defaultChainId: Mumbai.chainId,
+            defaultChainId: Amoy.chainId,
             enableEIP6963: true,
             enableInjected: true,
             enableCoinbase: true,
-            rpcUrl: Mumbai.rpcUrl
+            rpcUrl: Amoy.rpcUrl
         }),
-        chains: [Mumbai, Polygon],
+        chains: [Amoy, Polygon],
         projectId: projectId,
         featuredWalletIds,
         enableAnalytics: true,
@@ -90,8 +90,8 @@ export const Web3ContextProvider = ({children}) => {
 
     const getCurrentNetwork = () => {
         if (!chainId) return null;
-        if (chainId.toString() === Mumbai.chainId.toString()) {
-            return Mumbai;
+        if (chainId.toString() === Amoy.chainId.toString()) {
+            return Amoy;
         } else if (chainId.toString() === Polygon.chainId.toString()) {
             return Polygon;
         }
