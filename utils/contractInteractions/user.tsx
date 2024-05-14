@@ -56,7 +56,10 @@ export const investInLending = async (
 };
 
 export const regretInvestment = async (amount: string, lendingObject: ContractObject) => {
-    const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.address);
+    // @ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
 
     if (!lendingContract || !isNumberPositive(amount)) {
         console.error('Monto de inversión no válido');
@@ -65,7 +68,7 @@ export const regretInvestment = async (amount: string, lendingObject: ContractOb
 
     try {
         const amountInWei = ethers.utils.parseUnits(amount, 6);
-        const transaction = await lendingContract.regretInvestment(amountInWei);
+        const transaction = await lendingContract.regretInvestment(amountInWei, { gasLimit: 2000000 });
         console.log(transaction);
     } catch (error) {
         console.error('Error al retirar la inversión:', error);
