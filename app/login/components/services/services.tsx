@@ -5,7 +5,6 @@ import Button from "@/components/button/button";
 import styles from "./services.module.scss";
 import { AuthProvider } from "firebase/auth";
 import { authUser, googleProvider, twitterProvider } from "@/lib/firebaseAuth";
-import { redirect } from "next/navigation";
 
 export default function Services() {
   const signIn = async (provider: AuthProvider) => {
@@ -29,7 +28,7 @@ export default function Services() {
       return;
     }
 
-    redirect("/home");
+    window.location.replace("/home");
   };
   return (
     <div className={styles.buttonsContainer}>

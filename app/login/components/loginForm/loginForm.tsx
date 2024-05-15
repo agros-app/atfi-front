@@ -6,7 +6,7 @@ export default function LoginForm() {
   return (
     <form className={styles.form}>
       <TextField placeholder="Email" name="email" label="Email" />
-      <TextField placeholder="Contraseña" name="email" label="Contraseña" />
+      <TextField placeholder="Contraseña" name="password" label="Contraseña" />
       <Button variant="primary" size="lg">
         Continuar
       </Button>
