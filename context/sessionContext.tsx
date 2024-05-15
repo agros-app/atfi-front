@@ -6,7 +6,14 @@ type ProviderProps = {
   session: any;
 };
 
-const sessionContext = createContext(null);
+export type SessionContext = {
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL: string;
+};
+
+export const sessionContext = createContext<SessionContext | null>(null);
 
 const SessionProvider = ({ children, session }: ProviderProps) => {
   return (
