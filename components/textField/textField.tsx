@@ -24,7 +24,7 @@ export default function TextField({
           {label}
         </label>
       )}
-      <input type="text" placeholder={placeholder} name={name} />
+      <input type="text" placeholder={placeholder} name={name} id={name} />
       {helperText && <small className={styles.helperText}>{helperText}</small>}
     </div>
   );

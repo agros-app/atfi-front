@@ -9,7 +9,26 @@ import { authUser, googleProvider, twitterProvider } from "@/lib/firebaseAuth";
 export default function Services() {
   const signIn = async (provider: AuthProvider) => {
     const user = await authUser(provider);
-    console.log(user);
+    if (!user) return;
+    const response = await fetch("/api/auth/sign-in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to sign in", response);
+      return;
+    }
+
+    window.location.replace("/home");
   };
   return (
     <div className={styles.buttonsContainer}>

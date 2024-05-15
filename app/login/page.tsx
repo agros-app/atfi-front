@@ -21,8 +21,8 @@ export default function Login() {
         <Image
           src={"/bg_auth.jpg"}
           alt="atfi login background"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: "cover" }}
         />
       </div>
     </main>
