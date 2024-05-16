@@ -3,6 +3,8 @@ import { Outfit } from "next/font/google";
 import "@/styles/globals.scss";
 import { getSession } from "@/lib/session";
 import SessionProvider from "@/context/sessionContext";
+import React from "react";
+import {Web3ContextProvider} from "@/context/web3Modal";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -21,7 +23,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <SessionProvider session={session}>
-        {children}
+            <Web3ContextProvider>
+                {children}
+            </Web3ContextProvider>
         </SessionProvider>
       </body>
     </html>
