@@ -42,13 +42,15 @@ const featuredWalletIds = [
 ];
 
 const initialState = {
-    connectWallet: () => {
-    },
-    disconnectWallet: () => {
-    },
-    getCurrentNetwork: () => {
-    }
+    connectWallet: () => {},
+    disconnectWallet: () => {},
+    getCurrentNetwork: () => {},
+    isConnected: false,
+    chainId: undefined,
+    walletAddress: undefined,
+    web3Error: ''
 };
+
 
 const Web3Context = createContext(initialState);
 
@@ -99,15 +101,16 @@ export const Web3ContextProvider = ({children}) => {
     }
 
     const value = {
-        chainId,
-        walletAddress: address,
-        web3Error,
-        isConnected,
         connectWallet,
         disconnectWallet,
-        getCurrentNetwork
+        getCurrentNetwork,
+        isConnected,
+        chainId,
+        walletAddress: address,
+        web3Error
     };
 
+    // @ts-ignore
     return <Web3Context.Provider value={value}>{children}</Web3Context.Provider>;
 }
 

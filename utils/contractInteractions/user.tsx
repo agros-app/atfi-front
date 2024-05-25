@@ -48,8 +48,7 @@ export const investInLending = async (
     }
 
     try {
-        const transaction = await lendingContract.invest(amountInWei, { gasLimit: 2000000 });
-        console.log(transaction);
+        return await lendingContract.invest(amountInWei, {gasLimit: 2000000});
     } catch (error) {
         console.error('Error al invertir en el lending:', error);
     }

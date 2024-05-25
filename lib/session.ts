@@ -1,4 +1,4 @@
-
+/*
 import { JWTPayload, SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 
@@ -81,4 +81,4 @@ export const getSession = async (): Promise<UserSession | null> => {
 
 export function deleteSession() {
     cookies().delete('session')
-}
+}*/
