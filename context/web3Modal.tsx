@@ -11,21 +11,14 @@ import {
 
 const projectId = 'dbd9c43d66e4c9498e408154729c019f'
 
-const Amoy = {
-    chainId: 80002,
-    name: 'Amoy',
-    currency: 'MATIC',
-    explorerUrl: 'https://amoy.polygonscan.com',
-    rpcUrl: `https://polygon-amoy.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
+const Sepolia = {
+    chainId: 11155111,
+    name: 'Sepolia',
+    currency: 'SepoliaETH',
+    explorerUrl: 'https://sepolia.etherscan.io/',
+    rpcUrl: `https://sepolia.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
 };
 
-const Polygon = {
-    chainId: 137,
-    name: 'Polygon Mainnet',
-    currency: 'MATIC',
-    explorerUrl: 'https://polygonscan.com',
-    rpcUrl: `https://polygon-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
-};
 
 const metadata = {
     name: 'ATFI',
@@ -63,13 +56,13 @@ export const Web3ContextProvider = ({children}) => {
     createWeb3Modal({
         ethersConfig: defaultConfig({
             metadata,
-            defaultChainId: Amoy.chainId,
+            defaultChainId: Sepolia.chainId,
             enableEIP6963: true,
             enableInjected: true,
             enableCoinbase: true,
-            rpcUrl: Amoy.rpcUrl
+            rpcUrl: Sepolia.rpcUrl
         }),
-        chains: [Amoy, Polygon],
+        chains: [Sepolia],
         projectId: projectId,
         featuredWalletIds,
         enableAnalytics: true,
@@ -92,10 +85,8 @@ export const Web3ContextProvider = ({children}) => {
 
     const getCurrentNetwork = () => {
         if (!chainId) return null;
-        if (chainId.toString() === Amoy.chainId.toString()) {
-            return Amoy;
-        } else if (chainId.toString() === Polygon.chainId.toString()) {
-            return Polygon;
+        if (chainId.toString() === Sepolia.chainId.toString()) {
+            return Sepolia;
         }
         return null;
     }
