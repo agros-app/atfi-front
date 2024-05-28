@@ -1,5 +1,6 @@
 import styles from './projectCard.module.scss';
 import image from '@/assets/icons/farm-image.png';
+import Button from "@/components/button/button";
 
 export default function ProjectCard(){
     return (
@@ -23,6 +24,24 @@ export default function ProjectCard(){
                     </div>
                 </div>
                 <p className={styles.collected}>Recaudado: $500.000</p>
+                <div className={styles.progressBarOutside} />
+                <div className={styles.about}>
+                    <div className={styles.dataLeftHandSide}>
+                        <p className={styles.percentage}>50%</p>
+                    </div>
+                    <div className={styles.dataRightHandSide}>
+                        <p className={styles.expected}>Meta: $500.000</p>
+                    </div>
+                </div>
+                <div className={styles.about}>
+                    <div className={styles.dataLeftHandSide}>
+                        <Button variant="outlined">Detalles</Button>
+                    </div>
+                    <div className={styles.dataRightHandSide}>
+                        <Button variant="primary">Invertir</Button>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
