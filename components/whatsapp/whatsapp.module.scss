@@ -1,0 +1,56 @@
+.container {
+  position: fixed;
+  bottom: 2%;
+  right: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.image {
+  transform: scale(0.8); /* Scale down to 80% of the original size */
+  cursor: pointer;
+  z-index: 1;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #D9D9D9;
+  border-radius: 15px 0 0 15px;
+  padding: 10px;
+  margin-right: 10px;
+  position: absolute;
+  bottom: 50%;
+  transform: translate(10%, 50%); // this, plus button at 50%, is centering the square
+  right: calc(50% + 10px);
+  opacity: 0;
+  height: 65%;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  pointer-events: none;
+  white-space: nowrap; /* Prevent line breaks */
+  z-index: 0;
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.container:hover .info {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.info p {
+  margin: 0; /* Remove default margin */
+  padding: 0 40px 0 15px; /* Add some padding for spacing */
+
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.boldText {
+  font-weight: 500;
+}
+
+.info p {
+  font-size: 14px;
+}
