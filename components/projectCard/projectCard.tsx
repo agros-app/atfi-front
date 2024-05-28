@@ -35,10 +35,10 @@ export default function ProjectCard(){
                 </div>
                 <div className={styles.about}>
                     <div className={styles.dataLeftHandSide}>
-                        <Button variant="outlined">Detalles</Button>
+                        <Button variant="outlined" size={"md"}>Detalles</Button>
                     </div>
                     <div className={styles.dataRightHandSide}>
-                        <Button variant="primary">Invertir</Button>
+                        <Button variant="primary" size={"md"}>Invertir</Button>
                     </div>
                 </div>
 
