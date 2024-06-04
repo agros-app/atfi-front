@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ethers } from 'ethers';
-import {useWeb3} from "@/context/web3Modal";
+import { useWeb3 } from "@/context/web3Modal";
 import toast from 'react-hot-toast';
 
 interface ContractObject {
@@ -18,13 +18,14 @@ const useLending = () => {
     const { isConnected } = useWeb3();
 
     const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract, lendingAddress: string) => {
+        const toastId = toast.loading('Aprobando token...');
         try {
             const tx = await tokenContract.approve(lendingAddress, amount);
             await tx.wait();
-            toast.success('Token aprobado con éxito');
+            toast.success('Token aprobado con éxito', { id: toastId });
             return true;
         } catch (error) {
-            toast.error('Error al aprobar el token');
+            toast.error('Error al aprobar el token', { id: toastId });
             console.error('Error al aprobar el token:', error);
             setLoading(false)
             return false;
@@ -36,9 +37,11 @@ const useLending = () => {
         mockUSDTObject: ContractObject,
         lendingObject: ContractObject
     ) => {
+        const toastId = toast.loading('Generando inversión...');
         if (!isConnected) {
-            toast('Primero debes conectar tu wallet',{
+            toast('Primero debes conectar tu wallet', {
                 icon: '⚠️',
+                id: toastId
             });
             return;
         }
@@ -50,8 +53,7 @@ const useLending = () => {
         const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
 
         if (!lendingContract || !isNumberPositive(amount)) {
-            toast.error('Monto de inversión no válido');
-            console.error('Monto de inversión no válido');
+            toast.error('Monto de inversión no válido', { id: toastId });
             setLoading(false);
             return;
         }
@@ -60,27 +62,28 @@ const useLending = () => {
         const approvalSuccess = await approveToken(amountInWei, tokenContract, lendingObject.address);
 
         if (!approvalSuccess) {
-            toast.error('La aprobación del token falló o fue rechazada');
+            toast.error('La aprobación del token falló o fue rechazada', { id: toastId });
             setLoading(false);
             return;
         }
 
         try {
+            toast.loading('Invirtiendo...', { id: toastId })
             const transaction = await lendingContract.invest(amountInWei, { gasLimit: 2000000 });
-            toast.success('Inversión enviada con éxito');
+            toast.success('Inversión enviada con éxito', { id: toastId });
             console.log(transaction);
 
             const receipt = await transaction.wait();
             if (receipt.status === 1) {
-                toast.success('Inversión completada con éxito');
+                toast.success('Inversión completada con éxito', { id: toastId });
                 console.log('Transaction was successful:', receipt);
             } else {
-                toast.error('La transacción falló');
+                toast.error('La transacción falló', { id: toastId });
                 console.error('Transaction failed:', receipt);
             }
             return transaction;
         } catch (error) {
-            toast.error('Error al invertir en el lending');
+            toast.error('Error al invertir en el lending', { id: toastId });
             console.error('Error al invertir en el lending:', error);
         } finally {
             setLoading(false);
@@ -89,13 +92,14 @@ const useLending = () => {
 
     const regretInvestment = async (amount: string, lendingObject: ContractObject) => {
         setLoading(true);
+        const toastId = toast.loading('Retirando inversión...');
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
 
         if (!lendingContract || !isNumberPositive(amount)) {
-            toast.error('Monto de inversión no válido');
+            toast.error('Monto de inversión no válido', { id: toastId });
             console.error('Monto de inversión no válido');
             setLoading(false);
             return;
@@ -104,12 +108,12 @@ const useLending = () => {
         try {
             const amountInWei = ethers.utils.parseUnits(amount, 6);
             const transaction = await lendingContract.regretInvestment(amountInWei, { gasLimit: 2000000 });
-            toast.success('Inversión retirada con éxito');
+            toast.success('Inversión retirada con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);
             return transaction;
         } catch (error) {
-            toast.error('Error al retirar la inversión');
+            toast.error('Error al retirar la inversión', { id: toastId });
             console.error('Error al retirar la inversión:', error);
             setLoading(false);
         }
@@ -117,13 +121,14 @@ const useLending = () => {
 
     const claimReturns = async (lendingObject: ContractObject) => {
         setLoading(true);
+        const toastId = toast.loading('Reclamando retornos...');
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
 
         if (!lendingContract) {
-            toast.error('Contrato de lending no válido');
+            toast.error('Contrato de lending no válido', { id: toastId });
             console.error('Contrato de lending no válido');
             setLoading(false);
             return;
@@ -131,12 +136,12 @@ const useLending = () => {
 
         try {
             const transaction = await lendingContract.claimReturns({ gasLimit: 2000000 });
-            toast.success('Retornos reclamados con éxito');
+            toast.success('Retornos reclamados con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);
             return transaction;
         } catch (error) {
-            toast.error('Error al reclamar los retornos');
+            toast.error('Error al reclamar los retornos', { id: toastId });
             console.error('Error al reclamar los retornos:', error);
             setLoading(false);
         }
