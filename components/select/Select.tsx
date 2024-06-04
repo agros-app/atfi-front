@@ -32,7 +32,7 @@ export default function Select({
       )}
       <select name={name} className={className}>
         {placeholder && (
-          <option value="" selected disabled>
+          <option value="" hidden>
             {placeholder}
           </option>
         )}
