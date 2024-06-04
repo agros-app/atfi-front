@@ -41,63 +41,96 @@
   padding-bottom: 16px;
 }
 
-.about{
-  display: flex;
-  align-items: center;
+// Data de la campaña: fecha de finalización, ubicación, categoría
+// --------------------------------
+ul.leaders {
+  padding: 0;
+  margin: 0
 }
-
-.dataLeftHandSide{
-  flex: 1;
-  height: 100%;
+ul.leaders li {
+  display: table;
+  padding-top: 6px;
 }
-
-.dataRightHandSide {
-  flex: 1;
-  height: 100%;
+ul.leaders li span {
+  display: table-cell;
 }
-
-.dataType{
-  font-size: 16px;
-  font-weight: 400;
-  text-align: left;
-  padding: 4px 4px 4px 0;
+ul.leaders li span:first-child { /* Categoría (Finaliza en, ubicación...) */
+  position: relative;
+  overflow: hidden;
 }
-
-.dataAmount{
-  font-size: 16px;
-  font-weight: 400;
+ul.leaders li span:first-child:after { /* Dotted line */
+  content: "";
+  position: absolute;
+  bottom: 0.2em;
+  margin-left: 0.5em;
+  width: 100%;
+  border-bottom: 2px dotted gray;
+}
+ul.leaders li span + span {     /* Data (2 días, Arg...) */
   text-align: right;
-  padding: 4px  0 4px 4px;
+  width: 1%;
+  vertical-align: bottom;
+  padding-left: 0.5em;
+  white-space: nowrap;
 }
+// --------------------------------
 
 .collected{
   font-weight: 450;
   font-size: 18px;
-  padding-top: 26px;
+  padding-top: 20px;
   padding-bottom: 8px;
 }
 
-
-.progressBarOutside{
+// adentro, un rectangulo identico, pero con width en % que es el promedio entre lo recaudado y la meta
+.progressBarOutside {
   height: 20px;
-  padding-top: 16px;
+  border-radius: 10px;
+  background-color: #D9D9D9;
+  display: flex;
+  align-items: center;
+}
+
+.progressBarInside {
+  height: 100%;
+  width: 50%;
   border-radius: 10px;
   background-color: #9BD35B;
 }
 
 
+.goal{
+  display: flex;
+  align-items: center;
+}
+
+.goalLeftHandSide {
+  height: 100%;
+  flex: 1;
+
+}
+.goalRightHandSide {
+  flex: 0 0 auto; /* Ensure it takes only the space it needs */
+  height: 100%;
+}
+
 .percentage{
   font-size: 16px;
   font-weight: 300;
   text-align: left;
-  padding: 4px 4px 4px 4px;
+  padding: 4px 2px;
 }
 
 .expected{
   font-size: 16px;
   font-weight: 300;
   text-align: right;
-  padding: 4px  4px 4px 4px;
+  padding: 4px 2px;
   color: #A2A2A2;
 }
 
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}

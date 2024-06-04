@@ -10,36 +10,37 @@ export default function ProjectCard(){
             </div>
             <div className={styles.rightHandSide}>
                 <p className={styles.title}>Villa Verde</p>
-                <div className={styles.about}>
-                    <div className={styles.dataLeftHandSide}>
-                        <p className={styles.dataType}>Tipo de cosecha</p>
-                        <p className={styles.dataType}>Ubicación</p>
-                        <p className={styles.dataType}>Finaliza en</p>
 
-                    </div>
-                    <div className={styles.dataRightHandSide}>
-                        <p className={styles.dataAmount}>Soja</p>
-                        <p className={styles.dataAmount}>Argentina</p>
-                        <p className={styles.dataAmount}>2 días</p>
-                    </div>
-                </div>
+                <ul className={styles.leaders}>
+                    <li>
+                        <span>Tipo de cosecha</span>
+                        <span>Soja</span>
+                    </li>
+                    <li>
+                        <span>Ubicación</span>
+                        <span>Argentina</span>
+                    </li>
+                    <li>
+                        <span>Finaliza en</span>
+                        <span>2 días</span>
+                    </li>
+                </ul>
+
                 <p className={styles.collected}>Recaudado: $500.000</p>
-                <div className={styles.progressBarOutside} />
-                <div className={styles.about}>
-                    <div className={styles.dataLeftHandSide}>
+                <div className={styles.progressBarOutside}>
+                    <div className={styles.progressBarInside}/>
+                </div>
+                <div className={styles.goal}>
+                    <div className={styles.goalLeftHandSide}>
                         <p className={styles.percentage}>50%</p>
                     </div>
-                    <div className={styles.dataRightHandSide}>
+                    <div className={styles.goalRightHandSide}>
                         <p className={styles.expected}>Meta: $500.000</p>
                     </div>
                 </div>
-                <div className={styles.about}>
-                    <div className={styles.dataLeftHandSide}>
-                        <Button variant="outlined" size={"md"}>Detalles</Button>
-                    </div>
-                    <div className={styles.dataRightHandSide}>
-                        <Button variant="primary" size={"md"}>Invertir</Button>
-                    </div>
+                <div className={styles.buttons}>
+                    <Button variant="outlined" >Detalles</Button>
+                    <Button variant="primary" size={"md"}>Invertir</Button>
                 </div>
 
             </div>
