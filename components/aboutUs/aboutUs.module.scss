@@ -1,0 +1,29 @@
+@import "styles/variables.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column; // Ensure the container stacks its children vertically
+  overflow: hidden;
+  padding: 40px;
+  justify-content: center;
+  align-items: center; // Center the content horizontally
+  text-align: center;
+}
+
+.title{
+  font-weight: 650;
+  position: relative;
+  color: $title;
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+
+.us{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap; // Allow solutions to wrap to the next line if needed
+}

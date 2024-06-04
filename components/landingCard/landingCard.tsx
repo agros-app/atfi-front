@@ -13,9 +13,11 @@ export default function LandingCard({
     }: LandingCardProps) {
     return (
         <div className={styles.landingCard}>
-            <img className={styles.image} src={icon}></img>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.description}>{description}</p>
+            <div className={styles.data}>
+                <img className={styles.image} src={icon}></img>
+                <h2 className={styles.title}>{title}</h2>
+                <p className={styles.description}>{description}</p>
+            </div>
         </div>
     );
 }

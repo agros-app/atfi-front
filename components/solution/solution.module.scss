@@ -1,0 +1,44 @@
+@import "styles/variables.scss";
+
+.container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 554px;
+  height: 495px;
+  overflow: hidden;
+  margin: 10px;
+
+}
+
+.image{
+  border-radius: 10px;
+  position: relative;
+  height: 293px;
+  overflow: hidden;
+  background-color: #D9D9D9;
+}
+
+.data{
+  position: relative;
+  padding-top: 20px;
+}
+.title {
+    color: $title;
+    font-weight: 450; // Medium font weight
+    font-size: 32px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.description {
+  font-weight: 300; // Regular font weight
+  color: $black;
+  padding: 10px 0;
+  text-align: justify;
+}
+
+.button{
+  widht: 100%;
+  padding-top: 10px;
+}
