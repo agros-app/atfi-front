@@ -19,6 +19,14 @@ const Sepolia = {
     rpcUrl: `https://sepolia.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
 };
 
+const Polygon = {
+    chainId: 137,
+    name: 'Polygon',
+    currency: 'MATIC',
+    explorerUrl: 'https://polygonscan.com/',
+    rpcUrl: `https://polygon-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
+};
+
 
 const metadata = {
     name: 'ATFI',
@@ -62,7 +70,7 @@ export const Web3ContextProvider = ({children}) => {
             enableCoinbase: true,
             rpcUrl: Sepolia.rpcUrl
         }),
-        chains: [Sepolia],
+        chains: [Sepolia, Polygon],
         projectId: projectId,
         featuredWalletIds,
         enableAnalytics: true,
@@ -87,6 +95,8 @@ export const Web3ContextProvider = ({children}) => {
         if (!chainId) return null;
         if (chainId.toString() === Sepolia.chainId.toString()) {
             return Sepolia;
+        } else if (chainId.toString() === Polygon.chainId.toString()) {
+            return Polygon;
         }
         return null;
     }
