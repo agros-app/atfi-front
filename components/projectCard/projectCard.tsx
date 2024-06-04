@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
 import styles from "./projectCard.module.scss";
 import Button from "@/components/button/button";
+import { useRouter } from "next/navigation";
 
 export default function ProjectCard() {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <div className={styles.leftHandSide}>
@@ -45,12 +48,17 @@ export default function ProjectCard() {
           </div>
         </div>
         <div className={styles.buttons}>
-          <Button variant="outlined" size="sm" fill>
+          <Button
+            variant="outlined"
+            size="sm"
+            fill
+            onClick={() => router.push("/project/1")}
+          >
             Detalles
           </Button>
-          <Button variant="primary" size="sm" fill>
+          {/* <Button variant="primary" size="sm" fill>
             Invertir
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

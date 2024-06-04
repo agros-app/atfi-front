@@ -1,3 +1,5 @@
+@import "@/styles/variables.scss";
+
 .container {
   position: relative;
   display: flex;
@@ -82,7 +84,7 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
   height: 100%;
   width: 50%;
   border-radius: 10px;
-  background-color: #9BD35B;
+  background-color: $primary-green;
 }
 
 
@@ -111,7 +113,7 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
   font-weight: 300;
   text-align: right;
   padding: 4px 2px;
-  color: #A2A2A2;
+  color: $dark-gray;
 }
 
 .buttons{
