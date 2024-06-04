@@ -25,7 +25,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <Web3ContextProvider>
             {children}
-            <Toaster position="top-right"/>
+            <Toaster position="bottom-right"/>
           </Web3ContextProvider>
         </SessionProvider>
       </body>
