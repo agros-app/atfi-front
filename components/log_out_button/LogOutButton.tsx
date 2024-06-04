@@ -8,5 +8,5 @@ export default function LogOutButton() {
       window.location.href = "/";
     }
   };
-  return <Button onClick={logOut}>Cerrar Sesión</Button>;
+  return <Button onClick={logOut} size="md">Cerrar Sesión</Button>;
 }
