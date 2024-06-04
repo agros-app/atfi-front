@@ -26,6 +26,10 @@
   font-size: 12px;
 }
 
+.fill {
+  width: 100%;
+}
+
 .primary {
   background-color: $primary-green;
   color: $black;
@@ -56,7 +60,7 @@
 .outlined{
   border: 2px solid $primary-green;
   background-color: transparent;
-  color: $primary-green;
+  color: $dark-green;
 }
 
 .outlined:hover{
