@@ -12,13 +12,11 @@ export default function Home() {
       <NavBar />
       <main>
           <LandingImage />
-
           <HowItWorks />
           <OurSolutions />
           <AboutUs />
           <Whatsapp />
           {/*<ProjectCard title={"Valle Verde"} harvestType={"Soja"} location={"Tres Arroyos"} collected={500000} goal={1000000} />*/}
-
       </main>
     </>
   );

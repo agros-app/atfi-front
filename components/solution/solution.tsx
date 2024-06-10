@@ -19,7 +19,9 @@ export default function Solution(
             <div className={styles.data}>
                 <h2 className={styles.title}>{title}</h2>
                 <p className={styles.description}>{description}</p>
-                <Button  size={"md"} >Conocer Más</Button>
+            </div>
+            <div className={styles.button}>
+                <Button  size={"md"} fill>Conocer Más</Button>
             </div>
         </div>
     )

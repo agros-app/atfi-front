@@ -1,44 +1,33 @@
+@import "@/styles/variables.scss";
+
 .container {
   position: relative;
   display: flex;
-  width: 665px; // this is not yet responsive
-  height: 320px; // 48% the width
-
+  width: 665px; 
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-}
-
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .leftHandSide{
   position: relative;
   flex: 0.9;
-  height: 100%;
   overflow: hidden;
 }
 
 .rightHandSide {
   flex: 1.1;
   height: 100%;
-  padding: 0 26px 26px 26px;
+  padding: 26px;
+  font-size: 14px;
 }
 
 .title {
-  padding-top: 16px;
-  font-size: 32px;
+  font-size: 25px;
   font-weight: 500;
   margin: 0;
   text-align: center;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 // Data de la campaña: fecha de finalización, ubicación, categoría
@@ -49,7 +38,7 @@ ul.leaders {
 }
 ul.leaders li {
   display: table;
-  padding-top: 6px;
+  margin-top: 6px;
 }
 ul.leaders li span {
   display: table-cell;
@@ -76,10 +65,10 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
 // --------------------------------
 
 .collected{
+  font-size: 16px;
   font-weight: 450;
-  font-size: 18px;
-  padding-top: 20px;
-  padding-bottom: 8px;
+  text-align: center;
+  margin: 16px 0 8px 0;
 }
 
 // adentro, un rectangulo identico, pero con width en % que es el promedio entre lo recaudado y la meta
@@ -93,8 +82,9 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
 
 .progressBarInside {
   height: 100%;
+  width: 50%;
   border-radius: 10px;
-  background-color: #9BD35B;
+  background-color: $primary-green;
 }
 
 
@@ -106,30 +96,29 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
 .goalLeftHandSide {
   height: 100%;
   flex: 1;
-}
 
+}
 .goalRightHandSide {
   flex: 0 0 auto; /* Ensure it takes only the space it needs */
   height: 100%;
 }
 
 .percentage{
-  font-size: 16px;
   font-weight: 300;
   text-align: left;
   padding: 4px 2px;
 }
 
 .expected{
-  font-size: 16px;
   font-weight: 300;
   text-align: right;
   padding: 4px 2px;
-  color: #A2A2A2;
+  color: $dark-gray;
 }
 
 .buttons{
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
+  gap: 20px;
+  margin-top: 16px;
 }

@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 80px;
+}
+
+.section_title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.projects {
+  margin: 20px 0;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  padding: 5px;
+  & > div {
+    flex-shrink: 0;
+  }
+}
+
+.more_info{
+    text-align: center;
+}

@@ -1,4 +1,5 @@
 import styles from "./textField.module.scss";
+import React from "react";
 
 type TextFieldProps = {
   placeholder: string;
@@ -7,6 +8,8 @@ type TextFieldProps = {
   label?: string;
   helperText?: string;
   error?: boolean;
+  type?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function TextField({
@@ -16,6 +19,9 @@ export default function TextField({
   label,
   helperText,
   error,
+  type = "text",
+    onChange,
+
 }: TextFieldProps) {
   return (
     <div className={`${styles.container} ${error ? styles.error : ""}`}>
@@ -24,7 +30,7 @@ export default function TextField({
           {label}
         </label>
       )}
-      <input type="text" placeholder={placeholder} name={name} id={name} />
+      <input className={className} onChange={onChange} type={type} placeholder={placeholder} name={name} id={name} />
       {helperText && <small className={styles.helperText}>{helperText}</small>}
     </div>
   );

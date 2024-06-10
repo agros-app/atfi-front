@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 .lg {
   padding: 12px 16px;
   font-size: 16px;
@@ -24,6 +28,10 @@
 .sm {
   padding: 8px 12px;
   font-size: 12px;
+}
+
+.fill {
+  width: 100%;
 }
 
 .primary {
@@ -56,7 +64,7 @@
 .outlined{
   border: 2px solid $primary-green;
   background-color: transparent;
-  color: $primary-green;
+  color: $dark-green;
 }
 
 .outlined:hover{

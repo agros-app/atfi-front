@@ -4,11 +4,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 554px;
-  height: 495px;
+  max-width: 554px; // I believe this works for making it responsive
   overflow: hidden;
   margin: 10px;
-
 }
 
 .image{
@@ -23,6 +21,7 @@
   position: relative;
   padding-top: 20px;
 }
+
 .title {
     color: $title;
     font-weight: 450; // Medium font weight
@@ -32,13 +31,13 @@
 }
 
 .description {
-  font-weight: 300; // Regular font weight
+  font-weight: 300; // Light font weight
   color: $black;
   padding: 10px 0;
   text-align: justify;
 }
 
-.button{
-  widht: 100%;
-  padding-top: 10px;
+.button {
+  margin-top: auto; /* Push the button to the bottom */
+  width: 100%;
 }
