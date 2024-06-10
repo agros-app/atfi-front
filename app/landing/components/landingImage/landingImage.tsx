@@ -1,4 +1,4 @@
-import crawler from '@/assets/images/tractor.png';
+import crawler from '@/assets/Images/tractor.png';
 import styles from './landingImage.module.scss';
 import Button from "@/components/button/button";
 

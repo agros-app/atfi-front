@@ -1,29 +1,31 @@
-@import "styles/variables.scss";
+@import "../../../../styles/variables";
+
 
 .container {
   position: relative;
   display: flex;
   flex-direction: column; // Ensure the container stacks its children vertically
   overflow: hidden;
-  padding: 40px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   justify-content: center;
   align-items: center; // Center the content horizontally
   text-align: center;
 }
 
-.title{
+.howItWorks {
   font-weight: 650;
   position: relative;
   color: $title;
   font-size: 38px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
-
-.us{
+.cards {
   position: relative;
   display: flex;
   justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap; // Allow solutions to wrap to the next line if needed
+  gap: 30px; // Space between the cards
+  flex-wrap: wrap; // Allow cards to wrap to the next line if needed
 }
+

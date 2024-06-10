@@ -1,5 +1,5 @@
 import styles from './howItWorks.module.scss';
-import LandingCard from "@/components/landingCard/landingCard";
+import LandingCard from "@/app/landing/components/landingCard/landingCard";
 import seedling from "@/assets/icons/seedling.png";
 
 

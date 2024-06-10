@@ -1,5 +1,5 @@
 import styles from './ourSolutions.module.scss'
-import Solution from "@/components/solution/solution";
+import Solution from "@/app/landing/components/solution/solution";
 
 export default function OurSolutions(){
     return(
