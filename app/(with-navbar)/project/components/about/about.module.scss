@@ -1,0 +1,47 @@
+@import "styles/variables.scss";
+
+.container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.description{
+  font-weight: 350;
+  padding: 20px 0 40px 0;
+  font-size: 20px;
+  text-align: left;
+}
+
+.dataContainer{
+  display: flex;
+  border-top: 2px solid $primary-yellow;
+  padding-top: 20px;
+  gap:20px;
+  width: 100%;
+}
+
+.subdata{
+  padding: 10px 70px;
+
+}
+
+.leftHandSide{
+  flex: 1;
+  border-right: 2px solid $primary-yellow; ;
+}
+.rightHandSide{
+  display: flex;  // Add this line
+  flex-direction: column;
+  flex: 0.6;
+  gap:30px;
+  padding: 10px
+}
+
+.dataGroup{
+  padding-top:10px;
+}

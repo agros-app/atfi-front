@@ -1,0 +1,26 @@
+@import "/styles/variables.scss";
+
+.dataType {
+  border: 1px solid $primary-yellow;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  width: max-content;
+  padding: 2px 13px;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+}
+
+.hoverEnabled:hover {
+  background-color: $primary-yellow; /* Change background color on hover */
+}
+
+.filledDataType {
+  background-color: $primary-yellow;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  width: max-content;
+  padding: 2px 13px;
+}
