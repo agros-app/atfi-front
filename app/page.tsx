@@ -8,7 +8,6 @@ export default function Home() {
       {/* TEMPORARY */}
       <NavBar />
       <main>
-          <Project />
       </main>
     </>
   );
