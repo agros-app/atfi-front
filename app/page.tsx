@@ -1,5 +1,5 @@
 import NavBar from "@/components/navbar/navbar";
-import LandingPage from "@/app/landing/page";
+import Project from "@/app/(with-navbar)/project/page";
 
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
       {/* TEMPORARY */}
       <NavBar />
       <main>
-          <LandingPage />
+          <Project />
       </main>
     </>
   );

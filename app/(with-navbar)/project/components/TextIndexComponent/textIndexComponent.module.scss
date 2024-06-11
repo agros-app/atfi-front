@@ -1,0 +1,33 @@
+@import "styles/variables.scss";
+
+.container{
+  display: flex;
+  flex-direction: column; /* Change to column direction */
+}
+
+.text {
+  height: 100%; /* Adjust height as needed */
+  font-weight: 450;
+  border-left: 2px solid $primary-yellow; /* Adjust color and width as needed */
+  font-size: 20px; /* Adjust font size as needed */
+  padding-left: 10px;
+  color: black; /* Adjust text color as needed */
+}
+
+.percentage {
+  font-size: 20px; /* Adjust font size as needed */
+  font-weight: 450;
+  color: $darker-gray; /* Adjust text color as needed */
+}
+
+.subtext {
+  font-size: 14px; /* Adjust font size as needed */
+  padding-top: 5px;
+  font-weight: 250;
+  margin-left: 12px; // two more than the title because the title has a 2px border which adds up
+}
+
+.secondary{
+  font-size: 20px;
+  font-weight: 350;
+}

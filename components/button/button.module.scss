@@ -52,6 +52,17 @@
   background-color: darken($primary-yellow, 10%);
 }
 
+.tertiary {
+  background-color: $light-blue;
+  color: $darker-gray;
+}
+
+.tertiary:hover {
+  background-color: darken($light-blue, 10%);
+}
+
+
+
 .ghost {
   background-color: transparent;
   color: $black;
