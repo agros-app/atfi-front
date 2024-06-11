@@ -4,8 +4,7 @@ import Button from "@/components/button/button";
 
 export default function LandingImage() {
     return (
-        <div className={styles.container}>
-            <img src={crawler.src} alt="Landing Image" className={styles.image}></img>
+        <section className={styles.container}>
             <div className={styles.imageDataContainer}>
                 <h1 className={styles.titleP1}>Impulsando el Futuro de la</h1>
                 <h1 className={styles.titleP2}>Agronomía</h1>
@@ -14,6 +13,6 @@ export default function LandingImage() {
                     <Button  size="lg">Conocer más</Button>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
