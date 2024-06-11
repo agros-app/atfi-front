@@ -1,6 +1,5 @@
 import styles from './producer.module.scss';
 import ProfileImage from "@/components/profileImage/profileImage";
-import Lollo from "@/assets/Images/lollo.jpeg";
 import TextField from "@/components/textField/textField";
 import Button from "@/components/button/button";
 

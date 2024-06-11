@@ -1,33 +1,46 @@
 "use client";
-import Button from "@/components/button/button";
-import { Loader } from "@/components/loader/loader";
-import TextField from "@/components/textField/textField";
-import useLending from "@/hooks/useLending";
-import mockUSDT from "@/contracts/MockUSDT.json";
-import lending from "@/contracts/lendingTest.json";
-import { FormEventHandler } from "react";
+import FarmImage from "./components/farmImage/farmImage";
+import About from "./components/about/about";
+import Map from "./components/map/map";
+import FinancialInfo from "./components/financialInfo/financialInfo";
+import Producer from "./components/producer/producer";
+import styles from "./project.module.scss";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const { investInLending, loading } = useLending();
 
-  const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
-    // @ts-ignore
-    const amount = parseInt(event.target.amount.value);
-    await investInLending(amount.toString(), mockUSDT, lending);
-    // @ts-ignore  typescript is not recognizing the reset method
-    event.target.reset();
-  };
   return (
-    <main>
-      <h1>Project {id}</h1>
-      <form onSubmit={handleInvest}>
-        <TextField type="number" placeholder="amount" name="amount" />
-        <Button size={"md"} variant={"primary"} disabled={loading}>
-          {!loading ? "Invertir" : <Loader />}
-        </Button>
-      </form>
-    </main>
+    <div className={styles.container}>
+      <h1 className={styles.title}>
+        <span className={styles.name}>Valle Verde</span>
+        <span className={styles.city}>, Montevideo</span>
+      </h1>
+      <div className={styles.content}>
+        <div className={styles.leftHandSide}>
+          <div className={styles.component}>
+            <FarmImage />
+          </div>
+          <div className={styles.component}>
+            <About />
+          </div>
+          <div className={styles.component}>
+            <Map />
+          </div>
+        </div>
+        <div className={styles.rightHandSide}>
+          <div className={styles.component}>
+            <FinancialInfo />
+          </div>
+          <div className={styles.component}>
+            <Producer />
+          </div>
+        </div>
+      </div>
+      <div>
+        *Esto es solo un estimado hacho por ATFI que blah balh lorem ipsum dolor
+        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim
+      </div>
+    </div>
   );
 }

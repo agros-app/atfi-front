@@ -27,8 +27,8 @@
   margin: 15px 20px;
 }
 
-.button{
-  border-radius: 10px;
-  background-color: $primary-yellow;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;  
 }
