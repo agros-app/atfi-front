@@ -34,12 +34,13 @@ a {
   text-decoration: none;
 }
 
-input {
+input, select {
   padding: 12px 16px;
   border-radius: 8px;
   border: 1px solid $gray;
   font-size: 16px;  
   background-color: transparent;
+  outline: none;
 
   &:focus-visible{
     outline: 1px solid darken($gray, 5%);
