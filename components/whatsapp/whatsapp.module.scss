@@ -8,9 +8,10 @@
 }
 
 .image {
-  transform: scale(0.8); /* Scale down to 80% of the original size */
   cursor: pointer;
   z-index: 1;
+  width: 60px;
+  height: auto;
 }
 
 .info {

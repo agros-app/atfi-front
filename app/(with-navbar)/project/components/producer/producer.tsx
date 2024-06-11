@@ -9,7 +9,7 @@ export default function Producer(){
         <div className={styles.container}>
             <div className={styles.title}>Productor</div>
             <div className={styles.profile}>
-                <ProfileImage icon={Lollo.src} size={60} />
+                <ProfileImage src={"/owners/nico.jpg"} size={60} />
                 <div className={styles.name}>Pepito Valverde</div>
             </div>
             <div className={styles.title}>Envianos un mensaje</div>

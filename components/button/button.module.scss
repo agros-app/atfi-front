@@ -35,12 +35,12 @@
 }
 
 .primary {
-  background-color: $primary-green;
-  color: $black;
+  background-color: $dark-green;
+  color: $white;
 }
 
 .primary:hover {
-  background-color: darken($primary-green, 10%);
+  background-color: darken($dark-green, 10%);
 }
 
 .secondary {
@@ -73,12 +73,12 @@
 }
 
 .outlined{
-  border: 2px solid $primary-green;
+  border: 2px solid $dark-green;
   background-color: transparent;
   color: $dark-green;
 }
 
 .outlined:hover{
-  background-color: color-mix(in srgb, $primary-green 40%, transparent);
+  background-color: color-mix(in srgb, $dark-green 40%, transparent);
   color: $black;
 }

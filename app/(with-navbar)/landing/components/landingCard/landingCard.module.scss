@@ -1,3 +1,5 @@
+@import "@/styles/variables.scss";
+
 .landingCard {
   background-color: white;
   border-radius: 10px;
@@ -15,15 +17,12 @@
   box-shadow: 0 8px 16px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for effect */
 }
 
-.data{
+.data {
   padding: 10px;
 }
 
-.image {
-  padding: 10px;
-  max-width: 70px; // Set the maximum width of the image
-  max-height: 70px; // Set the maximum height of the image
-  margin: 0 auto; // Center the image horizontally
+.icon {
+  fill: $primary-green;
 }
 
 .name {

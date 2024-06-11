@@ -1,5 +1,5 @@
+import Title from '../title/title';
 import styles from './map.module.scss';
-import Title from "@/app/(with-navbar)/project/components/title/title";
 
 export default function Map(){
     return (

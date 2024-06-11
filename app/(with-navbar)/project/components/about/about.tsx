@@ -1,12 +1,12 @@
 import styles from './about.module.scss';
-import Title from "@/app/(with-navbar)/project/components/title/title";
-import BulletIcon from "@/app/(with-navbar)/project/components/bulletIcon/bulletIcon";
-import calendar from "../../../../../assets/icons/calendar.png";
-import wheat from "../../../../../assets/icons/wheat.png";
-import soy from "../../../../../assets/icons/soy.png";
-import size from "../../../../../assets/icons/size.png";
-import location from "../../../../../assets/icons/location.png";
-import TextIndexComponent from "@/app/(with-navbar)/project/components/TextIndexComponent/textIndexComponent";
+import calendar from "@/assets/icons/calendar.png";
+import wheat from "@/assets/icons/wheat.png";
+import soy from "@/assets/icons/soy.png";
+import size from "@/assets/icons/size.png";
+import location from "@/assets/icons/location.png";
+import Title from '../title/title';
+import BulletIcon from '../bulletIcon/bulletIcon';
+import TextIndexComponent from '../TextIndexComponent/textIndexComponent';
 
 
 // This one should be much, much nicer

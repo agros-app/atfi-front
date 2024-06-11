@@ -1,5 +1,5 @@
+import Title from '../title/title';
 import styles from './farmImage.module.scss';
-import Title from "@/app/(with-navbar)/project/components/title/title";
 
 export default function FarmImage(){
     return(

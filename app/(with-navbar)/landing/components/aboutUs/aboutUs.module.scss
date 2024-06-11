@@ -1,12 +1,10 @@
-@import "../../../../styles/variables";
+@import "@/styles/variables.scss";
 
 .container {
-  background-color: $bg-color-secondary;
   position: relative;
   display: flex;
   flex-direction: column; // Ensure the container stacks its children vertically
   overflow: hidden;
-  //width: 100%;
   padding: 40px;
   justify-content: center;
   align-items: center; // Center the content horizontally
@@ -18,13 +16,14 @@
   position: relative;
   color: $title;
   font-size: 38px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
-.solutions{
+
+.us{
   position: relative;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 60px;
   flex-wrap: wrap; // Allow solutions to wrap to the next line if needed
 }
