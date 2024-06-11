@@ -87,6 +87,12 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
   background-color: $primary-green;
 }
 
+.collected{
+  font-weight: 450;
+  text-align: center;
+  margin: 16px 0 8px 0;
+}
+
 
 .goal{
   display: flex;
