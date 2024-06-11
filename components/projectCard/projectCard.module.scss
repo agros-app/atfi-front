@@ -3,7 +3,7 @@
 .container {
   position: relative;
   display: flex;
-  width: 665px; 
+  width: 600px; 
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
@@ -20,6 +20,13 @@
   height: 100%;
   padding: 26px;
   font-size: 14px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 14px;
 }
 
 .name {
