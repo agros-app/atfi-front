@@ -19,7 +19,7 @@ export default function Login() {
       </section>
       <div className={styles.right}>
         <Image
-          src={"/bg_auth.jpg"}
+          src={"/auth/bg_auth.jpg"}
           alt="atfi login background"
           fill
           style={{ objectFit: "cover" }}
