@@ -1,9 +1,8 @@
 import styles from './ownerProfile.module.scss';
 import ProfileImage from "@/components/profileImage/profileImage";
-import Lollo from "@/assets/Images/lollo.jpeg";
 
 type OwnerProfileProps = {
-    image?: string;
+    src: string;
     name: string;
     job: string;
     linkedinLink?: string;
@@ -11,14 +10,14 @@ type OwnerProfileProps = {
 
 
 export default function OwnerProfile(
-    {   image,
+    {   src,
         name,
         job,
         linkedinLink
     }: OwnerProfileProps) {
     return (
         <div className={styles.container}>
-            <ProfileImage size={210} icon={Lollo.src} grayFilter={true}/>
+            <ProfileImage size={210} src={src} grayFilter={true}/>
             <div className={styles.data}>
                 <h2 className={styles.name}>{name}</h2>
                 <p className={styles.job}>{job}</p>

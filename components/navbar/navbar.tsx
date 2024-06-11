@@ -15,8 +15,6 @@ export default async function NavBar() {
         </Link>
       </div>
       <div className={styles.right}>
-        <Link href="/projects">Proyectos</Link>
-        <Link href="/simulator">Simulador</Link>
         {user && <WalletButton />}
         {user ? <LogOutButton /> : <Link href="/login">Ingresar</Link>}
       </div>

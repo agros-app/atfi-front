@@ -13,7 +13,7 @@ export default function WalletButton() {
   };
   return (
     <Button onClick={handleClick} size="md" variant="secondary">
-      {isConnected ? "Desconectar" : "Conectar"} Billetera
+      {isConnected ? "Desconectar" : "Conectar"} billetera
     </Button>
   );
 }
