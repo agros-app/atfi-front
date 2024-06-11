@@ -6,7 +6,7 @@ import { LoginForm, Services } from "./components";
 
 export default function Login() {
   return (
-    <div className={styles.loginContainer}>
+    <div className={styles.container}>
       <Link href={"/"}>
         <Logo size={150} />
       </Link>
