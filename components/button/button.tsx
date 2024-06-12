@@ -3,7 +3,7 @@ import styles from "./button.module.scss";
 
 type ButtonProps = {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "tertiary" | "ghost" | "outlined";
+  variant?: "primary" | "secondary" | "tertiary" | "ghost" | "outlined" | "custom";
   size?: "sm" | "md" | "lg";
   fill?: boolean;
   className?: string;
