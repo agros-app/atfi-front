@@ -7,7 +7,7 @@ import TextIndexComponent from "../TextIndexComponent/textIndexComponent";
 import TextField from "@/components/textField/textField";
 import useLending from "@/hooks/useLending";
 import { FormEventHandler } from "react";
-import mockUSDT from "@/contracts/MockUSDT.json";
+import mockUSDT from "@/contracts/mockUSDT.json";
 import lending from "@/contracts/lendingTest.json";
 
 export default function FinancialInfo() {
