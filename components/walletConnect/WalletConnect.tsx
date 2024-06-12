@@ -2,7 +2,7 @@
 import Button from "@/components/button/button";
 import TextField from "@/components/textField/textField";
 import {useState} from "react";
-import mockUSDT from "@/contracts/MockUSDT.json";
+import mockUSDT from "@/contracts/mockUSDT.json";
 import lending from "@/contracts/lendingTest.json";
 import {useWeb3} from "@/context/web3Modal";
 import {investInLending, regretInvestment} from "@/utils/contractInteractions/user";
