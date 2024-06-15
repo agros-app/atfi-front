@@ -12,7 +12,6 @@ export default function Home() {
       <HowItWorks />
       <OurSolutions />  
       <AboutUs />
-      
       <Whatsapp />
     </main>
   );

@@ -10,14 +10,27 @@
   justify-content: center;
   align-items: center; // Center the content horizontally
   text-align: center;
+  gap: 32px;
+}
+
+.howItWorksContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .howItWorks {
   font-weight: 650;
   position: relative;
   color: $title;
-  font-size: 38px;
-  margin-bottom: 40px;
+  font-size: 54px;
+}
+
+.howItWorksDescription {
+  max-width: 50%;
+  font-size: 24px;
 }
 
 .cards {
