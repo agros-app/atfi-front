@@ -3,12 +3,10 @@
 .container {
   position: relative;
   display: flex;
-  flex-direction: column; // Ensure the container stacks its children vertically
+  flex-direction: column;
   overflow: hidden;
-  padding-top: 80px;
-  padding-bottom: 80px;
   justify-content: center;
-  align-items: center; // Center the content horizontally
+  align-items: center;
   text-align: center;
   gap: 32px;
 }
@@ -19,25 +17,112 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  background-color: $title;
+  padding: 48px 0;
 }
 
 .howItWorks {
   font-weight: 650;
   position: relative;
-  color: $title;
+  color: $white;
   font-size: 54px;
 }
 
 .howItWorksDescription {
-  max-width: 50%;
-  font-size: 24px;
+  max-width: 60%;
+  font-size: 32px;
+  color: $white;
 }
 
 .cards {
   position: relative;
   display: flex;
   justify-content: center;
-  gap: 30px; // Space between the cards
-  flex-wrap: wrap; // Allow cards to wrap to the next line if needed
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 16px;
 }
 
+.visionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+  background: url("/landing/bg_image.png");
+  opacity: 0.8;
+  background-position: center;
+  background-size: cover;
+  }
+
+.visionBorder {
+  width: 40%;
+  margin: 32px auto;
+  height: 4px;
+  background-color: $primary-yellow;
+}
+
+.visionTitle {
+    font-size: 32px;
+    font-weight: 650;
+    color: $white;
+}
+
+
+.vision {
+    font-size: 18px;
+    font-weight: 500;
+    color: $white;
+}
+
+.feature {
+  position: relative;
+  padding: 2rem;
+  background-color: transparent;
+  border: 1px solid $gray;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature:hover {
+  border: none;
+  transform: scale(1.05);
+}
+
+.featureTitle {
+  font-size: 32px;
+  font-weight: bold;
+    color: $white;
+}
+
+.featureDescription {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: $dark-green;
+  opacity: 0.8;
+  color: #fff;
+  transition: top 0.3s ease;
+  height: 100%;
+  line-height: 1.4;
+  font-size: 18px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature:hover .featureDescription {
+  top: 0;
+}
+
+.feature:hover .featureTitle {
+  display: none;
+}
