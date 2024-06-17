@@ -1,15 +1,13 @@
 @import "@/styles/variables.scss";
 .container {
   background-color: $bg-color-secondary;
-  position: relative;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  height: 100vh;
-  gap: 60px;
-  justify-content: center;
-  align-items: center; // Center the content horizontally
+  padding: 40px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .name {
@@ -24,6 +22,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  margin-top: 30px;
   gap: 30px;
   flex-wrap: wrap; // Allow solutions to wrap to the next line if needed
 }
