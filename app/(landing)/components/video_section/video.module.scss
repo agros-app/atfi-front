@@ -29,7 +29,22 @@
 .titleP2 {
   font-weight: 600;
   font-size: 72px;
-  color: $dark-green;
+  color: $white;
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: $dark-green;
+    z-index: -1;
+    animation: show 1s forwards;
+    animation-delay: 1s;
+  }
 }
 
 .subtitle {
@@ -41,4 +56,13 @@
 
 .button {
   padding-top: 40px;
+}
+
+@keyframes show {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
