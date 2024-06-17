@@ -1,0 +1,46 @@
+/* components/footer.module.css */
+
+.footer {
+    background: #18392B;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footerContent {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footerSection {
+    margin: 20px;
+    min-width: 200px;
+}
+
+.footerSection h3 {
+    margin-bottom: 15px;
+}
+
+.footerSection p, .footerSection ul, .footerSection a {
+    color: white;
+    text-decoration: none;
+}
+
+.footerSection ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footerSection ul li {
+    margin: 10px 0;
+}
+
+.footerSection ul li a:hover {
+    text-decoration: underline;
+}
+
+.footerBottom {
+    margin-top: 20px;
+}

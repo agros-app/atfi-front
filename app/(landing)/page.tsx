@@ -5,6 +5,7 @@ import FeatureSection from "./components/feature_section/featureSection";
 import HowItWorksSection from "./components/how_it_works_section/howItWorks";
 import OurSolutionsSection from "./components/our_solutions_section/ourSolutions";
 import AboutUs from "./components/about_us_section/aboutUs";
+import Footer from "@/components/footer/footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <HowItWorksSection />
         <OurSolutionsSection />
         <AboutUs />
+        <Footer />
         <Whatsapp />
       </main>
     </>

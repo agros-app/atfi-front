@@ -99,7 +99,6 @@
 }
 
 .usContainer {
-  background-color: $title;
   padding: 32px;
   display: flex;
     flex-direction: column;
@@ -110,7 +109,7 @@
 .titleUs {
     font-size: 54px;
     font-weight: 200;
-    color: $white;
+    color: $black;
 }
 
 .us {
