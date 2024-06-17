@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  padding: 30px;
+}
+
+.cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 16px;
+}

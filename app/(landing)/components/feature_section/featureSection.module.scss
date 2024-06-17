@@ -1,17 +1,6 @@
 @import "@/styles/variables.scss";
 
 .container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 32px;
-}
-
-.howItWorksContainer {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -21,26 +10,17 @@
   padding: 48px 0;
 }
 
-.howItWorks {
-  font-weight: 650;
-  position: relative;
-  color: $white;
-  font-size: 54px;
-}
-
-.howItWorksDescription {
+.description {
   max-width: 60%;
   font-size: 32px;
   color: $white;
 }
 
-.cards {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  padding: 16px;
+.visionBorder {
+  width: 40%;
+  margin: 32px auto;
+  height: 4px;
+  background-color: $primary-yellow;
 }
 
 .visionContainer {
@@ -52,25 +32,6 @@
   opacity: 0.8;
   background: url("/landing/bg_image.png") center;
   background-size: cover;
-  }
-
-.visionBorder {
-  width: 40%;
-  margin: 32px auto;
-  height: 4px;
-  background-color: $primary-yellow;
-}
-
-.visionTitle {
-    font-size: 32px;
-    font-weight: 650;
-    color: $white;
-}
-
-.vision {
-    font-size: 18px;
-    font-weight: 500;
-    color: $white;
 }
 
 .feature {
@@ -91,11 +52,10 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-
 .featureTitle {
   font-size: 32px;
   font-weight: bold;
-    color: $white;
+  color: $white;
 }
 
 .featureDescription {

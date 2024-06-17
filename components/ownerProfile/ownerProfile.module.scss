@@ -1,19 +1,10 @@
 @import "styles/variables.scss";
 
-.container{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 210px;
-  height: 360px;
-  overflow: hidden;
-  margin: 10px;
-}
 
 
 .data{
   position: relative;
-  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .name {
@@ -28,7 +19,7 @@
   font-weight: 250; // light font weight
   color: $black;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 

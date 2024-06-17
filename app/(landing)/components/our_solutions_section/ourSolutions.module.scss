@@ -3,16 +3,16 @@
   background-color: $bg-color-secondary;
   position: relative;
   display: flex;
-  flex-direction: column; // Ensure the container stacks its children vertically
+  flex-direction: column;
   overflow: hidden;
-  //width: 100%;
-  padding: 40px;
+  height: 100vh;
+  gap: 60px;
   justify-content: center;
   align-items: center; // Center the content horizontally
   text-align: center;
 }
 
-.name{
+.name {
   font-weight: 650;
   position: relative;
   color: $title;
@@ -20,7 +20,7 @@
   margin-bottom: 40px;
 }
 
-.solutions{
+.solutions {
   position: relative;
   display: flex;
   justify-content: center;

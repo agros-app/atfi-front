@@ -1,0 +1,48 @@
+@import "@/styles/variables.scss";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  width: 100%;
+  align-items: center;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 5%;
+  z-index: 999;
+  transition-duration: 500ms;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  color: $dark-green;
+  gap: 5px;
+
+  a {
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.4s;
+  }
+}
+
+.login {
+  background-color: $dark-green;
+  color: $white;
+  &:hover {
+    background-color: darken($dark-green, 5%) !important;
+  }
+}
+
+.right > a:hover {
+  background-color: color-mix(in srgb, $dark-green 10%, $white 10%);
+}
+
+.filled_navbar {
+  background-color: $white;
+  height: 100px !important;
+  border-bottom: 1px solid $dark-green;
+}
