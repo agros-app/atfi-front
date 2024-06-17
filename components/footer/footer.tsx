@@ -1,7 +1,7 @@
 // components/Footer.tsx
 
 import React from 'react';
-import styles from './footer.module.css';
+import styles from './footer.module.scss';
 
 const Footer: React.FC = () => {
     return (
@@ -35,7 +35,13 @@ const Footer: React.FC = () => {
                 <div className={styles.footerSection}>
                     <h3>Contacto</h3>
                     <p>Email: atfisoporte@atfi.com</p>
-                    <p>Teléfono: +123 456 7890</p>
+                    <p style={{marginTop: '12px'}}>Teléfono: +123 456 7890</p>
+                    <div className={styles.iconsContainer}>
+                        <img className={styles.icon} src={"/Facebook_f_logo_(2019).svg"} alt={'Facebook'}/>
+                        <img className={styles.icon} src={"/instagram.svg"} alt={'Instagram'}/>
+                        <img className={styles.icon} src={"/Linkedin_icon.svg"} alt={'Linkedin'}/>
+                        <img className={styles.icon} src={"/x.svg"} alt={'Twitter'}/>
+                    </div>
                 </div>
             </div>
             <div className={styles.footerBottom}>
