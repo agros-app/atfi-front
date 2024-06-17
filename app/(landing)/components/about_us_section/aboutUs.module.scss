@@ -1,29 +1,111 @@
 @import "@/styles/variables.scss";
 
 .container {
-  position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 60vh;
+  padding: 64px;
   gap: 40px;
 }
 
-.name {
-  font-weight: 650;
-  position: relative;
-  color: $title;
-  font-size: 38px;
-  margin-bottom: 30px;
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-size: 72px;
+  font-weight: 200;
+  color: $black;
+}
+
+.description {
+  font-size: 24px;
+  font-weight: 200;
+  color: $black;
+  margin-left: auto;
+  max-width: 60%;
 }
 
 .us {
-  position: relative;
   display: flex;
   justify-content: center;
   gap: 60px;
-  flex-wrap: wrap; // Allow solutions to wrap to the next line if needed
+  flex-wrap: wrap;
+}
+
+.cardsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.vision {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 560px;
+  height: 490px;
+  border-radius: 8px;
+  padding: 48px;
+  background: linear-gradient(135deg, $primary-yellow, lighten($black, 40%));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.mission {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 560px;
+  height: 490px;
+  border-radius: 8px;
+  padding: 48px;
+  background: linear-gradient(135deg, $title, lighten($black, 40%));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.cardIcon {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 420px;
+  height: 110%;
+  background: rgba(255, 255, 255, 0.1);
+  right: -150px;
+  top: -10px;
+  overflow: hidden;
+}
+
+.mission:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.vision:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.cardTitle {
+    font-size: 44px;
+    font-weight: 200;
+    color: $white;
+}
+
+.cardDescription {
+    font-size: 22px;
+    font-weight: 200;
+    color: $white;
+  line-height: 1.5;
+}
+
+.titleUs {
+    font-size: 54px;
+    font-weight: 200;
+    color: $black;
 }

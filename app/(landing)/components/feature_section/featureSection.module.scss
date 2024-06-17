@@ -14,6 +14,7 @@
   max-width: 60%;
   font-size: 32px;
   color: $white;
+  font-weight: 200;
 }
 
 .visionBorder {
@@ -30,7 +31,7 @@
   height: 500px;
   margin: 0 auto;
   opacity: 0.8;
-  background: url("/landing/bg_image.png") center;
+  background: url("/landing/landing-ph-3.jpg") center;
   background-size: cover;
 }
 
@@ -53,9 +54,9 @@
 }
 
 .featureTitle {
-  font-size: 32px;
-  font-weight: bold;
-  color: $white;
+  font-size: 38px;
+  font-weight: 300;
+  color: $black;
 }
 
 .featureDescription {
@@ -75,6 +76,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 200;
 }
 
 .feature:hover .featureDescription {
