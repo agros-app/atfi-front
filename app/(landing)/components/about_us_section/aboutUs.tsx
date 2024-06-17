@@ -33,23 +33,25 @@ export default function AboutUs() {
                   </p>
               </div>
           </div>
-          <h2 className={styles.titleUs}>Nuestro equipo ejecutivo</h2>
-          <div className={styles.us}>
-              <OwnerProfile
-                  src="/owners/gian.jpg"
-                  name={"Gianluca Chiaverano"}
-                  job={"Co-Founder & COO"}
-              />
-              <OwnerProfile
-                  src="/owners/nico.jpg"
-                  name={"Nicolas Ruíz Natale"}
-                  job={"Co-Founder & CEO"}
-              />
-              <OwnerProfile
-                  src="/owners/gabi.jpg"
-                  name={"Gabriel Giana"}
-                  job={"Co-Founder & CTO"}
-              />
+          <div className={styles.usContainer}>
+              <h2 className={styles.titleUs}>Nuestro equipo ejecutivo</h2>
+              <div className={styles.us}>
+                  <OwnerProfile
+                      src="/owners/gian.jpg"
+                      name={"Gianluca Chiaverano"}
+                      job={"Co-Founder & COO"}
+                  />
+                  <OwnerProfile
+                      src="/owners/nico.jpg"
+                      name={"Nicolas Ruíz Natale"}
+                      job={"Co-Founder & CEO"}
+                  />
+                  <OwnerProfile
+                      src="/owners/gabi.jpg"
+                      name={"Gabriel Giana"}
+                      job={"Co-Founder & CTO"}
+                  />
+              </div>
           </div>
       </section>
   );

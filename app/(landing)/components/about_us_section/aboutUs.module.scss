@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 64px;
+  padding: 64px 0;
   gap: 40px;
 }
 
@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding: 0 64px;
 }
 
 .title {
@@ -26,13 +27,6 @@
   color: $black;
   margin-left: auto;
   max-width: 60%;
-}
-
-.us {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap;
 }
 
 .cardsContainer {
@@ -104,8 +98,25 @@
   line-height: 1.5;
 }
 
+.usContainer {
+  background-color: $title;
+  padding: 32px;
+  display: flex;
+    flex-direction: column;
+  gap: 32px;
+  margin-top: 32px;
+}
+
 .titleUs {
     font-size: 54px;
     font-weight: 200;
-    color: $black;
+    color: $white;
+}
+
+.us {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  color: $white;
 }
