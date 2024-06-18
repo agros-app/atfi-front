@@ -1,6 +1,5 @@
 import styles from "./landingCard.module.scss";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { itemVariants } from "./variants";
 
 export type LandingCardProps = {
@@ -18,20 +17,11 @@ export default function LandingCard({
   image,
   reverse,
 }: LandingCardProps) {
-  const cardControls = useAnimation();
-  const cardRef = useRef(null);
-  const cardInView = useInView(cardRef);
-
-  useEffect(() => {
-    if (cardInView) {
-      cardControls.start("visible");
-    }
-  }, [cardControls, cardInView]);
   return (
     <motion.div
-      ref={cardRef}
       initial="hidden"
-      animate={cardControls}
+      whileInView="visible"
+      viewport={{ once: true }}
       variants={itemVariants}
       style={{ flexDirection: reverse ? "row-reverse" : "row" }}
       className={styles.cardContainer}
