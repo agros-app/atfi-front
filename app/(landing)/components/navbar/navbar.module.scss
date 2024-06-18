@@ -3,7 +3,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  height: 120px;
+  height: 100px;
   width: 100%;
   align-items: center;
   background-color: transparent;
@@ -43,6 +43,6 @@
 
 .filled_navbar {
   background-color: $white;
-  height: 100px !important;
+  height: 70px !important;
   border-bottom: 1px solid $dark-green;
 }
