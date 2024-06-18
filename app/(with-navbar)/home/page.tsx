@@ -1,21 +1,18 @@
 import Link from "next/link";
 import styles from "./home.module.scss";
-import ProjectCard from "@/components/projectCard/projectCard";
+import Projects from "@/components/projects/projects";
 
 export default async function Home() {
   return (
     <main className={styles.main}>
       <section>
-        <h3 className={styles.section_title}>Ofertas activas</h3>
+        <h3 className={styles.section_title}>Proyectos activos</h3>
         <p>
           Estos campos están esperando nuevas inversiones. Podrás ver más sobre
           ellos en la sección de detalles.
         </p>
         <div className={styles.projects}>
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+          <Projects />
         </div>
         <div className={styles.more_info}>
           <Link href={"/projects"}>Ver todos los proyectos {">>"}</Link>

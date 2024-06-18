@@ -1,24 +1,31 @@
-"use client";
 import FarmImage from "./components/farmImage/farmImage";
 import About from "./components/about/about";
 import Map from "./components/map/map";
 import FinancialInfo from "./components/financialInfo/financialInfo";
 import Producer from "./components/producer/producer";
 import styles from "./project.module.scss";
+import { getProjectById } from "@/api";
+import { differenceInCalendarDays, startOfToday } from "date-fns";
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
+export default async function ProjectPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = params;
-
+  const { name, endDate, startDate, amountCollected, amountNeed, minAmount } =
+    await getProjectById(parseInt(id));
+  const days = differenceInCalendarDays(new Date(endDate), startOfToday());
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
-        <span className={styles.name}>Valle Verde</span>
-        <span className={styles.city}>, Montevideo</span>
+        <span className={styles.name}>{name}</span>
+        <span className={styles.city}>, Argentina</span>
       </h1>
       <div className={styles.content}>
         <div className={styles.leftHandSide}>
           <div className={styles.component}>
-            <FarmImage />
+            <FarmImage duration={days} />
           </div>
           <div className={styles.component}>
             <About />
@@ -29,7 +36,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         </div>
         <div className={styles.rightHandSide}>
           <div className={styles.component}>
-            <FinancialInfo />
+            <FinancialInfo
+              projectId={parseInt(id)}
+              currentAmmount={amountCollected}
+              goalAmmount={amountNeed}
+              minAmmount={minAmount}
+            />
           </div>
           <div className={styles.component}>
             <Producer />

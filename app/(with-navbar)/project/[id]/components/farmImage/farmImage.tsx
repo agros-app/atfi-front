@@ -1,7 +1,7 @@
 import Title from '../title/title';
 import styles from './farmImage.module.scss';
 
-export default function FarmImage(){
+export default function FarmImage({duration}:{duration:number}){
     return(
         <div className={styles.container}>
             <div className={styles.topSide}>
@@ -14,12 +14,12 @@ export default function FarmImage(){
             </div>
             <div className={styles.bottomSide}>
                 <div className={styles.dataGroup}>
-                    <p className={styles.dataValue}>11,3%</p>
+                    <p className={styles.dataValue}>400%</p>
                     <Title hover={true}>ROI</Title>
                 </div>
                 <div className={styles.dataGroup}>
-                    <p className={styles.dataValue}>1 año</p>
-                    <Title hover={true}>Duración</Title>
+                    <p className={styles.dataValue}>{duration}</p>
+                    <Title hover={true}>Días restantes</Title>
                 </div>
                 <div className={styles.dataGroup}>
                     <p className={styles.dataValue}>6%</p>
