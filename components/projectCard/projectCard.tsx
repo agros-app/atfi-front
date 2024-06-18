@@ -23,9 +23,9 @@ export default function ProjectCard() {
           style={{ objectFit: "cover" }}
           sizes="100%"
         />
-        <div className={styles.roi}>400% (ROI)</div>
       </div>
       <div className={styles.bottom}>
+        <div className={styles.roi}>400% (ROI)</div>
         <div className={styles.info}>
           <h3>Valle verde</h3>
           <div className={styles.description}>

@@ -14,21 +14,21 @@
 .top {
   position: relative;
   height: 160px;
+}
 
-  .roi {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: $red;
-    text-align: center;
-    padding: 4px 10px;
-    font-size: 14px;
-    font-weight: 400;
-    color: $white;
-  }
+.roi {
+  position: absolute;
+  right: 0;
+  background-color: $red;
+  text-align: center;
+  padding: 4px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
 }
 
 .bottom {
+  position: relative;
   padding: 12px;
   display: flex;
   flex-direction: column;
