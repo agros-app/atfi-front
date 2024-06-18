@@ -95,10 +95,8 @@ export default function OurSolutionsSection() {
               className={styles.cardsContainer}
               {...animationStyles.cardsContainer}
           >
-            <div className={styles.topCard}>
               <ProjectCard project={project1}/>
               <ProjectCard project={project2}/>
-            </div>
           </motion.div>
         </motion.section>
         <motion.section
