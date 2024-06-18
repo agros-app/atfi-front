@@ -4,112 +4,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 64px 0 0 0;
+  padding: 40px;
   gap: 40px;
 }
 
-.titleContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 0 64px;
-}
-
 .title {
-  font-size: 72px;
+  font-size: 50px;
   font-weight: 200;
   color: $black;
-}
-
-.description {
-  font-size: 24px;
-  font-weight: 200;
-  color: $black;
-  margin-left: auto;
-  max-width: 60%;
-}
-
-.cardsContainer {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-}
-
-.vision {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 560px;
-  height: 490px;
-  border-radius: 8px;
-  padding: 48px;
-  background: linear-gradient(135deg, $black, lighten($black, 40%));
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.mission {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 560px;
-  height: 490px;
-  border-radius: 8px;
-  padding: 48px;
-  background: linear-gradient(135deg, $primary-yellow, lighten($black, 40%));
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.cardIcon {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  width: 420px;
-  height: 110%;
-  background: rgba(255, 255, 255, 0.1);
-  right: -150px;
-  top: -10px;
-  overflow: hidden;
-}
-
-.mission:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.vision:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.cardTitle {
-    font-size: 44px;
-    font-weight: 200;
-    color: $white;
-}
-
-.cardDescription {
-    font-size: 22px;
-    font-weight: 200;
-    color: $white;
-  line-height: 1.5;
-}
-
-.usContainer {
-  padding: 32px;
-  display: flex;
-    flex-direction: column;
-  gap: 32px;
-  margin-top: 32px;
-}
-
-.titleUs {
-    font-size: 54px;
-    font-weight: 200;
-    color: $black;
+  text-align: center;
 }
 
 .us {
@@ -117,5 +20,4 @@
   justify-content: center;
   gap: 60px;
   flex-wrap: wrap;
-  color: $white;
 }

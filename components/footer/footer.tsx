@@ -1,54 +1,77 @@
-// components/Footer.tsx
+import Link from "next/link";
+import styles from "./footer.module.scss";
+import FacebookIcon from "@/assets/icons/facebook";
+import InstagramIcon from "@/assets/icons/instagram";
+import LinkedinIcon from "@/assets/icons/linkedin";
+import TwitterLogo from "@/assets/icons/twitter";
 
-import React from 'react';
-import styles from './footer.module.scss';
+const sections = [
+  {
+    title: "Enlaces Rápidos",
+    links: [
+      { label: "Inicio", href: "#" },
+      { label: "Servicios", href: "#" },
+      { label: "Contacto", href: "#" },
+      { label: "FAQs", href: "#" },
+    ],
+  },
+  {
+    title: "Productores",
+    links: [
+      { label: "Registro de Productores", href: "#" },
+      { label: "Beneficios", href: "#" },
+      { label: "Historias de Éxito", href: "#" },
+    ],
+  },
+  {
+    title: "Soluciones",
+    links: [
+      { label: "Inversiones Personalizadas", href: "#" },
+      { label: "Consultoría", href: "#" },
+      { label: "Soporte Técnico", href: "#" },
+    ],
+  },
+];
 
-const Footer: React.FC = () => {
-    return (
-        <footer className={styles.footer}>
-            <div className={styles.footerContent}>
-                <div className={styles.footerSection}>
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-                <div className={styles.footerSection}>
-                    <h3>Productores</h3>
-                    <ul>
-                        <li><a href="#">Registro de Productores</a></li>
-                        <li><a href="#">Beneficios</a></li>
-                        <li><a href="#">Historias de Éxito</a></li>
-                    </ul>
-                </div>
-                <div className={styles.footerSection}>
-                    <h3>Soluciones</h3>
-                    <ul>
-                        <li><a href="#">Inversiones Personalizadas</a></li>
-                        <li><a href="#">Consultoría</a></li>
-                        <li><a href="#">Soporte Técnico</a></li>
-                    </ul>
-                </div>
-                <div className={styles.footerSection}>
-                    <h3>Contacto</h3>
-                    <p>Email: atfisoporte@atfi.com</p>
-                    <p style={{marginTop: '12px'}}>Teléfono: +123 456 7890</p>
-                    <div className={styles.iconsContainer}>
-                        <img className={styles.icon} src={"/Facebook_f_logo_(2019).svg"} alt={'Facebook'}/>
-                        <img className={styles.icon} src={"/instagram.svg"} alt={'Instagram'}/>
-                        <img className={styles.icon} src={"/Linkedin_icon.svg"} alt={'Linkedin'}/>
-                        <img className={styles.icon} src={"/x.svg"} alt={'Twitter'}/>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.footerBottom}>
-                <p>&copy; 2024 Agro Inversiones. Todos los derechos reservados.</p>
-            </div>
-        </footer>
-    );
+const Footer = () => {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.footerContent}>
+        {sections.map((section, index) => (
+          <div
+            className={styles.footerSection}
+            key={`${section.title}-${index}`}
+          >
+            <h3>{section.title}</h3>
+            <ul>
+              {section.links.map((link, index) => (
+                <li key={`${link}-${index}`}>
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <div className={styles.footerSection}>
+          <h3>Contacto</h3>
+          <ul>
+            <li>Email: atfisoporte@atfi.com</li>
+            <li>Teléfono: +123 456 7890</li>
+          </ul>
+
+          <div className={styles.iconsContainer}>
+            <FacebookIcon className={styles.icon} />
+            <InstagramIcon className={styles.icon} />
+            <LinkedinIcon className={styles.icon} />
+            <TwitterLogo className={styles.icon} />
+          </div>
+        </div>
+      </div>
+      <div className={styles.footerBottom}>
+        <p>&copy; 2024 Agro Inversiones. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

@@ -1,10 +1,9 @@
 "use client";
 
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./featureSection.module.scss";
-import { useEffect, useRef } from "react";
 import {
-  containerVariants,
+  // containerVariants,
   itemVariants,
   visionBorderVariants,
   visionContainerVariants,
@@ -34,26 +33,12 @@ const featureList = [
 ];
 
 export default function FeatureSection() {
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref);
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [controls, isInView]);
-
   return (
-    <motion.section
-      initial="hidden"
-      animate={controls}
-      variants={containerVariants}
-      className={styles.container}
-      id="features"
-    >
+    <section className={styles.container} id="features">
       <motion.p
-        ref={ref}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
         variants={itemVariants}
         className={styles.description}
       >
@@ -63,13 +48,15 @@ export default function FeatureSection() {
       </motion.p>
       <motion.div
         initial="hidden"
-        animate={controls}
+        whileInView="visible"
+        viewport={{ once: true }}
         variants={visionBorderVariants}
         className={styles.visionBorder}
       />
       <motion.div
         initial="hidden"
-        animate={controls}
+        whileInView="visible"
+        viewport={{ once: true }}
         variants={visionContainerVariants}
         className={styles.visionContainer}
       >
@@ -81,7 +68,7 @@ export default function FeatureSection() {
           />
         ))}
       </motion.div>
-    </motion.section>
+    </section>
   );
 }
 

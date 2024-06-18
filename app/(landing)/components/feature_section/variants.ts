@@ -1,18 +1,5 @@
 import { Variants } from "framer-motion";
 
-export const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.75,
-            staggerChildren: 0.3,
-            delay: 0.2,
-        },
-    },
-};
-
 export const visionContainerVariants: Variants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
