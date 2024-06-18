@@ -3,12 +3,17 @@
   width: 100%;
   flex-direction: column;
   gap: 20px;
-  padding: 40px 80px;
+  padding: 20px 80px;
 }
 
 .section_title {
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 200;
+}
+
+.main p {
+  font-size: 18px;
+  font-weight: 200;
 }
 
 .projects {
