@@ -1,0 +1,30 @@
+@import "styles/variables.scss";
+
+.header{
+  position: relative;
+}
+
+.image{
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+}
+.textInTitle{
+  position: absolute;
+  top: 44.5%;
+  left: 16.5%;
+  transform: translate(-50%, -50%);
+  color: $absolute-white;
+  gap: 0;
+
+}
+.title{
+  font-size: 50px;
+  font-weight: 350;
+}
+
+.subtitle{
+  font-size: 29px;
+  font-weight: 100;
+}
+

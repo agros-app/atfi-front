@@ -1,57 +1,56 @@
 @import "styles/variables.scss";
 
-.container {
-    width: 100%;
-    padding:  50px 100px;
-    gap:15px
+.projectPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $absolute-white;
 }
 
-
-.title{
-    padding-bottom: 40px;
-}
-.name {
-    font-weight: 650;
-    position: relative;
-    color: $black;
-    font-size: 38px;
-}
-
-.city {
-    font-weight: 400;
-    position: relative;
-    color: $black;
-    font-size: 38px;
+.body {
+  position: absolute;
+  width: 70%;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; // Adjusted to align items at the start
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    padding-bottom: 40px;
+.screenDivision {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 40px;
 
-    @media (min-width: 768px) {
-        flex-direction: row;
-    }
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
-
 
 .leftHandSide {
-    width: 100%;
-    // this below only applies to screens that are 768px or wider (like desktops)
-    @media (min-width: 768px) {
-        width: 60%;
-    }
-}
+  width: 100%;
 
-.component{
-    padding-bottom: 40px;
+  @media (min-width: 768px) {
+    padding-top: 7%;
+    width: 70%;
+  }
 }
 
 .rightHandSide {
-    width: 100%;
+  width: 100%;
 
-    @media (min-width: 768px) {
-        width: 40%;
-    }
+  @media (min-width: 768px) {
+    width: 40%;
+  }
+}
+
+.financialInfo {
+  margin-left: auto;
+}
+
+.documentsContainer {
+  margin-top: 20px; // Added margin to separate from the above content
+  width: 100%;
 }
