@@ -4,6 +4,7 @@ import FinancialInfo from "@/app/(with-navbar)/project/[id]/newComponents/financ
 import styles from "./project.module.scss";
 import TabComponent from "@/app/(with-navbar)/project/[id]/newComponents/tabComponent/tabComponent";
 import Documents from "@/app/(with-navbar)/project/[id]/newComponents/documents/documents";
+import Producer from "@/app/(with-navbar)/project/[id]/newComponents/producer/producer";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
     const { id } = params;
@@ -21,8 +22,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                         </div>
                     </div>
                 </div>
-                <div className={styles.documentsContainer}>
+                <div className={styles.componentContainer}>
                     <Documents />
+                </div>
+                <div className={styles.componentContainer}>
+                    <Producer />
                 </div>
             </div>
         </div>

@@ -1,0 +1,59 @@
+@import "styles/variables.scss";
+
+.container{
+  margin: 20px 0 40px 0;
+}
+
+.titl{
+  margin: 10px 0 20px 0;
+  width: 100%;
+  font-size: 30px;
+  font-weight: 200;
+  border-bottom: 1px solid $dark-gray;;
+}
+
+.screenDivision {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.leftHandSide {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.rightHandSide {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
+}
+
+.button{
+  margin: 20px 0;
+  background-color: $black;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 12px 30px;
+  border-right: 15px;
+}
+
+.subtitle{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.text{
+  font-size: 20px;
+  font-weight: 200;
+  margin-top: 10px;
+}

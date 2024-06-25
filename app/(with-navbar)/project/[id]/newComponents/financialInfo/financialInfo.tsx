@@ -54,14 +54,9 @@ export default function FinancialInfo() {
                     <span>11,2%</span>
                 </li>
             </ul>
-            {/*<div className={styles.button}>*/}
-            {/*    <Button  fill disabled={loading}>*/}
-            {/*        Invertir*/}
-            {/*    </Button>*/}
-            {/*</div>*/}
             <form className={styles.form} onSubmit={handleInvest}>
                 <TextField placeholder="Monto a invertir" name="amount" type="number" />
-                <Button  fill disabled={loading}>
+                <Button fill disabled={loading}>
                     Invertir
                 </Button>
             </form>
