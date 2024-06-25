@@ -2,7 +2,7 @@ import { Project } from "@/types"
 import toast from "react-hot-toast"
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoSWQiOjEsImlhdCI6MTcxODczNzkxMCwiZXhwIjoxNzE4ODI0MzEwfQ.PDUcmsNfylaDfp5Do5lrxQ4q_dQRDAkIfHNygafO2gk"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoSWQiOjEsImlhdCI6MTcxOTM1MTg3OSwiZXhwIjoxNzE5NDM4Mjc5fQ.n42kjQtoKwYK04mFAZdNkZfmsy13Lq7t_xDp7LKYK88"
 
 export const getProjects = async (): Promise<Project[]> => {
     const resp = await fetch(`${API_URL}/project/all`, {

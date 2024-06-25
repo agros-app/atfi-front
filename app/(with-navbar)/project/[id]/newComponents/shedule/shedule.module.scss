@@ -1,0 +1,48 @@
+@import "styles/variables.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column; // Set flex direction to column
+  justify-content: flex-start; // Align items from the start
+  width: 80%;
+}
+
+.topData {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 40px 10px 10px 10px;
+  border-bottom: 1px solid $dark-gray;
+
+  p{
+    margin:0;
+  }
+}
+
+.bottomData{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  p{
+    margin:0;
+  }
+}
+
+.leftHandSide {
+  font-size: 20px;
+  font-weight: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightHandSide {
+  font-size: 25px;
+  font-weight: 150;
+  color: $darker-gray;
+  display: flex;
+  align-items: center;
+}

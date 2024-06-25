@@ -1,9 +1,10 @@
-import FarmImage from "./components/farmImage/farmImage";
-import About from "./components/about/about";
-import Map from "./components/map/map";
-import FinancialInfo from "./components/financialInfo/financialInfo";
-import Producer from "./components/producer/producer";
+"use client";
+import FarmImage from "./newComponents/farmImage/farmImage";
+import FinancialInfo from "./newComponents/financialInfo/financialInfo";
 import styles from "./project.module.scss";
+import TabComponent from "./newComponents/tabComponent/tabComponent";
+import Documents from "./newComponents/documents/documents";
+import Producer from "./newComponents/producer/producer";
 import { getProjectById } from "@/api";
 import { differenceInCalendarDays, startOfToday } from "date-fns";
 
@@ -13,45 +14,45 @@ export default async function ProjectPage({
   params: { id: string };
 }) {
   const { id } = params;
-  const { name, endDate, startDate, amountCollected, amountNeed, minAmount } =
-    await getProjectById(parseInt(id));
+  const {
+    addressId,
+    amountCollected,
+    amountNeed,
+    description,
+    endDate,
+    minAmount,
+    name,
+    seeds,
+    startDate,
+    status,
+  } = await getProjectById(parseInt(id));
+
   const days = differenceInCalendarDays(new Date(endDate), startOfToday());
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>
-        <span className={styles.name}>{name}</span>
-        <span className={styles.city}>, Argentina</span>
-      </h1>
-      <div className={styles.content}>
-        <div className={styles.leftHandSide}>
-          <div className={styles.component}>
-            <FarmImage duration={days} />
+    <div className={styles.projectPageContainer}>
+      <FarmImage name={name} />
+      <div className={styles.body}>
+        <div className={styles.screenDivision}>
+          <div className={styles.leftHandSide}>
+            <TabComponent />
           </div>
-          <div className={styles.component}>
-            <About />
-          </div>
-          <div className={styles.component}>
-            <Map />
-          </div>
-        </div>
-        <div className={styles.rightHandSide}>
-          <div className={styles.component}>
-            <FinancialInfo
-              projectId={parseInt(id)}
-              currentAmmount={amountCollected}
-              goalAmmount={amountNeed}
-              minAmmount={minAmount}
-            />
-          </div>
-          <div className={styles.component}>
-            <Producer />
+          <div className={styles.rightHandSide}>
+            <div className={styles.financialInfo}>
+              <FinancialInfo
+                projectId={parseInt(id)}
+                currentAmmount={amountCollected}
+                goalAmmount={amountNeed}
+                minAmmount={minAmount}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        *Esto es solo un estimado hacho por ATFI que blah balh lorem ipsum dolor
-        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Ut enim ad minim
+        <div className={styles.componentContainer}>
+          <Documents />
+        </div>
+        <div className={styles.componentContainer}>
+          <Producer />
+        </div>
       </div>
     </div>
   );

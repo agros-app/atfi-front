@@ -16,9 +16,10 @@ const isNumberPositive = (amount: string) => {
 const useLending = () => {
     const [loading, setLoading] = useState(false);
     const { isConnected } = useWeb3();
+    let toastId: string;
 
     const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract, lendingAddress: string) => {
-        const toastId = toast.loading('Aprobando token...');
+        toastId = toast.loading('Aprobando token...');
         try {
             const tx = await tokenContract.approve(lendingAddress, amount);
             await tx.wait();
@@ -37,7 +38,7 @@ const useLending = () => {
         mockUSDTObject: ContractObject,
         lendingObject: ContractObject
     ) => {
-        const toastId = toast.loading('Generando inversión...');
+        toastId = toast.loading('Generando inversión...');
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
                 icon: '⚠️',
