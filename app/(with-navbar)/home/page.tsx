@@ -1,10 +1,13 @@
 import Link from "next/link";
 import styles from "./home.module.scss";
 import ProjectCard from "@/components/projectCard/projectCard";
+import { getSession } from "@/lib/auth";
 
 export default async function Home() {
+  const session = await getSession();
   return (
     <main className={styles.main}>
+      {session && <div>{JSON.stringify(session)}</div>}
       <section>
         <h3 className={styles.section_title}>Ofertas activas</h3>
         <p>

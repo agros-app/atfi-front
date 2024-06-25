@@ -1,12 +1,24 @@
+"use client";
 import Button from "@/components/button/button";
 import TextField from "@/components/textField/textField";
 import styles from "./loginForm.module.scss";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
   return (
-    <form className={styles.form}>
-      <TextField placeholder="Email" name="email" label="Email" />
-      <TextField placeholder="Contraseña" name="password" label="Contraseña" />
+    <form
+      className={styles.form}
+      onSubmit={() =>
+        signIn("credentials", { redirect: false, callbackUrl: "/home" })
+      }
+    >
+      <TextField placeholder="Email" name="email" type="email" label="Email" />
+      <TextField
+        placeholder="Contraseña"
+        name="password"
+        type="password"
+        label="Contraseña"
+      />
       <Button variant="primary" size="lg">
         Continuar
       </Button>

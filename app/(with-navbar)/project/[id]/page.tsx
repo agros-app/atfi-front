@@ -8,7 +8,6 @@ import styles from "./project.module.scss";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
-
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>

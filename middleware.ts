@@ -1,17 +1,20 @@
-import { NextRequest, NextResponse } from "next/server"
-import { getSession } from "./lib/session"
+import { getToken } from 'next-auth/jwt';
+import { withAuth } from 'next-auth/middleware'
+import { decodeJWT } from './lib/jwt';
 
-export default async function middleware(req: NextRequest) {
-
-    const session = await getSession()
-
-    if (!session?.uid) {
-        return NextResponse.redirect(new URL('/login', req.nextUrl))
+export default withAuth({
+    callbacks: {
+        authorized: async ({ req, token }) => {
+            console.log('token', token);
+            const authToken = await getToken({ req, secret: process.env.NEXTAUTH_URL, raw: true });
+            console.log('authToken', authToken);
+            const verfiedToken = await decodeJWT(authToken, process.env.NEXTAUTH_URL as string)
+            console.log('verified', verfiedToken);
+            return authToken ? true : false;
+        }
     }
-
-    return NextResponse.next()
-}
+})
 
 export const config = {
-    matcher: ['/home'],
+    matcher: ['/home', '/project:path*', '/projects'],
 }
