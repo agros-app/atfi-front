@@ -9,9 +9,24 @@ import useLending from "@/hooks/useLending";
 import { FormEventHandler } from "react";
 import mockUSDT from "@/contracts/mockUSDT.json";
 import lending from "@/contracts/lendingTest.json";
+import { investByProjectId } from "@/api";
+import toast from "react-hot-toast";
 
-export default function FinancialInfo() {
+type FinancialInfoProps = {
+  projectId: number;
+  currentAmmount: number;
+  goalAmmount: number;
+  minAmmount: number;
+};
+
+export default function FinancialInfo({
+  projectId,
+  currentAmmount,
+  goalAmmount,
+  minAmmount,
+}: FinancialInfoProps) {
   const { investInLending, loading } = useLending();
+  const percentage = Math.floor((currentAmmount / goalAmmount) * 100);
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -28,12 +43,12 @@ export default function FinancialInfo() {
         <Title filled>Total Recaudado</Title>
         <div className={styles.amount}>
           <TextIndexComponent
-            text="500.000 USD"
-            percentage="71,42"
-            subtext="Meta: 1.000.000 USD"
+            text={`$${currentAmmount}`}
+            percentage={`${percentage}`}
+            subtext={`Meta: $${goalAmmount}`}
           />
           <div className={styles.progressBar}>
-            <ProgressBar collected={500000} goal={1000000} />
+            <ProgressBar collected={currentAmmount} goal={goalAmmount} />
           </div>
         </div>
         <Title>ROI Estimado *</Title>
@@ -42,7 +57,14 @@ export default function FinancialInfo() {
         </div>
       </div>
       <form className={styles.form} onSubmit={handleInvest}>
-        <TextField placeholder="Monto a invertir" name="amount" type="number" />
+        <TextField
+          placeholder="Monto a invertir"
+          name="amount"
+          type="number"
+          // @ts-ignore
+          min={minAmmount}
+        />
+        <small>{`* Minima inversión requerida $${minAmmount}`}</small>
         <Button variant={"secondary"} size={"lg"} fill disabled={loading}>
           Invertir
         </Button>
