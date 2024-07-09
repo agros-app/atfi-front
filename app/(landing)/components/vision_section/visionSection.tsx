@@ -53,7 +53,7 @@ export default function VisionSection() {
               Nuestra <br /> visión
             </h3>
             <p className={styles.cardDescription}>
-              Ser el nexo entre tecnologica, sector agropecuario y sector financiero mas importante del mundo.
+              Ser el nexo entre tecnología, sector agropecuario y sector financiero mas importante del mundo.
             </p>
           </motion.div>
           <motion.div className={styles.mission} {...animationStyles.card}>
