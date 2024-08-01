@@ -12,20 +12,20 @@ export default function VideoSection() {
       </video>
       <div>
         <motion.h1
-          className={styles.titleP1}
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75 }}
-        >
-          Impulsando el futuro de la
-        </motion.h1>
-        <motion.h1
           className={styles.titleP2}
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.25 }}
         >
-          Agronomía
+          El agro 
+        </motion.h1>
+        <motion.h1
+          className={styles.titleP1}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75 }}
+        >
+           ahora es una opción
         </motion.h1>
         <motion.p
           className={styles.subtitle}
@@ -33,7 +33,7 @@ export default function VideoSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.75, delay: 0.5 }}
         >
-          Financia y participa en proyectos agropecuarios innovadores.
+           Participa de una campaña productiva, y accede a los rendimientos del sector agropecuario
         </motion.p>
         <motion.div
           className={styles.button}

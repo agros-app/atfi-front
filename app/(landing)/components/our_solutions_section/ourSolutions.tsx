@@ -54,11 +54,11 @@ export default function OurSolutionsSection() {
               Financia y participa de proyectos <span>agro</span>
             </h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+             {/*  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor, ut labore et dolore magna aliqua. Lorem ipsum dolor
               sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur
               adipiscing elit, sed do eiusmod tempor, ut labore et. Dolor sit
-              amet, consectetur adipiscing elit
+              amet, consectetur adipiscing elit */}
             </p>
           </motion.div>
           <motion.div
@@ -92,16 +92,16 @@ export default function OurSolutionsSection() {
               {...animationStyles.textContainerRight}
           >
             <h2>
-              Sea parte del crecimiento de la <span>ganadería</span>{" "}
+              Se parte de la <span>ganadería</span>{" "}
               en latinoamérica
             </h2>
-            <p>
+            {/* <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor, ut labore et dolore magna aliqua. Lorem ipsum dolor
               sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur
               adipiscing elit, sed do eiusmod tempor, ut labore et. Dolor sit
               amet, consectetur adipiscing elit
-            </p>
+            </p> */}
             <Button disabled variant="custom" className={styles.button}>
               Proximamente
             </Button>

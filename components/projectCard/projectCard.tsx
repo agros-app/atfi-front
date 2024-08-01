@@ -29,7 +29,7 @@ export default function ProjectCard() {
           </div>
         </div>
         <div className={styles.bottom}>
-          <div className={styles.roi}>400% (ROI)</div>
+          {/* <div className={styles.roi}>400% (ROI)</div> */}
           <div className={styles.info}>
             <div className={styles.description}>
               <div className={styles.specific}>

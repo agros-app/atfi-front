@@ -14,19 +14,19 @@ const cards: LandingCardProps[] = [
   {
     title: "Invertí",
     description:
-      "Seleccioná la oportunidad de inversión que mejor se adapte a tus objetivos financieros y estrategias de inversión. Nuestra plataforma te ofrece una amplia gama de opciones cuidadosamente seleccionadas para ayudarte a maximizar tus rendimientos. Con una interfaz intuitiva y fácil de usar, invertir en el sector agro nunca ha sido tan accesible.",
+      "Seleccioná la oportunidad de inversión que mejor se adapte a tus objetivos financieros y estrategias de inversión. Con una interfaz intuitiva y fácil de usar, invertir en el sector agro nunca ha sido tan accesible.",
     icon: "https://cdn-icons-png.flaticon.com/512/1160/1160908.png",
     image: "/landing/pexels-pixabay-163752.jpg",
     reverse: true,
   },
-  {
+  /* {
     title: "Ganá",
     description:
       "Una vez finalizado el proyecto se te reintegrará el total más los intereses obtenidos. Nos enorgullecemos de ofrecer retornos competitivos y transparentes. Desde el momento en que realizas tu inversión, puedes seguir el progreso del proyecto a través de nuestra plataforma, con actualizaciones periódicas y acceso a informes detallados. ",
     icon: "https://cdn-icons-png.flaticon.com/512/1160/1160908.png",
     image: "/landing/bg_image.png",
     reverse: false,
-  },
+  }, */
 ];
 
 export default function HowItWorksSection() {
