@@ -4,11 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 100px;
+    padding: 10px 100px;
     background-color: $bg-color;
     color: $black;
     font-size: 14px;
     font-weight: 500;
+    border-bottom: 1px solid $dark-green;
 }
 
 .left, .right{

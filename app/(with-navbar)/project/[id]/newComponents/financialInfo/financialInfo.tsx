@@ -8,60 +8,83 @@ import mockUSDT from "@/contracts/mockUSDT.json";
 import lending from "@/contracts/lendingTest.json";
 import TextIndexComponent from "@/app/(with-navbar)/project/[id]/newComponents/TextIndexComponent/textIndexComponent";
 import TextField from "@/components/textField/textField";
+import { investByProjectId } from "@/api";
 
-export default function FinancialInfo() {
+type FinancialInfoProps = {
+  projectId: number;
+  currentAmmount: number;
+  goalAmmount: number;
+  minAmmount: number;
+};
+
+export default function FinancialInfo({
+  projectId,
+  currentAmmount,
+  goalAmmount,
+  minAmmount,
+}: FinancialInfoProps) {
   const { investInLending, loading } = useLending();
+  const percentage = Math.floor((currentAmmount / goalAmmount) * 100);
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
+    await investByProjectId(projectId, amount);
     await investInLending(amount.toString(), mockUSDT, lending);
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
   };
 
   return (
-      <div className={styles.container}>
-        <div className={styles.data}>
-            <h3 className={styles.title}>Total Recaudado</h3>
-            <div className={styles.amount}>
-                <TextIndexComponent
-                    text="500.000 USD"
-                    percentage="71,42"
-                    subtext="Meta: 700.000 USD"
-                />
-                <div className={styles.progressBar}>
-                  <ProgressBar collected={500000} goal={700000} height={15}/>
-                </div>
-            </div>
-            <ul className={styles.leaders}>
-                <li>
-                    <span>Tipo de cosecha</span>
-                    <span>Soja</span>
-                </li>
-                <li>
-                    <span>Ubicación</span>
-                    <span>Argentina</span>
-                </li>
-                <li>
-                    <span>Tamaño</span>
-                    <span>25 Ha</span>
-                </li>
-
-                <li>
-                    <span>Roi estimado *</span>
-                    <span>11,2%</span>
-                </li>
-            </ul>
-            <form className={styles.form} onSubmit={handleInvest}>
-                <TextField placeholder="Monto a invertir" name="amount" type="number" />
-                <Button fill disabled={loading}>
-                    Invertir
-                </Button>
-            </form>
+    <div className={styles.container}>
+      <div className={styles.data}>
+        <h3 className={styles.title}>Total Recaudado</h3>
+        <div className={styles.amount}>
+          <TextIndexComponent
+            text={`$${currentAmmount} USD`}
+            percentage={`${percentage}`}
+            subtext={`Meta: $${goalAmmount} USD`}
+          />
+          <div className={styles.progressBar}>
+            <ProgressBar
+              collected={currentAmmount}
+              goal={goalAmmount}
+              height={15}
+            />
+          </div>
         </div>
+        <ul className={styles.leaders}>
+          <li>
+            <span>Tipo de cosecha</span>
+            <span>Soja</span>
+          </li>
+          <li>
+            <span>Ubicación</span>
+            <span>Argentina</span>
+          </li>
+          <li>
+            <span>Tamaño</span>
+            <span>25 Ha</span>
+          </li>
 
+          <li>
+            <span>Roi estimado *</span>
+            <span>11,2%</span>
+          </li>
+        </ul>
+        <form className={styles.form} onSubmit={handleInvest}>
+          <TextField
+            placeholder="Monto a invertir"
+            name="amount"
+            type="number"
+          />
+          <small>*Minimo de inversión: ${minAmmount}</small>
+          <Button fill disabled={loading}>
+            Invertir
+          </Button>
+        </form>
       </div>
+    </div>
   );
 }

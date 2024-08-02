@@ -2,6 +2,7 @@ import ProjectCard from "@/components/projectCard/projectCard";
 import styles from "./projects.module.scss";
 import Filters from "./components/filters/filters";
 import Select from "@/components/select/Select";
+import Projects from "@/components/projects/projects";
 
 export default function ProjectsPage() {
   // TODO: Integrate backend
@@ -20,9 +21,7 @@ export default function ProjectsPage() {
       <section className={styles.main_section}>
         <Filters />
         <div className={styles.projects_container}>
-          {new Array(4).fill(1).map((x, i) => (
-            <ProjectCard key={i} />
-          ))}
+          <Projects />
         </div>
       </section>
     </main>
