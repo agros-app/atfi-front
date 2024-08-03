@@ -9,29 +9,48 @@ type TextFieldProps = {
   helperText?: string;
   error?: boolean;
   type?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  rows?: number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
 export default function TextField({
-  placeholder,
-  name,
-  className,
-  label,
-  helperText,
-  error,
-  type = "text",
-    onChange,
-
-}: TextFieldProps) {
+                                    placeholder,
+                                    name,
+                                    className,
+                                    label,
+                                    helperText,
+                                    error,
+                                    type = "text",
+                                    onChange,
+                                    rows,
+                                  }: TextFieldProps) {
   return (
-    <div className={`${styles.container} ${error ? styles.error : ""}`}>
-      {label && (
-        <label className={styles.label} htmlFor={name}>
-          {label}
-        </label>
-      )}
-      <input className={className} onChange={onChange} type={type} placeholder={placeholder} name={name} id={name} />
-      {helperText && <small className={styles.helperText}>{helperText}</small>}
-    </div>
+      <div className={`${styles.container} ${error ? styles.error : ""}`}>
+        {label && (
+            <label className={styles.label} htmlFor={name}>
+              {label}
+            </label>
+        )}
+        {rows ? (
+            <textarea
+                className={className}
+                onChange={onChange}
+                placeholder={placeholder}
+                name={name}
+                id={name}
+                rows={rows}
+            />
+        ) : (
+            <input
+                className={className}
+                onChange={onChange}
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                id={name}
+            />
+        )}
+        {helperText && <small className={styles.helperText}>{helperText}</small>}
+      </div>
   );
 }
