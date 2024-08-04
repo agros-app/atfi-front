@@ -1,0 +1,14 @@
+//.container{
+//  display: inline-flex;
+//  flex-direction: column;
+//  justify-content: center;
+//  align-items: center;
+//  gap: 45px;
+//}
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  gap: 20px;
+}

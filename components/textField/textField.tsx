@@ -19,9 +19,7 @@ export default function TextField({
   label,
   helperText,
   error,
-  type = "text",
-    onChange,
-
+  type = "text",onChange
 }: TextFieldProps) {
   return (
     <div className={`${styles.container} ${error ? styles.error : ""}`}>

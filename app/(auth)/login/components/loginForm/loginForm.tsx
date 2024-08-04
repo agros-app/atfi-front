@@ -5,6 +5,7 @@ import styles from "./loginForm.module.scss";
 import {useState} from "react";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
@@ -46,6 +47,19 @@ export default function LoginForm() {
               <Button variant="primary" size="lg">
                   Continuar
               </Button>
+              <p style={{ textAlign: 'center' }}>
+                  No tienes una cuenta?{' '}
+                  <Link href="/register" style={{
+                      color: 'var(--green-850, #14452F)',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                      cursor: 'pointer',
+                      textDecoration: 'none',
+                  }}>
+                      Regístrate
+                  </Link>
+              </p>
           </form>
       );
 }
