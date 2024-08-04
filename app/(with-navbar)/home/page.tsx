@@ -1,8 +1,10 @@
 import Link from "next/link";
 import styles from "./home.module.scss";
 import ProjectCard from "@/components/projectCard/projectCard";
+import { getProjects } from "@/lib/api";
 
 export default async function Home() {
+  const projects = await getProjects();
   return (
     <main className={styles.main}>
       <section>
@@ -12,10 +14,9 @@ export default async function Home() {
           ellos en la sección de detalles.
         </p>
         <div className={styles.projects}>
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+        {projects.map((project) => (
+        <ProjectCard project={project} key={project.id} />
+      ))}
         </div>
         <div className={styles.more_info}>
           <Link href={"/projects"}>Ver todos los proyectos {">>"}</Link>

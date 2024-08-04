@@ -1,0 +1,36 @@
+@import "styles/variables.scss";
+.documentCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid rgba(23, 60, 51, 0.15);
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 49%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 200;
+  font-size: 20px;
+  margin: 0;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 150;
+  color: $darker-gray;
+  margin: 0;
+}
+
+.iconContainer {
+  $size:20px;
+  height: $size;
+  width: $size;
+  display: flex;
+}
