@@ -20,7 +20,8 @@ export default function TextField({
   helperText,
   error,
   type = "text",
-    onChange,
+  onChange,
+  ...inputProps
 
 }: TextFieldProps) {
   return (
@@ -30,7 +31,7 @@ export default function TextField({
           {label}
         </label>
       )}
-      <input className={className} onChange={onChange} type={type} placeholder={placeholder} name={name} id={name} />
+      <input className={className} onChange={onChange} type={type} placeholder={placeholder} name={name} id={name} {...inputProps}/>
       {helperText && <small className={styles.helperText}>{helperText}</small>}
     </div>
   );
