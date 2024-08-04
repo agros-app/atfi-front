@@ -2,8 +2,10 @@ import ProjectCard from "@/components/projectCard/projectCard";
 import styles from "./projects.module.scss";
 import Filters from "./components/filters/filters";
 import Select from "@/components/select/Select";
+import { getProjects } from "@/lib/api";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getProjects();
   // TODO: Integrate backend
   const options = [
     { value: "asc", title: "Mas recientes" },
@@ -20,8 +22,8 @@ export default function ProjectsPage() {
       <section className={styles.main_section}>
         <Filters />
         <div className={styles.projects_container}>
-          {new Array(4).fill(1).map((x, i) => (
-            <ProjectCard key={i} />
+          {projects.map((project) => (
+            <ProjectCard project={project} key={project.id} />
           ))}
         </div>
       </section>
