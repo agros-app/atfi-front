@@ -1,4 +1,3 @@
-
 import { JWTPayload, SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 
@@ -25,7 +24,6 @@ export async function decrypt(session: string | undefined = '') {
         const { payload } = await jwtVerify(session, encodedKey, {
             algorithms: ['HS256'],
         })
-
         return payload as UserSession
     } catch (error) {
         console.log('Failed to verify session')
@@ -71,11 +69,9 @@ export const getSession = async (): Promise<UserSession | null> => {
 
     const payload = await decrypt(session)
 
-
     if (typeof payload === 'undefined') {
         return null
     }
-
     return payload
 }
 

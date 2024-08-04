@@ -5,7 +5,6 @@ import styles from "./loginForm.module.scss";
 import {useState} from "react";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
-import Cookie from "js-cookie";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
@@ -22,7 +21,7 @@ export default function LoginForm() {
             });
         if (response.ok){
             const data = await response.json();
-            Cookie.set('session',data.token)
+            document.cookie = `session=${data.token}`;
             router.push('/home');
         }
         else{
