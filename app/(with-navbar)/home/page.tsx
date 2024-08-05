@@ -1,10 +1,11 @@
+"use client"
 import Link from "next/link";
 import styles from "./home.module.scss";
 import ProjectCard from "@/components/projectCard/projectCard";
-import { getProjects } from "@/lib/api";
+import useProjects from "@/hooks/useProjects";
 
-export default async function Home() {
-  const projects = await getProjects();
+export default function Home() {
+  const { projects } = useProjects();
   return (
     <main className={styles.main}>
       <section>

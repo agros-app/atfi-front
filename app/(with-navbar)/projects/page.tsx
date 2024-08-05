@@ -1,11 +1,12 @@
+"use client"
 import ProjectCard from "@/components/projectCard/projectCard";
 import styles from "./projects.module.scss";
 import Filters from "./components/filters/filters";
 import Select from "@/components/select/Select";
-import { getProjects } from "@/lib/api";
+import useProjects from "@/hooks/useProjects";
 
-export default async function ProjectsPage() {
-  const projects = await getProjects();
+export default function ProjectsPage() {
+  const {projects} = useProjects();
   // TODO: Integrate backend
   const options = [
     { value: "asc", title: "Mas recientes" },
