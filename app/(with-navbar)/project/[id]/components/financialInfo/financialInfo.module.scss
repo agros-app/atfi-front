@@ -1,34 +1,85 @@
 @import "styles/variables.scss";
 
 .container{
+
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 360px;
 }
-
 
 .data{
   padding: 30px;
   gap: 15px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(23, 60, 51, 0.15);
+  background-color: $bg-color;
+  background-color: $absolute-white;
 }
-
-.progressBar{
-  padding: 12px 0 0 12px;
-  width: 80%;
-}
-
 .amount{
   display: flex;
   flex-direction: column; /* Change to column direction */
-  margin: 15px 20px;
+  margin: 10px 1px;
 }
 
+.title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+// make it wider
+.progressBar{
+  padding: 12px 0 10px 12px;
+  width: 100%;
+}
+
+
 .form{
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;  
 }
+
+
+// Data de la campaña: fecha de finalización, ubicación, categoría
+// --------------------------------
+ul.leaders {
+  padding: 0;
+  margin: 0;
+
+}
+ul.leaders li {
+  display: table;
+  margin-top: 10px;
+}
+ul.leaders li span {
+  display: table-cell;
+}
+ul.leaders li span:first-child { /* Categoría (Finaliza en, ubicación...) */
+  font-size: 17px;
+  font-weight: 300;
+  position: relative;
+  overflow: hidden;
+}
+ul.leaders li span:first-child:after { /* Dotted line */
+
+  content: "";
+  position: absolute;
+  bottom: 0.2em;
+  margin-left: 0.5em;
+  width: 100%;
+  border-bottom: 2px dotted gray;
+}
+ul.leaders li span + span {     /* Data (2 días, Arg...) */
+  font-size: 17px;
+  font-weight: 500;
+  text-align: right;
+  width: 1%;
+  vertical-align: bottom;
+  padding-left: 0.5em;
+  white-space: nowrap;
+}
+// --------------------------------

@@ -8,6 +8,7 @@ import { authUser, googleProvider, twitterProvider } from "@/lib/firebaseAuth";
 
 export default function Services() {
   const signIn = async (provider: AuthProvider) => {
+      //TODO: Fix this to integrate with google provider
     const user = await authUser(provider);
     if (!user) return;
     const response = await fetch("/api/auth/sign-in", {
@@ -22,12 +23,10 @@ export default function Services() {
         photoURL: user.photoURL,
       }),
     });
-
     if (!response.ok) {
       console.error("Failed to sign in", response);
       return;
     }
-
     window.location.replace("/home");
   };
   return (
