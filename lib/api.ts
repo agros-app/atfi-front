@@ -1,11 +1,13 @@
 import { Project } from "@/types/api";
 import axios from "axios";
+import Cookies from "js-cookie";
 
+const token= Cookies.get('session')
 const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
     headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoSWQiOjE4LCJpYXQiOjE3MjI3OTE5MDQsImV4cCI6MTcyMjg3ODMwNH0.YZbjUoG-0hl3RNT_fUr-GWTYizPmRCCd3Yx_lkizMuI`,
+        "Authorization": `Bearer ${token}`,
     },
 })
 
