@@ -23,6 +23,7 @@ export default function TextField({
                                     type = "text",
                                     onChange,
                                     rows,
+                                    ...inputProps
                                   }: TextFieldProps) {
   return (
       <div className={`${styles.container} ${error ? styles.error : ""}`}>
@@ -48,6 +49,7 @@ export default function TextField({
                 placeholder={placeholder}
                 name={name}
                 id={name}
+                {...inputProps}
             />
         )}
         {helperText && <small className={styles.helperText}>{helperText}</small>}

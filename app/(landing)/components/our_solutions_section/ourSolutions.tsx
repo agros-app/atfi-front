@@ -4,6 +4,7 @@ import ProjectCard from "@/components/projectCard/projectCard";
 import styles from "./ourSolutions.module.scss";
 import Image from "next/image";
 import Button from "@/components/button/button";
+import { Project } from "@/types/api";
 
 const animationStyles = {
   container: {
@@ -38,6 +39,20 @@ const animationStyles = {
   }
 };
 
+const defaultProject:Project = {
+  addressId: 0,
+  amountCollected: 30000,
+  amountNeed:100000,
+  description:"",
+  endDate: "2025-12-12",
+  id: 0,
+  minAmount: 1000,
+  name: "Cultivo de Soja",
+  seeds: ["soja"],
+  startDate: "2024-12-12",
+  status: "APPROVED" 
+}
+
 export default function OurSolutionsSection() {
   return (
       <>
@@ -60,9 +75,9 @@ export default function OurSolutionsSection() {
               {...animationStyles.cardsContainer}
           >
             <div className={styles.topCard}>
-              <ProjectCard />
+              <ProjectCard project={defaultProject}/>
             </div>
-            <ProjectCard />
+            <ProjectCard project={defaultProject}/>
           </motion.div>
         </motion.section>
         <motion.section

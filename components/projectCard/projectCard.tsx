@@ -7,11 +7,17 @@ import LocationIcon from "@/assets/icons/location";
 import TimeIcon from "@/assets/icons/time";
 import SeedIcon from "@/assets/icons/seed";
 import ProgressBar from "../progressBar/progressBar";
+import { Project } from "@/types/api";
+import { getDaysLeft, getPercentage } from "@/utils";
 
-// TODO: integrate with real data
-// Params: photoURL, roi, name, location, startDate, endDate, seeds, actual, goal
-export default function ProjectCard() {
+type ProjectCardProps = {
+  project: Project;
+};
+
+export default function ProjectCard({project}: ProjectCardProps) {
   const router = useRouter();
+  const { id,name, seeds, endDate, amountCollected, amountNeed } = project;
+  const progress = getPercentage(amountCollected, amountNeed);
   return (
       <div className={styles.container}>
         <div className={styles.top}>
@@ -24,7 +30,7 @@ export default function ProjectCard() {
               sizes="100%"
           />
           <div className={styles.imageOverlay}>
-            <h3 className={styles.title}>Valle verde</h3>
+            <h3 className={styles.title}>{name}</h3>
             <p className={styles.titleDescription}>Valle verde, 123</p>
           </div>
         </div>
@@ -38,11 +44,11 @@ export default function ProjectCard() {
               </div>
               <div className={styles.specific}>
                 <TimeIcon />
-                <span>20 días</span>
+                <span>{getDaysLeft(endDate)} días restantes</span>
               </div>
               <div className={styles.specific}>
                 <SeedIcon />
-                <span>Trigo, maíz, soja</span>
+                <span>{seeds.join(", ")}</span>
               </div>
             </div>
           </div>
@@ -50,19 +56,19 @@ export default function ProjectCard() {
             <div className={styles.goal}>
               <div>
                 <span className={styles.label}>Actual</span>
-                <span className={styles.value}>$500.000</span>
+                <span className={styles.value}>${amountCollected}</span>
               </div>
               <div>
                 <span className={styles.label}>Meta</span>
-                <span className={styles.value}>$1.000.000</span>
+                <span className={styles.value}>${amountNeed}</span>
               </div>
             </div>
             <div className={styles.progress}>
-              <span>50%</span>
-              <ProgressBar collected={500000} goal={1000000} />
+              <span>{progress}%</span>
+              <ProgressBar collected={amountCollected} goal={amountNeed} />
             </div>
           </div>
-          <Button size="sm" onClick={() => router.push("/project/1")}>
+          <Button size="sm" onClick={() => router.push(`/project/${id}`)}>
             Invertir
           </Button>
         </div>

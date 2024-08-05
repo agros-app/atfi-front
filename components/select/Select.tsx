@@ -1,4 +1,5 @@
 import containerStyles from "../textField/textField.module.scss";
+import React from "react";
 
 type SelectProps = {
   label?: string;
@@ -8,6 +9,7 @@ type SelectProps = {
   error?: boolean;
   name: string;
   options: { value: string; title: string }[];
+  onChange?:  (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Select({
@@ -18,9 +20,11 @@ export default function Select({
   helperText,
   error,
   options,
+    onChange
 }: SelectProps) {
   return (
     <div
+        onChange={onChange}
       className={`${containerStyles.container} ${
         error ? containerStyles.error : ""
       }`}
