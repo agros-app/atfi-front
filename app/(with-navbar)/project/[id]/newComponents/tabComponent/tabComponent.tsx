@@ -1,32 +1,69 @@
-// src/TabComponent.js
-
 import React, { useState } from 'react';
 import styles from './tabComponent.module.scss';
 import Map from '../map/map';
 import Shedule from "@/app/(with-navbar)/project/[id]/newComponents/shedule/shedule";
 
-export default function TabComponent() {
+type TabComponentProps = {
+    description: string,
+    investementEndDate: string,
+    sowingDate: string,
+    harvestDate?: string,
+    location: number,
+}
+
+export default function TabComponent({
+                                         description,
+                                         investementEndDate,
+                                         sowingDate,
+                                         harvestDate,
+                                         location
+                                     }: TabComponentProps) {
     const [activeTab, setActiveTab] = useState('resumen');
+    const [showFullText, setShowFullText] = useState(false);
 
     function handleTabChange(tab: string) {
         setActiveTab(tab);
     }
+
+    const words = description.split(' ');
+    const maxWords = 90;
+    const isLongDescription = words.length > maxWords;
+
+    function handleToggleText() {
+        setShowFullText(!showFullText);
+    }
+
+    const displayedWords = showFullText ? words : words.slice(0, maxWords);
+    const displayedText = displayedWords.join(' ');
+    const descriptionLines = displayedText.split('\n');
 
     function renderContent() {
         switch (activeTab) {
             case 'resumen':
                 return (
                     <div className={styles.body}>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                        <p>Vulputate mi sit amet mauris commodo quis imperdiet. Elementum nibh tellus molestie nunc non blandit massa enim nec. Ut etiam sit amet nisl purus in. Nunc id cursus metus aliquam eleifend. Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. Nisl</p>
-                        <h3 className={styles.bold}>Ver más</h3>
+                        {descriptionLines.map((line, index) => (
+                            <React.Fragment key={index}>
+                                <p>{line}{!showFullText && words.length > maxWords && index === descriptionLines.length - 1 ? '...' : ''}</p>
+                                {index < descriptionLines.length - 1 && <p />} {/* Línea en blanco entre párrafos, excepto el último */}
+                            </React.Fragment>
+                        ))}
                     </div>
                 );
             case 'cronograma':
-                return <div className={styles.body}><div className={styles.schedule}><Shedule /></div></div>;
+                return (
+                    <div className={styles.body}>
+                        <div className={styles.schedule}>
+                            <Shedule investementEndDate={investementEndDate} harvestDate={sowingDate} />
+                        </div>
+                    </div>
+                );
             case 'ubicacion':
-                return <div className={styles.body}><Map></Map></div>;
-
+                return (
+                    <div className={styles.body}>
+                        <Map addressId={location} />
+                    </div>
+                );
             default:
                 return null;
         }
@@ -55,6 +92,11 @@ export default function TabComponent() {
                 </div>
             </div>
             {renderContent()}
+            {isLongDescription && activeTab === 'resumen' && (
+                <h3 className={styles.bold} onClick={handleToggleText}>
+                    {showFullText ? 'Ver menos' : 'Ver más'}
+                </h3>
+            )}
         </div>
     );
 }

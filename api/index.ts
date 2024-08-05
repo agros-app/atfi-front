@@ -1,8 +1,8 @@
-import { Project } from "@/types"
+import {Address, Project} from "@/types"
 import toast from "react-hot-toast"
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoSWQiOjEsImlhdCI6MTcxOTM1MTg3OSwiZXhwIjoxNzE5NDM4Mjc5fQ.n42kjQtoKwYK04mFAZdNkZfmsy13Lq7t_xDp7LKYK88"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoSWQiOjE4LCJpYXQiOjE3MjI4MDQxNzUsImV4cCI6MTcyMjg5MDU3NX0.sBF6XX8w3gB3vw4IQYxE88-sLTL-hiZYzpiu6RXgePM"
 
 export const getProjects = async (): Promise<Project[]> => {
     const resp = await fetch(`${API_URL}/project/all`, {
@@ -12,7 +12,6 @@ export const getProjects = async (): Promise<Project[]> => {
             'Authorization': `Bearer ${token}`
         }
     })
-
     const data: Promise<Project[]> = await resp.json()
     return data
 }
@@ -47,4 +46,17 @@ export const investByProjectId = async (id: number, amount: number): Promise<voi
         toast.error(data.message)
     }
     console.log(data)
+}
+
+export const getLocationById = async (id: number): Promise<Address> => {
+    const resp = await fetch(`${API_URL}/address/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    const data: Promise<Address> = await resp.json()
+    console.log("data " + JSON.stringify(data))
+    return data;
 }

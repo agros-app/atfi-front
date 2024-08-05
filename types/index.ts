@@ -11,3 +11,14 @@ export type Project = {
     description: string,
     seeds: string[]
 }
+
+export type Address = {
+    id: number,
+    country: string,
+    state: string,
+    city: string,
+    street: string,
+    streetNumber: number,
+    zipCode: string,
+    area: number
+}

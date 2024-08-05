@@ -27,14 +27,15 @@ export default async function ProjectPage({
     status,
   } = await getProjectById(parseInt(id));
 
+
   const days = differenceInCalendarDays(new Date(endDate), startOfToday());
   return (
     <div className={styles.projectPageContainer}>
-      <FarmImage name={name} />
+      <FarmImage name={name} addressId={addressId} />
       <div className={styles.body}>
         <div className={styles.screenDivision}>
           <div className={styles.leftHandSide}>
-            <TabComponent />
+            <TabComponent sowingDate={endDate} investementEndDate={startDate} location={addressId} description={description} />
           </div>
           <div className={styles.rightHandSide}>
             <div className={styles.financialInfo}>
@@ -43,6 +44,8 @@ export default async function ProjectPage({
                 currentAmmount={amountCollected}
                 goalAmmount={amountNeed}
                 minAmmount={minAmount}
+                seeds={seeds}
+                addressId={addressId}
               />
             </div>
           </div>
