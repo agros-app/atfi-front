@@ -6,8 +6,10 @@ export type Project = {
     minAmount: number,
     startDate: string,
     endDate: string,
-    status: string, //TODO: TYPE STATUS
+    status: Status,
     addressId: number,
     description: string,
     seeds: string[]
 }
+
+export type Status = "APPROVED" | "PENDING" | "REJECTED"

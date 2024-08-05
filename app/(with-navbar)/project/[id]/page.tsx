@@ -1,15 +1,15 @@
-
+"use client"
+import useProjectId from "@/hooks/useProjectId";
 import Documents from "./components/documents/documents";
 import FinancialInfo from "./components/financialInfo/financialInfo";
 import Header from "./components/header/header";
 import Producer from "./components/producer/producer";
 import Tab from "./components/tab/tab";
 import styles from "./project.module.scss";
-import { getProjectById } from "@/lib/api";
 
-export default async function ProjectPage({ params }: { params: { id: string } }) {
+export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const project = await getProjectById(Number(id));
+  const { project } = useProjectId(Number(id))
 
   return (
     <div className={styles.projectPageContainer}>
