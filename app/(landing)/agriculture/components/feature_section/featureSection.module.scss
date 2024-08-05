@@ -1,0 +1,91 @@
+@import "@/styles/variables.scss";
+
+.container {
+  background-color: $title;
+  color: #e2e2e2;
+  padding: 50px;
+}
+
+.heading {
+  font-size: 4rem;
+  color: $light-green;
+  margin-left: 100px;
+  margin-bottom: 40px;
+  font-weight: normal;
+}
+
+.description {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: 100px;
+  margin-bottom: 50px;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  font-weight: lighter;
+  color: #e2e2e2;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+
+.card {
+  border-radius: 8px;
+  border: 0.1px solid $dark-green;
+  padding: 20px;
+  max-width: 300px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #e2e2e2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: $white;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: lighter;
+  }
+
+  .icon {
+    margin: 0 auto;
+    width: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}

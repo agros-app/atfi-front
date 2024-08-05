@@ -68,13 +68,7 @@ export default function OurSolutionsSection() {
             <h2>
               Financia y participa de proyectos <span>agro</span>
             </h2>
-            <p>
-             {/*  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor, ut labore et dolore magna aliqua. Lorem ipsum dolor
-              sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed do eiusmod tempor, ut labore et. Dolor sit
-              amet, consectetur adipiscing elit */}
-            </p>
+            <Button>Conocé más</Button>
           </motion.div>
           <motion.div
               className={styles.cardsContainer}
