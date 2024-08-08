@@ -1,7 +1,23 @@
+"use client"
 import Link from "next/link";
 import styles from "./burgerMenu.module.scss";
+import {useWeb3} from "@/context/web3Modal";
 
-export default function BurgerMenu() {
+
+// @ts-ignore
+export default function BurgerMenu({ user }) {
+    const { connectWallet, disconnectWallet, isConnected } = useWeb3();
+    const logOut = async () => {
+        await fetch("/api/auth/sign-out");
+    };
+
+    const handleWalletAction = async () => {
+        if (isConnected) {
+            disconnectWallet();
+        } else {
+            connectWallet();
+        }
+    };
     return (
         <div className={styles.hamburgerMenu}>
             <input id="menu__toggle" type="checkbox" className={styles.menuToggle} />
@@ -13,8 +29,28 @@ export default function BurgerMenu() {
                 <li><Link className={styles.menuItem} href="/home">Home</Link></li>
                 <li><Link className={styles.menuItem} href="/projects">Proyectos</Link></li>
                 <li><Link className={styles.menuItem} href="/portfolio">Portfolio</Link></li>
-                <li><Link className={styles.menuItem} href="/upload">Subir Proyecto</Link></li>
-                <li><Link className={styles.menuItem} href="/contact">Contacto</Link></li>
+                {user && (
+                    <li>
+                        <a
+                            href="#"
+                            className={styles.menuItem}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleWalletAction();
+                            }}
+                        >
+                            {isConnected ? "Desconectar billetera" : "Conectar billetera"}
+                        </a>
+                    </li>
+                )}
+                <li><Link className={styles.menuItem} href="/perfil">Perfil</Link></li>
+                {user ? (
+                    <>
+                        <li><Link className={styles.menuItem} href="/" onClick={logOut}>Cerrar sesión</Link></li>
+                    </>
+                ) : (
+                    <li><Link className={styles.menuItem} href="/login">Ingresar</Link></li>
+                )}
             </ul>
         </div>
     );

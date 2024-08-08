@@ -28,7 +28,7 @@ export default async function NavBar() {
                 {user ? <LogOutButton /> : <Link href="/login">Ingresar</Link>}
                 <ProfileImage src={"/owners/nico.jpg"} size={60}></ProfileImage>
             </div>
-            <BurgerMenu /> {/* Agregado aquí */}
+            <BurgerMenu user={user} />
         </nav>
     );
 }
