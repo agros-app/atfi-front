@@ -10,7 +10,7 @@ const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ATFI",
-  description: "The eassiest way to invest your money in agro",
+  description: "The easiest way to invest your money in agro",
 };
 
 export default async function RootLayout({
