@@ -1,18 +1,58 @@
 @import "@/styles/variables.scss";
 
-.navbar{
+.navbar {
     display: flex;
+    width: 100%;
+    max-width: 1728px;
+    padding: 30px 20px;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 100px;
-    background-color: $bg-color;
-    color: $black;
-    font-size: 14px;
-    font-weight: 500;
+    background: var(--bg-color, #F0F0E3);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-.left, .right{
+.left, .right {
+    display: flex;
+    align-items: center;
+    gap:6px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-shrink: 0;
+}
+
+.links {
+    display: flex;
+    gap: 30px;
+}
+
+.right {
     display: flex;
     align-items: center;
     gap: 16px;
+}
+
+
+.show {
+    display: flex;
+}
+
+
+@media (max-width: 768px) {
+    .links {
+        display: none;
+    }
+
+    .right {
+        display: none;
+    }
+
+    .navbar {
+        //flex-direction: column;
+        //align-items: flex-start;
+        padding: 10px;
+    }
 }
