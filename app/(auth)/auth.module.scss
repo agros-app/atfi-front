@@ -24,3 +24,9 @@
   background-color: black;
   position: relative;
 }
+
+@media (max-width: 425px) {
+  .right {
+    display: none;
+  }
+}

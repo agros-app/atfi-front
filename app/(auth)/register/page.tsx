@@ -6,7 +6,9 @@ export default function Register() {
     return (
         <div className={styles.container}>
             <Link href={"/"}>
-                <Logo size={150} />
+                <div className={styles.logoContainer}>
+                    <Logo size={150} />
+                </div>
             </Link>
             <RegisterForm/>
         </div>

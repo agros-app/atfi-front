@@ -7,7 +7,9 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <Link href={"/"}>
-        <Logo size={150} />
+          <div className={styles.logoContainer}>
+              <Logo size={150} />
+          </div>
       </Link>
       {/*<Services />*/}
       {/*<p>ó</p>*/}

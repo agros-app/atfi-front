@@ -21,3 +21,9 @@
   width: 100%;
   align-self: center;
 }
+
+@media (max-width: 425px) {
+  .buttonContainer{
+    margin-bottom: 20px;
+  }
+}
