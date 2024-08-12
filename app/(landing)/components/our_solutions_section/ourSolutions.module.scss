@@ -110,6 +110,10 @@
   .container2{
     position: relative;
     height: 100vh;
+
+    span{
+      color: #b14125 !important;
+    }
   }
 
   .imageContainer{
@@ -126,9 +130,5 @@
   .textContainer{
     z-index:1;
     color: rgb(130, 130, 130);
-
-    span{
-      color: #b14125 !important;
-    }
   }
 }
