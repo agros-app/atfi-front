@@ -50,3 +50,8 @@
   align-items: center;
   height: 100%; /* Ensure the parent container has a height to center vertically */
 }
+
+.componentContainer {
+  margin-top: 20px; // Added margin to separate from the above content
+  width: 100%;
+}
