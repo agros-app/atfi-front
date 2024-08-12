@@ -5,6 +5,7 @@ export default function Filters() {
   return (
     <div>
       <h2>Proyectos</h2>
+      <div className={styles.categories}>
       <div className={styles.category}>
         <h4>Ubicación</h4>
         <p>
@@ -29,6 +30,8 @@ export default function Filters() {
           Girasol <b>(2)</b>
         </p>
       </div>
+      </div>
+      
     </div>
   );
 }
