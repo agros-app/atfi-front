@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  width: fit-content;
+}
+
+.image {
+  position: absolute;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.favoriteWallet {
+  position: absolute;
+  bottom: 170px;
+  right: 235px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .favoriteWallet {
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+  .image {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .favoriteWallet {
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+  .image {
+    display: none;
+  }
+}

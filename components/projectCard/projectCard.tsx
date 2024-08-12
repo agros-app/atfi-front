@@ -12,14 +12,15 @@ import { getDaysLeft, getPercentage } from "@/utils";
 
 type ProjectCardProps = {
   project: Project;
+  bgColor?: string;
 };
 
-export default function ProjectCard({project}: ProjectCardProps) {
+export default function ProjectCard({project, bgColor="fff"}: ProjectCardProps) {
   const router = useRouter();
   const { id,name, seeds, endDate, amountCollected, amountNeed } = project;
   const progress = getPercentage(amountCollected, amountNeed);
   return (
-      <div className={styles.container}>
+      <div className={styles.container} style={{backgroundColor: bgColor}}>
         <div className={styles.top}>
           <Image
               src={"/farm-image.png"}
