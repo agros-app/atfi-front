@@ -1,4 +1,5 @@
 @import "@/styles/variables.scss";
+@import "@/styles/media.scss";
 
 .cardContainer {
   width: 90%;
@@ -8,6 +9,14 @@
   justify-content: center;
   gap: 32px;
   border-radius: 10px;
+}
+
+.row{
+  flex-direction: row;
+}
+
+.reverse{
+  flex-direction: row-reverse;
 }
 
 .imageWrapper {
@@ -46,4 +55,35 @@
   font-weight: 200;
   color: #666;
   line-height: 1.6;
+}
+
+@include mobile{
+  .cardContainer {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .imageWrapper{
+    max-width: unset;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .textWrapper{
+    width: 100%;
+    max-width: unset;
+  }
+
+  .title{
+    font-size: 24px;
+  }
+
+  .description{
+    font-size: 16px;
+  }
+
 }
