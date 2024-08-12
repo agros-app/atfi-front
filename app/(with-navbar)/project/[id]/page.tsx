@@ -19,20 +19,14 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className={styles.leftHandSide}>
             <Tab/>
           </div>
-            <div className={styles.financialInfo}>
-              <FinancialInfo
-                projectId={parseInt(id)}
-                currentAmmount={project.amountCollected}
-                goalAmmount={project.amountNeed}
-                minAmmount={project.minAmount}
-              />
-            </div>
+          <div className={styles.financialInfo}>
+            <FinancialInfo
+              projectId={parseInt(id)}
+              currentAmmount={project.amountCollected}
+              goalAmmount={project.amountNeed}
+              minAmmount={project.minAmount}
+            />
           </div>
-        <div className={styles.componentContainer}>
-          <Documents />
-        </div>
-        <div className={styles.componentContainer}>
-          <Producer />
         </div>
       </div>
     </div>
