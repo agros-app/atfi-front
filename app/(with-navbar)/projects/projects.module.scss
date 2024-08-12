@@ -1,3 +1,5 @@
+@import "@/styles/media.scss";
+
 .main {
   min-height: calc(100vh - 93.5px);
   padding: 20px;
@@ -7,6 +9,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  gap: 16px;
+
+  @include tablet{
+    flex-direction: column;
+  }
 }
 
 .sort_section {
@@ -28,4 +35,8 @@
   flex-wrap: wrap;
   max-width: 1210px;
   gap: 10px;
+
+  @include tablet{
+    justify-content: center;
+  }
 }
