@@ -29,10 +29,17 @@ export default function LandingNavBar({isLanding = true}) {
 
   const toggleProducerDropdown = () => {
     setProducerDropdownVisible(!producerDropdownVisible);
+    if (investorDropdownVisible) {
+      setInvestorDropdownVisible(false);
+    }
   };
+
   const toggleInvestorDropdown = () => {
     setInvestorDropdownVisible(!investorDropdownVisible);
-  }
+    if (producerDropdownVisible) {
+      setProducerDropdownVisible(false);
+    }
+  };
 
   return (
     <nav className={styles.navbar}>
