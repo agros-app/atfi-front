@@ -48,7 +48,7 @@ jobs:
           script: |
             cd infra
             sudo docker login --username manuelhernandezcarrasco --password $TOKEN ghcr.io
-            sudo docker-compose -f docker-compose.dev.yml stop ${{ github.repository }}
+            sudo docker-compose -f docker-compose.dev.yml stop atfi-backend
             sudo docker system prune --force
-            sudo docker-compose -f docker-compose.dev.yml pull ${{ github.repository }}
-            sudo docker-compose -f docker-compose.dev.yml up ${{ github.repository }} -d --build
+            sudo docker-compose -f docker-compose.dev.yml pull atfi-backend
+            sudo docker-compose -f docker-compose.dev.yml up atfi-backend -d --build
