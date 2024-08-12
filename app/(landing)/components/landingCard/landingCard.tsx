@@ -23,8 +23,7 @@ export default function LandingCard({
       whileInView="visible"
       viewport={{ once: true }}
       variants={itemVariants}
-      style={{ flexDirection: reverse ? "row-reverse" : "row" }}
-      className={styles.cardContainer}
+      className={`${styles.cardContainer} ${reverse ? styles.reverse : styles.row}`}
     >
       <div className={styles.imageWrapper}>
         <img className={styles.backgroundImage} src={image} alt="background" />

@@ -37,7 +37,13 @@ export default function LandingNavBar({isLanding = true}) {
           <Logo />
         </Link>
       </div>
+        <input id="menu__toggle" type="checkbox" className={styles.menuToggle} />
+            <label className={styles.menuBtn} htmlFor="menu__toggle">
+                <span></span>
+      </label>
+      
       <div className={styles.right}>
+        
         <Link href={"#how-it-works"}>¿Cómo funciona?</Link>
         <div className={styles.dropdown}>
             <button onClick={toggleDropdown} className={styles.dropdownButton}>

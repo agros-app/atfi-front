@@ -10,7 +10,7 @@ export default function VideoSection() {
         <source src="/landing/landing-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div>
+      <div className={styles.contentContainer}>
         <motion.h1
           className={styles.titleP2}
           initial={{ opacity: 0, y: -50 }}
