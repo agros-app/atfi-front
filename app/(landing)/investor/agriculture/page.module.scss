@@ -1,0 +1,11 @@
+.main{
+
+  padding:40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}

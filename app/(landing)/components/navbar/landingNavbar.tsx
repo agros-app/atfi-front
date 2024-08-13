@@ -6,7 +6,8 @@ import styles from "./navbar.module.scss";
 import {useEffect, useState} from "react";
 
 export default function LandingNavBar({isLanding = true}) {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [investorDropdownVisible, setInvestorDropdownVisible] = useState(false);
+  const [producerDropdownVisible, setProducerDropdownVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,45 +27,69 @@ export default function LandingNavBar({isLanding = true}) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+  const toggleProducerDropdown = () => {
+    setProducerDropdownVisible(!producerDropdownVisible);
+    if (investorDropdownVisible) {
+      setInvestorDropdownVisible(false);
+    }
+  };
+
+  const toggleInvestorDropdown = () => {
+    setInvestorDropdownVisible(!investorDropdownVisible);
+    if (producerDropdownVisible) {
+      setProducerDropdownVisible(false);
+    }
   };
 
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.left}>
-        <Link href="#video">
-          <Logo />
-        </Link>
-      </div>
+      <nav className={styles.navbar}>
+        <div className={styles.left}>
+          <Link href="#video">
+            <Logo />
+          </Link>
+        </div>
         <input id="menu__toggle" type="checkbox" className={styles.menuToggle} />
-            <label className={styles.menuBtn} htmlFor="menu__toggle">
-                <span></span>
-      </label>
-      
-      <div className={styles.right}>
-        
-        <Link href={"#how-it-works"}>¿Cómo funciona?</Link>
-        <div className={styles.dropdown}>
-            <button onClick={toggleDropdown} className={styles.dropdownButton}>
-              Nuestras soluciones
+        <label className={styles.menuBtn} htmlFor="menu__toggle">
+          <span></span>
+        </label>
+
+        <div className={styles.right}>
+
+          <Link href={"#how-it-works"}>¿Cómo funciona?</Link>
+          <div className={styles.dropdown}>
+            <button onClick={toggleInvestorDropdown} className={styles.dropdownButton}>
+              Productores
               <div className={styles.dropdownIcon}>
-                {dropdownVisible ? closeIcon : dropdownIcon}
+                {investorDropdownVisible ? closeIcon : dropdownIcon}
               </div>
             </button>
-          {dropdownVisible && (
-              <div className={styles.dropdownMenu}>
-                <Link href={"/agriculture"}>Agricultores</Link>
-                <Link href={"#solution2"}>Ganaderia</Link>
+            {investorDropdownVisible && (
+                <div className={styles.dropdownMenu}>
+                  <Link href={"/agriculture"}>Agricultores</Link>
+                  <Link href={"#solution2"}>Ganaderia</Link>
+                </div>
+            )}
+          </div>
+          <div className={styles.dropdown}>
+            <button onClick={toggleProducerDropdown} className={styles.dropdownButton}>
+              Inversores
+              <div className={styles.dropdownIcon}>
+                {producerDropdownVisible ? closeIcon : dropdownIcon}
               </div>
-          )}
+            </button>
+            {producerDropdownVisible && (
+                <div className={styles.dropdownMenu}>
+                  <Link href={"/investor/agriculture"}>Agricultores</Link>
+                  <Link href={"/investor/ganaderia"}>Ganaderia</Link>
+                </div>
+            )}
+          </div>
+          <Link href={"#about-us"}>Nosotros</Link>
+          <Link href={"/login"} className={styles.login}>
+            Ingresar
+          </Link>
         </div>
-        <Link href={"#about-us"}>Nosotros</Link>
-        <Link href={"/login"} className={styles.login}>
-          Ingresar
-        </Link>
-      </div>
-    </nav>
+      </nav>
   );
 }
 
