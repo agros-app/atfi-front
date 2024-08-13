@@ -14,7 +14,7 @@ export default function Hero() {
                             <span> innovadores</span>
                         </h1>
                         <p className={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, ut labore et. Dolor sit amet, consectetur adipiscing elit.
+                            Seleccioná la oportunidad de inversión que mejor se adapte a tus objetivos financieros y estrategias de inversión. Con una interfaz intuitiva y fácil de usar, invertir en el sector agro nunca ha sido tan accesible.
                         </p>
                         <div className={styles.buttonContainer}>
                             <Button className={styles.button}>Invertir</Button>
