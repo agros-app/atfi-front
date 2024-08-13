@@ -9,7 +9,6 @@
 .heading {
   font-size: 4rem;
   color: $light-green;
-  margin-left: 100px;
   margin-bottom: 40px;
   font-weight: normal;
 }
@@ -20,21 +19,21 @@
   line-height: 1.5;
   font-weight: lighter;
   color: #e2e2e2;
-  margin: 10px 100px 50px auto;
+  margin: 10px 100px 50px 0;
 }
 
 .screenDivision {
   display: flex;
   flex-direction: column;
-  gap: 100px;
   padding-bottom: 40px;
+  align-items: center;
 
   @media (min-width: 768px) {
     flex-direction: row;
   }
 }
 
-.leftHandSide{
+.side{
   flex: 1;
   padding: 0 0 0 100px;
 }

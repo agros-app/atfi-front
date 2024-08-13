@@ -124,25 +124,25 @@
   .menuToggle:checked ~ .right {
       display: flex;
   }
-  
+
   .menuToggle:checked + .menuBtn > span {
     transform: rotate(45deg);
   }
-  
+
   .menuToggle:checked + .menuBtn > span::before {
     top: 0;
     transform: rotate(0deg);
   }
-  
+
   .menuToggle:checked + .menuBtn > span::after {
     top: 0;
     transform: rotate(90deg);
   }
-  
+
   .menuToggle:checked ~ .menuBox {
     right: 0 !important;
   }
-  
+
   .menuBtn {
     position: absolute;
     top: 20px;
@@ -153,7 +153,7 @@
     transform: translateY(60%);
     z-index: 3;
   }
-  
+
   .menuBtn > span,
   .menuBtn > span::before,
   .menuBtn > span::after {
@@ -164,15 +164,15 @@
     background-color: #616161;
     transition-duration: .25s;
   }
-  
+
   .menuBtn > span::before {
     content: '';
     top: -8px;
   }
-  
+
   .menuBtn > span::after {
     content: '';
     top: 8px;
   }
-  
+
 }
