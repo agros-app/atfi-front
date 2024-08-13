@@ -1,4 +1,5 @@
 @import "@/styles/variables.scss";
+@import "@/styles/media.scss";
 
 .container {
   padding: 40px;
@@ -95,4 +96,24 @@
   gap: 60px;
   flex-wrap: wrap;
   color: $white;
+}
+
+@include mobile{
+  .cardsContainer{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .vision,
+  .mission{
+    width: 100%;
+  }
+
+  .cardTitle{
+    font-size: 36px;
+  }
+
+  .cardDescription{
+    font-size: 16px;
+  }
 }

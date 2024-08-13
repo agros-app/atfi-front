@@ -6,7 +6,6 @@ import HowItWorksSection from "./components/how_it_works_section/howItWorks";
 import OurSolutionsSection from "./components/our_solutions_section/ourSolutions";
 import AboutUs from "./components/about_us_section/aboutUs";
 import Footer from "@/components/footer/footer";
-import ProjectCard from "@/components/projectCard/projectCard";
 import VisionSection from "./components/vision_section/visionSection";
 
 export default function Home() {

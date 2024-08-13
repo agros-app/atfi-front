@@ -1,4 +1,5 @@
 @import "@/styles/variables.scss";
+@import "@/styles/media.scss";
 
 .container {
   position: relative;
@@ -20,16 +21,13 @@
   z-index: -1;
 }
 
-.titleP1 {
+.titleP1, .titleP2{
   font-weight: 600;
   font-size: 72px;
   color: $white;
 }
 
 .titleP2 {
-  font-weight: 600;
-  font-size: 72px;
-  color: $white;
   position: relative;
   overflow: hidden;
   width: fit-content;
@@ -56,6 +54,19 @@
 
 .button {
   padding-top: 40px;
+}
+
+@include mobile {
+  .contentContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  }
+
+  .titleP1, .titleP2{
+    font-size: 48px;
+  }
 }
 
 @keyframes show {

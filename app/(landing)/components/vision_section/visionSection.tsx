@@ -38,14 +38,6 @@ const animationStyles = {
 export default function VisionSection() {
   return (
       <motion.section className={styles.container} {...animationStyles.container}>
-       {/*  <motion.h2 className={styles.title} {...animationStyles.title}>
-          Lo mejor de ambos mundos
-        </motion.h2>
-        <motion.p className={styles.description} {...animationStyles.description}>
-          Somos un equipo de jóvenes emprendedores apasionados por la tecnología y
-          las finanzas. Nuestra misión es brindar soluciones innovadoras para que
-          puedas invertir de forma segura y sencilla.
-        </motion.p> */}
         <motion.div className={styles.cardsContainer} {...animationStyles.cardsContainer}>
           <motion.div className={styles.vision} {...animationStyles.card}>
             <div className={styles.cardIcon} />
