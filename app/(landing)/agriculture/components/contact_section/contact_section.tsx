@@ -5,7 +5,7 @@ import TextField from "@/components/textField/textField";
 const ContactForm = () => {
     return (
         <div className={styles.contactFormContainer}>
-            <h2 className={styles.heading}>Comenzá la transformacion digital de tu campaña agricola</h2>
+            <h2 className={styles.heading}>Comenzá la transformación digital de tu campaña agricola</h2>
             <div className={styles.content}>
                 <div className={styles.imageContainer}>
                     <img
