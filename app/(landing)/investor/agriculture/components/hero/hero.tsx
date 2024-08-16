@@ -8,7 +8,9 @@ export default function Hero() {
             <div className={styles.screenDivision} >
                 <div className={styles.leftHandSide}>
                     <div>
-                        <p className={styles.tag}>INVERSORES</p>
+                        <div className={styles.tagContainer}>
+                            <p className={styles.tag}>INVERSORES</p>
+                        </div>
                         <h1 className={styles.heading}>
                             Financiá y participá en proyectos agro
                             <span> innovadores</span>

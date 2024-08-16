@@ -1,3 +1,6 @@
+@import "@/styles/media.scss";
+
+
 .container {
   position: relative;
   width: fit-content;
@@ -12,30 +15,17 @@
 
 .favoriteWallet {
   position: absolute;
-  bottom: 170px;
+  top: 250px;
   right: 235px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
-@media (max-width: 768px) {
+@include laptop{
   .favoriteWallet {
-    position: relative;
-    top: 0;
-    right: 0;
-  }
-  .image {
-    display: none;
+    position: absolute;
+    top: 50%;
+    left: 12.3%;
   }
 }
 
-@media (max-width: 480px) {
-  .favoriteWallet {
-    position: relative;
-    top: 0;
-    right: 0;
-  }
-  .image {
-    display: none;
-  }
-}
