@@ -22,17 +22,17 @@ export default function SampleProjects() {
         <section className={styles.container}>
 
             <div className={styles.screenDivision}>
-                <div className={styles.side}>
+                <div className={styles.leftHandSide}>
                     <div className={styles.projects}>
                         <ProjectCard project={defaultProject} bgColor={"#f0f0e3"} border={"None"}/>
                         <ProjectCard project={defaultProject} bgColor={"#f0f0e3"}/>
                     </div>
                 </div>
-                <div className={styles.side}>
-                <h2 className={styles.heading}>Comenzá a invertir con nosotros</h2>
-                <p className={styles.description}>
-                    Consultá nuestras últimas propuestas de inversión en el sector agropecuario.
-                </p>
+                <div className={styles.rightHandSide}>
+                    <h2 className={styles.heading}>Comenzá a invertir con nosotros</h2>
+                    <p className={styles.description}>
+                        Consultá nuestras últimas propuestas de inversión en el sector agropecuario.
+                    </p>
                 </div>
             </div>
 

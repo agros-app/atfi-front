@@ -1,4 +1,5 @@
 @import "@/styles/variables.scss";
+@import "@/styles/media.scss";
 
 .container {
   background-color: $title;
@@ -33,11 +34,15 @@
   }
 }
 
-.side{
+.rightHandSide{
   flex: 1;
   padding: 0 0 0 100px;
 }
 
+.leftHandSide{
+  flex: 1;
+  padding: 0 0 0 100px;
+}
 
 .projects {
   width: 600px;
@@ -49,5 +54,49 @@
   align-items: center;
   & > div {
     flex-shrink: 0;
+  }
+}
+
+
+@include tablet{
+  .screenDivision {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .rightHandSide{
+    order: 1;
+    padding: 0;
+  }
+  .leftHandSide{
+    order: 2;
+    padding: 0;
+  }
+
+
+
+  .projects {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .heading{
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  .description{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+  }
+
+  // hace que solo haya una card.
+  .projects > div:last-child {
+    display: none;
   }
 }
