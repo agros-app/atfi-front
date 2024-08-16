@@ -76,8 +76,6 @@
     padding: 0;
   }
 
-
-
   .projects {
     flex-direction: column;
     width: 100%;
@@ -98,5 +96,15 @@
   // hace que solo haya una card.
   .projects > div:last-child {
     display: none;
+  }
+}
+
+@include laptop{
+  // hace que solo haya una card.
+  .projects > div:last-child {
+    display: none;
+  }
+  .leftHandSide{
+    width: 300px;
   }
 }
