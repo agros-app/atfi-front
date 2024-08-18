@@ -13,9 +13,8 @@
 
 .formContainer {
   display: flex;
-  max-width: 600px;
-  width: 100%;
   padding: 16px;
+  width: 50vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -46,15 +45,24 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
-  max-width: 160px;
+  width: 50%;
   align-self: center;
 }
 
 @media (max-width: 768px) {
   .formContainer {
-    max-width: 100%; /* Reduce el ancho para pantallas pequeñas */
+    width: 80vw;
     padding: 16px;
+  }
+
+  .info {
+    padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 425px) {
+  .formContainer {
+    width: 100vw;
   }
 
   .info {
