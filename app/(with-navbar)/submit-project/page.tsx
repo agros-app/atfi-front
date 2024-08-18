@@ -18,7 +18,7 @@ export default function ProjectForm () {
         { value: "Maiz", title: "Maiz" },
         { value: "Trigo", title: "Trigo" },
     ];
-    //TODO: Add integration with backend
+    //TODO: Add integration with backend and add steps to the form
     return (
         <div className={styles.pageContainer}>
             <form>
