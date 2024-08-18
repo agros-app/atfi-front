@@ -1,0 +1,66 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 48px;
+  box-sizing: border-box;
+  background-image: url("../../../assets/images/imagen_campo.jpg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.formContainer {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  padding: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background: var(--bg-color, #F0F0E3);
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
+  padding: 8px;
+}
+
+.innerForm {
+  display: flex;
+  padding: var(--spacing-md, 8px) var(--spacing-7xl, 64px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%; /* Asegura que el formulario ocupe el ancho del contenedor */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 160px;
+  align-self: center;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    max-width: 100%; /* Reduce el ancho para pantallas pequeñas */
+    padding: 16px;
+  }
+
+  .info {
+    padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
+  }
+}
+.forms, .info {
+  width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
+}
