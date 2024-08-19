@@ -2,7 +2,7 @@
 import React from 'react'
 import styles from './detailsTab.module.scss'
 import ReactECharts from 'echarts-for-react'
-import Stepper from '@/components/stepper/stepper'
+// import Stepper from '@/components/stepper/stepper'
 
 const CostEvolutionChart = () => {
   const options = {

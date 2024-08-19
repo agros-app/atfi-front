@@ -1,5 +1,5 @@
-import LandingNavBar from '@/app/(landing)/components/navbar/landingNavbar'
-import VideoSection from '@/app/(landing)/components/video_section/videoSection'
+// import LandingNavBar from '@/app/(landing)/components/navbar/landingNavbar'
+// import VideoSection from '@/app/(landing)/components/video_section/videoSection'
 import Whatsapp from '@/components/whatsapp/whatsapp'
 import Footer from '@/components/footer/footer'
 import Hero from '@/app/(landing)/agriculture/components/hero/hero'

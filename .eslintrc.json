@@ -1,13 +1,12 @@
 {
-  "extends": ["next","eslint:recommended"],
-  "plugins": [
-    "prettier"
-  ],
+  "extends": ["next", "eslint:recommended"],
+  "plugins": ["prettier"],
   "env": {
     "browser": true,
     "node": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-undef": "off"
   }
 }

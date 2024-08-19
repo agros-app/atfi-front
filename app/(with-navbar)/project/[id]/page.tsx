@@ -1,9 +1,9 @@
 'use client'
 import useProjectId from '@/hooks/useProjectId'
-import Documents from './components/documents/documents'
+// import Documents from './components/documents/documents'
 import FinancialInfo from './components/financialInfo/financialInfo'
 import Header from './components/header/header'
-import Producer from './components/producer/producer'
+// import Producer from './components/producer/producer'
 import Tab from './components/tab/tab'
 import styles from './project.module.scss'
 

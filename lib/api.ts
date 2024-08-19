@@ -25,7 +25,7 @@ export const investByProjectId = async (
   id: number,
   amount: number
 ): Promise<void> => {
-  const resp = await api.post(`/project/invest`, {
+  await api.post(`/project/invest`, {
     body: JSON.stringify({
       projectId: id,
       amount

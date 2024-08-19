@@ -13,7 +13,7 @@ export type LandingCardProps = {
 export default function LandingCard({
   title,
   description,
-  icon,
+  // icon,
   image,
   reverse
 }: LandingCardProps) {

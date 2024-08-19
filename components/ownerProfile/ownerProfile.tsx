@@ -11,8 +11,8 @@ type OwnerProfileProps = {
 export default function OwnerProfile({
   src,
   name,
-  job,
-  linkedinLink
+  job
+  // linkedinLink
 }: OwnerProfileProps) {
   return (
     <div className={styles.container}>

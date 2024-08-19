@@ -5,7 +5,7 @@ import Link from 'next/link'
 import styles from './navbar.module.scss'
 import { useEffect, useState } from 'react'
 
-export default function LandingNavBar({ isLanding = true }) {
+export default function LandingNavBar() {
   const [investorDropdownVisible, setInvestorDropdownVisible] = useState(false)
   const [producerDropdownVisible, setProducerDropdownVisible] = useState(false)
 

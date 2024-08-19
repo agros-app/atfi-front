@@ -17,8 +17,9 @@ const MapComponent = () => {
   const lng = -55.131597
 
   return isClient ? (
-    // @ts-ignore
+    // @eslint-disable-next-line
     <MapContainer
+      // @ts-ignore
       center={[lat, lng]}
       zoom={16}
       style={{ height: '250px', width: '100%', position: 'sticky' }}

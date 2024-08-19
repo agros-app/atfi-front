@@ -9,6 +9,7 @@ type SelectProps = {
   error?: boolean
   name: string
   options: { value: string; title: string }[]
+  /* eslint-disable-next-line no-unused-vars */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
