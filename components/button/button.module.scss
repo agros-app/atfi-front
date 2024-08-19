@@ -6,9 +6,21 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   transition: 0.4s;
   text-align: center;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  &:hover {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 .lg {
@@ -26,13 +38,17 @@
   font-size: 12px;
 }
 
+.fill {
+  width: 100%;
+}
+
 .primary {
-  background-color: $primary-green;
-  color: $black;
+  background-color: $dark-green;
+  color: $white;
 }
 
 .primary:hover {
-  background-color: darken($primary-green, 10%);
+  background-color: darken($dark-green, 10%);
 }
 
 .secondary {
@@ -44,6 +60,15 @@
   background-color: darken($primary-yellow, 10%);
 }
 
+.tertiary {
+  background-color: $light-blue;
+  color: $darker-gray;
+}
+
+.tertiary:hover {
+  background-color: darken($light-blue, 10%);
+}
+
 .ghost {
   background-color: transparent;
   color: $black;
@@ -53,13 +78,13 @@
   background-color: darken($primary-green, 10%);
 }
 
-.outlined{
-  border: 1px solid $primary-green;
+.outlined {
+  border: 2px solid $dark-green;
   background-color: transparent;
-  color: $primary-green;
+  color: $dark-green;
 }
 
-.outlined:hover{
-  background-color: color-mix(in srgb, $primary-green 40%, transparent);
+.outlined:hover {
+  background-color: color-mix(in srgb, $dark-green 40%, transparent);
   color: $black;
 }

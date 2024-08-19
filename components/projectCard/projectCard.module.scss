@@ -1,0 +1,125 @@
+@import "@/styles/variables.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 290px;
+}
+
+.top {
+  position: relative;
+  height: 200px;
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+}
+
+.title {
+  color: $white;
+  font-size: 24px;
+  padding: 5px 10px;
+  font-weight: 400;
+}
+
+.titleDescription {
+    color: $white;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 0 10px;
+}
+
+.roi {
+  position: absolute;
+  right: 0;
+  background-color: $red;
+  text-align: center;
+  padding: 4px 10px;
+  font-size: 14px;
+  font-weight: 200;
+  color: #fff;
+}
+
+.bottom {
+  position: relative;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  h3 {
+    font-weight: 600;
+    font-size: 24px;
+    color: $black;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #676767;
+}
+
+.specific {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.financial {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+
+.goal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 200;
+    color: $dark-gray;
+  }
+
+  .value {
+    font-size: 14px;
+    font-weight: 200;
+    color: #676767;
+  }
+}
+
+.progress {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  span {
+    color: $dark-green;
+    font-weight: 200;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,57 @@
+@import "styles/variables.scss";
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.titles{
+  font-size: 20px;
+  display: flex;
+  gap: 50px;
+}
+
+
+.selectedTitle{
+  padding-bottom: 10px;
+  font-weight: 200;
+  border-bottom: 2px solid $primary-green;
+}
+
+.unselectedTitle{
+  padding-bottom: 10px;
+  font-weight: 150;
+  color: #6B6B6B;
+}
+
+.body{
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid $dark-gray;
+}
+
+
+.body p{
+  font-size: 20px;
+  font-weight: 200;
+  margin-top: 20px;
+}
+
+.bold{
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.schedule {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure the parent container has a height to center vertically */
+}
+
+.componentContainer {
+  margin-top: 20px; // Added margin to separate from the above content
+  width: 100%;
+}

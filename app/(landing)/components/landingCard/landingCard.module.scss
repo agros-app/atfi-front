@@ -1,0 +1,89 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.cardContainer {
+  width: 90%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  border-radius: 10px;
+}
+
+.row{
+  flex-direction: row;
+}
+
+.reverse{
+  flex-direction: row-reverse;
+}
+
+.imageWrapper {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+}
+
+.backgroundImage {
+  width: 570px;
+  height: 280px;
+  border-radius: 10px;
+}
+
+.textWrapper {
+  max-width: 50%;
+  text-align: left;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 200;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 20px;
+  font-weight: 200;
+  color: #666;
+  line-height: 1.6;
+}
+
+@include mobile{
+  .cardContainer {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .imageWrapper{
+    max-width: unset;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .textWrapper{
+    width: 100%;
+    max-width: unset;
+  }
+
+  .title{
+    font-size: 24px;
+  }
+
+  .description{
+    font-size: 16px;
+  }
+
+}

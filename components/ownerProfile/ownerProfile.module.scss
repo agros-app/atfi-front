@@ -1,0 +1,25 @@
+@import "styles/variables.scss";
+
+
+
+.data{
+  position: relative;
+  margin-top: 10px;
+}
+
+.name {
+  color: $black;
+  font-weight: 450;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+}
+
+.job {
+  font-weight: 250; // light font weight
+  color: $black;
+  text-align: center;
+  font-size: 14px;
+}
+
+

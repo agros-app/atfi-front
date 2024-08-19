@@ -1,0 +1,107 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background-color: $title;
+  padding: 48px 0;
+}
+
+.description {
+  max-width: 60%;
+  font-size: 32px;
+  color: $white;
+  font-weight: 100;
+  line-height: 1.3;
+}
+
+.visionBorder {
+  width: 40%;
+  margin: 32px auto;
+  height: 4px;
+  background-color: $primary-yellow;
+}
+
+.visionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+  filter: brightness(0.8);
+  background: url("/landing/features-bg.jpg") center;
+  background-size: cover;
+}
+
+
+.feature {
+  position: relative;
+  padding: 2rem;
+  background-color: transparent;
+  border: 1px solid $white;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.featureTitle {
+  font-size: 40px;
+  font-weight: 200;
+  color: $title;
+}
+
+.featureDescription {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  transition: top 0.5s ease;
+  height: 100%;
+  line-height: 1.4;
+  font-size: 18px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
+}
+
+.feature:hover .featureDescription {
+  opacity: 1;
+  z-index: 10;
+}
+
+.feature:hover .featureDescription {
+  top: 0;
+}
+
+.feature:hover .featureTitle {
+  display: none;
+}
+
+@include mobile{
+  .description{
+    font-size: 24px;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .visionContainer{
+    display: none;
+  }
+}

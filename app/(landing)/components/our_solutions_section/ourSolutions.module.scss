@@ -1,0 +1,134 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.container {
+  background-color: $bg-color-secondary;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textContainer {
+  width: 50%;
+  min-width: 300px;
+  font-weight: 100;
+  font-size: 24px;
+  h2 {
+    font-size: 50px;
+    font-weight: 200;
+    margin-bottom: 20px;
+    span {
+      color: $dark-green;
+      font-weight: 400;
+    }
+  }
+}
+
+.cardsContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  // margin-top: 20px;
+  gap: 20px;
+
+  // .topCard {
+  //   position: absolute;
+  //   top: -20px;
+  //   left: 0;
+  //   z-index: 1;
+  //   width: fit-content;
+  //   height: fit-content;
+  //   border-radius: 14px;
+  //   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  //   transition: all 0.3s;
+  //   &:hover {
+  //     transform: translate(-5px, -10px);
+  //   }
+  // }
+}
+
+.container:nth-child(2) {
+  background-color: $bg-color;
+}
+
+.container2 {
+  background-color: $bg-color;
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+
+  .textContainer span {
+    color: #762a16;
+  }
+
+  .button {
+    margin-top: 20px;
+    background-color: #762a16;
+    color: $white;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 500px;
+  height: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+@include mobile{
+  .container{
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .textContainer{
+    width: 100%;
+    text-align: center;
+    display: grid;
+    place-content: center;
+
+    h2{
+      font-size: 24px;
+    }
+  }
+
+  .cardsContainer{
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    position: relative;
+
+    & > div{
+      flex-shrink: 0;
+    }
+  }
+
+  .container2{
+    position: relative;
+    height: 100vh;
+
+    span{
+      color: #b14125 !important;
+    }
+  }
+
+  .imageContainer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    filter: brightness(50%);
+  }
+
+  .textContainer{
+    z-index:1;
+    color: rgb(130, 130, 130);
+  }
+}

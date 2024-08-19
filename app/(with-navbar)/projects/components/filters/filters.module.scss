@@ -1,0 +1,30 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.category {
+  margin-top: 20px;
+  h2 {
+    font-size: 40px;
+  }
+  h4 {
+    font-weight: 400;
+    font-size: 20px;
+  }
+  p {
+    font-weight: lighter;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  b {
+    color: $dark-gray;
+    font-weight: lighter;
+  }
+}
+
+@include tablet{
+  .categories{
+    display: flex;
+    gap: 16px;
+  }
+}

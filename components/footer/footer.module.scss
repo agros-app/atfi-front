@@ -1,0 +1,62 @@
+@import "@/styles/variables.scss";
+.footer {
+  background: $title;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footerSection {
+  margin: 20px;
+  min-width: 200px;
+}
+
+.footerSection h3 {
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerSection ul li {
+  margin: 10px 0;
+  font-weight: 200;
+}
+
+.footerSection ul li a:hover {
+  text-decoration: underline;
+}
+
+.footerBottom {
+  margin-top: 20px;
+}
+
+.icon {
+  margin: 0 10px;
+  fill: white;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s;
+}
+
+.iconsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}

@@ -1,0 +1,79 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  padding: 5%;
+  transition-duration: 500ms;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.titleP1, .titleP2{
+  font-weight: 600;
+  font-size: 72px;
+  color: $white;
+}
+
+.titleP2 {
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: $dark-green;
+    z-index: -1;
+    animation: show 1s forwards;
+    animation-delay: 1s;
+  }
+}
+
+.subtitle {
+  padding-top: 26px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #f0f0e3;
+}
+
+.button {
+  padding-top: 40px;
+}
+
+@include mobile {
+  .contentContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  }
+
+  .titleP1, .titleP2{
+    font-size: 48px;
+  }
+}
+
+@keyframes show {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

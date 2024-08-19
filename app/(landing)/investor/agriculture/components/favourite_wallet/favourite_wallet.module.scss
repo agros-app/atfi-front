@@ -1,0 +1,111 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba($gray, 0.75);
+  border-radius: 10px;
+  padding:10px;
+  width: 350px;
+  height: fit-content;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: $bg-color;
+}
+
+.title{
+  padding: 15px 15px 0 15px;
+  font-size: 18px;
+  font-weight: 450;
+  color: $dark-green;
+}
+
+.division {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.firstRow {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-top: -5px;
+}
+
+.secondRow{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-top: -55px;
+  margin-left: -5px;
+}
+
+.icon{
+  width:90px;
+  height:auto;
+  margin-right: 30px;
+}
+
+.binanceIcon{
+  width: 140px;
+  height:auto;
+}
+
+.metamaskIcon{
+  width: 140px;
+  height:auto;
+  margin-right: 65px;
+}
+
+.okxIcon{
+  width: 60px;
+  height:auto;
+}
+
+.amountMore{
+  padding: 15px 25px 0 30px;
+}
+.moreWallets {
+  display: inline-flex;
+  background-color: $light-gray;
+  color: $darker-gray;
+  border-radius: 7px;
+  padding: 3px 10px;
+  margin-top: -40px;
+  float: right;
+  justify-content: right;
+}
+
+
+
+//.container{
+//  width: 100%;
+//}
+//.title{
+//  font-size: 16px;
+//}
+//.icon{
+//  width: 70px;
+//  margin-right: 20px;
+//}
+//.binanceIcon{
+//  width: 100px;
+//  margin-right: 40px;
+//}
+//.metamaskIcon{
+//  width: 100px;
+//  margin-right: 40px;
+//}
+//.okxIcon{
+//  width: 40px;
+//}
+//.amountMore{
+//  padding: 15px 25px 0 20px;
+//}
+//.moreWallets {
+//  padding: 3px 5px;
+//  margin-top: -30px;
+//}

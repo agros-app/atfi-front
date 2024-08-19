@@ -1,0 +1,12 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  position: absolute;
+  width: 100%;
+  align-items: center;
+  background-color: transparent;
+  padding: 0 5%;
+  z-index: 999;
+  transition-duration: 500ms;
+}
