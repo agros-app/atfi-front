@@ -1,0 +1,39 @@
+@import "styles/variables.scss";
+
+.container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.selectedContainer {
+  background: $secondary-yellow;
+  border-radius: 10px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.unselectedContainer {
+  margin-top: 10px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 30px;
+  height: auto;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: 450;
+  color: $title;
+}

@@ -26,7 +26,9 @@ export default async function NavBar() {
             <div className={styles.right}>
                 {user && <WalletButton />}
                 {user ? <LogOutButton /> : <Link href="/login">Ingresar</Link>}
-                <ProfileImage src={"/owners/nico.jpg"} size={60}></ProfileImage>
+                <Link  href='/profile/1'>
+                    <ProfileImage src={"/owners/nico.jpg"} size={60}></ProfileImage>
+                </Link>
             </div>
             <BurgerMenu user={user} />
         </nav>
