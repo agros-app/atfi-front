@@ -3,6 +3,7 @@ import styles from "./page.module.scss";
 import ProfileBanner from "@/app/(with-navbar)/profile/[id]/components/profileBanner/profileBanner";
 import PersonalData from "@/app/(with-navbar)/profile/[id]/components/personalData/personalData";
 import HomeData from "@/app/(with-navbar)/profile/[id]/components/personalData/homeData";
+import ProfileModal from "@/components/profileModal/profileModal";
 
 export default function ProfilePage()
 {
