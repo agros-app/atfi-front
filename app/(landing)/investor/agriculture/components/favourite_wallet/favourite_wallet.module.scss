@@ -1,20 +1,20 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
-.container{
+.container {
   position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid rgba($gray, 0.75);
   border-radius: 10px;
-  padding:10px;
+  padding: 10px;
   width: 350px;
   height: fit-content;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
   background-color: $bg-color;
 }
 
-.title{
+.title {
   padding: 15px 15px 0 15px;
   font-size: 18px;
   font-weight: 450;
@@ -35,7 +35,7 @@
   margin-top: -5px;
 }
 
-.secondRow{
+.secondRow {
   display: flex;
   align-items: center;
   flex: 1;
@@ -43,29 +43,29 @@
   margin-left: -5px;
 }
 
-.icon{
-  width:90px;
-  height:auto;
+.icon {
+  width: 90px;
+  height: auto;
   margin-right: 30px;
 }
 
-.binanceIcon{
+.binanceIcon {
   width: 140px;
-  height:auto;
+  height: auto;
 }
 
-.metamaskIcon{
+.metamaskIcon {
   width: 140px;
-  height:auto;
+  height: auto;
   margin-right: 65px;
 }
 
-.okxIcon{
+.okxIcon {
   width: 60px;
-  height:auto;
+  height: auto;
 }
 
-.amountMore{
+.amountMore {
   padding: 15px 25px 0 30px;
 }
 .moreWallets {
@@ -78,8 +78,6 @@
   float: right;
   justify-content: right;
 }
-
-
 
 //.container{
 //  width: 100%;

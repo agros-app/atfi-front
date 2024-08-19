@@ -1,5 +1,5 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   padding: 40px;
@@ -52,7 +52,7 @@
 }
 
 .cardIcon {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 50%;
   width: 420px;
@@ -98,22 +98,22 @@
   color: $white;
 }
 
-@include mobile{
-  .cardsContainer{
+@include mobile {
+  .cardsContainer {
     flex-direction: column;
     gap: 20px;
   }
 
   .vision,
-  .mission{
+  .mission {
     width: 100%;
   }
 
-  .cardTitle{
+  .cardTitle {
     font-size: 36px;
   }
 
-  .cardDescription{
+  .cardDescription {
     font-size: 16px;
   }
 }

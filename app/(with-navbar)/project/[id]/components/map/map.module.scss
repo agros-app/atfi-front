@@ -1,7 +1,6 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
-
-.container{
+.container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -18,9 +17,6 @@
   height: auto;
 }
 
-
-
-
 .bottomSide {
   position: relative;
   flex: 1;
@@ -29,7 +25,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 // EN realidad no le ponddría casi nada de flex, que se ocupen los elementos de adentro de crear ese padding.
 .topSide {
@@ -40,7 +35,7 @@
   display: flex;
 }
 
-.location{
-  font-size:20px;
+.location {
+  font-size: 20px;
   font-weight: 350;
 }

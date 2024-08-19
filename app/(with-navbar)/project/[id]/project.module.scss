@@ -1,14 +1,14 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
 .projectPageContainer {
   background-color: $absolute-white;
 }
 
 .body {
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; // Adjusted to align items at the start
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; // Adjusted to align items at the start
 }
 
 .screenDivision {
@@ -23,7 +23,7 @@
 }
 
 .leftHandSide {
- flex: 1;
+  flex: 1;
 }
 .componentContainer {
   margin-top: 20px; // Added margin to separate from the above content

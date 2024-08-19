@@ -1,5 +1,5 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .category {
   margin-top: 20px;
@@ -22,8 +22,8 @@
   }
 }
 
-@include tablet{
-  .categories{
+@include tablet {
+  .categories {
     display: flex;
     gap: 16px;
   }

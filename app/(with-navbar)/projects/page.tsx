@@ -1,17 +1,17 @@
-"use client"
-import ProjectCard from "@/components/projectCard/projectCard";
-import styles from "./projects.module.scss";
-import Filters from "./components/filters/filters";
-import Select from "@/components/select/Select";
-import useProjects from "@/hooks/useProjects";
+'use client'
+import ProjectCard from '@/components/projectCard/projectCard'
+import styles from './projects.module.scss'
+import Filters from './components/filters/filters'
+import Select from '@/components/select/Select'
+import useProjects from '@/hooks/useProjects'
 
 export default function ProjectsPage() {
-  const {projects} = useProjects();
+  const { projects } = useProjects()
   // TODO: Integrate backend
   const options = [
-    { value: "asc", title: "Mas recientes" },
-    { value: "desc", title: "Mas antiguos" },
-  ];
+    { value: 'asc', title: 'Mas recientes' },
+    { value: 'desc', title: 'Mas antiguos' }
+  ]
   return (
     <main className={styles.main}>
       <section className={styles.sort_section}>
@@ -29,5 +29,5 @@ export default function ProjectsPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

@@ -5,7 +5,7 @@ const TwitterLogo = (props: any) => (
     strokeLinejoin="round"
     data-testid="geist-icon"
     style={{
-      color: "currentcolor",
+      color: 'currentcolor'
     }}
     {...props}
   >
@@ -16,6 +16,6 @@ const TwitterLogo = (props: any) => (
       clipRule="evenodd"
     />
   </svg>
-);
+)
 
-export default TwitterLogo;
+export default TwitterLogo

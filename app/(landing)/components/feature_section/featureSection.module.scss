@@ -1,5 +1,5 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   display: flex;
@@ -33,10 +33,9 @@
   height: 500px;
   margin: 0 auto;
   filter: brightness(0.8);
-  background: url("/landing/features-bg.jpg") center;
+  background: url('/landing/features-bg.jpg') center;
   background-size: cover;
 }
-
 
 .feature {
   position: relative;
@@ -94,14 +93,14 @@
   display: none;
 }
 
-@include mobile{
-  .description{
+@include mobile {
+  .description {
     font-size: 24px;
     max-width: 80%;
     text-align: center;
   }
 
-  .visionContainer{
+  .visionContainer {
     display: none;
   }
 }

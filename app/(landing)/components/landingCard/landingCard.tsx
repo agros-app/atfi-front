@@ -1,21 +1,21 @@
-import styles from "./landingCard.module.scss";
-import { motion } from "framer-motion";
-import { itemVariants } from "./variants";
+import styles from './landingCard.module.scss'
+import { motion } from 'framer-motion'
+import { itemVariants } from './variants'
 
 export type LandingCardProps = {
-  title: string;
-  description: string;
-  icon: string;
-  image: string;
-  reverse?: boolean;
-};
+  title: string
+  description: string
+  icon: string
+  image: string
+  reverse?: boolean
+}
 
 export default function LandingCard({
   title,
   description,
   icon,
   image,
-  reverse,
+  reverse
 }: LandingCardProps) {
   return (
     <motion.div
@@ -33,5 +33,5 @@ export default function LandingCard({
         <p className={styles.description}>{description}</p>
       </div>
     </motion.div>
-  );
+  )
 }

@@ -1,16 +1,16 @@
-import React from "react";
-import styles from "./profileImage.module.scss";
+import React from 'react'
+import styles from './profileImage.module.scss'
 
 type ProfileImageProps = {
-  src: string;
-  size: number; // size in pixels
-  grayFilter?: boolean;
-};
+  src: string
+  size: number // size in pixels
+  grayFilter?: boolean
+}
 
 export default function ProfileImage({
   src,
   size,
-  grayFilter = false,
+  grayFilter = false
 }: ProfileImageProps) {
   return (
     <div
@@ -19,10 +19,10 @@ export default function ProfileImage({
         width: size,
         height: size,
         borderRadius: size / 2,
-        filter: grayFilter ? "grayscale(100%)" : "none",
+        filter: grayFilter ? 'grayscale(100%)' : 'none'
       }}
     >
       <img src={src} alt="Profile Icon" className={styles.iconImage} />
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-@import "/styles/variables.scss";
+@import '/styles/variables.scss';
 
 .dataType {
   border: 1px solid $primary-yellow;
@@ -8,7 +8,9 @@
   text-align: center;
   width: max-content;
   padding: 2px 13px;
-  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+  transition:
+    background-color 0.3s,
+    color 0.3s; /* Add transition for smooth effect */
 }
 
 .hoverEnabled:hover {

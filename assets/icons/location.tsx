@@ -21,6 +21,6 @@ const LocationIcon = (props: any) => (
       d="M13 7c0 4.761-5 7.5-5 7.5S3 11.761 3 7a5 5 0 1 1 10 0Z"
     />
   </svg>
-);
+)
 
-export default LocationIcon;
+export default LocationIcon

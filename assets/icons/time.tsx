@@ -14,6 +14,6 @@ const TimeIcon = (props: any) => (
       d="M8 4v4h3m3 0A6 6 0 1 1 1.999 8 6 6 0 0 1 14 8Z"
     />
   </svg>
-);
+)
 
-export default TimeIcon;
+export default TimeIcon

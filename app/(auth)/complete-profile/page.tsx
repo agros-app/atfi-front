@@ -1,31 +1,31 @@
-"use client";
-import Logo from "@/assets/icons/logo";
-import Link from "next/link";
-import styles from "./complete_profile.module.scss";
-import TextField from "@/components/textField/textField";
-import Select from "@/components/select/Select";
-import Button from "@/components/button/button";
-import { FormEventHandler } from "react";
+'use client'
+import Logo from '@/assets/icons/logo'
+import Link from 'next/link'
+import styles from './complete_profile.module.scss'
+import TextField from '@/components/textField/textField'
+import Select from '@/components/select/Select'
+import Button from '@/components/button/button'
+import { FormEventHandler } from 'react'
 
 export default function CompleteProfilePage() {
   const options = [
-    { value: "Argentina", title: "🇦🇷 Argentina" },
-    { value: "Uruguay", title: "🇺🇾 Uruguay" },
-    { value: "Chile", title: "🇨🇱 Chile" },
-    { value: "Brasil", title: "🇧🇷 Brasil" },
-  ];
+    { value: 'Argentina', title: '🇦🇷 Argentina' },
+    { value: 'Uruguay', title: '🇺🇾 Uruguay' },
+    { value: 'Chile', title: '🇨🇱 Chile' },
+    { value: 'Brasil', title: '🇧🇷 Brasil' }
+  ]
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     // @ts-ignore
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
-  };
+    const formData = new FormData(event.target)
+    const data = Object.fromEntries(formData.entries())
+    console.log(data)
+  }
 
   return (
     <div className={styles.container}>
-      <Link href={"/"}>
+      <Link href={'/'}>
         <Logo size={150} />
       </Link>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -56,5 +56,5 @@ export default function CompleteProfilePage() {
         <Button>Continuar</Button>
       </form>
     </div>
-  );
+  )
 }

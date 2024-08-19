@@ -1,44 +1,42 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
-.container{
+.container {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.titles{
+.titles {
   font-size: 20px;
   display: flex;
   gap: 50px;
 }
 
-
-.selectedTitle{
+.selectedTitle {
   padding-bottom: 10px;
   font-weight: 200;
   border-bottom: 2px solid $primary-green;
 }
 
-.unselectedTitle{
+.unselectedTitle {
   padding-bottom: 10px;
   font-weight: 150;
-  color: #6B6B6B;
+  color: #6b6b6b;
 }
 
-.body{
+.body {
   width: 100%;
   padding-top: 10px;
   border-top: 1px solid $dark-gray;
 }
 
-
-.body p{
+.body p {
   font-size: 20px;
   font-weight: 200;
   margin-top: 20px;
 }
 
-.bold{
+.bold {
   font-size: 20px;
   font-weight: 500;
   margin-top: 15px;

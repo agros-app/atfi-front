@@ -5,7 +5,7 @@ const GoogleLogo = (props: any) => (
     strokeLinejoin="round"
     data-testid="geist-icon"
     style={{
-      color: "currentcolor",
+      color: 'currentcolor'
     }}
     {...props}
   >
@@ -26,6 +26,6 @@ const GoogleLogo = (props: any) => (
       d="M8.16 3.185c1.178 0 2.225.408 3.062 1.193l2.29-2.29C12.123.792 10.32 0 8.16 0 5.033 0 2.334 1.796 1.018 4.415L3.68 6.48c.633-1.89 2.4-3.295 4.48-3.295Z"
     />
   </svg>
-);
+)
 
-export default GoogleLogo;
+export default GoogleLogo

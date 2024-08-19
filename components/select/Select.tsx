@@ -1,32 +1,32 @@
-import containerStyles from "../textField/textField.module.scss";
-import React from "react";
+import containerStyles from '../textField/textField.module.scss'
+import React from 'react'
 
 type SelectProps = {
-  label?: string;
-  placeholder: string;
-  className?: string;
-  helperText?: string;
-  error?: boolean;
-  name: string;
-  options: { value: string; title: string }[];
-  onChange?:  (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+  label?: string
+  placeholder: string
+  className?: string
+  helperText?: string
+  error?: boolean
+  name: string
+  options: { value: string; title: string }[]
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 export default function Select({
   label,
   placeholder,
   name,
-  className = "",
+  className = '',
   helperText,
   error,
   options,
-    onChange
+  onChange
 }: SelectProps) {
   return (
     <div
-        onChange={onChange}
+      onChange={onChange}
       className={`${containerStyles.container} ${
-        error ? containerStyles.error : ""
+        error ? containerStyles.error : ''
       }`}
     >
       {label && (
@@ -50,5 +50,5 @@ export default function Select({
         <small className={containerStyles.helperText}>{helperText}</small>
       )}
     </div>
-  );
+  )
 }

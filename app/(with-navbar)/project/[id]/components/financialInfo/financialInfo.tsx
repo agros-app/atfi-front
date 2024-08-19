@@ -1,41 +1,40 @@
-"use client";
-import styles from "./financialInfo.module.scss";
-import ProgressBar from "@/components/progressBar/progressBar";
-import Button from "@/components/button/button";
-import TextIndexComponent from "../TextIndexComponent/textIndexComponent";
-import TextField from "@/components/textField/textField";
-import useLending from "@/hooks/useLending";
-import { FormEventHandler } from "react";
-import mockUSDT from "@/contracts/mockUSDT.json";
-import lending from "@/contracts/lendingTest.json";
-import { investByProjectId } from "@/lib/api";
+'use client'
+import styles from './financialInfo.module.scss'
+import ProgressBar from '@/components/progressBar/progressBar'
+import Button from '@/components/button/button'
+import TextIndexComponent from '../TextIndexComponent/textIndexComponent'
+import TextField from '@/components/textField/textField'
+import useLending from '@/hooks/useLending'
+import { FormEventHandler } from 'react'
+import mockUSDT from '@/contracts/mockUSDT.json'
+import lending from '@/contracts/lendingTest.json'
+import { investByProjectId } from '@/lib/api'
 
 type FinancialInfoProps = {
-  projectId: number;
-  currentAmmount: number;
-  goalAmmount: number;
-  minAmmount: number;
-};
-
+  projectId: number
+  currentAmmount: number
+  goalAmmount: number
+  minAmmount: number
+}
 
 export default function FinancialInfo({
   projectId,
   currentAmmount,
   goalAmmount,
-  minAmmount,
+  minAmmount
 }: FinancialInfoProps) {
-  const { investInLending, loading } = useLending();
-  const percentage = Math.floor((currentAmmount / goalAmmount) * 100);
+  const { investInLending, loading } = useLending()
+  const percentage = Math.floor((currentAmmount / goalAmmount) * 100)
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     // @ts-ignore
-    const amount = parseInt(event.target.amount.value);
-    await investByProjectId(projectId, amount);
-    await investInLending(amount.toString(), mockUSDT, lending);
+    const amount = parseInt(event.target.amount.value)
+    await investByProjectId(projectId, amount)
+    await investInLending(amount.toString(), mockUSDT, lending)
     // @ts-ignore  typescript is not recognizing the reset method
-    event.target.reset();
-  };
+    event.target.reset()
+  }
 
   return (
     <div className={styles.container}>
@@ -89,5 +88,5 @@ export default function FinancialInfo({
         </form>
       </div>
     </div>
-  );
+  )
 }

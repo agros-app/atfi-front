@@ -1,8 +1,8 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 .container {
   position: relative;
-  padding: 0 120px ;
+  padding: 0 120px;
   display: flex;
   justify-content: center;
   height: 80vh;
@@ -49,7 +49,6 @@
   width: 130px;
 }
 
-
 .imageContainer {
   position: relative;
   width: 460px;
@@ -65,7 +64,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.text{
+.text {
   position: relative;
   font-size: 23px;
   width: 85%;
@@ -73,19 +72,17 @@
   color: $dark-green;
   margin-top: 20px;
 }
-.buttonContainer{
+.buttonContainer {
   padding-top: 50px;
 }
 
-.button{
+.button {
   width: 160px;
   height: 50px;
 }
 
-
-
 @include tablet {
-  .container{
+  .container {
     display: block;
     align-items: center;
     text-align: center;
@@ -94,7 +91,7 @@
     margin-top: 100px;
     height: 100%;
   }
-  .screenDivision{
+  .screenDivision {
     gap: 0;
   }
 
@@ -108,12 +105,12 @@
     font-size: 0.6rem;
     width: 100px;
   }
-  .tagContainer{
+  .tagContainer {
     display: flex;
     justify-content: center;
   }
 
-  .text{
+  .text {
     width: 100%;
     align-items: center;
     text-align: center;
@@ -132,25 +129,23 @@
   .imageContainer {
     display: none;
   }
-
-
 }
 
-@media (max-width: 1200px) and (min-width: 900px){
-  .container{
+@media (max-width: 1200px) and (min-width: 900px) {
+  .container {
     height: 100%;
-    padding: 0 20px ;
+    padding: 0 20px;
   }
-  .screenDivision{
+  .screenDivision {
     gap: 100px;
   }
 }
 
-@media (max-width: 900px) and (min-width: 768px){
-  .container{
+@media (max-width: 900px) and (min-width: 768px) {
+  .container {
     height: 100%;
   }
-  .screenDivision{
+  .screenDivision {
     gap: 20px;
   }
 }

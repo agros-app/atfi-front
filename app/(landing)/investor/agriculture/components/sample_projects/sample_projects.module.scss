@@ -1,5 +1,5 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   background-color: $title;
@@ -34,12 +34,12 @@
   }
 }
 
-.rightHandSide{
+.rightHandSide {
   flex: 1;
   padding: 0 0 0 100px;
 }
 
-.leftHandSide{
+.leftHandSide {
   flex: 1;
   padding: 0 0 0 100px;
 }
@@ -57,8 +57,7 @@
   }
 }
 
-
-@include tablet{
+@include tablet {
   .screenDivision {
     display: flex;
     flex-direction: column;
@@ -67,11 +66,11 @@
     justify-content: center;
   }
 
-  .rightHandSide{
+  .rightHandSide {
     order: 1;
     padding: 0;
   }
-  .leftHandSide{
+  .leftHandSide {
     order: 2;
     padding: 0;
   }
@@ -81,11 +80,11 @@
     width: 100%;
   }
 
-  .heading{
+  .heading {
     font-size: 3rem;
     margin-bottom: 20px;
   }
-  .description{
+  .description {
     width: 100%;
     align-items: center;
     text-align: center;
@@ -99,12 +98,12 @@
   }
 }
 
-@include laptop{
+@include laptop {
   // hace que solo haya una card.
   .projects > div:last-child {
     display: none;
   }
-  .leftHandSide{
+  .leftHandSide {
     width: 300px;
   }
 }

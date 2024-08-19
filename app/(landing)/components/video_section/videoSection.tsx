@@ -1,7 +1,7 @@
-"use client";
-import { motion } from "framer-motion";
-import styles from "./video.module.scss";
-import Button from "@/components/button/button";
+'use client'
+import { motion } from 'framer-motion'
+import styles from './video.module.scss'
+import Button from '@/components/button/button'
 
 export default function VideoSection() {
   return (
@@ -17,7 +17,7 @@ export default function VideoSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.25 }}
         >
-          El agro 
+          El agro
         </motion.h1>
         <motion.h1
           className={styles.titleP1}
@@ -25,7 +25,7 @@ export default function VideoSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75 }}
         >
-           ahora es una opción
+          ahora es una opción
         </motion.h1>
         <motion.p
           className={styles.subtitle}
@@ -33,7 +33,8 @@ export default function VideoSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.75, delay: 0.5 }}
         >
-           Participa de una campaña productiva, y accede a los rendimientos del sector agropecuario
+          Participa de una campaña productiva, y accede a los rendimientos del
+          sector agropecuario
         </motion.p>
         <motion.div
           className={styles.button}
@@ -45,5 +46,5 @@ export default function VideoSection() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

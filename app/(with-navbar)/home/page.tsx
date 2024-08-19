@@ -1,11 +1,11 @@
-"use client"
-import Link from "next/link";
-import styles from "./home.module.scss";
-import ProjectCard from "@/components/projectCard/projectCard";
-import useProjects from "@/hooks/useProjects";
+'use client'
+import Link from 'next/link'
+import styles from './home.module.scss'
+import ProjectCard from '@/components/projectCard/projectCard'
+import useProjects from '@/hooks/useProjects'
 
 export default function Home() {
-  const { projects } = useProjects();
+  const { projects } = useProjects()
   return (
     <main className={styles.main}>
       <section>
@@ -15,12 +15,12 @@ export default function Home() {
           ellos en la sección de detalles.
         </p>
         <div className={styles.projects}>
-        {projects.map((project) => (
-        <ProjectCard project={project} key={project.id} />
-      ))}
+          {projects.map((project) => (
+            <ProjectCard project={project} key={project.id} />
+          ))}
         </div>
         <div className={styles.more_info}>
-          <Link href={"/projects"}>Ver todos los proyectos {">>"}</Link>
+          <Link href={'/projects'}>Ver todos los proyectos {'>>'}</Link>
         </div>
       </section>
       <section>
@@ -35,5 +35,5 @@ export default function Home() {
         <p>Las principales noticias del agro uruguayo y de ATFI están acá.</p>
       </section>
     </main>
-  );
+  )
 }

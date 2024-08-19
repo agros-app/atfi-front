@@ -1,37 +1,37 @@
-import Link from "next/link";
-import styles from "./footer.module.scss";
-import FacebookIcon from "@/assets/icons/facebook";
-import InstagramIcon from "@/assets/icons/instagram";
-import LinkedinIcon from "@/assets/icons/linkedin";
-import TwitterLogo from "@/assets/icons/twitter";
+import Link from 'next/link'
+import styles from './footer.module.scss'
+import FacebookIcon from '@/assets/icons/facebook'
+import InstagramIcon from '@/assets/icons/instagram'
+import LinkedinIcon from '@/assets/icons/linkedin'
+import TwitterLogo from '@/assets/icons/twitter'
 
 const sections = [
   {
-    title: "Enlaces Rápidos",
+    title: 'Enlaces Rápidos',
     links: [
-      { label: "Inicio", href: "#" },
-      { label: "Servicios", href: "#" },
-      { label: "Contacto", href: "#" },
-      { label: "FAQs", href: "#" },
-    ],
+      { label: 'Inicio', href: '#' },
+      { label: 'Servicios', href: '#' },
+      { label: 'Contacto', href: '#' },
+      { label: 'FAQs', href: '#' }
+    ]
   },
   {
-    title: "Productores",
+    title: 'Productores',
     links: [
-      { label: "Registro de Productores", href: "#" },
-      { label: "Beneficios", href: "#" },
-      { label: "Historias de Éxito", href: "#" },
-    ],
+      { label: 'Registro de Productores', href: '#' },
+      { label: 'Beneficios', href: '#' },
+      { label: 'Historias de Éxito', href: '#' }
+    ]
   },
   {
-    title: "Soluciones",
+    title: 'Soluciones',
     links: [
-      { label: "Inversiones Personalizadas", href: "#" },
-      { label: "Consultoría", href: "#" },
-      { label: "Soporte Técnico", href: "#" },
-    ],
-  },
-];
+      { label: 'Inversiones Personalizadas', href: '#' },
+      { label: 'Consultoría', href: '#' },
+      { label: 'Soporte Técnico', href: '#' }
+    ]
+  }
+]
 
 const Footer = () => {
   return (
@@ -71,7 +71,7 @@ const Footer = () => {
         <p>&copy; 2024 Agro Inversiones. Todos los derechos reservados.</p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

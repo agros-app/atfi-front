@@ -1,4 +1,4 @@
-import Services from "./services/services";
-import LoginForm from "./loginForm/loginForm";
+import Services from './services/services'
+import LoginForm from './loginForm/loginForm'
 
-export {LoginForm};
+export { LoginForm }

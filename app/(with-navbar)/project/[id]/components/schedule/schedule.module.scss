@@ -1,4 +1,4 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
 .container {
   display: flex;
@@ -16,19 +16,19 @@
   padding: 40px 10px 10px 10px;
   border-bottom: 1px solid $dark-gray;
 
-  p{
-    margin:0;
+  p {
+    margin: 0;
   }
 }
 
-.bottomData{
+.bottomData {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;
 
-  p{
-    margin:0;
+  p {
+    margin: 0;
   }
 }
 

@@ -1,4 +1,4 @@
-const Logo = ({size=50,...props}: any) => (
+const Logo = ({ size = 50, ...props }: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -71,6 +71,6 @@ const Logo = ({size=50,...props}: any) => (
       d="M23.125 38.66c.07-.13.15-.29.25-.49-.09.2-.18.36-.25.49z"
     />
   </svg>
-);
+)
 
-export default Logo;
+export default Logo

@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    webpack: (config) => {
-        config.externals.push("pino-pretty");
-        return config;
-      },
-};
+  webpack: (config) => {
+    config.externals.push('pino-pretty')
+    return config
+  }
+}
 
-export default nextConfig;
+export default nextConfig

@@ -1,5 +1,5 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   display: flex;
@@ -15,7 +15,7 @@
   color: $black;
   text-align: center;
 
-  @include mobile{
+  @include mobile {
     font-size: 36px;
   }
 }

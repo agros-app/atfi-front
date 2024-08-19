@@ -1,8 +1,8 @@
-import { collection, getFirestore } from "firebase/firestore";
-import app from "./firebaseConfig";
+import { collection, getFirestore } from 'firebase/firestore'
+import app from './firebaseConfig'
 
-const db = getFirestore(app);
+const db = getFirestore(app)
 
-const usersCollection = collection(db, "usuarios");
+const usersCollection = collection(db, 'usuarios')
 
-export { db, usersCollection };
+export { db, usersCollection }

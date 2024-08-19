@@ -15,6 +15,6 @@ const LeafIcon = (props: any) => (
       </clipPath>
     </defs>
   </svg>
-);
+)
 
-export default LeafIcon;
+export default LeafIcon

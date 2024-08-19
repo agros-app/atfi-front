@@ -1,22 +1,22 @@
-import Image from "next/image";
-import styles from "./auth.module.scss";
+import Image from 'next/image'
+import styles from './auth.module.scss'
 export default function AuthLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <main className={styles.main}>
       <section className={styles.left}>{children}</section>
       <div className={styles.right}>
         <Image
-          src={"/auth/bg_auth.jpg"}
+          src={'/auth/bg_auth.jpg'}
           alt="atfi login background"
           fill
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: 'cover' }}
           sizes="100%"
         />
       </div>
     </main>
-  );
+  )
 }

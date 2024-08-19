@@ -1,14 +1,14 @@
-import NavBar from "@/components/navbar/navbar";
+import NavBar from '@/components/navbar/navbar'
 
 export default function WithNavbarLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <>
       <NavBar />
       {children}
     </>
-  );
+  )
 }

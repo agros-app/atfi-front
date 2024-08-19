@@ -1,4 +1,4 @@
-@import "styles/variables.scss";
+@import 'styles/variables.scss';
 
 .container {
   position: relative;
@@ -36,12 +36,12 @@
 .newspaper {
   display: inline-block;
   border-radius: 10px;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
   padding: 3px 25px; /* Top and bottom: 5px, sides: 10px */
 }
 
-.newspaper p{
-    font-size: 14px;
+.newspaper p {
+  font-size: 14px;
 }
 
 .name {
