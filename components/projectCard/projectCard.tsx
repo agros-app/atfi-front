@@ -14,17 +14,22 @@ type ProjectCardProps = {
   project: Project;
   bgColor?: string;
   border?: string;
+  disabled?: boolean;
 };
 
 export default function ProjectCard({
                                       project,
+                                      disabled= false,
                                       bgColor="fff",
-                                      border="0.5px solid $dark-gray"}: ProjectCardProps) {
+                                      border="0.5px solid $dark-gray"}: ProjectCardProps,
+                                    ) {
   const router = useRouter();
   const { id,name, seeds, endDate, amountCollected, amountNeed } = project;
   const progress = getPercentage(amountCollected, amountNeed);
+  console.log({disabled})
   return (
-      <div className={styles.container} style={{backgroundColor: bgColor, border: border}}>
+      <div className={`${styles.container} ${disabled === true ? styles.disabled : ""}`}
+           style={{backgroundColor: bgColor, border: border}}>
         <div className={styles.top}>
           <Image
               src={"/farm-image.png"}
