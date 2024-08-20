@@ -17,10 +17,10 @@ export default async function NavBar() {
                 </Link>
                 <div className={styles.links}>
                     <Link href={"/projects"}>
-                        <p>Proyectos</p>
+                        <p>Proyecto</p>
                     </Link>
                     <p>Portfolio</p>
-                    <p>Subir Proyecto</p>
+                    <p>Subir proyecto</p>
                 </div>
             </div>
             <div className={styles.right}>
