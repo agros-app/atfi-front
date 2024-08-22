@@ -3,11 +3,11 @@
 .navbar {
     display: flex;
     width: 100%;
-    padding: 30px 20px;
+    padding: 12px 20px;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-color, #F0F0E3);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    background: var(--bg-color, $light-black);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
 .left, .right {
@@ -26,6 +26,13 @@
 .links {
     display: flex;
     gap: 30px;
+    color: white;
+    a {
+        &:hover {
+            color: $light-gray;
+
+        }
+    }
 }
 
 .right {

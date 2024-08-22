@@ -1,19 +1,22 @@
+@import "@/styles/media.scss";
+
 .main {
   display: flex;
   width: 100%;
   flex-direction: column;
   gap: 20px;
   padding: 20px 80px;
+
 }
 
 .section_title {
   font-size: 32px;
-  font-weight: 200;
+  font-weight: 500;
 }
 
 .main p {
   font-size: 18px;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .projects {
@@ -31,4 +34,11 @@
 
 .more_info{
     text-align: center;
+    font-size: 18px;
+}
+
+@include mobile{
+  .main {
+    padding: 20px 40px;
+  }
 }
