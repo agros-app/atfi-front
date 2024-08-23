@@ -1,3 +1,5 @@
+@import "@/styles/variables.scss";
+
 .pageContainer {
   display: flex;
   flex-direction: column;
@@ -9,12 +11,14 @@
   background-image: url("../../../assets/images/imagen_campo.jpg");
   background-repeat: no-repeat;
   background-position: 50%;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .formContainer {
   display: flex;
   padding: 16px;
-  width: 50vw;
+  width: 40vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -29,7 +33,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
+  width: 100%;
   padding: 8px;
 }
 
@@ -39,24 +43,74 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  width: 100%; /* Asegura que el formulario ocupe el ancho del contenedor */
+  width: 100%;
 }
 
 .buttonContainer {
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: 35%;
   align-self: center;
+  border-radius:20px ;
 }
 
-@media (max-width: 768px) {
+.navigationButtons{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 24px;
+}
+
+.seedTypeField {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.seedTypeButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.seedButton {
+  background-color: $dark-green;
+  color: var(--bg-color, #F0F0E3);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: darken($dark-green, 10%);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+
+@media (max-width: 1024px) {
   .formContainer {
-    width: 80vw;
+    width: 60vw;
     padding: 16px;
   }
 
-  .info {
-    padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
+  .buttonContainer {
+    width: 35vw;
+  }
+  .innerForm{
+    align-items: unset;
+    padding: unset;
   }
 }
 
@@ -66,9 +120,9 @@
   }
 
   .info {
-    padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
+    padding: 8px 16px;
   }
 }
 .forms, .info {
-  width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
+  width: 100%;
 }
