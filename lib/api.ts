@@ -1,6 +1,7 @@
-import { Project } from "@/types/api";
+import {Project, ProjectCreateResponse} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
+import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
 
 const token= Cookies.get('session')
 const api = axios.create({
@@ -28,4 +29,9 @@ export const investByProjectId = async (id: number, amount: number): Promise<voi
             amount
         })
     })
+}
+
+export const createProject= async (project: ProjectFormData) : Promise<ProjectCreateResponse | any> =>{
+    const response = await api.post('/project', project)
+    return response.data
 }

@@ -10,6 +10,7 @@ type DescriptionFieldProps = {
     helperText?: string;
     error?: boolean;
     rows?: number;
+    value? : string;
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
@@ -18,6 +19,7 @@ export default function DescriptionField({
                                              name,
                                              className,
                                              label,
+                                             value,
                                              helperText,
                                              error,
                                              rows = 4, // Valor por defecto
@@ -51,6 +53,7 @@ export default function DescriptionField({
                 placeholder={placeholder}
                 name={name}
                 id={name}
+                value={value}
                 rows={rows}
                 {...inputProps}
             />

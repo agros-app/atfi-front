@@ -6,45 +6,51 @@ import Button from "@/components/button/button";
 type ProjectDetailsData = {
     area: number;
     minAmount: number;
-    finalAmount: number;
-    seedType: string[];
+    amountNeed: number;
+    seed: string[];
 };
 
 type ProjectDetailsFormProps = ProjectDetailsData & {
     updateFields: (fields: Partial<ProjectDetailsData>) => void;
 };
 
-export function ProjectDetailsForm({ seedType, updateFields }: ProjectDetailsFormProps) {
-    // Asegúrate de que seedType tenga un valor por defecto
+export function ProjectDetailsForm({
+                                       area,
+                                       minAmount,
+                                       amountNeed,
+                                       seed,
+                                       updateFields }
+                                       : ProjectDetailsFormProps) {
     useEffect(() => {
-        if (seedType.length === 0) {
-            updateFields({ seedType: ["Soja"] });
+        if (seed.length === 0) {
+            updateFields({ seed: ["Soja"] });
         }
-    }, [seedType, updateFields]);
+    }, [seed, updateFields]);
 
     const handleSeedTypeChange = (index: number, value: string) => {
-        const newSeedTypes = [...seedType];
+        const newSeedTypes = [...seed];
         newSeedTypes[index] = value;
-        updateFields({ seedType: newSeedTypes });
+        updateFields({ seed: newSeedTypes });
     };
 
     const addSeedTypeField = () => {
-        updateFields({ seedType: [...seedType, ""] });
+        updateFields({ seed: [...seed, ""] });
     };
 
     const removeSeedTypeField = (index: number) => {
-        if (seedType.length > 1) {
-            const newSeedTypes = seedType.filter((_, i) => i !== index);
-            updateFields({ seedType: newSeedTypes });
+        if (seed.length > 1) {
+            const newSeedTypes = seed.filter((_, i) => i !== index);
+            updateFields({ seed: newSeedTypes });
         }
     };
 
     return (
         <div className={styles.innerForm}>
             <TextField
-                placeholder="Ingrese el área"
+                placeholder="Ingrese el área en m2"
                 name="area"
                 label="Área"
+                value={area.toString()}
                 type="number"
                 onChange={(e) => updateFields({ area: Number(e.target.value) })}
             />
@@ -53,6 +59,7 @@ export function ProjectDetailsForm({ seedType, updateFields }: ProjectDetailsFor
                 name="minAmount"
                 label="Monto Mínimo"
                 type="number"
+                value={minAmount.toString()}
                 onChange={(e) => updateFields({ minAmount: Number(e.target.value) })}
             />
             <TextField
@@ -60,20 +67,22 @@ export function ProjectDetailsForm({ seedType, updateFields }: ProjectDetailsFor
                 name="finalAmount"
                 label="Monto Final"
                 type="number"
-                onChange={(e) => updateFields({ finalAmount: Number(e.target.value) })}
+                value={amountNeed.toString()}
+                onChange={(e) => updateFields({ amountNeed: Number(e.target.value) })}
             />
 
             <label className={styles.label}>Tipos de Cultivo</label>
-            {seedType.map((_, index) => (
+            {seed.map((_, index) => (
                 <div key={index} className={styles.seedTypeField}>
                     <TextField
                         placeholder="Ingrese el tipo de cultivo"
                         name={`seedType-${index}`}
                         label={`Tipo de Cultivo ${index + 1}`}
+                        value={seed[index]}
                         onChange={(e) => handleSeedTypeChange(index, e.target.value)}
                     />
                     <div className={styles.seedTypeButtons}>
-                        {seedType.length > 1 && (
+                        {seed.length > 1 && (
                             <Button
                                 onClick={(e) => {
                                     e.preventDefault();

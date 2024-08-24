@@ -16,7 +16,13 @@ type ProjectLocationFormProps = ProjectLocationData & {
     updateFields: (fields: Partial<ProjectLocationData>) => void;
 };
 
-export function ProjectLocationForm({updateFields}: ProjectLocationFormProps) {
+export function ProjectLocationForm({   state,
+                                        city,
+                                        zipCode,
+                                        latitude,
+                                        longitude,
+                                        updateFields }
+                                        : ProjectLocationFormProps) {
     const options = [
         { value: "Argentina", title: "🇦🇷 Argentina" },
         { value: "Uruguay", title: "🇺🇾 Uruguay" },
@@ -37,31 +43,35 @@ export function ProjectLocationForm({updateFields}: ProjectLocationFormProps) {
                 placeholder="Ingrese la provincia"
                 name="state"
                 label="Provincia"
+                value={state}
                 onChange={(e) => updateFields({ state: e.target.value })}
             />
             <TextField
                 placeholder="Ingrese la ciudad"
                 name="city"
                 label="Ciudad"
+                value={city}
                 onChange={(e) => updateFields({ city: e.target.value })}
             />
             <TextField
                 placeholder="Ingrese el código postal"
                 name="zipCode"
                 label="Código Postal"
-
+                value={zipCode}
                 onChange={(e) => updateFields({ zipCode: e.target.value })}
             />
             <TextField
                 placeholder="Ingrese la latitud"
                 name="latitude"
                 label="Latitud"
+                value={latitude}
                 onChange={(e) => updateFields({ latitude: e.target.value })}
             />
             <TextField
                 placeholder="Ingrese la longitud"
                 name="longitude"
                 label="Longitud"
+                value={longitude}
                 onChange={(e) => updateFields({ longitude: e.target.value })}
             />
         </div>
