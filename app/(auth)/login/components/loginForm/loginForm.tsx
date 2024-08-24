@@ -13,7 +13,7 @@ export default function LoginForm() {
     const router = useRouter();
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
