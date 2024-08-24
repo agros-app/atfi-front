@@ -3,7 +3,7 @@ import { getSession } from "./lib/session"
 
 export default async function middleware(req: NextRequest) {
     const session = await getSession()
-    if (!session?.uid && !session?.authId) {
+    if (!session?.email && !session?.email) {
         return NextResponse.redirect(new URL('/login', req.nextUrl))
     }
 
