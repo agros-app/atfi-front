@@ -20,7 +20,9 @@ export default async function NavBar() {
                         <p>Proyecto</p>
                     </Link>
                     <p>Portfolio</p>
-                    <p>Subir proyecto</p>
+                    <Link href={"submit-project"}>
+                        <p>Subir proyecto</p>
+                    </Link>
                 </div>
             </div>
             <div className={styles.right}>
