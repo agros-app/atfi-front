@@ -12,6 +12,7 @@ type ProjectDetailsData = {
 
 type ProjectDetailsFormProps = ProjectDetailsData & {
     updateFields: (fields: Partial<ProjectDetailsData>) => void;
+    errors: Partial<ProjectDetailsData>
 };
 
 export function ProjectDetailsForm({
@@ -19,7 +20,8 @@ export function ProjectDetailsForm({
                                        minAmount,
                                        amountNeed,
                                        seed,
-                                       updateFields }
+                                       updateFields,
+                                        errors}
                                        : ProjectDetailsFormProps) {
     useEffect(() => {
         if (seed.length === 0) {
@@ -53,6 +55,8 @@ export function ProjectDetailsForm({
                 value={area.toString()}
                 type="number"
                 onChange={(e) => updateFields({ area: Number(e.target.value) })}
+                error={!!errors.area}
+                helperText={errors.area?.toString()}
             />
             <TextField
                 placeholder="Ingrese el monto mínimo"
@@ -61,6 +65,8 @@ export function ProjectDetailsForm({
                 type="number"
                 value={minAmount.toString()}
                 onChange={(e) => updateFields({ minAmount: Number(e.target.value) })}
+                error={!!errors.minAmount}
+                helperText={errors.minAmount?.toString()}
             />
             <TextField
                 placeholder="Ingrese el monto final"
@@ -69,6 +75,8 @@ export function ProjectDetailsForm({
                 type="number"
                 value={amountNeed.toString()}
                 onChange={(e) => updateFields({ amountNeed: Number(e.target.value) })}
+                error={!!errors.amountNeed}
+                helperText={errors.amountNeed?.toString()}
             />
 
             <label className={styles.label}>Tipos de Cultivo</label>

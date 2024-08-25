@@ -12,6 +12,7 @@ type ProjectInfoData = {
 
 type ProjectInfoFormProps = ProjectInfoData & {
     updateFields: (fields: Partial<ProjectInfoData>) => void;
+    errors: Partial<ProjectInfoData>;
 };
 
 export function ProjectInfoForm({
@@ -19,7 +20,8 @@ export function ProjectInfoForm({
                                     description,
                                     startDate,
                                     endDate,
-                                    updateFields}
+                                    updateFields,
+                                    errors}
                                     : ProjectInfoFormProps) {
 
     return (
@@ -30,6 +32,8 @@ export function ProjectInfoForm({
                 label="Nombre del Proyecto"
                 value={name}
                 onChange={(e) => updateFields({ name: e.target.value })}
+                error={!!errors.name}
+                helperText={errors.name}
             />
             <DescriptionField
                 placeholder="Ingrese la descripcion del Proyecto"
@@ -37,6 +41,8 @@ export function ProjectInfoForm({
                 label="Descripcion"
                 value={description}
                 onChange={(e) => updateFields({ description: e.target.value })}
+                error={!!errors.description}
+                helperText={errors.description}
             />
             <TextField
                 placeholder="Ingrese fecha de inicio"
@@ -45,6 +51,8 @@ export function ProjectInfoForm({
                 type="date"
                 value={startDate}
                 onChange={(e) => updateFields({ startDate: e.target.value })}
+                error={!!errors.startDate}
+                helperText={errors.startDate}
             />
             <TextField
                 placeholder="Ingrese fecha de finalizacion"
@@ -53,6 +61,8 @@ export function ProjectInfoForm({
                 type="date"
                 value={endDate}
                 onChange={(e) => updateFields({ endDate: e.target.value })}
+                error={!!errors.endDate}
+                helperText={errors.endDate}
             />
         </div>
     );

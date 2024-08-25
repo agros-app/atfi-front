@@ -11,6 +11,7 @@ import {createProject} from "@/lib/api";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
+import {isStepValid, validateStep} from "@/utils/validation";
 
 export type ProjectFormData = {
     name: string;
@@ -62,6 +63,7 @@ async function handleResponse(data: ProjectFormData, router: AppRouterInstance) 
 export default function ProjectForm() {
     const [data, setData] = useState(INITIAL_DATA);
     const router = useRouter();
+    const [errors, setErrors] = useState<Partial<ProjectFormData>>({});
     function updateFields(fields: Partial<ProjectFormData>) {
         setData((prev) => ({
             ...prev,
@@ -70,24 +72,28 @@ export default function ProjectForm() {
     }
 
     const steps = [
-        <ProjectInfoForm {...data} updateFields={updateFields} key="step1" />,
-        <ProjectLocationForm {...data} updateFields={updateFields} key="step2" />,
-        <ProjectDetailsForm {...data} updateFields={updateFields} key="step3" />
+        <ProjectInfoForm {...data} updateFields={updateFields} key="step1" errors={errors}/>,
+        <ProjectLocationForm {...data} updateFields={updateFields} key="step2" errors={errors} />,
+        <ProjectDetailsForm {...data} updateFields={updateFields} key="step3" errors={errors} />
     ];
 
     const { currentStep, next, back, isFirstStep, isLastStep } = useMultistepForm(steps);
 
 
     async function onSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        if (isLastStep) {
-            const input : ProjectFormData = {...data,
-                startDate: new Date(data.startDate).toISOString(),
-                endDate: new Date(data.endDate).toISOString()
-            };
-            await handleResponse(input, router);
-        } else {
-            next();
+        e.preventDefault()
+        const stepErrors = validateStep(currentStep, data);
+        setErrors(stepErrors);
+        if (isStepValid(stepErrors)) {
+            if (isLastStep) {
+                const input : ProjectFormData = {...data,
+                    startDate: new Date(data.startDate).toISOString(),
+                    endDate: new Date(data.endDate).toISOString()
+                };
+                await handleResponse(input, router);
+            } else {
+                next();
+            }
         }
     }
 

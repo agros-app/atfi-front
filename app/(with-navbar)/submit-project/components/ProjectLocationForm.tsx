@@ -14,6 +14,7 @@ type ProjectLocationData = {
 
 type ProjectLocationFormProps = ProjectLocationData & {
     updateFields: (fields: Partial<ProjectLocationData>) => void;
+    errors: Partial<ProjectLocationData>;
 };
 
 export function ProjectLocationForm({   state,
@@ -21,7 +22,8 @@ export function ProjectLocationForm({   state,
                                         zipCode,
                                         latitude,
                                         longitude,
-                                        updateFields }
+                                        updateFields ,
+                                        errors}
                                         : ProjectLocationFormProps) {
     const options = [
         { value: "Argentina", title: "🇦🇷 Argentina" },
@@ -38,6 +40,8 @@ export function ProjectLocationForm({   state,
                 options={options}
                 label="País"
                 onChange={(e) => updateFields({ country: e.target.value })}
+                error={!!errors.country}
+                helperText={errors.country}
             />
             <TextField
                 placeholder="Ingrese la provincia"
@@ -45,6 +49,8 @@ export function ProjectLocationForm({   state,
                 label="Provincia"
                 value={state}
                 onChange={(e) => updateFields({ state: e.target.value })}
+                error={!!errors.state}
+                helperText={errors.state}
             />
             <TextField
                 placeholder="Ingrese la ciudad"
@@ -52,6 +58,8 @@ export function ProjectLocationForm({   state,
                 label="Ciudad"
                 value={city}
                 onChange={(e) => updateFields({ city: e.target.value })}
+                error={!!errors.city}
+                helperText={errors.city}
             />
             <TextField
                 placeholder="Ingrese el código postal"
@@ -59,6 +67,8 @@ export function ProjectLocationForm({   state,
                 label="Código Postal"
                 value={zipCode}
                 onChange={(e) => updateFields({ zipCode: e.target.value })}
+                error={!!errors.zipCode}
+                helperText={errors.zipCode}
             />
             <TextField
                 placeholder="Ingrese la latitud"
@@ -66,6 +76,8 @@ export function ProjectLocationForm({   state,
                 label="Latitud"
                 value={latitude}
                 onChange={(e) => updateFields({ latitude: e.target.value })}
+                error={!!errors.latitude}
+                helperText={errors.latitude}
             />
             <TextField
                 placeholder="Ingrese la longitud"
@@ -73,6 +85,8 @@ export function ProjectLocationForm({   state,
                 label="Longitud"
                 value={longitude}
                 onChange={(e) => updateFields({ longitude: e.target.value })}
+                error={!!errors.longitude}
+                helperText={errors.longitude}
             />
         </div>
     );
