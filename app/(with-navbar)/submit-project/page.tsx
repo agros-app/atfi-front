@@ -1,5 +1,5 @@
 import styles from './submit-project.module.scss'
-import TitleForm from "@/components/title_form/TitleForm";
+import TitleForm from "@/components/title_form/titleForm";
 import TextField from "@/components/textField/textField";
 import DescriptionField from "@/components/descriptionField/descriptionField";
 import Select from "@/components/select/Select";
