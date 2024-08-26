@@ -1,4 +1,4 @@
-@import "@/styles/media.scss";
+@import '@/styles/media.scss';
 
 .main {
   display: flex;
@@ -6,7 +6,6 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px 80px;
-
 }
 
 .section_title {
@@ -32,12 +31,12 @@
   }
 }
 
-.more_info{
-    text-align: center;
-    font-size: 18px;
+.more_info {
+  text-align: center;
+  font-size: 18px;
 }
 
-@include mobile{
+@include mobile {
   .main {
     padding: 20px 40px;
   }

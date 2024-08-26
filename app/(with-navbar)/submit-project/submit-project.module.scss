@@ -6,7 +6,7 @@
   padding-top: 80px;
   padding-bottom: 48px;
   box-sizing: border-box;
-  background-image: url("../../../assets/images/imagen_campo.jpg");
+  background-image: url('../../../assets/images/imagen_campo.jpg');
   background-repeat: no-repeat;
   background-position: 50%;
 }
@@ -21,7 +21,7 @@
   gap: 14px;
   box-sizing: border-box;
   border-radius: 24px;
-  background: var(--bg-color, #F0F0E3);
+  background: var(--bg-color, #f0f0e3);
 }
 
 .forms {
@@ -69,6 +69,7 @@
     padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
   }
 }
-.forms, .info {
+.forms,
+.info {
   width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
 }

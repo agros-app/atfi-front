@@ -1,4 +1,4 @@
-@import "@/styles/variables.scss";
+@import '@/styles/variables.scss';
 .hamburgerMenu {
   display: none; // Oculto por defecto
 }
@@ -69,7 +69,7 @@
   list-style: none;
   background: var(--bg-color, $light-black);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
-  transition-duration: .25s;
+  transition-duration: 0.25s;
   z-index: 2;
 }
 

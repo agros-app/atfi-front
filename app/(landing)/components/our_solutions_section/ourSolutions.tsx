@@ -55,54 +55,53 @@ const defaultProject: Project = {
 
 export default function OurSolutionsSection() {
   return (
-      <>
-        <motion.section
-            className={styles.container}
-            id="our-solutions"
-            {...animationStyles.container}
+    <>
+      <motion.section
+        className={styles.container}
+        id="our-solutions"
+        {...animationStyles.container}
+      >
+        <motion.div
+          className={styles.textContainer}
+          {...animationStyles.textContainerLeft}
         >
-          <motion.div
-              className={styles.textContainer}
-              {...animationStyles.textContainerLeft}
-          >
-            <h2>
-              Financia y participa de proyectos <span>agro</span>
-            </h2>
-            <Button>Conocé más</Button>
-          </motion.div>
-          <motion.div
-              className={styles.cardsContainer}
-              {...animationStyles.cardsContainer}
-          >
-            <ProjectCard disabled project={defaultProject}/>
-            <ProjectCard disabled project={defaultProject}/>
-          </motion.div>
-        </motion.section>
-        <motion.section
-            className={styles.container2}
-            {...animationStyles.container}
+          <h2>
+            Financia y participa de proyectos <span>agro</span>
+          </h2>
+          <Button>Conocé más</Button>
+        </motion.div>
+        <motion.div
+          className={styles.cardsContainer}
+          {...animationStyles.cardsContainer}
         >
-          <motion.div
-              className={styles.imageContainer}
-              {...animationStyles.imageContainer}
-          >
-            <Image
-                src={"/landing/cow.jpg"}
-                alt="cow"
-                sizes="100%"
-                fill
-                style={{ objectFit: "cover" }}
-            />
-          </motion.div>
-          <motion.div
-              className={styles.textContainer}
-              {...animationStyles.textContainerRight}
-          >
-            <h2>
-              Se parte de la <span>ganadería</span>{" "}
-              en latinoamérica
-            </h2>
-            {/* <p>
+          <ProjectCard disabled project={defaultProject} />
+          <ProjectCard disabled project={defaultProject} />
+        </motion.div>
+      </motion.section>
+      <motion.section
+        className={styles.container2}
+        {...animationStyles.container}
+      >
+        <motion.div
+          className={styles.imageContainer}
+          {...animationStyles.imageContainer}
+        >
+          <Image
+            src={'/landing/cow.jpg'}
+            alt="cow"
+            sizes="100%"
+            fill
+            style={{ objectFit: 'cover' }}
+          />
+        </motion.div>
+        <motion.div
+          className={styles.textContainer}
+          {...animationStyles.textContainerRight}
+        >
+          <h2>
+            Se parte de la <span>ganadería</span> en latinoamérica
+          </h2>
+          {/* <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor, ut labore et dolore magna aliqua. Lorem ipsum dolor
               sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur

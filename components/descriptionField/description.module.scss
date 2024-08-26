@@ -1,4 +1,4 @@
-@import "@/styles/variables.scss";
+@import '@/styles/variables.scss';
 
 .inputStyle {
   display: flex;
@@ -8,7 +8,7 @@
   gap: var(--spacing-md, 8px);
   align-self: stretch;
   border-radius: 4px;
-  border: 1px solid var(--input-border-color, #BFBFBF);
+  border: 1px solid var(--input-border-color, #bfbfbf);
   width: 100%;
   box-sizing: border-box;
 

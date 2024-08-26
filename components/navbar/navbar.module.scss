@@ -1,13 +1,13 @@
 @import '@/styles/variables.scss';
 
 .navbar {
-    display: flex;
-    width: 100%;
-    padding: 12px 20px;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bg-color, $light-black);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  display: flex;
+  width: 100%;
+  padding: 12px 20px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-color, $light-black);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
 .left,
@@ -25,15 +25,14 @@
 }
 
 .links {
-    display: flex;
-    gap: 30px;
-    color: white;
-    a {
-        &:hover {
-            color: $light-gray;
-
-        }
+  display: flex;
+  gap: 30px;
+  color: white;
+  a {
+    &:hover {
+      color: $light-gray;
     }
+  }
 }
 
 .right {

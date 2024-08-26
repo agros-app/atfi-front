@@ -38,28 +38,30 @@ export default function RegisterForm() {
       return
     }
 
-        const dataToSend = {...formData, password};
-        try{
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend),
-            });
-            if (!response.ok) {
-                const error= await response.json();
-                toast.error(error.message);
-                return;
-            }
-            const result = await response.json();
-            document.cookie = `session=${result.token}`;
-            router.push('/home');
+    const dataToSend = { ...formData, password }
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/register`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataToSend)
         }
-        catch (e) {
-            toast.error('Hubo un problema con el registro.');
-        }
+      )
+      if (!response.ok) {
+        const error = await response.json()
+        toast.error(error.message)
+        return
+      }
+      const result = await response.json()
+      document.cookie = `session=${result.token}`
+      router.push('/home')
+    } catch (e) {
+      toast.error('Hubo un problema con el registro.')
     }
+  }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
