@@ -7,14 +7,14 @@ import Stepper from "@/components/stepper/stepper";
 const CostEvolutionChart = () => {
     const options = {
         title: {
-            text: 'Evolucion del costo a lo largo del tiempo',
+            text: 'Evolución del costo a lo largo del tiempo',
         },
         tooltip: {
             trigger: 'axis',
         },
         xAxis: {
             type: 'category',
-            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+            data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
         },
         yAxis: {
             type: 'value',
@@ -24,7 +24,7 @@ const CostEvolutionChart = () => {
         },
         series: [
             {
-                name: 'Cost',
+                name: 'Costo',
                 type: 'line',
                 data: [1200, 1500, 1800, 1100, 1600, 2000, 1700, 1900],
                 smooth: true,
@@ -44,7 +44,7 @@ const CostEvolutionChart = () => {
 const FarmingCostPieChart = () => {
     const options = {
         title: {
-            text: 'Costos de produccion',
+            text: 'Costos de producción',
             subtext: 'Agrupados por tipo',
             left: 'center',
         },
@@ -58,15 +58,15 @@ const FarmingCostPieChart = () => {
         },
         series: [
             {
-                name: 'Cost Type',
+                name: 'Tipo de Costo',
                 type: 'pie',
                 radius: '50%',
                 data: [
-                    {value: 4000, name: 'Seeds'},
-                    {value: 3000, name: 'Fertilizers'},
-                    {value: 2000, name: 'Labor'},
-                    {value: 1500, name: 'Pesticides'},
-                    {value: 1000, name: 'Water'},
+                    { value: 4000, name: 'Semillas' },
+                    { value: 3000, name: 'Fertilizantes' },
+                    { value: 2000, name: 'Mano de Obra' },
+                    { value: 1500, name: 'Pesticidas' },
+                    { value: 1000, name: 'Agua' },
                 ],
                 emphasis: {
                     itemStyle: {
@@ -276,9 +276,12 @@ const HeatmapChart = () => {
 };
 
 export function DetailsTab() {
-
     return (
         <div>
+            <p className={styles.title}>
+                En esta sección se presentan distintos gráficos que muestran información relevante sobre el progreso de la campaña agricola.
+                Los datos presentados son extraidos de la plataforma de monitoreo y control de la campaña.
+            </p>
             <div className={styles.graphContainer}>
                 <FarmingCostPieChart />
                 <ComparativeCostBarChart />
@@ -286,16 +289,6 @@ export function DetailsTab() {
             <div className={styles.graphContainer}>
                 <CostEvolutionChart />
             </div>
-            <div className={styles.graphContainer}>
-                <RadarChart />
-            </div>
-            <div className={styles.graphContainer}>
-                <ComboChart />
-            </div>
-            <div className={styles.graphContainer}>
-                <HeatmapChart />
-            </div>
         </div>
-    )
-
+    );
 }

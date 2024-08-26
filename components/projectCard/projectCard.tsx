@@ -26,9 +26,9 @@ export default function ProjectCard({
   const router = useRouter();
   const { id,name, seeds, endDate, amountCollected, amountNeed } = project;
   const progress = getPercentage(amountCollected, amountNeed);
-  console.log({disabled})
+
   return (
-      <div className={`${styles.container} ${disabled === true ? styles.disabled : ""}`}
+      <div className={`${styles.container}`}
            style={{backgroundColor: bgColor, border: border}}>
         <div className={styles.top}>
           <Image
@@ -78,9 +78,14 @@ export default function ProjectCard({
               <ProgressBar collected={amountCollected} goal={amountNeed} />
             </div>
           </div>
-          <Button size="sm" onClick={() => router.push(`/project/${id}`)}>
+          <Button
+              className={`${disabled === true ? styles.disabled : ""}`}
+              size="sm"
+              onClick={() => router.push(`/project/${id}`)}
+          >
             Invertir
           </Button>
+
         </div>
       </div>
   );

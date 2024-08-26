@@ -41,6 +41,7 @@ export default function HowItWorksSection() {
             image={item.image}
             title={item.title}
             reverse={item.reverse}
+
           />
         ))}
       </div>
