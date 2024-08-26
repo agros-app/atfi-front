@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 export default function LandingNavBar({isLanding = true}) {
   const [investorDropdownVisible, setInvestorDropdownVisible] = useState(false);
   const [producerDropdownVisible, setProducerDropdownVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +40,10 @@ export default function LandingNavBar({isLanding = true}) {
     }
   };
 
+  const closeNavbar = () => {
+    setOpen(false);
+  }
+
   return (
       <nav className={styles.navbar}>
         <div className={styles.left}>
@@ -46,14 +51,9 @@ export default function LandingNavBar({isLanding = true}) {
             <Logo />
           </Link>
         </div>
-        <input id="menu__toggle" type="checkbox" className={styles.menuToggle} />
-        <label className={styles.menuBtn} htmlFor="menu__toggle">
-          <span></span>
-        </label>
+        <div className={`${styles.right} ${open ? styles.openRight : ""}`}>
 
-        <div className={styles.right}>
-
-          <Link href={"#how-it-works"}>¿Cómo funciona?</Link>
+          <Link href={"#how-it-works"} onClick={closeNavbar}>¿Cómo funciona?</Link>
           <div className={styles.dropdown}>
             <button onClick={toggleInvestorDropdown} className={styles.dropdownButton}>
               Productores
@@ -82,10 +82,13 @@ export default function LandingNavBar({isLanding = true}) {
                 </div>
             )}
           </div>
-          <Link href={"#about-us"}>Nosotros</Link>
+          <Link href={"#about-us"} onClick={closeNavbar}>Nosotros</Link>
           <Link href={"/login"} className={styles.login}>
             Ingresar
           </Link>
+        </div>
+        <div className={open ? styles.closeBtn : styles.menuBtn} onClick={()=> setOpen(prevState => !prevState)}>
+          <span></span>
         </div>
       </nav>
   );

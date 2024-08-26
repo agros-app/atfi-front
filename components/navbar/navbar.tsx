@@ -6,6 +6,7 @@ import LogOutButton from "../log_out_button/LogOutButton";
 import WalletButton from "../wallet_button/walletButton";
 import ProfileImage from "@/components/profileImage/profileImage";
 import BurgerMenu from "@/components/burger_menu/BurgerMenu";
+import ProfileButton from "@/components/profileButton/profileButton";
 
 export default async function NavBar() {
     const user = await getSession();
@@ -24,11 +25,7 @@ export default async function NavBar() {
                 </div>
             </div>
             <div className={styles.right}>
-                {user && <WalletButton />}
-                {user ? <LogOutButton /> : <Link href="/login">Ingresar</Link>}
-                <Link  href='/profile'>
-                    <ProfileImage src={"/owners/nico.jpg"} size={60}></ProfileImage>
-                </Link>
+                {user ? <ProfileButton /> : <Link href="/login">Ingresar</Link>}
             </div>
             <BurgerMenu user={user} />
         </nav>
