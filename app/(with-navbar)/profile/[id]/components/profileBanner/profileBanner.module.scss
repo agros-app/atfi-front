@@ -1,0 +1,41 @@
+@import "@/styles/variables.scss";
+
+.container{
+  display: flex;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba($primary-yellow, 0.20);
+  box-shadow:  0 0 4px rgba(0, 0, 0, 0.25);
+}
+
+.data{
+  display: block;
+  justify-content: center;
+  align-content: center;
+  margin-left: 20px;
+
+}
+
+.title{
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.email{
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.editContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;    // Esto mueve el contenedor al lado derecho
+  margin-right: 50px;
+}
+
+.editIcon{
+  width: 25px;
+  height: auto;
+  cursor: pointer;
+}

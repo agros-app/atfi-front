@@ -1,0 +1,63 @@
+@import "styles/variables.scss";
+
+.container{
+  display: flex;
+  padding: 30px;
+
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(146, 144, 144, 0.25);
+}
+.innerContainer{
+  flex-grow: 1;
+  margin: 0 30px;
+}
+
+.title{
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-bottom: 10px; /* Añade espacio entre el texto y la línea */
+    border-bottom: 1px solid rgba(146, 144, 144, 0.25);
+}
+
+.grid{
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.col{
+  width: 33%;
+}
+
+
+.category{
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.value{
+  font-size: 20px;
+  color: $obscure-gray;
+  margin-top: 10px;
+}
+
+.editContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;    // Esto mueve el contenedor al lado derecho
+  margin-right: 1%;
+}
+
+.editIcon{
+  width: 25px;
+  height: auto;
+  cursor: pointer;
+
+}
