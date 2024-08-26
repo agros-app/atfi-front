@@ -1,4 +1,4 @@
-import styles from './TitleForm.module.scss'
+import styles from './titleForm.module.scss'
 
 type TitleFormProps = {
     text: string;
