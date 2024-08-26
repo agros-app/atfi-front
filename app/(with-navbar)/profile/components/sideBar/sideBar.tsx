@@ -1,7 +1,7 @@
 "use client";  // Agrega esta línea al principio del archivo
 
 import styles from "./sideBar.module.scss";
-import CategoryButton from "@/app/(with-navbar)/profile/[id]/components/categoryButton/categoryButton";
+import CategoryButton from "@/app/(with-navbar)/profile/components/categoryButton/categoryButton";
 import {useState} from "react";
 
 export default function SideBar(){

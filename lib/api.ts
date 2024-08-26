@@ -1,4 +1,4 @@
-import { Project } from "@/types/api";
+import {Project, User} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -28,4 +28,9 @@ export const investByProjectId = async (id: number, amount: number): Promise<voi
             amount
         })
     })
+}
+
+export const getUserInfo = async (): Promise<User> => {
+    const response = await api.get("/user/info");
+    return response.data;
 }
