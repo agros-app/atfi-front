@@ -1,5 +1,5 @@
 "use client"
-import { getProjectById, getProjects } from "@/lib/api";
+import { getProjectById } from "@/lib/api";
 import { Project } from "@/types/api";
 import { useEffect, useState } from "react";  
 
