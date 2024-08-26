@@ -1,4 +1,5 @@
 @import "styles/variables.scss";
+@import "@/styles/media.scss";
 
 .container{
   position: relative;
@@ -83,3 +84,21 @@ ul.leaders li span + span {     /* Data (2 días, Arg...) */
   white-space: nowrap;
 }
 // --------------------------------
+
+@include laptop {
+  .container{
+    width: 600px;
+  }
+}
+
+@include tablet{
+    .container{
+        width: 500px;
+    }
+}
+
+@include mobile{
+    .container{
+      width: 360px;
+    }
+}

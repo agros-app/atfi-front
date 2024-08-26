@@ -1,17 +1,19 @@
 @import "styles/variables.scss";
+@import "@/styles/media.scss";
 
 .container{
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  max-width: 100%;
+  overflow: auto;
 }
 
 .titles{
   font-size: 20px;
   display: flex;
   gap: 50px;
+  overflow-x: auto;
 }
-
 
 .selectedTitle{
   padding-bottom: 10px;
@@ -32,7 +34,6 @@
   padding-top: 10px;
   border-top: 1px solid $dark-gray;
 }
-
 
 .body p{
   font-size: 20px;
@@ -58,4 +59,25 @@
 .componentContainer {
   margin-top: 20px; // Added margin to separate from the above content
   width: 100%;
+}
+
+@media (max-width: 1440px) {
+  .titles{
+    font-size: 20px;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+  }
+}
+
+@include laptop {
+
+  .titles{
+    overflow-x: auto;
+  }
+
+  .title {
+    overflow-x: auto;
+    white-space: wrap;
+  }
 }
