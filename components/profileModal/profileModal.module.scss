@@ -1,0 +1,67 @@
+@import "styles/variables.scss";
+
+.container{
+  position: absolute;
+  right: 3%;
+  top: 75px;
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  border-radius: 10px;
+  border: 1px solid rgba(146, 144, 144, 0.25);
+  background-color: $absolute-white;
+  z-index: 999;
+}
+
+.innerContainer{
+  padding: 15px 10px;
+  border-bottom:1px solid rgba(146, 144, 144, 0.25);
+  width: 100%;
+}
+
+.bottomContainer{
+  padding: 15px 10px;
+  width: 100%;
+}
+
+.data{
+  display: block;
+  justify-content: center;
+  align-content: center;
+  margin-left: 20px;
+}
+
+.profile{
+  display: flex;
+}
+
+.title{
+  font-size: 1rem;
+  font-weight: 450;
+  margin-bottom: 5px;
+}
+
+.email{
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px 20px;
+  align-content: center;
+  cursor: pointer;
+}
+
+.text{
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.redText{
+  font-size: 1rem;
+  font-weight: 500;
+  color: $red;
+}
