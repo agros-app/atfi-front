@@ -12,20 +12,20 @@ import { investByProjectId } from "@/lib/api";
 
 type FinancialInfoProps = {
   projectId: number;
-  currentAmmount: number;
-  goalAmmount: number;
-  minAmmount: number;
+  currentAmount: number;
+  goalAmount: number;
+  minAmount: number;
 };
 
 
 export default function FinancialInfo({
   projectId,
-  currentAmmount,
-  goalAmmount,
-  minAmmount,
+  currentAmount,
+  goalAmount,
+  minAmount,
 }: FinancialInfoProps) {
   const { investInLending, loading } = useLending();
-  const percentage = Math.floor((currentAmmount / goalAmmount) * 100);
+  const percentage = Math.floor((currentAmount / goalAmount) * 100);
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -43,14 +43,14 @@ export default function FinancialInfo({
         <h3 className={styles.title}>Total Recaudado</h3>
         <div className={styles.amount}>
           <TextIndexComponent
-            text={`$${currentAmmount} USD`}
+            text={`$${currentAmount} USD`}
             percentage={`${percentage}`}
-            subtext={`Meta: $${goalAmmount} USD`}
+            subtext={`Meta: $${goalAmount} USD`}
           />
           <div className={styles.progressBar}>
             <ProgressBar
-              collected={currentAmmount}
-              goal={goalAmmount}
+              collected={currentAmount}
+              goal={goalAmount}
               height={15}
             />
           </div>
@@ -80,9 +80,9 @@ export default function FinancialInfo({
             name="amount"
             type="number"
             // @ts-ignore
-            min={minAmmount}
+            min={minAmount}
           />
-          <small>*Minimo de inversión: ${minAmmount}</small>
+          <small>*Minimo de inversión: ${minAmount}</small>
           <Button fill disabled={loading}>
             Invertir
           </Button>
