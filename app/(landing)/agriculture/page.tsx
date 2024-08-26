@@ -5,12 +5,12 @@ import Footer from "@/components/footer/footer";
 import Hero from "@/app/(landing)/agriculture/components/hero/hero";
 import FeatureSection from "@/app/(landing)/agriculture/components/feature_section/featureSection";
 import ContactForm from "@/app/(landing)/agriculture/components/contact_section/contact_section";
-import AgricultureNavBar from "@/app/(landing)/agriculture/components/navbar/navbar";
+import AlternativeNavbar from "@/app/(landing)/components/alternativeNavbar/navbar";
 
 export default function Page() {
     return (
         <>
-            <AgricultureNavBar />
+            <AlternativeNavbar />
             <main>
                 <Hero />
                 <FeatureSection />

@@ -12,7 +12,6 @@ export default function LandingNavBar({isLanding = true}) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // we can do this same effect withouth javascript using only css, but it's only supported on chromium-based browsers
       const navbar = document.querySelector("nav");
       const shouldBeToggled = window.scrollY > window.innerHeight / 2;
       if (!navbar) return;
@@ -22,7 +21,6 @@ export default function LandingNavBar({isLanding = true}) {
         navbar?.classList.remove(styles.filled_navbar);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -66,7 +64,7 @@ export default function LandingNavBar({isLanding = true}) {
             {investorDropdownVisible && (
                 <div className={styles.dropdownMenu}>
                   <Link href={"/agriculture"}>Agricultores</Link>
-                  <Link href={"#solution2"}>Ganaderia</Link>
+                  <Link href={"/investor/ganaderia"}>Ganaderia</Link>
                 </div>
             )}
           </div>

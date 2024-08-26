@@ -41,7 +41,7 @@ export default function RegisterForm(){
 
         const dataToSend = {...formData, password};
         try{
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

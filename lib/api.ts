@@ -17,7 +17,7 @@ export const getProjects = async (): Promise<Project[]> => {
 }
 
 export const getProjectById = async (id: number): Promise<Project> => {
-    const response = await api.get(`/project/${id}`)
+    const response = await api.get(`/project/info/${id}`)
     return response.data;
 }
 

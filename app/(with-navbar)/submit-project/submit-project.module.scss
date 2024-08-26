@@ -1,0 +1,74 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 48px;
+  box-sizing: border-box;
+  background-image: url("../../../assets/images/imagen_campo.jpg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.formContainer {
+  display: flex;
+  padding: 16px;
+  width: 50vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background: var(--bg-color, #F0F0E3);
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
+  padding: 8px;
+}
+
+.innerForm {
+  display: flex;
+  padding: var(--spacing-md, 8px) var(--spacing-7xl, 64px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%; /* Asegura que el formulario ocupe el ancho del contenedor */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  align-self: center;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    width: 80vw;
+    padding: 16px;
+  }
+
+  .info {
+    padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 425px) {
+  .formContainer {
+    width: 100vw;
+  }
+
+  .info {
+    padding: 8px 16px; /* Reduce el padding en pantallas pequeñas */
+  }
+}
+.forms, .info {
+  width: 100%; /* Ocupa todo el ancho disponible dentro del contenedor */
+}
