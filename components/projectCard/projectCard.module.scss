@@ -10,6 +10,11 @@
   width: 290px;
 }
 
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .top {
   position: relative;
   height: 200px;

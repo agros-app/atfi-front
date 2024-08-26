@@ -88,3 +88,12 @@
   background-color: color-mix(in srgb, $dark-green 40%, transparent);
   color: $black;
 }
+
+.custom {
+  background-color: $light-green;
+  color: $black;
+}
+
+.custom:hover {
+  background-color: darken($light-green, 10%);
+}

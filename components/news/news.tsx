@@ -1,26 +1,35 @@
-import image from '../../assets/Images/imagen_semillas.png'
-import styles from './news.module.scss'
-import Button from '@/components/button/button'
+import Image, {StaticImageData} from "next/image";
+import styles from "./news.module.scss";
+import Button from "@/components/button/button";
 
-export default function News() {
-  return (
-    <div className={styles.container}>
-      <div className={styles.topSide}>
-        <img src={image.src} alt="Crops image" className={styles.image}></img>
-      </div>
-      <div className={styles.bottomSide}>
-        <div className={styles.newspaper}>
-          <p>Clarín</p>
+type NewsProps = {
+    imageSrc: StaticImageData;
+    newspaper: string;
+    title: string;
+    description: string;
+    onButtonClick: () => void;
+};
+
+
+export default function News( news: NewsProps ) {
+    const { imageSrc, newspaper, title, description, onButtonClick } = news;
+    return (
+        <div className={styles.container}>
+            <div className={styles.topSide}>
+                <Image src={imageSrc} alt={"image"} className={styles.image} />
+            </div>
+            <div className={styles.bottomSide}>
+                <div className={styles.newspaper}>
+                    <p>{newspaper}</p>
+                </div>
+                <h1 className={styles.title}>{title}</h1>
+                <p className={styles.description}>{description}</p>
+                <div className={styles.buttonContainer}>
+                    <Button variant={"custom"} size={"sm"} onClick={onButtonClick}>
+                        Leer más
+                    </Button>
+                </div>
+            </div>
         </div>
-        <h1 className={styles.title}>
-          Mercado de granos: En 2023 creció el canje
-        </h1>
-        <p className={styles.description}>
-          Un informe de la Bolsa de Comercio de Rosario señala el menor volumen
-          negociado debido a la seca.
-        </p>
-        <Button size={'sm'}>Leer más </Button>
-      </div>
-    </div>
-  )
+    );
 }

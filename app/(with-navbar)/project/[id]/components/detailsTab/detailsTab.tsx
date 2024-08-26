@@ -5,94 +5,81 @@ import ReactECharts from 'echarts-for-react'
 // import Stepper from '@/components/stepper/stepper'
 
 const CostEvolutionChart = () => {
-  const options = {
-    title: {
-      text: 'Evolucion del costo a lo largo del tiempo'
-    },
-    tooltip: {
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      data: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August'
-      ]
-    },
-    yAxis: {
-      type: 'value',
-      axisLabel: {
-        formatter: '${value}'
-      }
-    },
-    series: [
-      {
-        name: 'Cost',
-        type: 'line',
-        data: [1200, 1500, 1800, 1100, 1600, 2000, 1700, 1900],
-        smooth: true,
-        lineStyle: {
-          color: '#5470C6'
+    const options = {
+        title: {
+            text: 'Evolución del costo a lo largo del tiempo',
         },
-        itemStyle: {
-          color: '#5470C6'
-        }
-      }
-    ]
-  }
+        tooltip: {
+            trigger: 'axis',
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '${value}',
+            },
+        },
+        series: [
+            {
+                name: 'Costo',
+                type: 'line',
+                data: [1200, 1500, 1800, 1100, 1600, 2000, 1700, 1900],
+                smooth: true,
+                lineStyle: {
+                    color: '#5470C6',
+                },
+                itemStyle: {
+                    color: '#5470C6',
+                },
+            },
+        ],
+    };
 
-  return (
-    <ReactECharts option={options} style={{ height: 400, width: '100%' }} />
-  )
-}
+    return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
+};
 
 const FarmingCostPieChart = () => {
-  const options = {
-    title: {
-      text: 'Costos de produccion',
-      subtext: 'Agrupados por tipo',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      orient: 'horizontal',
-      left: 'center',
-      bottom: 0
-    },
-    series: [
-      {
-        name: 'Cost Type',
-        type: 'pie',
-        radius: '50%',
-        data: [
-          { value: 4000, name: 'Seeds' },
-          { value: 3000, name: 'Fertilizers' },
-          { value: 2000, name: 'Labor' },
-          { value: 1500, name: 'Pesticides' },
-          { value: 1000, name: 'Water' }
+    const options = {
+        title: {
+            text: 'Costos de producción',
+            subtext: 'Agrupados por tipo',
+            left: 'center',
+        },
+        tooltip: {
+            trigger: 'item',
+        },
+        legend: {
+            orient: 'horizontal',
+            left: 'center',
+            bottom: 0,
+        },
+        series: [
+            {
+                name: 'Tipo de Costo',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    { value: 4000, name: 'Semillas' },
+                    { value: 3000, name: 'Fertilizantes' },
+                    { value: 2000, name: 'Mano de Obra' },
+                    { value: 1500, name: 'Pesticidas' },
+                    { value: 1000, name: 'Agua' },
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                    },
+                },
+            },
         ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ]
-  }
-  return (
-    <ReactECharts option={options} style={{ height: 400, width: '100%' }} />
-  )
-}
+    };
+    return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
+};
 
 const ComparativeCostBarChart = () => {
   const options = {
@@ -297,24 +284,19 @@ const HeatmapChart = () => {
 }
 
 export function DetailsTab() {
-  return (
-    <div>
-      <div className={styles.graphContainer}>
-        <FarmingCostPieChart />
-        <ComparativeCostBarChart />
-      </div>
-      <div className={styles.graphContainer}>
-        <CostEvolutionChart />
-      </div>
-      <div className={styles.graphContainer}>
-        <RadarChart />
-      </div>
-      <div className={styles.graphContainer}>
-        <ComboChart />
-      </div>
-      <div className={styles.graphContainer}>
-        <HeatmapChart />
-      </div>
-    </div>
-  )
+    return (
+        <div>
+            <p className={styles.title}>
+                En esta sección se presentan distintos gráficos que muestran información relevante sobre el progreso de la campaña agricola.
+                Los datos presentados son extraidos de la plataforma de monitoreo y control de la campaña.
+            </p>
+            <div className={styles.graphContainer}>
+                <FarmingCostPieChart />
+                <ComparativeCostBarChart />
+            </div>
+            <div className={styles.graphContainer}>
+                <CostEvolutionChart />
+            </div>
+        </div>
+    );
 }

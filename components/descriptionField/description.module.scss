@@ -1,0 +1,46 @@
+@import "@/styles/variables.scss";
+
+.inputStyle {
+  display: flex;
+  padding: var(--spacing-lg, 12px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-md, 8px);
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid var(--input-border-color, #BFBFBF);
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Desactivar el redimensionamiento manual */
+  resize: none;
+
+  /* Evitar el desbordamiento del contenido */
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.helperText {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.error {
+  input {
+    border-color: $red;
+  }
+  .helperText {
+    color: $red;
+  }
+}

@@ -11,18 +11,16 @@ export default function LandingNavBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // we can do this same effect withouth javascript using only css, but it's only supported on chromium-based browsers
-      const navbar = document.querySelector('nav')
-      const shouldBeToggled = window.scrollY > window.innerHeight / 2
-      if (!navbar) return
+      const navbar = document.querySelector("nav");
+      const shouldBeToggled = window.scrollY > window.innerHeight / 2;
+      if (!navbar) return;
       if (shouldBeToggled) {
         navbar?.classList.add(styles.filled_navbar)
       } else {
         navbar?.classList.remove(styles.filled_navbar)
       }
-    }
-
-    window.addEventListener('scroll', handleScroll)
+    };
+    window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -53,49 +51,44 @@ export default function LandingNavBar() {
         <span></span>
       </label>
 
-      <div className={styles.right}>
-        <Link href={'#how-it-works'}>¿Cómo funciona?</Link>
-        <div className={styles.dropdown}>
-          <button
-            onClick={toggleInvestorDropdown}
-            className={styles.dropdownButton}
-          >
-            Productores
-            <div className={styles.dropdownIcon}>
-              {investorDropdownVisible ? closeIcon : dropdownIcon}
-            </div>
-          </button>
-          {investorDropdownVisible && (
-            <div className={styles.dropdownMenu}>
-              <Link href={'/agriculture'}>Agricultores</Link>
-              <Link href={'#solution2'}>Ganaderia</Link>
-            </div>
-          )}
+        <div className={styles.right}>
+
+          <Link href={"#how-it-works"}>¿Cómo funciona?</Link>
+          <div className={styles.dropdown}>
+            <button onClick={toggleInvestorDropdown} className={styles.dropdownButton}>
+              Productores
+              <div className={styles.dropdownIcon}>
+                {investorDropdownVisible ? closeIcon : dropdownIcon}
+              </div>
+            </button>
+            {investorDropdownVisible && (
+                <div className={styles.dropdownMenu}>
+                  <Link href={"/agriculture"}>Agricultores</Link>
+                  <Link href={"/investor/ganaderia"}>Ganaderia</Link>
+                </div>
+            )}
+          </div>
+          <div className={styles.dropdown}>
+            <button onClick={toggleProducerDropdown} className={styles.dropdownButton}>
+              Inversores
+              <div className={styles.dropdownIcon}>
+                {producerDropdownVisible ? closeIcon : dropdownIcon}
+              </div>
+            </button>
+            {producerDropdownVisible && (
+                <div className={styles.dropdownMenu}>
+                  <Link href={"/investor/agriculture"}>Agricultores</Link>
+                  <Link href={"/investor/ganaderia"}>Ganaderia</Link>
+                </div>
+            )}
+          </div>
+          <Link href={"#about-us"}>Nosotros</Link>
+          <Link href={"/login"} className={styles.login}>
+            Ingresar
+          </Link>
         </div>
-        <div className={styles.dropdown}>
-          <button
-            onClick={toggleProducerDropdown}
-            className={styles.dropdownButton}
-          >
-            Inversores
-            <div className={styles.dropdownIcon}>
-              {producerDropdownVisible ? closeIcon : dropdownIcon}
-            </div>
-          </button>
-          {producerDropdownVisible && (
-            <div className={styles.dropdownMenu}>
-              <Link href={'/investor/agriculture'}>Agricultores</Link>
-              <Link href={'/investor/ganaderia'}>Ganaderia</Link>
-            </div>
-          )}
-        </div>
-        <Link href={'#about-us'}>Nosotros</Link>
-        <Link href={'/login'} className={styles.login}>
-          Ingresar
-        </Link>
-      </div>
-    </nav>
-  )
+      </nav>
+  );
 }
 
 const dropdownIcon = (
