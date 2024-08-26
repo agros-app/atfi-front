@@ -69,10 +69,10 @@ export default function FinancialInfo({
             <span>25 Ha</span>
           </li>
 
-          <li>
-            <span>Roi estimado *</span>
-            <span>11,2%</span>
-          </li>
+          {/*<li>*/}
+          {/*  <span>Roi estimado *</span>*/}
+          {/*  <span>11,2%</span>*/}
+          {/*</li>*/}
         </ul>
         <form className={styles.form} onSubmit={handleInvest}>
           <TextField
