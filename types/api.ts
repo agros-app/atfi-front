@@ -12,4 +12,27 @@ export type Project = {
     seeds: string[]
 }
 
+export type ProjectCreateResponse = Project &{
+    country: string,
+    city: string,
+    zipCode: string,
+    state: string,
+    area: number,
+    latitude: string,
+    longitude: string,
+}
+
+export type User = {
+    id: number;
+    name: string;
+    lastName: string;
+    email: string;
+    withProvider: boolean;
+    photoURL: string;
+    role: string;
+    cuit: string;
+    phone: string;
+    country: string;
+}
+
 export type Status = "APPROVED" | "PENDING" | "REJECTED"
