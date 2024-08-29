@@ -10,6 +10,7 @@ type TextFieldProps = {
   error?: boolean;
   type?: string;
   rows?: number;
+  value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
@@ -23,6 +24,7 @@ export default function TextField({
                                     type = "text",
                                     onChange,
                                     rows,
+                                    value,
                                     ...inputProps
                                   }: TextFieldProps) {
   return (
@@ -49,6 +51,7 @@ export default function TextField({
                 placeholder={placeholder}
                 name={name}
                 id={name}
+                value={value}
                 {...inputProps}
             />
         )}

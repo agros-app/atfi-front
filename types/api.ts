@@ -12,6 +12,16 @@ export type Project = {
     seeds: string[]
 }
 
+export type ProjectCreateResponse = Project &{
+    country: string,
+    city: string,
+    zipCode: string,
+    state: string,
+    area: number,
+    latitude: string,
+    longitude: string,
+}
+
 export type User = {
     id: number;
     name: string;
