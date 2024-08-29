@@ -1,24 +1,50 @@
-"use client"
+"use client";
 import styles from "./profileButton.module.scss";
 import ProfileImage from "@/components/profileImage/profileImage";
-import Link from "next/link";
 import ProfileModal from "@/components/profileModal/profileModal";
-import {useState} from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function ProfileButton() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const modalRef = useRef<HTMLDivElement | null>(null);
 
-    const openModal = () => {
+    const setModal = () => {
         setIsModalOpen(!isModalOpen);
     };
 
+    // Manejador de clics fuera del modal
+    const handleClickOutside = (event: MouseEvent) => {
+        if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+            closeModal()
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+        // Cleanup event listener on component unmount
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isModalOpen]);
+
     return (
-        // <Link  href='/profile/1'>
         <div className={styles.profileButtonContainer}>
-            <div onClick={openModal}>
+            <div onClick={setModal}>
                 <ProfileImage src={"/owners/nico.jpg"} size={60} />
             </div>
-            {isModalOpen && <ProfileModal />}
+            {isModalOpen && (
+                <div ref={modalRef}>
+                    <ProfileModal closeModal = {closeModal} />
+                </div>
+            )}
         </div>
     );
 }
