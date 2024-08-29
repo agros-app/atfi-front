@@ -2,12 +2,12 @@
 
 .container{
   position: absolute;
-  right: 3%;
+  right: 4%;
   top: 75px;
   display: flex;
   flex-direction: column;
   width: 290px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid rgba(146, 144, 144, 0.25);
   background-color: $absolute-white;
   z-index: 999;
