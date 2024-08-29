@@ -1,4 +1,4 @@
-import {Project, ProjectCreateResponse} from "@/types/api";
+import {Project, ProjectCreateResponse, User} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
@@ -29,6 +29,11 @@ export const investByProjectId = async (id: number, amount: number): Promise<voi
             amount
         })
     })
+}
+
+export const getUserInfo = async (): Promise<User> => {
+    const response = await api.get("/user/info");
+    return response.data;
 }
 
 export const createProject= async (project: ProjectFormData) : Promise<ProjectCreateResponse | any> =>{
