@@ -41,7 +41,7 @@ export default function ProfileButton() {
 
     return (
         <div className={styles.profileButtonContainer}>
-            <div ref={profileImageRef} onClick={setModal}>
+            <div ref={profileImageRef} onClick={setModal} className={styles.image}>
                 <ProfileImage src={"/owners/nico.jpg"} size={60} />
             </div>
             {isModalOpen && (

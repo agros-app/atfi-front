@@ -2,12 +2,15 @@ import styles from './profileModal.module.scss';
 import ProfileImage from "@/components/profileImage/profileImage";
 import {useWeb3} from "@/context/web3Modal";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 type ProfileModalProps = {
     closeModal: () => void;
 }
 
 export default function ProfileModal({closeModal}: ProfileModalProps) {
+
+    const router = useRouter();
 
     const { connectWallet, disconnectWallet, isConnected } = useWeb3();
     const handleWallet = () => {
@@ -19,10 +22,8 @@ export default function ProfileModal({closeModal}: ProfileModalProps) {
     };
 
     const logOut = async () => {
-        const response = await fetch("/api/auth/sign-out");
-        if (response.ok) {
-            window.location.href = "/";
-        }
+        await fetch("/api/auth/sign-out");
+        router.push("/")
     };
 
     return (
@@ -48,8 +49,8 @@ export default function ProfileModal({closeModal}: ProfileModalProps) {
                 </div>
             </div>
             <div className={styles.bottomContainer}>
-                <div className={styles.row} onClick={closeModal}>
-                    <img src={"/salir.svg"} alt="salir" onClick={logOut}/>
+                <div className={styles.row} onClick={logOut}>
+                    <img src={"/salir.svg"} alt="salir"/>
                     <p className={styles.redText}>Salir</p>
                 </div>
             </div>
