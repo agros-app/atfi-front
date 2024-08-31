@@ -8,10 +8,21 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 290px;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &.disabled {
+    cursor: not-allowed;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }
 
 .disabled {
-  opacity: 0.6;
+  opacity: 0.8;
   pointer-events: none;
 }
 
