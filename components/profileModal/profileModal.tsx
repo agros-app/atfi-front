@@ -3,12 +3,14 @@ import ProfileImage from "@/components/profileImage/profileImage";
 import {useWeb3} from "@/context/web3Modal";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
+import {User} from "@/types/api";
 
 type ProfileModalProps = {
     closeModal: () => void;
+    user: User
 }
 
-export default function ProfileModal({closeModal}: ProfileModalProps) {
+export default function ProfileModal({closeModal,user}: ProfileModalProps) {
 
     const router = useRouter();
 
@@ -32,8 +34,8 @@ export default function ProfileModal({closeModal}: ProfileModalProps) {
                 <div className={styles.profile}>
                     <ProfileImage src={"/owners/nico.jpg"} size={60}></ProfileImage>
                     <div className={styles.data}>
-                        <h3 className={styles.title}>Lionel Messi</h3>
-                        <p className={styles.email}>leomessi@gmail.com</p>
+                        <h3 className={styles.title}>{`${user.name} ${user.lastName}`}</h3>
+                        <p className={styles.email}>{user.email}</p>
                     </div>
                 </div>
             </div>

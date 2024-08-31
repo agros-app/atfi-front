@@ -3,12 +3,14 @@ import styles from "./profileButton.module.scss";
 import ProfileImage from "@/components/profileImage/profileImage";
 import ProfileModal from "@/components/profileModal/profileModal";
 import { useRef, useState, useEffect } from "react";
+import useUserInfo from "@/hooks/useUserInfo";
 
 export default function ProfileButton() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const modalRef = useRef<HTMLDivElement | null>(null);
     const profileImageRef = useRef<HTMLDivElement | null>(null);
 
+    const { user } = useUserInfo();
     const setModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -46,7 +48,7 @@ export default function ProfileButton() {
             </div>
             {isModalOpen && (
                 <div ref={modalRef}>
-                    <ProfileModal closeModal={closeModal} />
+                    <ProfileModal closeModal={closeModal} user={user} />
                 </div>
             )}
         </div>
