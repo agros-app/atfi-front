@@ -5,6 +5,7 @@ import ProjectCard from "@/components/projectCard/projectCard";
 import useProjects from "@/hooks/useProjects";
 import News from "@/components/news/news";
 import image from "@/public/landing/features-bg.jpg";
+import {useRouter} from "next/navigation";
 
 const news = [
     {
@@ -41,6 +42,12 @@ const news = [
 
 export default function Home() {
   const { projects } = useProjects();
+  const router=useRouter();
+
+    const handleCardClick = (projectId: number) => {
+        router.push(`/project/${projectId}`);
+    };
+
   return (
     <main className={styles.main}>
       <section>
@@ -51,7 +58,7 @@ export default function Home() {
         </p>
         <div className={styles.projects}>
         {projects.map((project) => (
-        <ProjectCard disabled={false} project={project} key={project.id} />
+        <ProjectCard disabled={false} project={project} key={project.id} onClick={()=> handleCardClick(project.id)} />
       ))}
         </div>
         <div className={styles.more_info}>
@@ -66,7 +73,7 @@ export default function Home() {
         </p>
           <div className={styles.projects}>
               {projects.slice(0, 3).map((project) => (
-                  <ProjectCard disabled={true} project={project} key={project.id} />
+                  <ProjectCard disabled={true} project={project} key={project.id}/>
               ))}
             </div>
       </section>

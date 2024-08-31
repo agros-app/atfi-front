@@ -15,28 +15,32 @@ type ProjectCardProps = {
   bgColor?: string;
   border?: string;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 export default function ProjectCard({
                                       project,
-                                      disabled= false,
-                                      bgColor="fff",
-                                      border="0.5px solid $dark-gray"}: ProjectCardProps,
-                                    ) {
-  const router = useRouter();
-  const { id,name, seeds, endDate, amountCollected, amountNeed } = project;
+                                      disabled = false,
+                                      bgColor = "fff",
+                                      border = "0.5px solid $dark-gray",
+                                      onClick,
+                                    }: ProjectCardProps) {
+  const { id, name, seeds, endDate, amountCollected, amountNeed } = project;
   const progress = getPercentage(amountCollected, amountNeed);
 
   return (
-      <div className={`${styles.container}`}
-           style={{backgroundColor: bgColor, border: border}}>
+      <div
+          className={`${styles.container} ${disabled ? styles.disabled : ""}`}
+          style={{ backgroundColor: bgColor, border: border }}
+          onClick={!disabled ? onClick : undefined}
+      >
         <div className={styles.top}>
           <Image
               src={"/farm-image.png"}
               alt="Farm Image"
               fill
               priority
-              style={{ objectFit: "cover", filter:'brightness(0.9)' }}
+              style={{ objectFit: "cover", filter: 'brightness(0.9)' }}
               sizes="100%"
           />
           <div className={styles.imageOverlay}>
@@ -45,7 +49,6 @@ export default function ProjectCard({
           </div>
         </div>
         <div className={styles.bottom}>
-          {/* <div className={styles.roi}>400% (ROI)</div> */}
           <div className={styles.info}>
             <div className={styles.description}>
               <div className={styles.specific}>
@@ -81,11 +84,9 @@ export default function ProjectCard({
           <Button
               className={`${disabled === true ? styles.disabled : ""}`}
               size="sm"
-              onClick={() => router.push(`/project/${id}`)}
           >
             Invertir
           </Button>
-
         </div>
       </div>
   );
