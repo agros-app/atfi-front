@@ -22,9 +22,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className={styles.financialInfo}>
             <FinancialInfo
               projectId={parseInt(id)}
-              currentAmmount={project.amountCollected}
-              goalAmmount={project.amountNeed}
-              minAmmount={project.minAmount}
+              currentAmount={project.amountCollected}
+              goalAmount={project.amountNeed}
+              minAmount={project.minAmount}
             />
           </div>
         </div>

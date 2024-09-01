@@ -3,7 +3,11 @@ import ProfileImage from "@/components/profileImage/profileImage";
 import {useWeb3} from "@/context/web3Modal";
 import Link from "next/link";
 
-export default function ProfileModal(){
+type ProfileModalProps = {
+    closeModal: () => void;
+}
+
+export default function ProfileModal({closeModal}: ProfileModalProps) {
 
     const { connectWallet, disconnectWallet, isConnected } = useWeb3();
     const handleWallet = () => {
@@ -34,7 +38,7 @@ export default function ProfileModal(){
             </div>
             <div className={styles.innerContainer}>
                 {/*THE LINK IS HARDCODED*/}
-                <Link href='/profile/1' className={styles.row}>
+                <Link href='/profile' className={styles.row} onClick={closeModal}>
                     <img src={"/controls.svg"} alt="controles"/>
                     <p className={styles.text}>Configuración</p>
                 </Link>
@@ -44,7 +48,7 @@ export default function ProfileModal(){
                 </div>
             </div>
             <div className={styles.bottomContainer}>
-                <div className={styles.row}>
+                <div className={styles.row} onClick={closeModal}>
                     <img src={"/salir.svg"} alt="salir" onClick={logOut}/>
                     <p className={styles.redText}>Salir</p>
                 </div>

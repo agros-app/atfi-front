@@ -1,7 +1,11 @@
 'use client';
 import styles from "./personalData.module.scss";
 
-export default function PersonalData() {
+type HomeDataProps = {
+    country: string;
+}
+
+export default function HomeData({country}: HomeDataProps) {
 
     const editModal = () => {
         //TODO
@@ -12,17 +16,17 @@ export default function PersonalData() {
         <div className={styles.container}>
             <div className={styles.innerContainer}>
                 <h3 className={styles.title}>
-                    Datos Personales
+                    Domicilio
                 </h3>
                 <div className={styles.grid}>
                     <div className={styles.row}>
                         <div className={styles.col}>
-                            <h3 className={styles.category}>Nombre y apellido</h3>
-                            <p className={styles.value}>Lionel Messi</p>
+                            <h3 className={styles.category}>País</h3>
+                            <p className={styles.value}>{country}</p>
                         </div>
                         <div className={styles.col}>
-                            <h3 className={styles.category}>DNI</h3>
-                            <p className={styles.value}>40.123.456</p>
+                            <h3 className={styles.category}>Provincia</h3>
+                            <p className={styles.value}>Buenos Aires</p>
                         </div>
                         <div className={styles.editContainer}>
                             <img src={"/profile/Edit.png"} alt="Edit" className={styles.editIcon}
@@ -31,8 +35,16 @@ export default function PersonalData() {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.col}>
-                            <h3 className={styles.category}>Nacionalidad</h3>
-                            <p className={styles.value}>Argentina</p>
+                            <h3 className={styles.category}>Ciudad</h3>
+                            <p className={styles.value}>La Plata</p>
+                        </div>
+                        <div className={styles.col}>
+                            <h3 className={styles.category}>Calle</h3>
+                            <p className={styles.value}>1 y 57</p>
+                        </div>
+                        <div className={styles.col}>
+                            <h3 className={styles.category}>Piso/Lote</h3>
+                            <p className={styles.value}>123, 8A</p>
                         </div>
                     </div>
                 </div>
