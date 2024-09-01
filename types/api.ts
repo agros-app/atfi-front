@@ -22,4 +22,17 @@ export type ProjectCreateResponse = Project &{
     longitude: string,
 }
 
+export type User = {
+    id: number;
+    name: string;
+    lastName: string;
+    email: string;
+    withProvider: boolean;
+    photoURL: string;
+    role: string;
+    cuit: string;
+    phone: string;
+    country: string;
+}
+
 export type Status = "APPROVED" | "PENDING" | "REJECTED"
