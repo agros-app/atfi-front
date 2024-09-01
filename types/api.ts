@@ -12,7 +12,7 @@ export type Project = {
     seeds: string[]
 }
 
-export type ProjectCreateResponse = Project &{
+export type ProjectData = Project &{
     country: string,
     city: string,
     zipCode: string,

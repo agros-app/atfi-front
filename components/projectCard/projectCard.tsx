@@ -7,11 +7,11 @@ import LocationIcon from "@/assets/icons/location";
 import TimeIcon from "@/assets/icons/time";
 import SeedIcon from "@/assets/icons/seed";
 import ProgressBar from "../progressBar/progressBar";
-import { Project } from "@/types/api";
+import {Project, ProjectData} from "@/types/api";
 import { getDaysLeft, getPercentage } from "@/utils";
 
 type ProjectCardProps = {
-  project: Project;
+  project: ProjectData;
   bgColor?: string;
   border?: string;
   disabled?: boolean;
@@ -25,7 +25,7 @@ export default function ProjectCard({
                                       border = "0.5px solid $dark-gray",
                                       onClick,
                                     }: ProjectCardProps) {
-  const { id, name, seeds, endDate, amountCollected, amountNeed } = project;
+  const { id, name, seeds, endDate, amountCollected, amountNeed,city,country } = project;
   const progress = getPercentage(amountCollected, amountNeed);
 
   return (
@@ -45,7 +45,7 @@ export default function ProjectCard({
           />
           <div className={styles.imageOverlay}>
             <h3 className={styles.title}>{name}</h3>
-            <p className={styles.titleDescription}>Valle verde, 123</p>
+            <p className={styles.titleDescription}>{`${country}, ${city}`}</p>
           </div>
         </div>
         <div className={styles.bottom}>
