@@ -41,4 +41,10 @@ export type User = {
     country: string;
 }
 
+
+export type MessageData ={
+    to: string;
+    subject: string;
+    html: string
+}
 export type Status = "APPROVED" | "PENDING" | "REJECTED"
