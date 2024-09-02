@@ -15,9 +15,15 @@ export default function HomeData({country}: HomeDataProps) {
     return (
         <div className={styles.container}>
             <div className={styles.innerContainer}>
-                <h3 className={styles.title}>
-                    Domicilio
-                </h3>
+                <div className={styles.titleContainer}>
+                    <h3 className={styles.title}>
+                        Domicilio
+                    </h3>
+                    <p className={styles.editTitle}>
+                        <img src={"/profile/Edit.png"} alt="Edit" className={styles.editIcon}
+                             onClick={editModal}/>
+                    </p>
+                </div>
                 <div className={styles.grid}>
                     <div className={styles.row}>
                         <div className={styles.col}>
@@ -25,7 +31,7 @@ export default function HomeData({country}: HomeDataProps) {
                             <p className={styles.value}>{country}</p>
                         </div>
                         <div className={styles.col}>
-                            <h3 className={styles.category}>Provincia</h3>
+                        <h3 className={styles.category}>Provincia</h3>
                             <p className={styles.value}>Buenos Aires</p>
                         </div>
                         <div className={styles.editContainer}>

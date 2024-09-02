@@ -1,6 +1,8 @@
+@import "styles/media.scss";
+
 .sidebar {
   position: absolute;
-  width: 300px; // if modified, modify it in profile/[id]/page.module.scss as well
+  width: 300px; // if modified, modify it in profile/[id]/page.module.scss as well!
   height: 100%;
   border-right: 1px solid rgba(146, 144, 144, 0.21);
   display: flex;
@@ -12,4 +14,28 @@
 .categories{
   margin-top: 20px;
   width: 100%;
+}
+
+@include laptop{
+  .sidebar{
+    width: 250px;
+  }
+}
+
+@include tablet {
+  .sidebar {
+    width: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}
+@include mobile {
+  .sidebar {
+    width: 300px; // if modified, modify it in profile/[id]/page.module.scss as well
+    display: none;
+  }
 }

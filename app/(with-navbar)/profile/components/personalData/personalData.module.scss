@@ -1,4 +1,5 @@
 @import "../../../../../styles/variables";
+@import "styles/media.scss";
 
 .container{
   display: flex;
@@ -13,12 +14,22 @@
   margin: 0 30px;
 }
 
+.titleContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+     border-bottom: 1px solid rgba(146, 144, 144, 0.25);
+}
+
 .title{
     width: 100%;
     font-size: 2rem;
     font-weight: 500;
-    padding-bottom: 10px; /* Añade espacio entre el texto y la línea */
-    border-bottom: 1px solid rgba(146, 144, 144, 0.25);
+}
+.editTitle{
+  display: none;
 }
 
 .grid{
@@ -59,5 +70,52 @@
   width: 25px;
   height: auto;
   cursor: pointer;
+}
+
+
+
+@include laptop{
+  .container{
+    display: flex;
+    padding: 30px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+  }
+  .innerContainer{
+    flex-grow: 1;
+    margin: 0;
+  }
+
+  .editTitle{
+    display: flex;
+    margin-right: 1%;
+  }
+
+  .grid{
+    display: flex;
+    flex-direction: column;
+  }
+  .row{
+    margin-top: 0;
+    display: flex;
+
+  }
+  .col{
+    width: 100%;
+    margin-top: 40px;
+  }
+  .editContainer {
+    display: none;
+  }
+}
+
+@include mobile{
+  .row{
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+
+  }
 
 }

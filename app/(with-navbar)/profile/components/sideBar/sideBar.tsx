@@ -17,7 +17,7 @@ export default function SideBar(){
             <div className={styles.categories}>
                 <CategoryButton
                     isSelected={selected === "info"}
-                    imagePath={selected === "info" ? "/profile/id-card-bold.png" : "/profile/id-card.png"}
+                    imagePath={"/profile/id-card-bold.png" }
                     name={"Información Personal"}
                     onClick={() => handleButtonClick("info")}
                     iconSize={"25px"}

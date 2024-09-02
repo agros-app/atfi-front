@@ -1,4 +1,6 @@
 @import "styles/variables.scss";
+@import "styles/media.scss";
+
 
 .container {
   justify-content: center;
@@ -41,3 +43,10 @@
   font-size: 18px;
   flex-grow: 1; // Ocupa el espacio restante en el contenedor
 }
+
+@include tablet{
+  .text{
+    display: none;
+  }
+}
+
