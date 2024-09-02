@@ -68,12 +68,17 @@ export default function Tab() {
         <div className={styles.container}>
             <div className={styles.titles}>
                 {tabs.map(tab => (
-                    <div key={tab} className={tab === activeTab ? styles.selectedTitle : styles.unselectedTitle} onClick={() => setActiveTab(tab)}>
+                    <div
+                        key={tab}
+                        className={tab === activeTab ? styles.selectedTitle : styles.unselectedTitle}
+                        onClick={() => setActiveTab(tab)}
+                    >
                         {tab.toUpperCase()}
                     </div>
                 ))}
             </div>
             {content[activeTab]}
         </div>
+
     );
 }
