@@ -3,38 +3,41 @@
 .container {
   justify-content: center;
   align-items: center;
-  text-align: center;
-  gap: 15px;
 }
 
-.selectedContainer {
-  background: $secondary-yellow;
-  border-radius: 10px;
-  padding: 8px 15px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.unselectedContainer {
+.selectedContainer, .unselectedContainer {
+  height: 50px;
   margin-top: 10px;
   padding: 8px 15px;
   display: flex;
   align-items: center;
-  gap: 15px;
   cursor: pointer;
+  font-weight: 400;
+
+  // Agrega un fondo de color solo si está seleccionado
+  &.selectedContainer {
+    border-left: 5px solid $light-gray;
+    border-radius: 0;
+    color: $title;
+
+    font-weight: 600;
+  }
+
+  &.unselectedContainer {
+    color: $title;
+  }
 }
 
 .icon {
-  width: 30px;
+  flex-shrink: 0; // Evita que el icono cambie de tamaño
+  width: 30px; // Ajusta este valor según sea necesario
   height: auto;
+  margin-right: 15px; // Espacio entre el icono y el texto
+  justify-content: center;
+  align-items: center;
 }
 
 .text {
   font-size: 18px;
-  font-weight: 450;
-  color: $title;
+  flex-grow: 1; // Ocupa el espacio restante en el contenedor
 }
-
