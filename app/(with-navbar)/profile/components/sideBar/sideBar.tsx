@@ -42,7 +42,7 @@ export default function SideBar(){
                     imagePath={selected === "metodos" ? "/profile/add-card.png" : "/profile/add-card.png"}
                     name={"Métodos de Pago"}
                     onClick={() => handleButtonClick("metodos")}
-                    iconSize={"25px"}
+                    iconSize={"18px"}
                 />
             </div>
         </div>
