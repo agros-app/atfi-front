@@ -11,10 +11,12 @@ type ScheduleProps = {
 
 export default function Schedule({ startDate, endDate }: ScheduleProps) {
 
-    const endDateParsed = new Date(endDate);
+    //Change this when the start date of cultivation is defined
+    const endDateParsed = addDays(new Date(endDate),90);
     const roundClosingDate = format(endDateParsed, "d 'de' MMMM 'de' yyyy", { locale: es });
 
-    const returnDate = addDays(endDateParsed, 90);//TODO: Change this when the return date is defined
+    //Change this when the return date is defined
+    const returnDate = addDays(endDateParsed, 90);
     const estimatedReturnDate = format(returnDate, "d 'de' MMMM 'de' yyyy", { locale: es });
 
     return (
