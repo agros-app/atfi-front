@@ -9,7 +9,7 @@
     }
 }
 
-.cardsContainer{
+.cardsContainer, .stocksContainer{
     display: flex;
     gap: 16px;
     flex-wrap: wrap;    
@@ -39,6 +39,44 @@
         font-size: 16px;
         color: $gray;
         font-weight: 300;
+    }
+}
+
+.stocksCard{
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    
+    & > div{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+
+        & > h4{
+        font-weight: 300;
+        }
+        
+        & > svg {
+        width: 25px;
+        height: 25px;
+        }
+    }
+
+    
+
+    & > p{
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    @include mobile{
+        width: 100%;
+        justify-content: center;
     }
 }
 
