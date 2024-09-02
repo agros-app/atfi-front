@@ -73,7 +73,7 @@ export default function Tab() {
                         className={tab === activeTab ? styles.selectedTitle : styles.unselectedTitle}
                         onClick={() => setActiveTab(tab)}
                     >
-                        {tab.toUpperCase()}
+                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
                     </div>
                 ))}
             </div>
