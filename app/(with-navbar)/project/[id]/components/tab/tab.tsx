@@ -7,9 +7,10 @@ import { DetailsTab } from "@/app/(with-navbar)/project/[id]/components/detailsT
 import Documents from "@/app/(with-navbar)/project/[id]/components/documents/documents";
 import Producer from "@/app/(with-navbar)/project/[id]/components/producer/producer";
 import Stepper from "@/components/stepper/stepper";
+import Comercializador from "@/app/(with-navbar)/project/[id]/components/comercializador/comercializador";
 
-type Tabs = "resumen" | "cronograma" | "ubicacion" | "detalles" | "progreso";
-const tabs: Tabs[] = ["resumen", "cronograma", "ubicacion", "detalles", "progreso"];
+type Tabs = "resumen" | "ubicacion" | "productor" | "comercializador" | "detalles" | "progreso";
+const tabs: Tabs[] = ["resumen", "productor","comercializador", "ubicacion", "detalles", "progreso"];
 
 // Hardcoded steps for now, until we have the data from SIMA
 const steps = [
@@ -49,19 +50,17 @@ export default function Tab() {
                 <div className={styles.componentContainer}>
                     <Documents/>
                 </div>
-                <div className={styles.componentContainer}>
-                    <Producer/>
+                <div className={styles.body}>
+                    <div className={styles.schedule}><Shedule /></div>
                 </div>
             </div>
         ),
-        "cronograma": (
-            <div className={styles.body}>
-                <div className={styles.schedule}><Shedule /></div>
-            </div>
-        ),
+        "productor": <div className={styles.body}><Producer /></div>,
+        "comercializador": <div className={styles.body}><Comercializador /></div>,
         "ubicacion": <div className={styles.body}><Map /></div>,
         "detalles": <div className={styles.body}><DetailsTab /></div>,
-        "progreso": <div className={styles.body}><Stepper steps={steps} /></div>
+        "progreso": <div className={styles.body}><Stepper steps={steps}/></div>
+
     };
 
     return (
@@ -73,7 +72,7 @@ export default function Tab() {
                         className={tab === activeTab ? styles.selectedTitle : styles.unselectedTitle}
                         onClick={() => setActiveTab(tab)}
                     >
-                        {tab.toUpperCase()}
+                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
                     </div>
                 ))}
             </div>

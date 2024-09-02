@@ -51,7 +51,7 @@
 
 .schedule {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100%; /* Ensure the parent container has a height to center vertically */
 }
