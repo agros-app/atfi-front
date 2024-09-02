@@ -23,7 +23,9 @@ export default function ProfileBanner({user}: ProfileBannerProps) {
 
     return (
       <div className={styles.container}>
-          <ProfileImage src={"/owners/nico.jpg"} size={100}></ProfileImage>
+          <div className={styles.image}>
+            <ProfileImage src={"/owners/nico.jpg"} size={100}></ProfileImage>
+          </div>
           <div className={styles.data}>
               <h3 className={styles.title}>{user.name + " " + user.lastName}</h3>
               <p className={styles.email}>{user.email}</p>
@@ -31,7 +33,6 @@ export default function ProfileBanner({user}: ProfileBannerProps) {
           <div className={styles.editContainer}>
               <img src={"/profile/Edit.png"} alt="Edit" className={styles.editIcon} onClick={editModal}/>
           </div>
-
           <EditModalForm
               isOpen={isModalOpen}
               onClose={closeModal}
