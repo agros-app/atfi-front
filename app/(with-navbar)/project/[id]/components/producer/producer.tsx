@@ -27,7 +27,7 @@ export default function Producer({producerName,producerLastName,producerEmail}:P
                 setMessage('')
             }
             else{
-                toast.error('Error al enviar el mensaje intentelo mas tarde');
+                toast.error('Error al enviar el mensaje intentelo mas tarde nuevamente');
                 }
         }
     }
