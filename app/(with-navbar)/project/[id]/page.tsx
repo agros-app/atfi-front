@@ -3,7 +3,6 @@ import useProjectId from "@/hooks/useProjectId";
 import Documents from "./components/documents/documents";
 import FinancialInfo from "./components/financialInfo/financialInfo";
 import Header from "./components/header/header";
-import Producer from "./components/producer/producer";
 import Tab from "./components/tab/tab";
 import styles from "./project.module.scss";
 
@@ -13,11 +12,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
   return (
     <div className={styles.projectPageContainer}>
-      <Header name={project.name} />
+      <Header name={project.name} country={project.country} />
       <div className={styles.body}>
         <div className={styles.screenDivision}>
           <div className={styles.leftHandSide}>
-            <Tab/>
+            <Tab {...project} />
           </div>
           <div className={styles.financialInfo}>
             <FinancialInfo
@@ -25,6 +24,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}
               minAmount={project.minAmount}
+                country={project.country}
+                seed={project.seeds[0]}
+                area={project.area}
             />
           </div>
         </div>

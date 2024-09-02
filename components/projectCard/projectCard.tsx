@@ -53,7 +53,7 @@ export default function ProjectCard({
             <div className={styles.description}>
               <div className={styles.specific}>
                 <LocationIcon />
-                <span>Argentina</span>
+                <span>{country}</span>
               </div>
               <div className={styles.specific}>
                 <TimeIcon />

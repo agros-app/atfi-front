@@ -22,6 +22,12 @@ export type ProjectData = Project &{
     longitude: string,
 }
 
+export type ProjectDetailInfo = ProjectData & {
+    producerName: string,
+    producerLastName: string,
+    producerEmail: string,
+
+}
 export type User = {
     id: number;
     name: string;

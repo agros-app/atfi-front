@@ -1,4 +1,4 @@
-import {Project, ProjectData, User} from "@/types/api";
+import {Project, ProjectData, ProjectDetailInfo, User} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
@@ -17,7 +17,7 @@ export const getProjects = async (): Promise<ProjectData[]> => {
     return response.data;
 }
 
-export const getProjectById = async (id: number): Promise<Project> => {
+export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
     const response = await api.get(`/project/info/${id}`)
     return response.data;
 }
