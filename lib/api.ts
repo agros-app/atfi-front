@@ -1,7 +1,8 @@
-import {Project, ProjectCreateResponse, User} from "@/types/api";
+import {MessageData, ProjectData, ProjectDetailInfo, User} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
+import {res} from "pino-std-serializers";
 
 const token= Cookies.get('session')
 const api = axios.create({
@@ -12,12 +13,12 @@ const api = axios.create({
     },
 })
 
-export const getProjects = async (): Promise<Project[]> => {
+export const getProjects = async (): Promise<ProjectData[]> => {
     const response = await api.get("/project/all");
     return response.data;
 }
 
-export const getProjectById = async (id: number): Promise<Project> => {
+export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
     const response = await api.get(`/project/info/${id}`)
     return response.data;
 }
@@ -36,7 +37,11 @@ export const getUserInfo = async (): Promise<User> => {
     return response.data;
 }
 
-export const createProject= async (project: ProjectFormData) : Promise<ProjectCreateResponse | any> =>{
+export const createProject= async (project: ProjectFormData) : Promise<ProjectData | any> =>{
     const response = await api.post('/project', project)
     return response.data
+}
+
+export const contactWithProducer = async (messageData: MessageData) : Promise<any> =>{
+    return await api.post('/project/contactWith', messageData)
 }

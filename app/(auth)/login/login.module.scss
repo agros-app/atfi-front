@@ -3,14 +3,37 @@
     flex-direction: column;
     gap: 45px;
     align-items: center;
-    width: 40%;
+    width: 50%;
 }
-@media (max-width: 425px) {
+@media (max-width: 768px) {
     .container {
-        width: 80%;
+        width: 50%;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
     }
+    .container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .container {
+        -ms-overflow-style: none;
+        scrollbar-width: none; /* Firefox */
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .container {
+        width: 80%;
+        height: auto;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+    .logoContainer {
+        padding-top: 20px;
+    }
+
+
     .container::-webkit-scrollbar {
         display: none;
     }

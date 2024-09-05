@@ -2,12 +2,17 @@ import styles from './profileModal.module.scss';
 import ProfileImage from "@/components/profileImage/profileImage";
 import {useWeb3} from "@/context/web3Modal";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
+import {User} from "@/types/api";
 
 type ProfileModalProps = {
     closeModal: () => void;
+    user: User
 }
 
-export default function ProfileModal({closeModal}: ProfileModalProps) {
+export default function ProfileModal({closeModal,user}: ProfileModalProps) {
+
+    const router = useRouter();
 
     const { connectWallet, disconnectWallet, isConnected } = useWeb3();
     const handleWallet = () => {
@@ -19,10 +24,8 @@ export default function ProfileModal({closeModal}: ProfileModalProps) {
     };
 
     const logOut = async () => {
-        const response = await fetch("/api/auth/sign-out");
-        if (response.ok) {
-            window.location.href = "/";
-        }
+        await fetch("/api/auth/sign-out");
+        router.push("/")
     };
 
     return (
@@ -31,8 +34,8 @@ export default function ProfileModal({closeModal}: ProfileModalProps) {
                 <div className={styles.profile}>
                     <ProfileImage src={"/owners/nico.jpg"} size={60}></ProfileImage>
                     <div className={styles.data}>
-                        <h3 className={styles.title}>Lionel Messi</h3>
-                        <p className={styles.email}>leomessi@gmail.com</p>
+                        <h3 className={styles.title}>{`${user.name} ${user.lastName}`}</h3>
+                        <p className={styles.email}>{user.email}</p>
                     </div>
                 </div>
             </div>
@@ -48,8 +51,8 @@ export default function ProfileModal({closeModal}: ProfileModalProps) {
                 </div>
             </div>
             <div className={styles.bottomContainer}>
-                <div className={styles.row} onClick={closeModal}>
-                    <img src={"/salir.svg"} alt="salir" onClick={logOut}/>
+                <div className={styles.row} onClick={logOut}>
+                    <img src={"/salir.svg"} alt="salir"/>
                     <p className={styles.redText}>Salir</p>
                 </div>
             </div>

@@ -44,7 +44,7 @@ export default function LoginForm() {
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
               />
-              <Button variant="primary" size="lg">
+              <Button variant="primary" size="lg" className={styles.button}>
                   Continuar
               </Button>
               <p style={{ textAlign: 'center' }}>

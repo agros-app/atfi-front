@@ -13,13 +13,12 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 20px;
+  padding-bottom: 10px;
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+.buttonContainer{
   align-self: center;
+  width: 100%;
 }
 
 @media (max-width: 425px) {
