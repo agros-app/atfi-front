@@ -11,7 +11,9 @@
   flex-direction: column;
   width: 50%;
   gap: 20px;
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
 }
+
 @media (max-width: 768px) {
   .container {
     width: 80%;
@@ -39,20 +41,11 @@
   .container {
     width: 80%;
     height: auto;
-    overflow-y: scroll;
+    overflow-y: auto; /* Enable scrolling if content exceeds height */
     -webkit-overflow-scrolling: touch;
   }
   .logoContainer {
     padding-top: 20px;
   }
 
-
-  .container::-webkit-scrollbar {
-    display: none;
-  }
-
-  .container {
-    -ms-overflow-style: none;
-    scrollbar-width: none; /* Firefox */
-  }
 }
