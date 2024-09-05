@@ -9,7 +9,6 @@ import styles from "./project.module.scss";
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const { project } = useProjectId(Number(id))
-
   return (
     <div className={styles.projectPageContainer}>
       <Header name={project.name} country={project.country} />

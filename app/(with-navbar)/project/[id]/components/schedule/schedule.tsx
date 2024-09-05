@@ -37,7 +37,7 @@ export default function Schedule({ startDate, endDate }: ScheduleProps) {
                     <p>{estimatedReturnDate}</p>
                 </div>
                 <div className={styles.rightHandSide}>
-                    <p>{`${getDaysLeft(returnDate.toString())} días restantes`}</p>
+                    <p>{`${getDaysLeft(returnDate.toISOString())} días restantes`}</p>
                 </div>
             </div>
         </div>

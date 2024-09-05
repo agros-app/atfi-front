@@ -10,8 +10,8 @@ const useProjectId = (id: number) => {
         amountNeed: 0,
         amountCollected: 0,
         minAmount: 0,
-        startDate: "string",
-        endDate: "string",
+        startDate: new Date().toISOString(),
+        endDate: new Date().toISOString(),
         status: "APPROVED",
         addressId: 0,
         description: "string",
@@ -31,7 +31,6 @@ const useProjectId = (id: number) => {
     useEffect(()=>{
         getProjectById(id).then((project) => setProject(project))
     },[])
-
     return { project };
 }
 
