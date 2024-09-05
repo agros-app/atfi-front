@@ -1,0 +1,119 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.main{
+    padding: 40px 100px;
+
+    @include tablet{
+        padding: 40px 50px;
+    }
+}
+
+.cardsContainer, .stocksContainer{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;    
+}
+
+.card{
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: max-content;
+
+    h3{
+        font-size: 20px;
+        // color: $primary-green;
+        font-weight: 300;
+    }
+
+    .cost{
+        font-size: 24px;
+        color: $dark-green;
+    }
+
+    .description{
+        font-size: 16px;
+        color: $gray;
+        font-weight: 300;
+    }
+}
+
+.stocksCard{
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    
+    & > div{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+
+        & > h4{
+        font-weight: 300;
+        }
+        
+        & > svg {
+        width: 25px;
+        height: 25px;
+        }
+    }
+
+    
+
+    & > p{
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    @include mobile{
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.investmentsContainer{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    & > div:first-of-type{
+        flex: 1;
+    }
+
+    @include tablet{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+}
+
+.investment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    margin-top: 16px;
+    gap: 16px;
+    font-size: 14px;
+
+    h3{
+        font-weight: 400;
+    }
+
+    @include mobile{
+        font-size: 12px;
+    }
+}

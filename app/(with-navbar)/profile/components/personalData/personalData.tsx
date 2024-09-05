@@ -28,9 +28,15 @@ export default function PersonalData({user}: PersonalDataProps) {
     return (
         <div className={styles.container}>
             <div className={styles.innerContainer}>
-                <h3 className={styles.title}>
-                    Datos Personales
-                </h3>
+                <div className={styles.titleContainer}>
+                    <h3 className={styles.title}>
+                        Datos Personales
+                    </h3>
+                    <p className={styles.editTitle}>
+                        <img src={"/profile/Edit.png"} alt="Edit" className={styles.editIcon}
+                                                         onClick={editModal}/>
+                    </p>
+                </div>
                 <div className={styles.grid}>
                     <div className={styles.row}>
                         <div className={styles.col}>

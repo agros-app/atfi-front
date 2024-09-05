@@ -21,6 +21,7 @@ export default function Schedule({ startDate, endDate }: ScheduleProps) {
 
     return (
         <div className={styles.container}>
+            <h1 className={styles.title}>Cronograma</h1>
             <div className={styles.topData}>
                 <div className={styles.leftHandSide}>
                     <p>Cierre de la ronda</p>

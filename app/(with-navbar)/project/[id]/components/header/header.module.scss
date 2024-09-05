@@ -1,4 +1,5 @@
 @import "styles/variables.scss";
+@import "styles/media";
 
 .header{
   position: relative;
@@ -6,13 +7,13 @@
 
 .image{
   width: 100%;
-  height: 85%;
+  height: 300px;
   object-fit: cover;
 }
 .textInTitle{
   position: absolute;
   top: 44.5%;
-  left: 16.5%;
+  left: 300px;
   transform: translate(-50%, -50%);
   color: $absolute-white;
   gap: 0;
@@ -26,4 +27,11 @@
 .subtitle{
   font-size: 29px;
   font-weight: 100;
+}
+
+@include tablet{
+    .textInTitle{
+        left: 60%;
+      width: 95%;
+    }
 }

@@ -68,6 +68,13 @@ const FarmingCostPieChart = () => {
                     { value: 1500, name: 'Pesticidas' },
                     { value: 1000, name: 'Agua' },
                 ],
+                color: [
+                    '#0f3d28', // Mucho más oscuro que #1c5739
+            '#1c5739', // Color base
+            '#2d7a51',  // Lighter Green
+                    '#A5D6A7', // Pale Green
+                    '#C8E6C9'  // Very Light Green
+                ],
                 emphasis: {
                     itemStyle: {
                         shadowBlur: 10,
@@ -122,6 +129,13 @@ const ComparativeCostBarChart = () => {
                 type: 'bar',
                 data: [750, 900, 1400, 800, 600],
             },
+        ],
+        color: [
+            '#0f3d28', // Mucho más oscuro que #1c5739
+    '#1c5739', // Color base
+    '#2d7a51',  // Lighter Green
+            '#A5D6A7', // Pale Green
+            '#C8E6C9'  // Very Light Green
         ],
     };
 

@@ -1,4 +1,5 @@
 @import "@/styles/variables";
+@import "styles/media.scss";
 
 .container{
   display: flex;
@@ -39,4 +40,24 @@
   width: 25px;
   height: auto;
   cursor: pointer;
+}
+.image{
+  width: 110px;
+  height: auto;
+}
+@media (max-width: 600px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .editContainer{
+    display: none;
+  }
+}
+
+
+@include mobile{
+
 }

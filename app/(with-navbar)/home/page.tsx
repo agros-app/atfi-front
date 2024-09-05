@@ -51,7 +51,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <section>
-        <h3 className={styles.section_title}>Ofertas activas</h3>
+        <h3 className={styles.section_title}>Proyectos activos</h3>
         <p>
           Estos campos están esperando nuevas inversiones. Podrás ver más sobre
           ellos en la sección de detalles.
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <h3 className={styles.section_title}>Ofertas pasadas</h3>
+        <h3 className={styles.section_title}>Proyectos anteriores</h3>
         <p>
           Inversiones finalizadas que sirven como ejemplo para las nuevas
           inversiones.

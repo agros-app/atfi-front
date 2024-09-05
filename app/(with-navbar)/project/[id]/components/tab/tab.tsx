@@ -8,11 +8,9 @@ import Documents from "@/app/(with-navbar)/project/[id]/components/documents/doc
 import Producer from "@/app/(with-navbar)/project/[id]/components/producer/producer";
 import Stepper from "@/components/stepper/stepper";
 import {ProjectDetailInfo} from "@/types/api";
-
-
-
-type Tabs = "resumen" | "cronograma" | "ubicacion" | "detalles" | "progreso";
-const tabs: Tabs[] = ["resumen", "cronograma", "ubicacion", "detalles", "progreso"];
+import Comercializador from "@/app/(with-navbar)/project/[id]/components/comercializador/comercializador";
+type Tabs = "resumen" | "ubicacion" | "productor" | "comercializador" | "detalles" | "progreso";
+const tabs: Tabs[] = ["resumen", "productor","comercializador", "ubicacion", "detalles", "progreso"];
 
 // Hardcoded steps for now, until we have the data from SIMA
 const steps = [
@@ -46,31 +44,34 @@ export default function Tab(data:ProjectDetailInfo) {
                 <div className={styles.componentContainer}>
                     <Documents/>
                 </div>
-                <div className={styles.componentContainer}>
-                    <Producer producerEmail={data.producerEmail} producerLastName={data.producerLastName} producerName={data.producerName}/>
+                <div className={styles.body}>
+                    <div className={styles.schedule}><Shedule {...data}/></div>
                 </div>
             </div>
         ),
-        "cronograma": (
-            <div className={styles.body}>
-                <div className={styles.schedule}><Shedule {...data}/></div>
-            </div>
-        ),
+        "productor": <div className={styles.body}><Producer/></div>,
+        "comercializador": <div className={styles.body}><Comercializador /></div>,
         "ubicacion": <div className={styles.body}><Map {...data} /></div>,
         "detalles": <div className={styles.body}><DetailsTab /></div>,
-        "progreso": <div className={styles.body}><Stepper steps={steps} /></div>
+        "progreso": <div className={styles.body}><Stepper steps={steps}/></div>
+
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.titles}>
                 {tabs.map(tab => (
-                    <div key={tab} className={tab === activeTab ? styles.selectedTitle : styles.unselectedTitle} onClick={() => setActiveTab(tab)}>
-                        {tab.toUpperCase()}
+                    <div
+                        key={tab}
+                        className={tab === activeTab ? styles.selectedTitle : styles.unselectedTitle}
+                        onClick={() => setActiveTab(tab)}
+                    >
+                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
                     </div>
                 ))}
             </div>
             {content[activeTab]}
         </div>
+
     );
 }

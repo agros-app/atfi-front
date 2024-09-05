@@ -77,10 +77,21 @@
 @media (max-width: 480px) {
   .container {
     padding: 10px;
+    height: 50vh;
+  }
+
+  .tag {
+    margin: auto auto 32px;
+  }
+
+  .imageContainer {
+    display: none;
   }
 
   .heading {
     font-size: 2rem;
+    text-align: center;
+    margin: auto;
   }
 
   .image {
