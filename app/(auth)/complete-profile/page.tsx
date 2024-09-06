@@ -7,9 +7,10 @@ import Select from "@/components/select/Select";
 import Button from "@/components/button/button";
 import { FormEventHandler, useState } from "react";
 import { CompleteUserInfo } from "@/types/api";
-import {completeUserInfo} from "@/lib/api";
+import { completeUserInfo } from "@/lib/api";
 import toast from "react-hot-toast";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { validateCompleteUserInfo, isCompleteUserInfoValid } from "@/utils/auth.validation";
 
 export default function CompleteProfilePage() {
   const options = [
@@ -19,8 +20,8 @@ export default function CompleteProfilePage() {
     { value: "Brasil", title: "🇧🇷 Brasil" },
   ];
 
-  const router= useRouter();
-
+  const router = useRouter();
+  const [errors, setErrors] = useState<Partial<CompleteUserInfo>>({});
   const [formData, setFormData] = useState<CompleteUserInfo>({
     name: '',
     lastName: '',
@@ -36,14 +37,20 @@ export default function CompleteProfilePage() {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    const validationErrors = validateCompleteUserInfo(formData);
+    if (!isCompleteUserInfoValid(validationErrors)) {
+      setErrors(validationErrors);
+      toast.error('Por favor, corrija los errores en el formulario.');
+      return;
+    }
 
     try {
       await completeUserInfo(formData);
-      toast.success('User info submitted successfully!');
+      toast.success('¡Información del usuario enviada con éxito!');
       router.push('/home');
     } catch (error) {
-      console.log(error)
-      toast.error('Error submitting user info.');
+      console.log(error);
+      toast.error('Error al enviar la información del usuario.');
     }
   };
 
@@ -58,12 +65,16 @@ export default function CompleteProfilePage() {
               name="name"
               label="Nombre"
               onChange={handleInputChange}
+              error={!!errors.name}
+              helperText={errors.name}
           />
           <TextField
               placeholder="Ingresá tu apellido"
               name="lastName"
               label="Apellido"
               onChange={handleInputChange}
+              error={!!errors.lastName}
+              helperText={errors.lastName}
           />
           <TextField
               placeholder="Ingresá tu CUIT"
@@ -71,12 +82,16 @@ export default function CompleteProfilePage() {
               label="CUIT"
               type="number"
               onChange={handleInputChange}
+              error={!!errors.cuit}
+              helperText={errors.cuit}
           />
           <TextField
               placeholder="🇦🇷 +54"
               name="phone"
               label="Teléfono"
               onChange={handleInputChange}
+              error={!!errors.phone}
+              helperText={errors.phone}
           />
           <Select
               placeholder="Seleccioná tu país"
@@ -84,8 +99,10 @@ export default function CompleteProfilePage() {
               options={options}
               label="País"
               onChange={handleInputChange}
+              error={!!errors.country}
+              helperText={errors.country}
           />
-          <Button className={styles.buttonContainer} >Continuar</Button>
+          <Button className={styles.buttonContainer}>Continuar</Button>
         </form>
       </div>
   );
