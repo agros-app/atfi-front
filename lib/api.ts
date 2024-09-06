@@ -1,15 +1,16 @@
-import {MessageData, ProjectData, ProjectDetailInfo, User} from "@/types/api";
+import {CompleteUserInfo, MessageData, ProjectData, ProjectDetailInfo, User} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
-import {res} from "pino-std-serializers";
 
-const token= Cookies.get('session')
+export const getToken = (): string | undefined => {
+    return Cookies.get('session');
+};
 const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
     headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        "Authorization": `Bearer ${getToken()}`,
     },
 })
 
@@ -45,3 +46,30 @@ export const createProject= async (project: ProjectFormData) : Promise<ProjectDa
 export const contactWithProducer = async (messageData: MessageData) : Promise<any> =>{
     return await api.post('/project/contactWith', messageData)
 }
+
+export const isAuthorized = async (token: string): Promise<any> => {
+    try {
+        const api = axios.create({
+            baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+        })
+        const response = await api.get('/user/complete-info');
+        return { status: response.status, data: response.data };
+    } catch (error: any) {
+        return { status: error.response?.status || 500, message: error.message };
+    }
+};
+
+export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any> => {
+    const api = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getToken()}`,
+        },
+    })
+    return await api.post('/user/complete-info', userInfo);
+};
