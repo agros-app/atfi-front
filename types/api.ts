@@ -42,6 +42,13 @@ export type User = {
 }
 
 
+export type CompleteUserInfo={
+    name: string;
+    lastName: string;
+    phone: string;
+    country: string;
+    cuit: string;
+}
 export type MessageData ={
     to: string;
     subject: string;
