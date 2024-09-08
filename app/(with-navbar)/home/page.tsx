@@ -5,6 +5,7 @@ import ProjectCard from "@/components/projectCard/projectCard";
 import useProjects from "@/hooks/useProjects";
 import News from "@/components/news/news";
 import image from "@/public/landing/features-bg.jpg";
+import {useRouter} from "next/navigation";
 
 const news = [
     {
@@ -41,17 +42,23 @@ const news = [
 
 export default function Home() {
   const { projects } = useProjects();
+  const router=useRouter();
+
+    const handleCardClick = (projectId: number) => {
+        router.push(`/project/${projectId}`);
+    };
+
   return (
     <main className={styles.main}>
       <section>
-        <h3 className={styles.section_title}>Ofertas activas</h3>
+        <h3 className={styles.section_title}>Proyectos activos</h3>
         <p>
           Estos campos están esperando nuevas inversiones. Podrás ver más sobre
           ellos en la sección de detalles.
         </p>
         <div className={styles.projects}>
         {projects.map((project) => (
-        <ProjectCard disabled={false} project={project} key={project.id} />
+        <ProjectCard disabled={false} project={project} key={project.id} onClick={()=> handleCardClick(project.id)} />
       ))}
         </div>
         <div className={styles.more_info}>
@@ -59,14 +66,14 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <h3 className={styles.section_title}>Ofertas pasadas</h3>
+        <h3 className={styles.section_title}>Proyectos anteriores</h3>
         <p>
           Inversiones finalizadas que sirven como ejemplo para las nuevas
           inversiones.
         </p>
           <div className={styles.projects}>
               {projects.slice(0, 3).map((project) => (
-                  <ProjectCard disabled={true} project={project} key={project.id} />
+                  <ProjectCard disabled={true} project={project} key={project.id}/>
               ))}
             </div>
       </section>

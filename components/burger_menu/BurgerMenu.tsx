@@ -27,8 +27,10 @@ export default function BurgerMenu({ user }) {
 
             <ul className={styles.menuBox}>
                 <li><Link className={styles.menuItem} href="/home">Home</Link></li>
-                <li><Link className={styles.menuItem} href="/projects">Proyectos</Link></li>
-                <li><Link className={styles.menuItem} href="/portfolio">Portfolio</Link></li>
+                <li><Link className={styles.menuItem} href="/projects">Proyecto</Link></li>
+                {/*TODO: Add portfolio when is available*/}
+                {/*<li><Link className={styles.menuItem} href="/portfolio">Portfolio</Link></li>*/}
+                <li><Link className={styles.menuItem} href="/submit-project">Subir proyecto</Link></li>
                 {user && (
                     <li>
                         <a
@@ -43,7 +45,7 @@ export default function BurgerMenu({ user }) {
                         </a>
                     </li>
                 )}
-                <li><Link className={styles.menuItem} href="/perfil">Perfil</Link></li>
+                <li><Link className={styles.menuItem} href="/profile">Perfil</Link></li>
                 {user ? (
                     <>
                         <li><Link className={styles.menuItem} href="/" onClick={logOut}>Cerrar sesión</Link></li>

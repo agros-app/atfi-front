@@ -4,11 +4,19 @@ import styles from "./projects.module.scss";
 import Filters from "./components/filters/filters";
 import Select from "@/components/select/Select";
 import useProjects from "@/hooks/useProjects";
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 export default function ProjectsPage() {
   const {projects} = useProjects();
-  // TODO: Integrate backend
-  const options = [
+  const router = useRouter();
+
+    const handleCardClick = (projectId: number) => {
+        router.push(`/project/${projectId}`);
+    };
+
+
+    const options = [
     { value: "asc", title: "Mas recientes" },
     { value: "desc", title: "Mas antiguos" },
   ];
@@ -24,7 +32,7 @@ export default function ProjectsPage() {
         <Filters />
         <div className={styles.projects_container}>
           {projects.map((project) => (
-            <ProjectCard project={project} key={project.id} />
+            <ProjectCard project={project} key={project.id} onClick={() =>handleCardClick(project.id)}  />
           ))}
         </div>
       </section>

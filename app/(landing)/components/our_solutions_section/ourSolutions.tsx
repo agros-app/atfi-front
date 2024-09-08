@@ -4,7 +4,7 @@ import ProjectCard from "@/components/projectCard/projectCard";
 import styles from "./ourSolutions.module.scss";
 import Image from "next/image";
 import Button from "@/components/button/button";
-import { Project } from "@/types/api";
+import {Project, ProjectData} from "@/types/api";
 
 const animationStyles = {
   container: {
@@ -39,18 +39,26 @@ const animationStyles = {
   }
 };
 
-const defaultProject:Project = {
-  addressId: 0,
+const defaultProject: ProjectData = {
+  id: 1,
+  name: "Cultivo de Soja en Córdoba",
+  amountNeed: 100000,
   amountCollected: 30000,
-  amountNeed:100000,
-  description:"",
-  endDate: "2025-12-12",
-  id: 0,
   minAmount: 1000,
-  name: "Cultivo de Soja",
-  seeds: ["soja"],
   startDate: "2024-12-12",
-  status: "APPROVED" 
+  endDate: "2025-12-12",
+  status: "APPROVED",
+  addressId: 123,
+  description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",
+  seeds: ["soja", "maíz"],
+
+  country: "Argentina",
+  city: "Córdoba",
+  zipCode: "5000",
+  state: "Córdoba",
+  area: 50, // Hectáreas
+  latitude: "-31.4201",
+  longitude: "-64.1888"
 }
 
 export default function OurSolutionsSection() {

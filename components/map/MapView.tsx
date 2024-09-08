@@ -6,27 +6,29 @@ import 'leaflet/dist/leaflet.css';
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 
-const MapComponent = () => {
+type MapViewProps = {
+    latitude: number;
+    longitude: number;
+};
+
+const MapView = ({latitude,longitude}: MapViewProps) => {
     const [isClient, setIsClient] = useState(false);
     useEffect(() => {
         setIsClient(true);
     }, []);
 
-    //TODO: Add integration with real coordinates of a project with backend
-    const lat = -33.454793
-    const lng = -55.131597
 
 
     return isClient ?(
         // @ts-ignore
-        <MapContainer center={[lat, lng]} zoom={16} style={{height: '250px', width: '100%', position: 'sticky'}}
+        <MapContainer center={[latitude, longitude]} zoom={16} style={{height: '250px', width: '100%', position: 'sticky'}}
                       scrollWheelZoom={false}>
             <TileLayer
                 // @ts-ignore
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[lat, lng]}>
+            <Marker position={[latitude, longitude]}>
                 <Popup>
                     Ubicacion del campo
                 </Popup>
@@ -35,4 +37,4 @@ const MapComponent = () => {
     ): null;
 };
 
-export default MapComponent;
+export default MapView;

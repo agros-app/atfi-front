@@ -1,3 +1,5 @@
+@import "styles/media.scss";
+
 .screenDivision {
   display: flex;
   flex-direction: row;
@@ -5,7 +7,7 @@
 
 .leftHandSide{
   overflow: auto;
-  width: 300px; // if modified, modify it in sideBar.module.scss as well
+  width: 300px; // if modified, modify it in sideBar.module.scss as well!
 }
 
 .mainContent {
@@ -15,4 +17,40 @@
   flex: 1;
   overflow: auto;
   padding: 50px 70px;
+}
+
+@include laptop{
+
+  .mainContent {
+    padding: 50px 30px;
+    gap: 30px;
+  }
+  .leftHandSide{
+    overflow: auto;
+    width: 250px; // if modified, modify it in sideBar.module.scss as well
+  }
+}
+
+
+@include tablet {
+  .leftHandSide{
+    overflow: auto;
+    width: 60px; // if modified, modify it in sideBar.module.scss as well
+  }
+}
+
+
+@media (max-width: 600px) {
+  .leftHandSide {
+    display: none;
+  }
+  .mainContent {
+    padding: 50px 10px;
+  }
+}
+
+@include mobile{
+    .mainContent {
+        padding: 50px 10px;
+    }
 }

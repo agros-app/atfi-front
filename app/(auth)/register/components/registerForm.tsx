@@ -115,9 +115,7 @@ export default function RegisterForm(){
                 label="Contraseña"
                 type="password"
             />
-            <Button
-                className={styles.buttonContainer}
-            >
+            <Button variant="primary" size="lg" className={styles.buttonContainer}>
                 Continuar
             </Button>
         </form>

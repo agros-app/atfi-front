@@ -75,6 +75,13 @@ export const getSession = async (): Promise<UserSession | null> => {
     return payload
 }
 
+export const getToken = async (): Promise<string | null> => {
+    const session = cookies().get('session')?.value
+    if (!session) {
+        return null
+    }
+    return session
+}
 export function deleteSession() {
     cookies().delete('session')
 }

@@ -15,6 +15,9 @@ type FinancialInfoProps = {
   currentAmount: number;
   goalAmount: number;
   minAmount: number;
+  country: string
+  seed: string
+  area: number
 };
 
 
@@ -23,6 +26,9 @@ export default function FinancialInfo({
   currentAmount,
   goalAmount,
   minAmount,
+    country,
+    seed,
+    area
 }: FinancialInfoProps) {
   const { investInLending, loading } = useLending();
   const percentage = Math.floor((currentAmount / goalAmount) * 100);
@@ -57,16 +63,17 @@ export default function FinancialInfo({
         </div>
         <ul className={styles.leaders}>
           <li>
+            {/*Only shows the principal seed*/}
             <span>Tipo de cosecha</span>
-            <span>Soja</span>
+            <span>{seed}</span>
           </li>
           <li>
             <span>Ubicación</span>
-            <span>Argentina</span>
+            <span>{country}</span>
           </li>
           <li>
             <span>Tamaño</span>
-            <span>25 Ha</span>
+            <span>{`${area} Ha`}</span>
           </li>
 
           {/*<li>*/}
