@@ -2,7 +2,6 @@
 import React from 'react';
 import styles from './detailsTab.module.scss';
 import ReactECharts from 'echarts-for-react';
-import Stepper from "@/components/stepper/stepper";
 
 const CostEvolutionChart = () => {
     const options = {
@@ -84,7 +83,7 @@ const FarmingCostPieChart = () => {
 const ComparativeCostBarChart = () => {
     const options = {
         title: {
-            text: 'Comparación de Costos Agrícolas por Categoría',
+            text: 'Costos Agrícolas por Categoría',
         },
         tooltip: {
             trigger: 'axis',
