@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./whatsapp.module.scss";
+import Image from "next/image";
+import whatsAppImage from "@assets/images/whatsapp_icon.png";
 
 export default function Whatsapp() {
   return (
     <div className={styles.container}>
         <a href="https://wa.me/541132568564" target="_blank" rel="noopener noreferrer">
-            <img
-                src={"/whatsapp_icon.png"}
+            <Image
+                src={whatsAppImage.src}
+                width={whatsAppImage.width}
+                height={whatsAppImage.height}
                 alt="Whatsapp Icon"
                 className={styles.image}
             />

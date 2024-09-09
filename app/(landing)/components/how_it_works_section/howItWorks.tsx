@@ -1,22 +1,22 @@
 "use client";
 import LandingCard, { LandingCardProps } from "../landingCard/landingCard";
 import styles from "./howItWorks.module.scss";
+import cultivoImage from "@assets/images/cultivo.webp"
+import machinesImage from "@assets/images/machines.webp"
 
 const cards: LandingCardProps[] = [
   {
     title: "Explorá",
     description:
       "En nuestra plataforma encontrarás diversas oportunidades de inversión disponibles. Cada oportunidad de inversión es cuidadosamente seleccionada y evaluada por nuestro equipo de expertos para garantizar su viabilidad y potencial de retorno. Además, proporcionamos toda la información y herramientas necesarias para que puedas tomar decisiones informadas.",
-    icon: "https://cdn-icons-png.flaticon.com/512/1160/1160908.png",
-    image: "/landing/pexels-alejandro-barron-21404-96715.png",
+    image: cultivoImage,
     reverse: false,
   },
   {
     title: "Invertí",
     description:
       "Seleccioná la oportunidad de inversión que mejor se adapte a tus objetivos financieros y estrategias de inversión. Con una interfaz intuitiva y fácil de usar, invertir en el sector agro nunca ha sido tan accesible.",
-    icon: "https://cdn-icons-png.flaticon.com/512/1160/1160908.png",
-    image: "/landing/pexels-pixabay-163752.jpg",
+    image: machinesImage,
     reverse: true,
   },
   /* {
@@ -37,7 +37,6 @@ export default function HowItWorksSection() {
           <LandingCard
             key={index}
             description={item.description}
-            icon={item.icon}
             image={item.image}
             title={item.title}
             reverse={item.reverse}
