@@ -16,7 +16,7 @@ export default function News( news: NewsProps ) {
     return (
         <div className={styles.container}>
             <div className={styles.topSide}>
-                <Image src={imageSrc} alt={"image"} className={styles.image} />
+                <Image src={imageSrc.src} alt={"image"} className={styles.image} width={imageSrc.width} height={imageSrc.height} />
             </div>
             <div className={styles.bottomSide}>
                 <div className={styles.newspaper}>

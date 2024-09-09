@@ -7,6 +7,7 @@ import {useState} from "react";
 import useUserInfo from "@/hooks/useUserInfo";
 import toast, {useToaster} from "react-hot-toast";
 import {contactWithProducer} from "@/lib/api";
+import nicoImage from "@assets/images/owners/nico.webp";
 
 export default function Producer({producerName,producerLastName,producerEmail}:Partial<ProjectDetailInfo>){
     const [message, setMessage] = useState('');
@@ -37,7 +38,7 @@ export default function Producer({producerName,producerLastName,producerEmail}:P
         <div className={styles.container}>
             <div className={styles.title}>Productor</div>
             <div className={styles.profile}>
-                <ProfileImage src={"/owners/nico.jpg"} size={60} />
+                <ProfileImage src={nicoImage.src} size={60} />
                 <div className={styles.name}>{`${producerName} ${producerLastName}`}</div>
             </div>
             <div className={styles.title}>Envianos un mensaje</div>

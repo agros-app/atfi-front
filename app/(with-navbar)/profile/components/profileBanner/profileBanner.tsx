@@ -5,6 +5,7 @@ import {useState} from "react";
 import Button from "@/components/button/button";
 import EditModalForm from "@/app/(with-navbar)/profile/components/editModal/editModal";
 import {User} from "@/types/api";
+import nicoImage from "@/public/owners/nico.webp";
 
 type ProfileBannerProps = {
     user: User;
@@ -24,7 +25,7 @@ export default function ProfileBanner({user}: ProfileBannerProps) {
     return (
       <div className={styles.container}>
           <div className={styles.image}>
-            <ProfileImage src={"/owners/nico.jpg"} size={100}></ProfileImage>
+            <ProfileImage src={nicoImage.src} size={100}></ProfileImage>
           </div>
           <div className={styles.data}>
               <h3 className={styles.title}>{user.name + " " + user.lastName}</h3>

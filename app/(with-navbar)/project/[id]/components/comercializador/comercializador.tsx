@@ -1,5 +1,6 @@
 import styles from "./comercializador.module.scss";
 import ProfileImage from "@/components/profileImage/profileImage";
+import nicoImage from "@assets/images/owners/nico.webp";
 
 export default function Comercializador() {
 
@@ -15,7 +16,7 @@ export default function Comercializador() {
         <div className={styles.container}>
             <div className={styles.title}>Comercializador</div>
             <div className={styles.profile}>
-                <ProfileImage src={"/owners/nico.jpg"} size={60}/>
+                <ProfileImage src={nicoImage.src} size={60}/>
                 <div className={styles.name}>Pepito Valverde</div>
             </div>
             <p>{fullText}</p>
