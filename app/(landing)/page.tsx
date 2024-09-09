@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <LandingNavBar />
       <main>
-        <VideoSection />
+        <VideoSection  />
         <FeatureSection />
         <HowItWorksSection />
         <OurSolutionsSection />

@@ -37,7 +37,7 @@ const animationStyles = {
 
 export default function VisionSection() {
   return (
-      <motion.section className={styles.container} {...animationStyles.container}>
+      <motion.section className={styles.container} {...animationStyles.container} id={"vision"}>
         <motion.div className={styles.cardsContainer} {...animationStyles.cardsContainer}>
           <motion.div className={styles.vision} {...animationStyles.card}>
             <div className={styles.cardIcon} />

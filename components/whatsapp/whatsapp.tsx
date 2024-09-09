@@ -3,7 +3,7 @@ import styles from "./whatsapp.module.scss";
 
 export default function Whatsapp() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id={"whatsapp"}>
         <a href="https://wa.me/541132568564" target="_blank" rel="noopener noreferrer">
             <img
                 src={"/whatsapp_icon.png"}
