@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./profileImage.module.scss";
+import Image from "next/image";
 
 type ProfileImageProps = {
   src: string;
@@ -22,7 +23,7 @@ export default function ProfileImage({
         filter: grayFilter ? "grayscale(100%)" : "none",
       }}
     >
-      <img src={src} alt="Profile Icon" className={styles.iconImage} />
+      <Image src={src} alt="Profile Icon" width={size} height={size}  className={styles.iconImage} />
     </div>
   );
 }

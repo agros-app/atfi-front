@@ -2,6 +2,9 @@
 import { motion } from "framer-motion";
 import styles from "./aboutUs.module.scss";
 import OwnerProfile from "@/components/ownerProfile/ownerProfile";
+import gabiImage from "@assets/images/owners/gabi.webp"
+import nicoImage from "@assets/images/owners/nico.webp"
+import gianImage from "@assets/images/owners/gian.webp"
 
 const animationStyles = {
     container: {
@@ -39,21 +42,21 @@ export default function AboutUs() {
             <motion.div className={styles.us} {...animationStyles.us}>
                 <motion.div {...animationStyles.profile}>
                     <OwnerProfile
-                        src="/owners/gian.jpg"
+                        src={gianImage.src}
                         name={"Gianluca Chiaverano"}
                         job={"Co-Founder & COO"}
                     />
                 </motion.div>
                 <motion.div {...animationStyles.profile}>
                     <OwnerProfile
-                        src="/owners/nico.jpg"
+                        src={nicoImage.src}
                         name={"Nicolas Ruíz Natale"}
                         job={"Co-Founder & CEO"}
                     />
                 </motion.div>
                 <motion.div {...animationStyles.profile}>
                     <OwnerProfile
-                        src="/owners/gabi.jpg"
+                        src={gabiImage.src}
                         name={"Gabriel Giana"}
                         job={"Co-Founder & CTO"}
                     />
