@@ -5,7 +5,7 @@ import {useState} from "react";
 import Button from "@/components/button/button";
 import EditModalForm from "@/app/(with-navbar)/profile/components/editModal/editModal";
 import {User} from "@/types/api";
-import nicoImage from "@/public/owners/nico.webp";
+import nicoImage from "@assets/images/owners/nico.webp";
 
 type ProfileBannerProps = {
     user: User;
