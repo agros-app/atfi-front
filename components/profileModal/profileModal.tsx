@@ -4,6 +4,9 @@ import {useWeb3} from "@/context/web3Modal";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {User} from "@/types/api";
+import ExitIcon from '@/assets/icons/exitIcon';
+import ControlsIcon from '@/assets/icons/controls';
+import WalletIcon from '@/assets/icons/wallet';
 
 type ProfileModalProps = {
     closeModal: () => void;
@@ -42,17 +45,17 @@ export default function ProfileModal({closeModal,user}: ProfileModalProps) {
             <div className={styles.innerContainer}>
                 {/*THE LINK IS HARDCODED*/}
                 <Link href='/profile' className={styles.row} onClick={closeModal}>
-                    <img src={"/controls.svg"} alt="controles"/>
+                    <ControlsIcon />
                     <p className={styles.text}>Configuración</p>
                 </Link>
                 <div className={styles.row} onClick={handleWallet}>
-                    <img src={"/billetera.svg"} alt="billetera"/>
+                    <WalletIcon />
                     <p className={styles.text}>Tus billeteras</p>
                 </div>
             </div>
             <div className={styles.bottomContainer}>
                 <div className={styles.row} onClick={logOut}>
-                    <img src={"/salir.svg"} alt="salir"/>
+                    <ExitIcon />
                     <p className={styles.redText}>Salir</p>
                 </div>
             </div>
