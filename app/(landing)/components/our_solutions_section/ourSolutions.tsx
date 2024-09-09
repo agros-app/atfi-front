@@ -5,6 +5,7 @@ import styles from "./ourSolutions.module.scss";
 import Image from "next/image";
 import Button from "@/components/button/button";
 import {Project, ProjectData} from "@/types/api";
+import cowImage from "@assets/images/cow.webp"
 
 const animationStyles = {
   container: {
@@ -95,7 +96,7 @@ export default function OurSolutionsSection() {
               {...animationStyles.imageContainer}
           >
             <Image
-                src={"/landing/cow.jpg"}
+                src={cowImage.src}
                 alt="cow"
                 sizes="100%"
                 fill

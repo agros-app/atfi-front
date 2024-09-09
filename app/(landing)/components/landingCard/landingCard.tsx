@@ -1,19 +1,19 @@
 import styles from "./landingCard.module.scss";
 import { motion } from "framer-motion";
 import { itemVariants } from "./variants";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
 
 export type LandingCardProps = {
   title: string;
   description: string;
-  icon: string;
-  image: string;
+  image: StaticImageData;
   reverse?: boolean;
 };
 
 export default function LandingCard({
   title,
   description,
-  icon,
   image,
   reverse,
 }: LandingCardProps) {
@@ -26,7 +26,7 @@ export default function LandingCard({
       className={`${styles.cardContainer} ${reverse ? styles.reverse : styles.row}`}
     >
       <div className={styles.imageWrapper}>
-        <img className={styles.backgroundImage} src={image} alt="background" />
+        <Image src={image.src} alt="landing card image" width={image.width} height={image.height} className={styles.backgroundImage}/>
       </div>
       <div className={styles.textWrapper}>
         <h2 className={styles.title}>{title}</h2>
