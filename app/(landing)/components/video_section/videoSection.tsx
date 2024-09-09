@@ -6,7 +6,7 @@ import Button from "@/components/button/button";
 export default function VideoSection() {
   return (
     <section className={styles.container} id="video">
-      <video className={styles.backgroundVideo} autoPlay loop muted>
+      <video className={styles.backgroundVideo} autoPlay loop muted playsInline>
         <source src="/landing/landing-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
