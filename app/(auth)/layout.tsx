@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./auth.module.scss";
+import authBackground from "@assets/images/auth_background.webp"
 export default function AuthLayout({
   children,
 }: {
@@ -10,7 +11,7 @@ export default function AuthLayout({
       <section className={styles.left}>{children}</section>
       <div className={styles.right}>
         <Image
-          src={"/auth/bg_auth.jpg"}
+          src={authBackground}
           alt="atfi login background"
           fill
           style={{ objectFit: "cover" }}

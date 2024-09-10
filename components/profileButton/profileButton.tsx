@@ -4,6 +4,7 @@ import ProfileImage from "@/components/profileImage/profileImage";
 import ProfileModal from "@/components/profileModal/profileModal";
 import { useRef, useState, useEffect } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
+import nicoImage from "@assets/images/owners/nico.webp";
 
 export default function ProfileButton() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +45,7 @@ export default function ProfileButton() {
     return (
         <div className={styles.profileButtonContainer}>
             <div ref={profileImageRef} onClick={setModal} className={styles.image}>
-                <ProfileImage src={"/owners/nico.jpg"} size={60} />
+                <ProfileImage src={nicoImage.src} size={60} />
             </div>
             {isModalOpen && (
                 <div ref={modalRef}>

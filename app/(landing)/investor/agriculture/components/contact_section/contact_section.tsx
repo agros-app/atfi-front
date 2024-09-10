@@ -5,7 +5,8 @@ import {ChangeEvent, FormEvent, useState} from 'react';
 import styles from './contact_section.module.scss';
 import TextField from "@/components/textField/textField";
 import emailjs from 'emailjs-com';
-
+import Image from 'next/image';
+import contactUsImage from "@assets/images/agriculture/contact_us.webp"
 
 
 interface FormData {
@@ -91,11 +92,13 @@ function ContactForm() {
         <div className={styles.contactFormContainer}>
             <h2 className={styles.heading}>Comenzá tu camino en el agro con nosotros</h2>
             <div className={styles.content}>
-                <div className={styles.imageContainer}>
-                    <img
+            <div className={styles.imageContainer}>
+                    <Image
                         alt="Contact us"
                         className={styles.image}
-                        src="/agriculture/contact_us.avif"
+                        src={contactUsImage.src}
+                        width={contactUsImage.width}
+                        height={contactUsImage.height}
                     />
                 </div>
                 <form className={styles.form} onSubmit={handleSubmit}>

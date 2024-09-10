@@ -2,13 +2,13 @@
 import Image from "next/image";
 import styles from "./projectCard.module.scss";
 import Button from "@/components/button/button";
-import { useRouter } from "next/navigation";
 import LocationIcon from "@/assets/icons/location";
 import TimeIcon from "@/assets/icons/time";
 import SeedIcon from "@/assets/icons/seed";
 import ProgressBar from "../progressBar/progressBar";
-import {Project, ProjectData} from "@/types/api";
+import {ProjectData} from "@/types/api";
 import { getDaysLeft, getPercentage } from "@/utils";
+import farmImage from "@assets/images/farm_image.webp"
 
 type ProjectCardProps = {
   project: ProjectData;
@@ -36,7 +36,7 @@ export default function ProjectCard({
       >
         <div className={styles.top}>
           <Image
-              src={"/farm-image.png"}
+              src={farmImage.src}
               alt="Farm Image"
               fill
               priority

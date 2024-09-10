@@ -1,5 +1,7 @@
 import styles from "./hero.module.scss";
-
+import Hero1 from "@assets/images/agriculture/hero1.webp"
+import Hero2 from "@assets/images/agriculture/hero2.webp"
+import Image from "next/image";
 export default function Hero() {
     return (
         <div className={styles.container}>
@@ -12,15 +14,19 @@ export default function Hero() {
                 </h1>
             </div>
             <div className={styles.imageContainer}>
-                <img
+                <Image
                     alt={"Hero image"}
                     className={styles.image}
-                    src="/agriculture/hero2.jpg"
+                    src={Hero1.src}
+                    width={Hero1.width}
+                    height={Hero1.height}
                 />
-                <img
+                <Image
                     alt={"Second Hero image"}
                     className={styles.secondImage}
-                    src="/agriculture/hero.jpg"
+                    src={Hero2.src}
+                    width={Hero2.width}
+                    height={Hero2.height}
                 />
             </div>
         </div>
