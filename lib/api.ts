@@ -31,6 +31,7 @@ export const investByProjectId = async (id: number, amount: number): Promise<voi
             amount
         })
     })
+
 }
 
 export const getUserInfo = async (): Promise<User> => {
