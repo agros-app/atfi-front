@@ -7,7 +7,7 @@ export default function Page() {
         <>
             <AlternativeNavbar />
             <main className={styles.main}>
-                <h1 className={styles.h1}>Proximamente en AGRAS</h1>
+                <h1 className={styles.h1}>Proximamente en ATFI</h1>
             </main>
         </>
     );

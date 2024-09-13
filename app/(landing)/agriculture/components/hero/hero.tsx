@@ -10,7 +10,7 @@ export default function Hero() {
                 <h1 className={styles.heading}>
                     Digitalizá tu campaña agricola.
                     Elegí tu transformacion con
-                    <span> Agras.</span>
+                    <span> Atfi.</span>
                 </h1>
             </div>
             <div className={styles.imageContainer}>

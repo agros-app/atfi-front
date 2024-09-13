@@ -23,12 +23,12 @@ const featureList = [
   {
     title: "Innovación tecnológica",
     description:
-      "Lidera la integracion de blockchain en modelos de financiacion tradiconales, mediante la adopcion de tecnologias innovadoras. AGRAS busca derribar barreras geograficas y dar una opcion de acceso al sector.",
+      "Lidera la integracion de blockchain en modelos de financiacion tradiconales, mediante la adopcion de tecnologias innovadoras. ATFI busca derribar barreras geograficas y dar una opcion de acceso al sector.",
   },
   {
     title: "Seguridad Juridica",
     description:
-      "AGRAS tiene un compromiso inquebrantable para con su ecosistema de respetar los marcos legales y regulatorios, es por eso que cada proyecto se encuadra bajo una figura de fideicomiso.",
+      "ATFI tiene un compromiso inquebrantable para con su ecosistema de respetar los marcos legales y regulatorios, es por eso que cada proyecto se encuadra bajo una figura de fideicomiso.",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function FeatureSection() {
         variants={itemVariants}
         className={styles.description}
       >
-      Agras es una plataforma digital que te permite acceder a los rendimientos del sector agropecuario asociándote a una campaña productiva.
+      Atfi es una plataforma digital que te permite acceder a los rendimientos del sector agropecuario asociándote a una campaña productiva.
       </motion.p>
       <motion.div
         initial="hidden"
