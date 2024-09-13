@@ -79,7 +79,7 @@ export default function Home() {
       </section>
         <section>
             <h3 className={styles.section_title}>Recursos</h3>
-            <p>Las principales noticias del agro uruguayo y de ATFI están acá.</p>
+            <p>Las principales noticias del agro uruguayo y de AGRAS están acá.</p>
             <div className={styles.projects}>
                 {news.map((news, index) => (
                     <News {...news} key={index} />

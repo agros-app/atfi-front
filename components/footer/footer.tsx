@@ -55,7 +55,7 @@ const Footer = () => {
         <div className={styles.footerSection}>
           <h3>Contacto</h3>
           <ul>
-            <li>Email: atfisoporte@atfi.com</li>
+            <li>Email: agras.soporte@agras.com</li>
             <li>Teléfono: +123 456 7890</li>
           </ul>
 

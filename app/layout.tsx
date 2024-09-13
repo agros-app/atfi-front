@@ -12,7 +12,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "ATFI",
+  title: "AGRAS",
   description: "The easiest way to invest your money in agro",
 };
 
