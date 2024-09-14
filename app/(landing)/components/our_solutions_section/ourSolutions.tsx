@@ -111,13 +111,6 @@ export default function OurSolutionsSection() {
               Se parte de la <span>ganadería</span>{" "}
               en latinoamérica
             </h2>
-            {/* <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor, ut labore et dolore magna aliqua. Lorem ipsum dolor
-              sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed do eiusmod tempor, ut labore et. Dolor sit
-              amet, consectetur adipiscing elit
-            </p> */}
             <Button disabled variant="custom" className={styles.button}>
               Proximamente
             </Button>

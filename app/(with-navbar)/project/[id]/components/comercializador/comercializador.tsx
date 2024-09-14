@@ -4,12 +4,7 @@ import nicoImage from "@assets/images/owners/nico.webp";
 
 export default function Comercializador() {
 
-    const fullText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
-                Vulputate mi sit amet mauris commodo quis imperdiet. Elementum nibh tellus molestie nunc non blandit
-                massa enim nec. Ut etiam sit amet nisl purus in. Nunc id cursus metus aliquam eleifend. Praesent
-                elementum facilisis leo vel fringilla est ullamcorper eget nulla.`;
+    const fullText = `Nuestra empresa, AgroComercial, se especializa en la comercialización de productos agrícolas, conectando a los productores con mercados locales e internacionales. Contamos con más de 20 años de experiencia en el sector, proporcionando soluciones innovadoras y logísticas eficientes que aseguran que los productos agrícolas lleguen en óptimas condiciones a su destino final. AgroComercial trabaja en estrecha colaboración con agricultores, cooperativas y distribuidores para ofrecer precios competitivos y maximizar los beneficios de nuestros clientes. Nuestra red de distribución cubre las principales zonas productoras del país, garantizando un servicio de calidad en cada etapa del proceso.`;
 
 
     return (
