@@ -52,7 +52,7 @@ type StepIndicatorProps = {
     totalSteps: number;
 };
 
-export function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
+function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
     return (
         <div className={styles.stepIndicator}>
             {Array.from({ length: totalSteps }, (_, i) => (
@@ -68,8 +68,6 @@ export function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
         </div>
     );
 }
-
-
 
 
 async function handleResponse(data: ProjectFormData, router: AppRouterInstance) {
