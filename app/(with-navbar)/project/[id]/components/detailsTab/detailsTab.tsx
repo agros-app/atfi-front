@@ -6,7 +6,7 @@ import ReactECharts from 'echarts-for-react';
 const CostEvolutionChart = () => {
     const options = {
         title: {
-            text: 'Evolución del costo a lo largo del tiempo',
+            text: 'Evolución del costo en el tiempo',
         },
         tooltip: {
             trigger: 'axis',

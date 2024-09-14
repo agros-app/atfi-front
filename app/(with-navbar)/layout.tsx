@@ -8,7 +8,9 @@ export default function WithNavbarLayout({
   return (
     <>
       <NavBar />
-      {children}
+        <div style={{ marginTop: '73px' }}>
+            {children}
+        </div>
     </>
   );
 }
