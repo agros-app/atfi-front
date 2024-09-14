@@ -5,35 +5,30 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
-  padding-bottom: 48px;
-  box-sizing: border-box;
-  background-image: url("/agriculture/imagen_campo.webp"); //Aunque muestre error de esto, se muestra la imagen y el front buildea.
-  background-repeat: no-repeat;
-  background-position: 50%;
   background-size: cover;
-  min-height: 100vh;
+  min-height: calc(100vh - 73px);
+  background: var(--bg-color, #F0F0E3);
+  padding-top: 16px;
 }
 
 .formContainer {
   display: flex;
   padding: 16px;
-  width: 40vw;
+  width: 100vw;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 14px;
   box-sizing: border-box;
-  border-radius: 24px;
-  background: var(--bg-color, #F0F0E3);
+  border-radius: 5px;
+  flex: 1;
+  height: 100%;
 }
 
 .forms {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
-  width: 100%;
+  gap: 16px;
+  max-width: 60%;
   padding: 8px;
 }
 
@@ -51,7 +46,7 @@
   justify-content: center;
   width: 35%;
   align-self: center;
-  border-radius:20px ;
+  border-radius:8px ;
 }
 
 .navigationButtons{
@@ -126,3 +121,39 @@
 .forms, .info {
   width: 100%;
 }
+
+.stepIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+.activeStep {
+  background-color: $dark-green;
+  color: white;
+}
+
+.line {
+  width: 50px;  /* Adjust as necessary */
+  height: 2px;
+  background-color: #e0e0e0;
+}
+
+.activeStep + .line {
+  background-color: $dark-green;
+}
+

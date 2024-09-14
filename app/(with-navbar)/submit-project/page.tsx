@@ -47,6 +47,31 @@ const INITIAL_DATA: ProjectFormData = {
     seed: [],
 };
 
+type StepIndicatorProps = {
+    currentStep: number;
+    totalSteps: number;
+};
+
+export function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
+    return (
+        <div className={styles.stepIndicator}>
+            {Array.from({ length: totalSteps }, (_, i) => (
+                <React.Fragment key={i}>
+                    <div
+                        className={`${styles.step} ${i <= currentStep ? styles.activeStep : ''}`}
+                    >
+                        {i + 1}
+                    </div>
+                    {i < totalSteps - 1 && <div className={styles.line} />}
+                </React.Fragment>
+            ))}
+        </div>
+    );
+}
+
+
+
+
 async function handleResponse(data: ProjectFormData, router: AppRouterInstance) {
     await createProject(data).then(() => {
             toast.success("El proyecto ha sido creado exitosamente, " +
@@ -99,6 +124,7 @@ export default function ProjectForm() {
 
     return (
         <div className={styles.pageContainer}>
+            <StepIndicator currentStep={currentStep} totalSteps={steps.length} />
             <form onSubmit={onSubmit}>
                 <div className={styles.formContainer}>
                     <div className={styles.forms}>
