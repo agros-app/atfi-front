@@ -11,7 +11,7 @@ const FeaturesSection = () => {
             <div className={styles.cards}>
                 <div className={styles.card}>
                     <img src="/agriculture/growth_icon.png" alt="Liquidez inmediata" className={styles.icon} />
-                    <h3>Financiacion</h3>
+                    <h3>Financiación</h3>
                     <p>Accedé a financiación inmediata con tus granos y optimizá tu capital de trabajo.</p>
                 </div>
                 <div className={styles.card}>

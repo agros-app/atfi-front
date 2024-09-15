@@ -4,7 +4,7 @@ import AlternativeNavbar from "@/app/(landing)/components/alternativeNavbar/navb
 export default function GanaderiaPage(){
     return <>
         <main className={styles.main}>
-            <h1 className={styles.h1}>Proximamente en AGRAS</h1>
+            <h1 className={styles.h1}>Próximamente en AGRAS</h1>
         </main>
     </>
 }

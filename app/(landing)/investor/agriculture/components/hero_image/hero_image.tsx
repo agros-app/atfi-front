@@ -6,17 +6,18 @@ import wheatImage from "@assets/images/investors/agriculture/wheat.webp";
 
 export default function HeroImage(){
     return(
-        <div>
-            <Image
-                alt={"Hero image"}
-                className={styles.image}
-                src={wheatImage.src}
-                width={wheatImage.width}
-                height={wheatImage.height}
-            />
+        <>
+            <div className={styles.image}>
+                <Image
+                    alt={"Hero image"}
+                    src={wheatImage.src}
+                    width={wheatImage.width}
+                    height={wheatImage.height}
+                />
+            </div>
             <div className={styles.favoriteWallet}>
                 <FavoriteWallet />
             </div>
-        </div>
+        </>
     )
 }
