@@ -9,7 +9,7 @@ export default function Hero() {
                 <p className={styles.tag}>AGRICULTORES</p>
                 <h1 className={styles.heading}>
                     Digitalizá tu campaña agricola.
-                    Elegí tu transformacion con
+                    Elegí tu transformación con
                     <span> Agras.</span>
                 </h1>
             </div>

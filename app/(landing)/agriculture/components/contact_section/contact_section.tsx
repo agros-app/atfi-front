@@ -102,7 +102,7 @@ function ContactForm() {
                     />
                 </div>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <h4>Contactanos para mas informacion</h4>
+                    <h4>Contactanos para mas información</h4>
                     <TextField placeholder="Nombre y Apellido" name="name" onChange={handleChange} />
                     <TextField placeholder="Email" name="email" onChange={handleChange}/>
                     <TextField type={"number"} placeholder="Teléfono" name="phone" onChange={handleChange}/>

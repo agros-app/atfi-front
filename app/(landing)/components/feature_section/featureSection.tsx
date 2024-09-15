@@ -23,7 +23,7 @@ const featureList = [
   {
     title: "Innovación tecnológica",
     description:
-      "Lidera la integración de blockchain en modelos de financiación tradiconales, mediante la adopcion de tecnologías innovadoras. AGRAS busca derribar barreras geográficas y dar una opción de acceso al sector.",
+      "Lidera la integración de blockchain en modelos de financiación tradiconales, mediante la adopción de tecnologías innovadoras. AGRAS busca derribar barreras geográficas y dar una opción de acceso al sector.",
   },
   {
     title: "Seguridad Jurídica",
