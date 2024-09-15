@@ -5,7 +5,7 @@
   width: 90%;
   padding: 16px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 32px;
   border-radius: 10px;
@@ -20,10 +20,15 @@
 }
 
 .imageWrapper {
-  max-width: 50%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 570px;
+  height: 280px;
+  position: relative;
 }
 
 .icon {
@@ -33,13 +38,12 @@
 }
 
 .backgroundImage {
-  width: 570px;
-  height: 280px;
-  border-radius: 10px;
+  object-fit: cover;
+  width: 100%;
 }
 
 .textWrapper {
-  max-width: 50%;
+  flex: 1;
   text-align: left;
 }
 
