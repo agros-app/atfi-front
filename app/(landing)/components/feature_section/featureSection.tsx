@@ -13,20 +13,20 @@ const featureList = [
   {
     title: "Transparencia y Trazabilidad",
     description:
-      "Blockchain no es un capricho. No lo utilizamos para tokenizar, es una herramienta que nos permite trazar y mostrar el camino del dinero y los datos de manera segura y trasparente.",
+      "Blockchain no es un capricho. No lo utilizamos para tokenizar, es una herramienta que nos permite trazar y mostrar el camino del dinero y los datos de manera segura y transparente.",
   },
   {
     title: "Diversificación",
     description:
-      "La inversión en activos biologicos es una manera de diversificar tu cartera. Es decir, disminuir el riesgo total de la misma.",
+      "La inversión en activos biológicos es una manera de diversificar tu cartera. Es decir, disminuir el riesgo total de la misma.",
   },
   {
     title: "Innovación tecnológica",
     description:
-      "Lidera la integracion de blockchain en modelos de financiacion tradiconales, mediante la adopcion de tecnologias innovadoras. AGRAS busca derribar barreras geograficas y dar una opcion de acceso al sector.",
+      "Lidera la integración de blockchain en modelos de financiación tradiconales, mediante la adopcion de tecnologías innovadoras. AGRAS busca derribar barreras geográficas y dar una opción de acceso al sector.",
   },
   {
-    title: "Seguridad Juridica",
+    title: "Seguridad Jurídica",
     description:
       "AGRAS tiene un compromiso inquebrantable para con su ecosistema de respetar los marcos legales y regulatorios, es por eso que cada proyecto se encuadra bajo una figura de fideicomiso.",
   },
@@ -73,8 +73,6 @@ export default function FeatureSection() {
 const Feature = ({ title, description }: any) => (
   <motion.div className={styles.feature}>
     <h2 className={styles.featureTitle}>{title}</h2>
-    <div className={styles.featureDescription}>
-      <p>{description}</p>
-    </div>
+    <p className={styles.featureDescription}>{description}</p>
   </motion.div>
 );
