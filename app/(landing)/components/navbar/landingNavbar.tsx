@@ -3,28 +3,12 @@
 import Logo from "@/assets/icons/logo";
 import Link from "next/link";
 import styles from "./navbar.module.scss";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 export default function LandingNavBar({isLanding = true}) {
   const [investorDropdownVisible, setInvestorDropdownVisible] = useState(false);
   const [producerDropdownVisible, setProducerDropdownVisible] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.querySelector("nav");
-      const shouldBeToggled = window.scrollY > window.innerHeight / 2;
-      if (!navbar) return;
-      if (shouldBeToggled) {
-        navbar?.classList.add(styles.filled_navbar);
-      } else {
-        navbar?.classList.remove(styles.filled_navbar);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const toggleProducerDropdown = () => {
     setProducerDropdownVisible(!producerDropdownVisible);
@@ -45,7 +29,7 @@ export default function LandingNavBar({isLanding = true}) {
   }
 
   return (
-      <nav className={styles.navbar}>
+      <nav className={`${styles.navbar} ${styles.filled_navbar}`}>
         <div className={styles.left}>
           <Link href="#video">
             <Logo />
