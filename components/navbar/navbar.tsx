@@ -14,7 +14,7 @@ export default async function NavBar() {
         <nav className={styles.navbar}>
             <div className={styles.left}>
                 <Link href="/home">
-                     <Logo height={50} />
+                    <Logo />
                 </Link>
                 <div className={styles.links}>
                     <Link href={"/projects"}>
