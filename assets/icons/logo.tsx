@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Logo = ({ size = 50, ...props }: { size?: number } & React.SVGProps<SVGSVGElement>) => (
+const Logo = ({ size = 150, ...props }: { size?: number } & React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
