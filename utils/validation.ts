@@ -1,13 +1,13 @@
-import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
-
+import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
 
 type ValidationRule = {
     field: keyof ProjectFormData;
     validate: (value: any) => boolean;
     errorMessage: string;
 };
+
 /*
-* Validation rules for each step in the project form, only validates the fields that are required in each step
+ * Validation rules for each step in the project form, only validates the fields that are required in each step
  */
 const validationRules: Record<number, ValidationRule[]> = {
     0: [
@@ -36,7 +36,16 @@ const validationRules: Record<number, ValidationRule[]> = {
         { field: 'area', validate: (value) => value > 0, errorMessage: "El área debe ser mayor que 0" },
         { field: 'minAmount', validate: (value) => value > 0, errorMessage: "El monto mínimo debe ser mayor que 0" },
         { field: 'amountNeed', validate: (value) => value > 0, errorMessage: "El monto necesario debe ser mayor que 0" },
-        { field: 'seed', validate: (value) => value.length > 0, errorMessage: "Debe seleccionar al menos una semilla" },
+        {
+            field: 'seed',
+            validate: (value) => value.every((seed: string) => seed.trim() !== ""),
+            errorMessage: "Cada tipo de semilla debe tener un valor"
+        },
+        {
+            field: 'providers',
+            validate: (value) => value.length > 0 && value.every((provider: string) => provider.trim() !== ""),
+            errorMessage: "Debe asociar un proveedor a cada semilla"
+        },
     ],
 };
 

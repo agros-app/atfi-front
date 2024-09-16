@@ -28,6 +28,7 @@ export type ProjectFormData = {
     minAmount: number;
     amountNeed: number;
     seed: string[];
+    providers: string[];
 };
 
 const INITIAL_DATA: ProjectFormData = {
@@ -45,6 +46,7 @@ const INITIAL_DATA: ProjectFormData = {
     minAmount: 0,
     amountNeed: 0,
     seed: [],
+    providers: []
 };
 
 type StepIndicatorProps = {
