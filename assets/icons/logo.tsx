@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Logo = ({ size = 50, ...props }: any) => (
+const Logo = ({ size = 100, ...props }: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
