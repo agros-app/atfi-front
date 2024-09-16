@@ -8,6 +8,7 @@ type ProjectDetailsData = {
     minAmount: number;
     amountNeed: number;
     seed: string[];
+    providers: string[]; // Add providers field
 };
 
 type ProjectDetailsFormProps = ProjectDetailsData & {
@@ -20,12 +21,14 @@ export function ProjectDetailsForm({
                                        minAmount,
                                        amountNeed,
                                        seed,
+                                       providers, // Providers state
                                        updateFields,
-                                        errors}
-                                       : ProjectDetailsFormProps) {
+                                       errors
+                                   }: ProjectDetailsFormProps) {
+
     useEffect(() => {
         if (seed.length === 0) {
-            updateFields({ seed: ["Soja"] });
+            updateFields({ seed: ["Soja"], providers: [""] }); // Initialize providers with an empty string
         }
     }, [seed, updateFields]);
 
@@ -35,14 +38,21 @@ export function ProjectDetailsForm({
         updateFields({ seed: newSeedTypes });
     };
 
+    const handleProviderChange = (index: number, value: string) => {
+        const newProviders = [...providers];
+        newProviders[index] = value;
+        updateFields({ providers: newProviders });
+    };
+
     const addSeedTypeField = () => {
-        updateFields({ seed: [...seed, ""] });
+        updateFields({ seed: [...seed, ""], providers: [...providers, ""] }); // Add new provider when adding a seed
     };
 
     const removeSeedTypeField = (index: number) => {
         if (seed.length > 1) {
             const newSeedTypes = seed.filter((_, i) => i !== index);
-            updateFields({ seed: newSeedTypes });
+            const newProviders = providers.filter((_, i) => i !== index); // Remove corresponding provider
+            updateFields({ seed: newSeedTypes, providers: newProviders });
         }
     };
 
@@ -79,7 +89,7 @@ export function ProjectDetailsForm({
                 helperText={errors.amountNeed?.toString()}
             />
 
-            <label className={styles.label}>Tipos de Cultivo</label>
+            <label className={styles.label}>Tipos de Cultivo y Proveedores</label>
             {seed.map((_, index) => (
                 <div key={index} className={styles.seedTypeField}>
                     <TextField
@@ -87,7 +97,18 @@ export function ProjectDetailsForm({
                         name={`seedType-${index}`}
                         label={`Tipo de Cultivo ${index + 1}`}
                         value={seed[index]}
+                        error={!!errors.seed}
                         onChange={(e) => handleSeedTypeChange(index, e.target.value)}
+                        helperText={errors.seed?.toString()}
+                    />
+                    <TextField
+                        placeholder="Ingrese el proveedor"
+                        name={`provider-${index}`}
+                        label={`Proveedor ${index + 1}`}
+                        value={providers[index]}
+                        error={!!errors.providers}
+                        helperText={errors.providers?.toString()}
+                        onChange={(e) => handleProviderChange(index, e.target.value)}
                     />
                     <div className={styles.seedTypeButtons}>
                         {seed.length > 1 && (
