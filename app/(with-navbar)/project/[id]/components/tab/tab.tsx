@@ -49,7 +49,7 @@ export default function Tab(data:ProjectDetailInfo) {
                 </div>
             </div>
         ),
-        "productor": <div className={styles.body}><Producer/></div>,
+        "productor": <div className={styles.body}><Producer {...data}/></div>,
         "comercializador": <div className={styles.body}><Comercializador /></div>,
         "ubicacion": <div className={styles.body}><Map {...data} /></div>,
         "detalles": <div className={styles.body}><DetailsTab /></div>,
