@@ -36,7 +36,7 @@ export function ProjectInfoForm({
                 helperText={errors.name}
             />
             <DescriptionField
-                placeholder="Ingrese la descripcion del Proyecto"
+                placeholder="Ingrese la descripción del Proyecto"
                 name="description"
                 label="Descripcion"
                 value={description}
@@ -55,7 +55,7 @@ export function ProjectInfoForm({
                 helperText={errors.startDate}
             />
             <TextField
-                placeholder="Ingrese fecha de finalizacion"
+                placeholder="Ingrese fecha de finalización"
                 name="endDate"
                 label="Fecha de Finalizacion"
                 type="date"

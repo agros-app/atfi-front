@@ -30,7 +30,7 @@ const MapView = ({latitude,longitude}: MapViewProps) => {
             />
             <Marker position={[latitude, longitude]}>
                 <Popup>
-                    Ubicacion del campo
+                    Ubicación del campo
                 </Popup>
             </Marker>
         </MapContainer>

@@ -112,7 +112,7 @@ export default function OurSolutionsSection() {
               en latinoamérica
             </h2>
             <Button disabled variant="custom" className={styles.button}>
-              Proximamente
+              Próximamente
             </Button>
           </motion.div>
         </motion.section>
