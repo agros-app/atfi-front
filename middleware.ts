@@ -10,6 +10,7 @@ export default async function middleware(req: NextRequest) {
     }
     //Passing the token as parameter because of session problem with cookies
     const completeInfo= await isAuthorized(token!!)
+    console.log(completeInfo)
     if (completeInfo.status != 200){
         return NextResponse.redirect(new URL('/complete-profile', req.nextUrl))
     }
