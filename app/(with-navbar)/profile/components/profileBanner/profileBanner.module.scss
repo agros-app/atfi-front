@@ -61,3 +61,62 @@
 @include mobile{
 
 }
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+    gap: 20px;
+}
+
+.profileContainer {
+    display: flex;
+    justify-content: center;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 16px;
+}
+
+.uploadLabel {
+  display: inline-block;
+  background-color: $light-gray;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.uploadIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  vertical-align: middle; /* Alinea el icono verticalmente con el texto */
+}
