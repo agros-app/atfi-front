@@ -43,12 +43,6 @@ export default function FinancialInfo({
     event.target.reset();
   };
 
-  function capitalizeFirstLetter(string?: string) {
-    if (!string) return ""; // Maneja casos donde string sea undefined o null
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-
   return (
     <div className={styles.container}>
       <div className={styles.data}>
@@ -71,11 +65,11 @@ export default function FinancialInfo({
           <li>
             {/*Only shows the principal seed*/}
             <span>Tipo de cosecha</span>
-            <span>{capitalizeFirstLetter(seed)}</span>
+            <span>{seed}</span>
           </li>
           <li>
             <span>Ubicación</span>
-            <span>{capitalizeFirstLetter(country)}</span>
+            <span>{country}</span>
           </li>
           <li>
             <span>Tamaño</span>

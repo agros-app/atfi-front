@@ -11,14 +11,14 @@ export default function ProfilePage()
     const {user} = useUserInfo();
     return(
         <div className={styles.screenDivision}>
-            <div className={styles.leftHandSide}>
-                <SideBar />
-            </div>
-            <div className={styles.mainContent}>
-                <ProfileBanner user={user}/>
-                <PersonalData user={user}/>
-                <HomeData country={user.country} />
-            </div>
+        <div className={styles.leftHandSide}>
+            <SideBar />
+        </div>
+        <div className={styles.mainContent}>
+            <ProfileBanner user={user}/>
+            <PersonalData user={user}/>
+            <HomeData country={user.country} />
+        </div>
         </div>
     )
 }

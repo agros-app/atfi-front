@@ -8,12 +8,8 @@ import Soy from '@/assets/icons/soy';
 import Wheat from '@/assets/icons/wheat';
 import Corn from '@/assets/icons/corn';
 import Sunflower from '@/assets/icons/sunflower';
-import {useState} from "react";
 
 export default function Investments(){
-
-    const [visibleProjects, setVisibleProjects] = useState(3);
-
     const investments = [
         {
             id: 1,
@@ -67,10 +63,8 @@ export default function Investments(){
             price: 310,
         }
     ]
+    
 
-    const handleShowMore = () => {
-        setVisibleProjects((prev) => prev + visibleProjects);
-    };
 
     return <main className={styles.main}>
         <div className={styles.cardsContainer}>
@@ -97,45 +91,39 @@ export default function Investments(){
             </div>)}
         </div>
         </div>
-
+        
         <div style={{marginTop: 36}}>
             <h3>Inversiones</h3>
             <div className={styles.investmentsContainer}>
                 <div>
-                    {investments.slice(0, visibleProjects).map((investment) => (
-                        <div key={investment.id} className={styles.investment}>
-                            <h3>{investment.title}</h3>
-                            <p>${investment.investedAmount}</p>
-                            <p>{investment.hectares}ha</p>
-                            <p>{investment.investedAt}</p>
-                            <Link href={`/project/${investment.id}`}>
-                                <Redirect/>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            {visibleProjects < investments.length && (
-                <p className={styles.viewMore} onClick={handleShowMore}>View More</p>)
+                    {
+                investments.map(investment => {
+                    return <div key={investment.id} className={styles.investment}>
+                        <h3>{investment.title}</h3>
+                        <p>${investment.investedAmount}</p>
+                        <p>{investment.hectares}ha</p>
+                        <p>{investment.investedAt}</p>
+                        <Link href={`/project/${investment.id}`}><Redirect/></Link>
+                    </div>
+                })
             }
-            <div className={styles.chartsContainer}>
-                <div>
-                    <PieChart data={investments.map(i => ({value: i.investedAmount, name: i.title}))}
-                              title='Invertido en U$DT'/>
                 </div>
-                <div>
-                    <PieChart data={investments.map(i => ({value: i.hectares, name: i.title}))}
-                              title='Invertido en hectareas'/>
-                </div>
+            <div>
+            <PieChart data={investments.map(i=> ({value:i.investedAmount, name:i.title}))} title='Invertido en U$DT'/>
+            <PieChart data={investments.map(i=> ({value:i.hectares, name:i.title}))} title='Invertido en hectareas'/> 
+
             </div>
+            </div>
+            
         </div>
     </main>
 }
 
 
-const PieChart = ({data, title}: { data: { value: number, name: string }[], title?: string }) => {
+
+const PieChart = ({data, title}: {data: {value:number, name:string}[], title?:string}) => {
     const options: EChartsOption = {
-        title: {
+        title:{
             text: title ?? "",
             left: 'center',
         },
