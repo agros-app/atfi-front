@@ -1,7 +1,12 @@
 "use client";
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './detailsTab.module.scss';
 import ReactECharts from 'echarts-for-react';
+import Header from "@/app/(with-navbar)/project/[id]/components/header/header";
+import {ProjectYieldata} from "@/types/api";
+import Tooltip from "@/components/tooltip/tooltip";
+import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWithLine/titleWithLine";
+
 
 const CostEvolutionChart = () => {
     const options = {
@@ -184,48 +189,87 @@ const RadarChart = () => {
     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
 };
 
-const ComboChart = () => {
+interface ComboChartProps {
+    data: number[]; // Definimos el tipo de la prop "data"
+    median: number;
+}
+const ComboChart = ({ data, median }: ComboChartProps) => {
+
     const options = {
-        title: {
-            text: 'Lluvias y Producción Agrícola',
-        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
                 type: 'cross',
             },
         },
+        legend: {
+            show: false,
+        },
         xAxis: {
             type: 'category',
-            data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+            name: 'Percentil (%)',
+            data: ['10', '25', '75', '90'],
         },
         yAxis: [
             {
                 type: 'value',
-                name: 'Lluvias (mm)',
-            },
-            {
-                type: 'value',
-                name: 'Producción (Toneladas)',
+                name: 'Rendimiento (kg/ha)',
             },
         ],
         series: [
             {
-                name: 'Lluvias',
-                type: 'bar',
-                data: [50, 60, 70, 80, 90, 100],
+                name: 'Evolución del rendimiento',
+                type: 'line',
+                data: data,
             },
             {
-                name: 'Producción',
+                name: 'Rendimiento',
+                type: 'bar',
+                data: data,
+            },
+            {
+                name: 'Mediana',
                 type: 'line',
-                yAxisIndex: 1,
-                data: [200, 400, 600, 800, 1000, 1200],
+                data: new Array(data.length).fill(median),
+                color: 'gray',
+                lineStyle: {
+                    opacity: 0,
+                    color: 'gray',
+                },
+                markLine: {
+                    data: [
+                        { type: 'average', name: 'Mediana' },
+                    ],
+                },
             },
         ],
     };
 
-    return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
+    return (
+        <div style={{width: '100%'}}>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <h2 className={styles.chartTitle}>
+                    Rendimiento histórico (kg/ha)
+                </h2>
+                <Tooltip
+                    side={"right"}
+                    text={"El rendimiento histórico muestra la producción promedio en kilogramos por hectárea a lo largo del tiempo."}
+                />
+            </div>
+
+            <ReactECharts option={options} style={{height: 400, width: '100%'}}/>
+
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: "center"}}>
+                <p className={styles.chartText}>Mediana</p>
+                <Tooltip
+                    side={"right"}
+                    text={`La mediana es el valor central entre todas las muestras.`}
+                />
+            </div>
+        </div>
+    );
 };
+
 
 const HeatmapChart = () => {
     const data = [
@@ -288,20 +332,31 @@ const HeatmapChart = () => {
     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
 };
 
-export function DetailsTab() {
+
+export function DetailsTab({ yieldata }: { yieldata: ProjectYieldata }) {
+
+    const data = [yieldata.perc10, yieldata.perc25, yieldata.perc75, yieldata.perc90];
     return (
         <div>
             <p className={styles.title}>
-                En esta sección se presentan distintos gráficos que muestran información relevante sobre el progreso de la campaña agricola.
+                En esta sección se presentan distintos gráficos que muestran información relevante sobre el progreso de
+                la campaña agricola.
                 Los datos presentados son extraidos de la plataforma de monitoreo y control de la campaña.
             </p>
+            <TitleWithLine>Monitoreo Económico</TitleWithLine>
             <div className={styles.graphContainer}>
-                <FarmingCostPieChart />
-                <ComparativeCostBarChart />
+                <FarmingCostPieChart/>
+                <ComparativeCostBarChart/>
             </div>
             <div className={styles.graphContainer}>
-                <CostEvolutionChart />
+                <CostEvolutionChart/>
             </div>
+
+            <TitleWithLine>Información agrícola</TitleWithLine>
+            <div className={styles.graphContainer}>
+                <ComboChart data={data} median={yieldata.median}/>
+            </div>
+
         </div>
     );
 }

@@ -7,8 +7,9 @@ import { DetailsTab } from "@/app/(with-navbar)/project/[id]/components/detailsT
 import Documents from "@/app/(with-navbar)/project/[id]/components/documents/documents";
 import Producer from "@/app/(with-navbar)/project/[id]/components/producer/producer";
 import Stepper from "@/components/stepper/stepper";
-import {ProjectDetailInfo} from "@/types/api";
+import {ProjectDetailInfo, ProjectYieldata} from "@/types/api";
 import Comercializador from "@/app/(with-navbar)/project/[id]/components/comercializador/comercializador";
+import useProjectYieldata from "@/hooks/useProjectYieldata";
 type Tabs = "resumen" | "ubicacion" | "productor" | "comercializador" | "detalles" | "progreso";
 const tabs: Tabs[] = ["resumen", "productor","comercializador", "ubicacion", "detalles", "progreso"];
 
@@ -20,13 +21,25 @@ const steps = [
     { title: 'Cosecha', description: 'Recolección del maíz.', date: '01/07/2024' },
 ];
 
-export default function Tab(data:ProjectDetailInfo) {
+export default function Tab({ data }: { data: ProjectDetailInfo }) {
     const [activeTab, setActiveTab] = useState<Tabs>('resumen');
     const [showFullText, setShowFullText] = useState(false);
 
+    const nameToSnakeCase = (name: string) => {
+        console.log(name.replace(/\s+/g, '_').toLowerCase())
+        return name.replace(/\s+/g, '_').toLowerCase();
+    };
+
+    //TODO: CAMBIAR EL NOMBRE AL TENER LA API CON VALORES REALES
+    const snakeCaseName = data?.name ? nameToSnakeCase(data.name) : '';
+    const { yieldata } = useProjectYieldata("El_Milagro") || { yieldata: {} };
+    // const { yieldata } = useProjectYieldata(String(snakeCaseName)) || { yieldata: {} };
+
+    console.log(yieldata)
     const toggleShowFullText = () => {
         setShowFullText(!showFullText);
     };
+
 
     const truncateText = (text: string, wordLimit: number) => {
         const words = text.split(" ");
@@ -44,7 +57,7 @@ export default function Tab(data:ProjectDetailInfo) {
                 <div className={styles.componentContainer}>
                     <Documents/>
                 </div>
-                <div className={styles.body}>
+                <div>
                     <div className={styles.schedule}><Shedule {...data}/></div>
                 </div>
             </div>
@@ -52,9 +65,8 @@ export default function Tab(data:ProjectDetailInfo) {
         "productor": <div className={styles.body}><Producer {...data}/></div>,
         "comercializador": <div className={styles.body}><Comercializador /></div>,
         "ubicacion": <div className={styles.body}><Map {...data} /></div>,
-        "detalles": <div className={styles.body}><DetailsTab /></div>,
+        "detalles": <div className={styles.body}><DetailsTab yieldata={yieldata} /></div>,
         "progreso": <div className={styles.body}><Stepper steps={steps}/></div>
-
     };
 
     return (

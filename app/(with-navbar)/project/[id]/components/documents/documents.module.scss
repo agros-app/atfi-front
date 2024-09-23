@@ -1,14 +1,23 @@
 @import "styles/variables.scss";
+@import "@/styles/media.scss";
+
 .title{
-  margin: 10px 0;
+  margin: 0;
   width: 100%;
   font-size: 30px;
   font-weight: 200;
-  border-bottom: 1px solid $dark-gray;;
+  border-bottom: 1px solid $dark-gray;
 }
 
 .documentsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+@include tablet{
+  .documentsContainer {
+    flex-direction: column;
+    width: 100%;
+  }
 }

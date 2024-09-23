@@ -1,13 +1,28 @@
 @import "styles/variables.scss";
+@import "@/styles/media.scss";
+
 .documentCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  border: 1px solid rgba(23, 60, 51, 0.15);
-  border-radius: 5px;
+  padding: 10px 20px;
+  border: 1px solid $dark-gray;
+  border-radius: 4px;
   margin: 10px 0;
   width: 49%;
+  transition: background-color 0.4s ease, color 0.4s ease;
+
+  p{
+    margin:0;
+  }
+}
+
+.documentCard:hover {
+  background-color: $brown;
+  color: white;
+  .description {
+    color: $white; // Cambia el color de la descripción al hacer hover
+  }
 }
 
 .textContainer {
@@ -19,13 +34,17 @@
   font-weight: 300;
   font-size: 20px;
   margin: 0;
+  cursor: default;
+
 }
 
 .description {
-  font-size: 16px;
-  font-weight: 150;
+  font-size: 18px;
+  font-weight: 300;
   color: $darker-gray;
   margin: 0;
+  transition: color 0.4s ease;
+  cursor: default;
 }
 
 .iconContainer {
@@ -34,3 +53,10 @@
   width: $size;
   display: flex;
 }
+
+@include tablet{
+  .documentCard {
+    width: 100%;
+  }
+}
+
