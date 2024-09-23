@@ -18,7 +18,7 @@ const featureList = [
   {
     title: "Diversificación",
     description:
-      "podes acceder a la inversión en activos biológicos, lo cual es una manera de diversificar tu cartera. A través de nuestra plataforma podrás ver la evolución del cultivo a lo largo del tiempo. ",
+      "Podés acceder a la inversión en activos biológicos, lo cual es una manera de diversificar tu cartera. A través de nuestra plataforma podrás ver la evolución del cultivo a lo largo del tiempo. ",
   },
   {
     title: "Innovación tecnológica",
