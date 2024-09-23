@@ -13,7 +13,7 @@ const featureList = [
   {
     title: "Transparencia y Trazabilidad",
     description:
-      "Blockchain no es un capricho. No lo utilizamos para tokenizar, es una herramienta que nos permite trazar y mostrar el camino del dinero y los datos de manera segura y transparente.",
+      "Blockchain como medio de pago. Esta herramienta que nos permite trazar y mostrar el camino del dinero y los datos de manera segura y trasparente.",
   },
   {
     title: "Diversificación",
