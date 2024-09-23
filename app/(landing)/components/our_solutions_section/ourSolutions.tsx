@@ -75,7 +75,7 @@ export default function OurSolutionsSection() {
               {...animationStyles.textContainerLeft}
           >
             <h2>
-              Financia y participa de proyectos <span>agro</span>
+              Participa de proyectos <span>agro</span>
             </h2>
             <Button>Conocé más</Button>
           </motion.div>
