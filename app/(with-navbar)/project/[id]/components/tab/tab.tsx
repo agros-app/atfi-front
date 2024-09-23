@@ -26,7 +26,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     const [showFullText, setShowFullText] = useState(false);
 
     const nameToSnakeCase = (name: string) => {
-        console.log(name.replace(/\s+/g, '_').toLowerCase())
         return name.replace(/\s+/g, '_').toLowerCase();
     };
 
@@ -35,7 +34,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     const { yieldata } = useProjectYieldata("El_Milagro") || { yieldata: {} };
     // const { yieldata } = useProjectYieldata(String(snakeCaseName)) || { yieldata: {} };
 
-    console.log(yieldata)
     const toggleShowFullText = () => {
         setShowFullText(!showFullText);
     };
