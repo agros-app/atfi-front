@@ -10,7 +10,7 @@ const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
   subsets: ["latin"]
 });
-
+//Set to a default value
 export const metadata: Metadata = {
   title: "AGRAS",
   description: "The easiest way to invest your money in agro",

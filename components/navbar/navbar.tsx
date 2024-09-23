@@ -23,7 +23,7 @@ export default async function NavBar() {
                     <Link href={"/portfolio"}>
                         <p>Portfolio</p>
                     </Link>
-                    <Link href={"submit-project"}>
+                    <Link href={"/submit-project"}>
                         <p>Subir proyecto</p>
                     </Link>
                 </div>

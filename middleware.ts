@@ -17,5 +17,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/home','/submit-project'],
+    matcher: ['/home','/submit-project','/projects','/portfolio','/profile'],
 }
