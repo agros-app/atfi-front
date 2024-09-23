@@ -32,7 +32,7 @@ export default function LandingNavBar({isLanding = true}) {
       <nav className={`${styles.navbar} ${styles.filled_navbar}`}>
         <div className={styles.left}>
           <Link href="#video">
-            <Logo />
+            <img src={"/logo.png"} style={{height: "45px", width: "auto"}} alt={"logo"}/>
           </Link>
         </div>
         <div className={`${styles.right} ${open ? styles.openRight : ""}`}>

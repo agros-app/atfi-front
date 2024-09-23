@@ -34,27 +34,56 @@
   gap: 20px;
 }
 
-
 .feature {
+  position: relative;
   padding: 3rem;
-  background-color: $white;
+  background-image: url('../../../../public/landing/features-bg.jpg');
+  background-size: cover;
+  background-position: center;
   border-radius: 8px;
   text-align: center;
+  color: white; /* Asegura el contraste del texto */
+  z-index: 1; /* El contenido debe estar sobre la capa oscura */
+  overflow: hidden; /* Para que la capa oscura no se salga de los bordes si hay bordes redondeados */
+}
+
+.feature::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.feature * {
+  position: relative;
+  z-index: 1;
 }
 
 .featureTitle {
   font-size: 30px;
   font-weight: 400;
-  color: $title;
+  color: $white;
 }
 
 .featureDescription {
   padding: 1rem;
-  color: $title;
+  color: $white;
   line-height: 1.4;
   font-size: 18px;
   margin: auto;
   font-weight: 300;
+}
+
+/*para que el de abajo qede en el centro y no a la izquierda */
+.feature:nth-child(3) {
+  grid-column: 1 / 3; /* Hace que el tercer elemento se extienda en ambas columnas */
+  justify-self: center;
+  width: 50%;
 }
 
 @include mobile{
