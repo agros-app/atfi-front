@@ -1,4 +1,12 @@
-import {CompleteUserInfo, MessageData, ProjectData, ProjectDetailInfo, User} from "@/types/api";
+import {
+    CompleteUserInfo,
+    MessageData,
+    ProjectData,
+    ProjectDetailInfo,
+    ProjectYieldata,
+    transformApiDataToProjectYieldata,
+    User
+} from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
@@ -24,6 +32,8 @@ api.interceptors.request.use(config => {
     return config;
 });
 
+
+// ------------------- PROJECT -------------------
 
 export const getProjects = async (): Promise<ProjectData[]> => {
     const response = await api.get("/project/all");
@@ -57,6 +67,18 @@ export const createProject = async (project: ProjectFormData): Promise<ProjectDa
 export const contactWithProducer = async (messageData: MessageData): Promise<any> => {
     return await api.post('/project/contactWith', messageData);
 }
+
+export const getProjectYieldataByName = async (name: string): Promise<ProjectYieldata> => {
+    const response = await api.get(`/yieldata/campo/filter`, {
+        params: {
+            name: name
+        }
+    });
+    return transformApiDataToProjectYieldata(response.data);
+};
+
+
+// ------------------- USER -------------------
 
 export const isAuthorized = async (token: string): Promise<any> => {
     try {
