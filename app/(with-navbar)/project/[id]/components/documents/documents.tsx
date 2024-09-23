@@ -1,5 +1,6 @@
 import DocumentCard from '../documentCard/documentCard';
 import styles from './documents.module.scss';
+import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWithLine/titleWithLine";
 
 export default function Documents() {
     const documents = [
@@ -11,7 +12,7 @@ export default function Documents() {
 
     return(
         <div>
-            <h1 className={styles.title}>Documentación</h1>
+            <TitleWithLine>Documentación</TitleWithLine>
             <div className={styles.documentsContainer}>
                 {documents.map((doc, index) => (
                     <DocumentCard key={index} title={doc.title} description={doc.description} />
