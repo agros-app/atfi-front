@@ -3,7 +3,6 @@ import {getDaysLeft} from "@/utils";
 
 import { differenceInCalendarDays, startOfToday, addDays, format } from "date-fns";
 import { es } from "date-fns/locale";
-import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWithLine/titleWithLine";
 
 type ScheduleProps = {
     startDate: string;
@@ -22,25 +21,23 @@ export default function Schedule({ startDate, endDate }: ScheduleProps) {
 
     return (
         <div className={styles.container}>
-            <TitleWithLine>Cronograma</TitleWithLine>
-            <div className={styles.innerContainer}>
-                <div className={styles.topData}>
-                    <div className={styles.leftHandSide}>
-                        <p>Cierre de la ronda</p>
-                        <p>{roundClosingDate}</p>
-                    </div>
-                    <div className={styles.rightHandSide}>
-                        <p>{`${getDaysLeft(endDate)} días restantes`}</p>
-                    </div>
+            <h1 className={styles.title}>Cronograma</h1>
+            <div className={styles.topData}>
+                <div className={styles.leftHandSide}>
+                    <p>Cierre de la ronda</p>
+                    <p>{roundClosingDate}</p>
                 </div>
-                <div className={styles.bottomData}>
-                    <div className={styles.leftHandSide}>
-                        <p>Mes estipulado de retornos</p>
-                        <p>{estimatedReturnDate}</p>
-                    </div>
-                    <div className={styles.rightHandSide}>
-                        <p>{`${getDaysLeft(returnDate.toISOString())} días restantes`}</p>
-                    </div>
+                <div className={styles.rightHandSide}>
+                    <p>{`${getDaysLeft(endDate)} días restantes`}</p>
+                </div>
+            </div>
+            <div className={styles.bottomData}>
+                <div className={styles.leftHandSide}>
+                    <p>Mes estipulado de retornos</p>
+                    <p>{estimatedReturnDate}</p>
+                </div>
+                <div className={styles.rightHandSide}>
+                    <p>{`${getDaysLeft(returnDate.toISOString())} días restantes`}</p>
                 </div>
             </div>
         </div>

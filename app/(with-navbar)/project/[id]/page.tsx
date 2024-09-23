@@ -5,19 +5,17 @@ import FinancialInfo from "./components/financialInfo/financialInfo";
 import Header from "./components/header/header";
 import Tab from "./components/tab/tab";
 import styles from "./project.module.scss";
-import useProjectYieldata from "@/hooks/useProjectYieldata";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const { project } = useProjectId(Number(id))
-
   return (
     <div className={styles.projectPageContainer}>
       <Header name={project.name} country={project.country} />
       <div className={styles.body}>
         <div className={styles.screenDivision}>
           <div className={styles.leftHandSide}>
-            <Tab data={project}  />
+            <Tab {...project} />
           </div>
           <div className={styles.financialInfo}>
             <FinancialInfo

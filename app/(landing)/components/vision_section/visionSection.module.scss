@@ -44,22 +44,21 @@
 }
 
 .vision {
-  background: linear-gradient(135deg, $title, $dark-green);
+  background: linear-gradient(135deg, #c396d6, #441a53);
 }
 
 .mission {
-  background: linear-gradient(135deg, $primary-yellow, $primary-yellow);
+  background: linear-gradient(135deg, #ffba00, #c62600d9);
 }
 
 .cardIcon {
   content: "";
   position: absolute;
-  border-radius: 80%;
-  width: 250px;
+  border-radius: 50%;
+  width: 420px;
   height: 110%;
   background: rgba(255, 255, 255, 0.1);
-  right: -0px;
-  left: -80px;
+  right: -150px;
   top: -10px;
   overflow: hidden;
 }

@@ -12,11 +12,11 @@ export default function Hero() {
                             <p className={styles.tag}>INVERSORES</p>
                         </div>
                         <h1 className={styles.heading}>
-                            Participá en proyectos agro
+                            Financiá y participá en proyectos agro
                             <span> innovadores</span>
                         </h1>
                         <p className={styles.text}>
-                            Selecciona los proyectos que mejor se adapten a tus objetivos. Con una interfaz intuitiva y fácil de usar, acceder al sector agro nunca fue tan fácil.
+                            Seleccioná la oportunidad de inversión que mejor se adapte a tus objetivos financieros y estrategias de inversión. Con una interfaz intuitiva y fácil de usar, invertir en el sector agro nunca ha sido tan accesible.
                         </p>
                         <div className={styles.buttonContainer}>
                             <Button className={styles.button}>Invertir</Button>

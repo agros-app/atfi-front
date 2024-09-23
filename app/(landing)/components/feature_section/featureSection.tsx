@@ -13,17 +13,22 @@ const featureList = [
   {
     title: "Transparencia y Trazabilidad",
     description:
-      "Blockchain no es un capricho. No lo utilizamos para tokenizar, sino que es una herramienta que nos permite automatizar, trazar y mostrar tanto el camino del dinero como los datos de una manera segura y transparente a todos los agentes involucrados",
+      "Blockchain no es un capricho. No lo utilizamos para tokenizar, es una herramienta que nos permite trazar y mostrar el camino del dinero y los datos de manera segura y transparente.",
   },
   {
     title: "Diversificación",
     description:
-      "Podés acceder a la inversión en activos biológicos, lo cual es una manera de diversificar tu cartera. A través de nuestra plataforma podrás ver la evolución del cultivo a lo largo del tiempo. ",
+      "La inversión en activos biológicos es una manera de diversificar tu cartera. Es decir, disminuir el riesgo total de la misma.",
   },
   {
     title: "Innovación tecnológica",
     description:
       "Lidera la integración de blockchain en modelos de financiación tradiconales, mediante la adopción de tecnologías innovadoras. AGRAS busca derribar barreras geográficas y dar una opción de acceso al sector.",
+  },
+  {
+    title: "Seguridad Jurídica",
+    description:
+      "AGRAS tiene un compromiso inquebrantable para con su ecosistema de respetar los marcos legales y regulatorios, es por eso que cada proyecto se encuadra bajo una figura de fideicomiso.",
   },
 ];
 

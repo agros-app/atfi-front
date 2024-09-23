@@ -6,7 +6,7 @@ export default function Hero() {
     return (
         <div className={styles.container}>
             <div>
-                <p className={styles.tag}>PRODUCTOR</p>
+                <p className={styles.tag}>AGRICULTORES</p>
                 <h1 className={styles.heading}>
                     Digitalizá tu campaña agricola.
                     Elegí tu transformación con
