@@ -18,6 +18,7 @@ const CostEvolutionChart = () => {
         },
         xAxis: {
             type: 'category',
+            name: 'Mes',
             data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
         },
         yAxis: {
@@ -43,6 +44,128 @@ const CostEvolutionChart = () => {
     };
 
     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
+};
+
+
+const CommodityEvolutionGraph = () => {
+    // Should allow a maximum of 5 commodities. Else, it would become quite unreadable.
+    const colors = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE'];
+
+    const options = {
+        tooltip: {
+            trigger: 'axis',
+        },
+        legend:{
+            data: ['Trigo', 'Soja'],
+            bottom: 0,
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Precio (USD/t)',
+            axisLabel: {
+                formatter: '${value}',
+            },
+        },
+        series: [
+            {
+                name: 'Trigo',
+                type: 'line',
+                data: [1200, 1500, 1800, 1100, 1600, 2000, 1700, 1900],
+                lineStyle: {
+                    color: '#5470C6',
+                },
+                itemStyle: {
+                    display: "none",
+                },
+            },
+            {
+                name: 'Soja',
+                type: 'line',
+                data: [1000, 1200, 1100, 1600, 1600, 2100, 1900, 1800],
+                lineStyle: {
+                    color: 'green',
+                },
+                itemStyle: {
+                    display: "none",
+                },
+            },
+        ],
+
+    };
+
+    return (
+        <div style={{width: '100%'}}>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <h2 className={styles.chartTitle}>
+                    Evolución del precio del grano</h2>
+                <Tooltip
+                    side={"right"}
+                    text={"Precio de los commodities a lo largo del último año: valor por tonelada de los granos producidos en este campo."}
+                />
+            </div>
+
+            <ReactECharts option={options} style={{height: 400, width: '100%'}}/>
+        </div>)
+};
+
+
+const PerformanceEvolutionGraph = () => {
+    // Should allow a maximum of 5 commodities. Else, it would become quite unreadable.
+    const colors = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE'];
+
+    const options = {
+        tooltip: {
+            trigger: 'axis',
+        },
+        legend:{
+            data: ['Proyección'],
+            bottom: 0,
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Total (USD)',
+            axisLabel: {
+                formatter: '${value}',
+            },
+        },
+        series: [
+            {
+                name: 'Proyección',
+                type: 'line',
+                data: [120000, 150000, 180000, 110000, 160000, 200000, 170000, 190000],
+                lineStyle: {
+                    color: '#5470C6',
+                },
+                itemStyle: {
+                    display: "none",
+                },
+            },
+        ],
+
+    };
+
+    return (
+        <div style={{width: '100%'}}>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <h2 className={styles.chartTitle}>
+                    Producción proyectada en el tiempo
+                </h2>
+                <Tooltip
+                    side={"right"}
+                    text={"El valor total proyectado de la cosecha. Se mide: (quintales/ha) x (precio del comodity) x (cantidad de ha)"}
+                />
+            </div>
+
+            <ReactECharts option={options} style={{height: 400, width: '100%'}}/>
+        </div>)
 };
 
 const FarmingCostPieChart = () => {
@@ -349,7 +472,10 @@ export function DetailsTab({ yieldata }: { yieldata: ProjectYieldata }) {
                 <ComparativeCostBarChart/>
             </div>
             <div className={styles.graphContainer}>
-                <CostEvolutionChart/>
+                <CommodityEvolutionGraph/>
+            </div>
+            <div className={styles.graphContainer}>
+                <PerformanceEvolutionGraph/>
             </div>
 
             <TitleWithLine>Información agrícola</TitleWithLine>
