@@ -80,6 +80,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       message: '¿Cuál es el estado del proyecto?',
       answer: 'El proyecto está en proceso de aprobación.',
       createdAt: '2024-09-23T10:00:00Z',
+      // @ts-ignore
       project: {},
       user: {
         id: 201,
@@ -101,6 +102,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       message: '¿Cuándo comenzará la siembra?',
       answer: 'La siembra comenzará el 25/09/2024.',
       createdAt: '2024-09-22T15:30:00Z',
+      // @ts-ignore
       project: {},
       user: {
         id: 202,
@@ -122,6 +124,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       message: '¿Qué tipo de suelo tiene el campo?',
       answer: 'El campo tiene suelo franco.',
       createdAt: '2024-09-21T11:45:00Z',
+      // @ts-ignore
       project: {},
       user: {
         id: 203,
