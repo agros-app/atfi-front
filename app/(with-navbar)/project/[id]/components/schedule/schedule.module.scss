@@ -1,13 +1,15 @@
 @import "styles/variables.scss";
+@import "@/styles/media.scss";
 
 .container {
   display: flex;
-  align-items: center;
   flex-direction: column; // Set flex direction to column
   justify-content: flex-start; // Align items from the start
-  width: 80%;
+  width: 100%;
 }
-
+.innerContainer{
+  width: 70%;
+}
 .topData {
   width: 100%;
   display: flex;
@@ -52,4 +54,10 @@
   width: 100%;
   font-size: 30px;
   font-weight: 200;
+}
+
+@include laptop{
+  .innerContainer{
+    width: 100%;
+  }
 }

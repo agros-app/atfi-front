@@ -8,7 +8,8 @@ const cards: LandingCardProps[] = [
   {
     title: "Explorá",
     description:
-      "En nuestra plataforma encontrarás diversas oportunidades de inversión disponibles. Cada oportunidad de inversión es cuidadosamente seleccionada y evaluada por nuestro equipo de expertos para garantizar su viabilidad y potencial de retorno. Además, proporcionamos toda la información y herramientas necesarias para que puedas tomar decisiones informadas.",
+      "En nuestra plataforma encontraras oportunidades de campañas agrícolas con distintas características, seleccione la que mas se adapte a tus necesidades. \n" +
+        "Conoce quien es el productor y quien comercializa el producto. \n",
     image: cultivoImage,
     reverse: false,
   },

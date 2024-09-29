@@ -1,3 +1,5 @@
+@import "styles/variables.scss";
+
 .graphContainer {
     width: 98%;
     height: 100%;
@@ -21,4 +23,32 @@
     font-size: 1.2rem;
     font-weight: 200;
     margin-bottom: 20px;
+}
+
+.category{
+    margin: 20px 0;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 300;
+    border-bottom: 1px solid $dark-gray;
+}
+
+.chartTitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $brown;
+    margin: 0 0 0 5px;
+    user-select: none
+}
+
+.chartText {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: $brown;
+    margin: 0 0 0 5px;
+    user-select: none;
 }
