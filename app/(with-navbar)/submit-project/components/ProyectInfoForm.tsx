@@ -1,7 +1,8 @@
-import React from 'react';
-import TextField from "@/components/textField/textField";
-import DescriptionField from "@/components/descriptionField/descriptionField";
 import styles from '../submit-project.module.scss';
+import React from "react";
+import TextField from "@/components/textField/textField";
+import ImageUploadField from "@/components/imageUploadField/ImageUplaodField";
+import DescriptionField from "@/components/descriptionField/descriptionField";
 
 type ProjectInfoData = {
     name: string;
@@ -21,8 +22,8 @@ export function ProjectInfoForm({
                                     startDate,
                                     endDate,
                                     updateFields,
-                                    errors}
-                                    : ProjectInfoFormProps) {
+                                    errors
+                                }: ProjectInfoFormProps) {
 
     return (
         <div className={styles.innerForm}>
