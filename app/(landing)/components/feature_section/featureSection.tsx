@@ -25,6 +25,10 @@ const featureList = [
     description:
       "Lidera la integración de blockchain en modelos de financiación tradiconales, mediante la adopción de tecnologías innovadoras. AGRAS busca derribar barreras geográficas y dar una opción de acceso al sector.",
   },
+    {
+        title: "Acceso Global",
+        description: "Con nuestra plataforma, los inversionistas pueden acceder al mercado agrícola desde cualquier parte del mundo. Facilitamos la participación en proyectos innovadores de agricultura, eliminando las barreras geográficas y brindando oportunidades de inversión a nivel internacional."
+    }
 ];
 
 export default function FeatureSection() {
