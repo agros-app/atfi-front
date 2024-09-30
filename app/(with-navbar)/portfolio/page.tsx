@@ -8,10 +8,24 @@ import Soy from '@/assets/icons/soy';
 import Wheat from '@/assets/icons/wheat';
 import Corn from '@/assets/icons/corn';
 import Sunflower from '@/assets/icons/sunflower';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {getAgrotokenPricing} from "@/app/api/prices/prices";
+
+interface Price {
+    icon: any;
+    title: string;
+    price: number;
+}
 
 export default function Investments(){
 
+    useEffect(() => {
+        getAgrotokenPricing().then((data) => {
+            setPrices(parseResponse(data));
+        });
+    }, []);
+
+    const [prices, setPrices] = useState<Price[]>([]);
     const [visibleProjects, setVisibleProjects] = useState(3);
 
     const investments = [
@@ -45,28 +59,31 @@ export default function Investments(){
         }
     ]
 
-    const quotes = [
-        {
-            icon: Soy,
-            title: 'Soja',
-            price: 314.5,
-        },
-        {
-            icon: Wheat,
-            title: 'Trigo',
-            price: 230.5,
-        },
-        {
-            icon: Corn,
-            title: 'Maiz',
-            price: 176,
-        },
-        {
-            icon: Sunflower,
-            title: 'Girasol',
-            price: 310,
-        }
-    ]
+    const parseResponse = (data: any) => {
+
+        const icons: any = {
+            'SOYA': Soy,
+            'CORA': Corn,
+            'WHEA': Wheat,
+        };
+
+        const translations: { [key: string]: string } = {
+            SOYA: 'Soja',
+            CORA: 'Maíz',
+            WHEA: 'Trigo',
+        };
+
+        const usdToArs = data.find((item: any) => item.name === 'USD' && item.referenceCurrency === 'ARS').price;
+
+        return data
+            .filter((item: any) => icons[item.name])
+            .map((item: any) => ({
+                icon: icons[item.name],
+                title: translations[item.name] || item.name,
+                price: parseFloat((item.price / usdToArs).toFixed(2))
+            }));
+
+    }
 
     const handleShowMore = () => {
         setVisibleProjects((prev) => prev + visibleProjects);
@@ -88,7 +105,7 @@ export default function Investments(){
         <div style={{marginTop: 36}}>
         <h3>Cotizaciones</h3>
         <div className={styles.stocksContainer} style={{marginTop: 16}}>
-            {quotes.map(quote => <div className={styles.stocksCard}>
+            {prices.length > 0 && prices.map(quote => <div className={styles.stocksCard}>
                 <div>
                     <quote.icon/>
                     <h4>{quote.title}</h4>
