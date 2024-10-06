@@ -32,6 +32,13 @@
   width: 1000px;
   margin: 0 auto;
   gap: 20px;
+
+  @include laptop{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+  }
 }
 
 .feature {
@@ -43,8 +50,12 @@
   border-radius: 8px;
   text-align: center;
   color: white; /* Asegura el contraste del texto */
-  z-index: 1; /* El contenido debe estar sobre la capa oscura */
+  z-index: 0; /* El contenido debe estar sobre la capa oscura */
   overflow: hidden; /* Para que la capa oscura no se salga de los bordes si hay bordes redondeados */
+  @include laptop{
+    padding: 2rem 2rem 1rem 2rem;
+  }
+
 }
 
 .feature::before {
@@ -84,9 +95,15 @@
   grid-column: 1 / 3; /* Hace que el tercer elemento se extienda en ambas columnas */
   justify-self: center;
   width: 50%;
+  @include laptop{
+    width: 100%;
+  }
+
 }
 
+
 @include mobile{
+
   .description{
     font-size: 24px;
     max-width: 80%;
