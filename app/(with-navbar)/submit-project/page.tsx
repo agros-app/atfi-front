@@ -27,6 +27,7 @@ export type ProjectFormData = {
     area: number;
     minAmount: number;
     amountNeed: number;
+    projectImage: File |null;
     seed: string[];
     providers: string[];
 };
@@ -42,6 +43,7 @@ const INITIAL_DATA: ProjectFormData = {
     zipCode: "",
     latitude: "",
     longitude: "",
+    projectImage: null,
     area: 0,
     minAmount: 0,
     amountNeed: 0,
