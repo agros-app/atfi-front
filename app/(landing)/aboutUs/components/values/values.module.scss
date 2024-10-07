@@ -1,0 +1,33 @@
+@import "/styles/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;350;400;500;600&display=swap');
+
+.container {
+  font-family: 'Outfit', sans-serif;
+  background-color: $title;
+  color: #e2e2e2;
+  padding: 220px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 3.5rem;
+  color: $light-green;
+  margin-bottom: 40px;
+  font-weight: 350;
+  margin-left: 0;  // Remove any default left margin
+}
+
+.values {
+  display: flex;
+  flex-direction: row;
+  margin-top: 150px;
+}
+
+.value-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  // Ensure alignment of text
+}

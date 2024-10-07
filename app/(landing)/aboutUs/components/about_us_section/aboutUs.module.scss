@@ -1,0 +1,27 @@
+@import "@/styles/variables.scss";
+@import "@/styles/media.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px;
+  gap: 100px;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: 400;
+  color: $black;
+  text-align: center;
+  @include mobile{
+    font-size: 36px;
+  }
+}
+
+.us {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}

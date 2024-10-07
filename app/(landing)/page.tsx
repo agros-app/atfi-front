@@ -17,8 +17,8 @@ export default function Home() {
         <FeatureSection />
         <HowItWorksSection />
         <OurSolutionsSection />
-        <VisionSection />
-        <AboutUs />
+        {/*<VisionSection />*/}
+        {/*<AboutUs />*/}
         <Whatsapp />
       </main>
       <Footer />
