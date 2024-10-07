@@ -53,7 +53,7 @@ export default function ProfileBanner({user}: ProfileBannerProps) {
                 <p className={styles.email}>{user.email}</p>
             </div>
             <div className={styles.editContainer}>
-                <img className={styles.editIcon} src="/profile/Edit.png" alt="Edit" onClick={editModal} />
+                <img className={styles.editIcon} src="/profile/edit.png" alt="Edit" onClick={editModal} />
             </div>
 
             {isModalOpen && (
