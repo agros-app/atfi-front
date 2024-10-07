@@ -31,7 +31,7 @@ export default function LandingNavBar({isLanding = true}) {
   return (
       <nav className={`${styles.navbar} ${styles.filled_navbar}`}>
         <div className={styles.left}>
-          <Link href="#video">
+          <Link href="/#video">
             <img src={"/logo.png"} style={{height: "45px", width: "auto"}} alt={"logo"}/>
           </Link>
         </div>
@@ -66,7 +66,7 @@ export default function LandingNavBar({isLanding = true}) {
                 </div>
             )}
           </div>
-          <Link href={"#about-us"} onClick={closeNavbar}>Nosotros</Link>
+          <Link href={"/aboutUs"} onClick={closeNavbar}>Nosotros</Link>
           <Link href={"/login"} className={styles.login}>
             Ingresar
           </Link>

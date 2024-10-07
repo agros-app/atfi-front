@@ -32,6 +32,13 @@
   width: 1000px;
   margin: 0 auto;
   gap: 20px;
+
+  @include laptop{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+  }
 }
 
 .feature {
@@ -43,8 +50,14 @@
   border-radius: 8px;
   text-align: center;
   color: white; /* Asegura el contraste del texto */
-  z-index: 1; /* El contenido debe estar sobre la capa oscura */
+  z-index: 0; /* El contenido debe estar sobre la capa oscura */
   overflow: hidden; /* Para que la capa oscura no se salga de los bordes si hay bordes redondeados */
+  @include laptop{
+    padding: 2rem 2rem 1rem 2rem;
+    background-image: none;
+    background-color: $bg-color-tertiary;
+  }
+
 }
 
 .feature::before {
@@ -78,6 +91,8 @@
   margin: auto;
   font-weight: 300;
 }
+
+
 
 
 @include mobile{

@@ -1,0 +1,31 @@
+
+
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slideWrapper {
+  display: flex;
+  transition: transform 1s ease;
+  width: 200%; // Since two slides are side by side
+}
+
+.slide {
+  width: 50%; // Half of the container width, since two items are shown in the wrapper
+  flex-shrink: 0;
+  transition: transform 1s ease;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.inactive {
+  transform: translateX(-100%); // Moves it out of view
+}
+
+.slideWrapper.active {
+  transform: translateX(-100%);
+}

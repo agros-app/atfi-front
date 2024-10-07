@@ -1,0 +1,28 @@
+@import "styles/variables";
+
+.container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  margin: 20px 0 100px 0;
+}
+
+.stroked {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid $light-gray;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.filled {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: $light-gray;
+  cursor: pointer;
+}
