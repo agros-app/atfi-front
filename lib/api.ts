@@ -96,3 +96,7 @@ export const isAuthorized = async (token: string): Promise<any> => {
 export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any> => {
     return await api.post('/user/complete-info', userInfo);
 };
+
+export const updateUserInfo = async (userInfo: Partial<CompleteUserInfo>): Promise<any> => {
+    return await api.put('/user/update-info', userInfo);
+}

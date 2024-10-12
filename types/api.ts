@@ -95,6 +95,7 @@ export type CompleteUserInfo = {
     address: string;
     state: string;
 }
+
 export type MessageData = {
     to: string;
     subject: string;
