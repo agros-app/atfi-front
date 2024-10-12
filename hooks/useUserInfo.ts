@@ -13,7 +13,10 @@ const useUserInfo  = () => {
         role: "",
         cuit: "",
         phone:"",
-        country: ""
+        country: "",
+        city: "",
+        address: "",
+        state: ""
     });
 
     useEffect(() => {
