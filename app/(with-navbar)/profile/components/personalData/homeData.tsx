@@ -1,5 +1,7 @@
 'use client'
 import styles from './personalData.module.scss'
+import EditModalForm from "@/app/(with-navbar)/profile/components/editModal/editModal";
+import {useEffect, useState} from "react";
 
 type HomeDataProps = {
   country: string
@@ -9,43 +11,30 @@ type HomeDataProps = {
 }
 
 export default function HomeData(data: HomeDataProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userData, setUserData] = useState(data);
+
+  useEffect(() => {
+    setUserData(data);
+  }, [data]);
 
   const editModal = () => {
-    console.log('TODO: Edit Profile Modal')
+    setIsModalOpen(true);
   }
 
-  const getStreetAndNumber = (address?: string) => {
-    if (!address) {
-      return {
-        street: 'Dirección no proporcionada',
-        number: 'SN'
-      };
-    }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  }
 
-    const regex = /^(.+?)\s(\d+.*)$/;
-    const match = address.match(regex);
-
-    if (match) {
-      return {
-        street: match[1],
-        number: match[2]
-      };
-    } else {
-      return {
-        street: address,
-        number: 'SN'
-      };
-    }
-  };
-
-
-  const { street, number } = getStreetAndNumber(data.address);
+  const handleUpdate = (updatedData: HomeDataProps) => {
+    setUserData(updatedData);
+  }
 
   return (
       <div className={styles.container}>
         <div className={styles.innerContainer}>
           <div className={styles.titleContainer}>
-            <h3 className={styles.title}>Domicilio</h3>
+            <h3 className={styles.title}>Datos Personales</h3>
             <p className={styles.editTitle}>
               <img
                   src={'/profile/edit.png'}
@@ -59,11 +48,11 @@ export default function HomeData(data: HomeDataProps) {
             <div className={styles.row}>
               <div className={styles.col}>
                 <h3 className={styles.category}>País</h3>
-                <p className={styles.value}>{data.country}</p>
+                <p className={styles.value}>{userData.country}</p>
               </div>
               <div className={styles.col}>
                 <h3 className={styles.category}>Provincia</h3>
-                <p className={styles.value}>{data.state}</p>
+                <p className={styles.value}>{userData.state}</p>
               </div>
               <div className={styles.editContainer}>
                 <img
@@ -77,19 +66,28 @@ export default function HomeData(data: HomeDataProps) {
             <div className={styles.row}>
               <div className={styles.col}>
                 <h3 className={styles.category}>Ciudad</h3>
-                <p className={styles.value}>{data.city}</p>
+                <p className={styles.value}>{userData.city}</p>
               </div>
               <div className={styles.col}>
-                <h3 className={styles.category}>Calle</h3>
-                <p className={styles.value}>{street}</p>
-              </div>
-              <div className={styles.col}>
-                <h3 className={styles.category}>Número</h3>
-                <p className={styles.value}>{number}</p>
+                <h3 className={styles.category}>Dirección</h3>
+                <p className={styles.value}>{userData.address}</p>
               </div>
             </div>
           </div>
         </div>
+        <EditModalForm
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            data={userData}
+            title={'Datos del Hogar'}
+            fields={[
+              {name: 'country', label: 'País', placeholder: userData.country},
+              {name: 'state', label: 'Provincia', placeholder: userData.state},
+              {name: 'city', label: 'Ciudad', placeholder: userData.city},
+              {name: 'address', label: 'Dirección', placeholder: userData.address},
+            ]}
+            onUpdate={handleUpdate}
+        />
       </div>
   )
 }
