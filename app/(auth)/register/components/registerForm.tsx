@@ -34,6 +34,9 @@ export default function RegisterForm() {
         lastName: '',
         cuit: '',
         password: '',
+        state:'',
+        city:'',
+        address:'',
     });
 
     useEffect(() => {
@@ -95,6 +98,30 @@ export default function RegisterForm() {
                 onChange={handleInputChange}
                 error={!!errors.country}
                 helperText={errors.country}
+            />
+            <TextField
+                placeholder="Ingresá tu provincia"
+                name="state"
+                label="Provincia"
+                onChange={handleInputChange}
+                error={!!errors.state}
+                helperText={errors.state}
+            />
+            <TextField
+                placeholder="Ingresá tu ciudad"
+                name="city"
+                label="Ciudad"
+                onChange={handleInputChange}
+                error={!!errors.city}
+                helperText={errors.city}
+            />
+            <TextField
+                placeholder="Ingresá tu dirección"
+                name="address"
+                label="Dirección"
+                onChange={handleInputChange}
+                error={!!errors.address}
+                helperText={errors.address}
             />
             <TextField
                 placeholder={countryTextfield}

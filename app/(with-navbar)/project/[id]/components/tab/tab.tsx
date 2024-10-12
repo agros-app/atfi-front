@@ -92,7 +92,10 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
         role: 'Producer',
         cuit: '20304050607',
         phone: '+541234567890',
-        country: 'Argentina'
+        country: 'Argentina',
+        city: 'Buenos Aires',
+        state: 'Buenos Aires',
+        address: 'Av. Corrientes 1234'
       }
     },
     {
@@ -114,7 +117,10 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
         role: 'Investor',
         cuit: '20305060708',
         phone: '+541234567891',
-        country: 'Argentina'
+        country: 'Argentina',
+        city: 'Buenos Aires',
+        state: 'Buenos Aires',
+        address: 'Av. Corrientes 1234'
       }
     },
     {
@@ -136,7 +142,10 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
         role: 'Producer',
         cuit: '20306070809',
         phone: '+541234567892',
-        country: 'Argentina'
+        country: 'Argentina',
+        city: 'Buenos Aires',
+        state: 'Buenos Aires',
+        address: 'Av. Corrientes 1234'
       }
     }
   ]

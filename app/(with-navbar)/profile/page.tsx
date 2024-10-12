@@ -17,7 +17,7 @@ export default function ProfilePage()
             <div className={styles.mainContent}>
                 <ProfileBanner user={user}/>
                 <PersonalData user={user}/>
-                <HomeData country={user.country} />
+                <HomeData {...user} />
             </div>
         </div>
     )

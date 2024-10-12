@@ -79,6 +79,9 @@ export type User = {
     cuit: string;
     phone: string;
     country: string;
+    city: string;
+    address: string;
+    state: string;
 }
 
 
@@ -88,6 +91,9 @@ export type CompleteUserInfo = {
     phone: string;
     country: string;
     cuit: string;
+    city: string;
+    address: string;
+    state: string;
 }
 export type MessageData = {
     to: string;
