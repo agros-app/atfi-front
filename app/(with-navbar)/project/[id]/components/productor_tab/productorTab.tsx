@@ -4,9 +4,12 @@ import CommentThread from '../commentThread/CommentThread'
 import Producer from '../producer/producer'
 import { getProjectMessages } from '@/lib/api'
 import toast from 'react-hot-toast'
+import useUserInfo from '@/hooks/useUserInfo'
 
 export default function ProductorTab({ data }: { data: ProjectDetailInfo }) {
   const [messages, setMessages] = useState<ProjectMessage[]>([])
+  const {user} = useUserInfo()
+  const isProducer = user.email === data.producerEmail
 
   useEffect(() => {
     getProjectMessages(data.id)
@@ -21,9 +24,9 @@ export default function ProductorTab({ data }: { data: ProjectDetailInfo }) {
   return (
     <>
       {messages.map((message) => (
-        <CommentThread key={`message-${message.id}`} message={message} />
+        <CommentThread key={`message-${message.id}`} incomingMessage={message} canReply={isProducer} />
       ))}
-      <Producer onSuccess={handleSuccess} {...data} />
+      {!isProducer && <Producer onSuccess={handleSuccess} {...data} />}
     </>
   )
 }
