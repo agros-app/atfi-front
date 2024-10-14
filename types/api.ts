@@ -110,6 +110,5 @@ export type ProjectMessage = {
     message: string;
     answer?: string;
     createdAt: string;
-    project: ProjectDetailInfo;
     user: User;
 }

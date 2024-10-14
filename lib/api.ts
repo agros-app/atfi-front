@@ -3,13 +3,14 @@ import {
     MessageData,
     ProjectData,
     ProjectDetailInfo,
+    ProjectMessage,
     ProjectYieldata,
     transformApiDataToProjectYieldata,
     User
 } from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
-import {ProjectFormData} from "@/app/(with-navbar)/submit-project/page";
+import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
 
 export const getToken = (): string | undefined => {
     return Cookies.get('session');
@@ -54,18 +55,10 @@ export const investByProjectId = async (id: number, amount: number): Promise<voi
     });
 }
 
-export const getUserInfo = async (): Promise<User> => {
-    const response = await api.get("/user/info");
-    return response.data;
-}
 
 export const createProject = async (project: ProjectFormData): Promise<ProjectData | any> => {
     const response = await api.post('/project', project);
     return response.data;
-}
-
-export const contactWithProducer = async (messageData: MessageData): Promise<any> => {
-    return await api.post('/project/contactWith', messageData);
 }
 
 export const getProjectYieldataByName = async (name: string): Promise<ProjectYieldata> => {
@@ -76,6 +69,21 @@ export const getProjectYieldataByName = async (name: string): Promise<ProjectYie
     });
     return transformApiDataToProjectYieldata(response.data);
 };
+
+export const messageProducerByProjectId = async (projectId: number, message: string): Promise<ProjectMessage> => {
+    const response = await api.post(`/project/contact/${projectId}`, { message });
+    return response.data;
+}
+
+export const answerMessage = async (messageId: number, message: string): Promise<ProjectMessage> => {
+    const response = await api.post(`/project/answer/${messageId}`, { message });
+    return response.data;
+}
+
+export const getProjectMessages = async (projectId: number): Promise<ProjectMessage[]> => {
+    const response = await api.get(`/project/messages/${projectId}`);
+    return response.data;
+}
 
 
 // ------------------- USER -------------------
@@ -92,6 +100,12 @@ export const isAuthorized = async (token: string): Promise<any> => {
         return { status: error.response?.status || 500, message: error.message };
     }
 };
+
+export const getUserInfo = async (): Promise<User> => {
+    const response = await api.get("/user/info");
+    return response.data;
+}
+
 
 export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any> => {
     return await api.post('/user/complete-info', userInfo);

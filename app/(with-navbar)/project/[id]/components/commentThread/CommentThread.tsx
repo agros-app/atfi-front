@@ -9,11 +9,12 @@ interface Props {
 }
 
 export default function CommentThread({ message, handleReply }: Props) {
+  const profilePic = message?.user?.photoURL ?? '/placeholder.png'
   return (
     <article className={styles.commentContainer}>
       <div className={styles.comment}>
         <div className={styles.comment}>
-          <ProfileImage src={message.user.photoURL} size={20} />
+          <ProfileImage src={profilePic} size={20} />
           <p style={{ fontWeight: '500' }} className={styles.pad}>
             {message.message}
           </p>
@@ -33,14 +34,19 @@ export default function CommentThread({ message, handleReply }: Props) {
       {message.answer && (
         <article className={styles.commentContainer}>
           <div className={styles.comment}>
-            <svg width="20" height="20" viewBox='0 0 100 150' xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 100 150"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <line
                 x1="10"
                 y1="10"
                 x2="10"
                 y2="90"
                 stroke="black"
-                stroke-width="5"
+                strokeWidth="5"
               />
               <line
                 x1="10"
@@ -48,7 +54,7 @@ export default function CommentThread({ message, handleReply }: Props) {
                 x2="90"
                 y2="90"
                 stroke="black"
-                stroke-width="5"
+                strokeWidth="5"
               />
             </svg>
             <p className={styles.pad}>{message.answer}</p>
