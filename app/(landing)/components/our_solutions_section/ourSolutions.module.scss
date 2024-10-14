@@ -3,7 +3,7 @@
 
 .container {
   background-color: $bg-color-secondary;
-  padding: 40px;
+  padding: 80px $landing-horizontal-padding-primary;
   display: flex;
   justify-content: space-between;
 }
@@ -13,6 +13,10 @@
   min-width: 300px;
   font-weight: 100;
   font-size: 24px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   h2 {
     font-size: 50px;
     font-weight: 300;
@@ -54,7 +58,7 @@
 
 .container2 {
   background-color: $bg-color;
-  padding: 40px;
+  padding: 80px $landing-horizontal-padding-primary;
   display: flex;
   gap: 40px;
 
