@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 1px solid $light-green;
-  padding: 12px 40px;
+  border-left: 1.5px solid $primary-yellow;
+  padding: 12px 50px 12px 40px;
   font-weight: 300;
   font-size: 23px;
 }
@@ -20,8 +20,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 1px solid $gray;
-  padding: 25px 40px;
+  border-left: 1.5px solid $white;
+  padding: 12px 50px 12px 40px;
   height: 220px;
   font-weight: 100;
   font-size: 23px;
