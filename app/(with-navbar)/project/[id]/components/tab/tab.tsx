@@ -11,6 +11,7 @@ import { ProjectDetailInfo, ProjectMessage, ProjectYieldata } from '@/types/api'
 import Comercializador from '@/app/(with-navbar)/project/[id]/components/comercializador/comercializador'
 import useProjectYieldata from '@/hooks/useProjectYieldata'
 import CommentThread from '../commentThread/CommentThread'
+import ProductorTab from '../productor_tab/productorTab'
 type Tabs =
   | 'resumen'
   | 'ubicacion'
@@ -72,6 +73,15 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       : text
   }
 
+//   {
+//     "id": 1,
+//     "projectId": 1,
+//     "userId": 13,
+//     "message": "Quiero comprar el campo, a cuanto el kilito?",
+//     "answer": "No papi, el campito no se vende. Al igual que la patria",
+//     "createdAt": "2024-10-14T18:26:07.659Z"
+// }
+
   const projectMessages: ProjectMessage[] = [
     {
       id: 1,
@@ -80,8 +90,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       message: '¿Cuál es el estado del proyecto?',
       answer: 'El proyecto está en proceso de aprobación.',
       createdAt: '2024-09-23T10:00:00Z',
-      // @ts-ignore
-      project: {},
       user: {
         id: 201,
         name: 'Juan',
@@ -105,8 +113,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       message: '¿Cuándo comenzará la siembra?',
       answer: 'La siembra comenzará el 25/09/2024.',
       createdAt: '2024-09-22T15:30:00Z',
-      // @ts-ignore
-      project: {},
       user: {
         id: 202,
         name: 'Ana',
@@ -130,8 +136,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       message: '¿Qué tipo de suelo tiene el campo?',
       answer: 'El campo tiene suelo franco.',
       createdAt: '2024-09-21T11:45:00Z',
-      // @ts-ignore
-      project: {},
       user: {
         id: 203,
         name: 'Pedro',
@@ -173,10 +177,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     ),
     productor: (
       <div className={styles.body}>
-        {projectMessages.map((message) => (
-          <CommentThread message={message} />
-        ))}
-        <Producer {...data} />
+        <ProductorTab data={data} />
       </div>
     ),
     comercializador: (
