@@ -4,7 +4,7 @@
 .container {
   background-color: $title;
   color: #e2e2e2;
-  padding: 50px;
+  padding: 50px $landing-horizontal-padding-primary;
 }
 
 .heading {
@@ -20,7 +20,7 @@
   line-height: 1.5;
   font-weight: 300;
   color: #e2e2e2;
-  margin: 10px 100px 50px 0;
+  margin: 10px 100px 10px 0;
 }
 
 .screenDivision {
@@ -28,6 +28,7 @@
   flex-direction: column;
   padding-bottom: 40px;
   align-items: center;
+  gap: 10px;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -36,12 +37,10 @@
 
 .rightHandSide{
   flex: 1;
-  padding: 0 0 0 100px;
 }
 
 .leftHandSide{
   flex: 1;
-  padding: 0 0 0 100px;
 }
 
 .projects {
