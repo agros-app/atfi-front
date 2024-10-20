@@ -18,7 +18,7 @@ export default function ProjectsPage() {
     });
 
     const countries = Array.from(new Set(projects.map((project) => project.country)));
-    const types = Array.from(new Set(projects.flatMap((project) => project.seeds.map(seed => seed.charAt(0).toUpperCase() + seed.slice(1)))));
+    const types = Array.from(new Set(projects.flatMap((project) => project.providers.map(p => p.seed.charAt(0).toUpperCase() + p.seed.slice(1)))));
 
     const handleSortChange = (e: any) => {
         const selectedOrder = e.target.value === "asc" ? "recientes" : "antiguos";

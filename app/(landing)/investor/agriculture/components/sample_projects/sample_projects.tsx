@@ -15,7 +15,11 @@ export default function SampleProjects() {
         status: "APPROVED",
         addressId: 123,
         description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",
-        seeds: ["soja", "maíz"],
+        providers: [
+            { name: "AgroSistemas", seed: "soja" },
+            { name: "BioTec", seed: "maíz" },
+        ],
+
 
         country: "Argentina",
         city: "Córdoba",
