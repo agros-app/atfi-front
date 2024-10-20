@@ -182,7 +182,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     ),
     comercializador: (
       <div className={styles.body}>
-        <Comercializador />
+        <Comercializador data={data} />
       </div>
     ),
     ubicacion: (

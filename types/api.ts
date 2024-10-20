@@ -9,7 +9,12 @@ export type Project = {
     status: Status,
     addressId: number,
     description: string,
-    seeds: string[]
+    providers: Provider[]
+}
+
+export type Provider={
+    name: string,
+    seed: string
 }
 
 export type ProjectData = Project & {

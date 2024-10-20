@@ -15,7 +15,7 @@ const useProjectId = (id: number) => {
         status: "APPROVED",
         addressId: 0,
         description: "string",
-        seeds: [],
+        providers: [],
         latitude: "string",
         longitude: "string",
         zipCode: "string",
