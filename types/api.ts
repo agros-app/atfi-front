@@ -9,7 +9,12 @@ export type Project = {
     status: Status,
     addressId: number,
     description: string,
-    seeds: string[]
+    providers: Provider[]
+}
+
+export type Provider={
+    name: string,
+    seed: string
 }
 
 export type ProjectData = Project & {
@@ -79,6 +84,9 @@ export type User = {
     cuit: string;
     phone: string;
     country: string;
+    city: string;
+    address: string;
+    state: string;
 }
 
 
@@ -88,7 +96,11 @@ export type CompleteUserInfo = {
     phone: string;
     country: string;
     cuit: string;
+    city: string;
+    address: string;
+    state: string;
 }
+
 export type MessageData = {
     to: string;
     subject: string;
@@ -103,6 +115,5 @@ export type ProjectMessage = {
     message: string;
     answer?: string;
     createdAt: string;
-    project: ProjectDetailInfo;
     user: User;
 }

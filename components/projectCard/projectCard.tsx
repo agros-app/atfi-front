@@ -25,7 +25,8 @@ export default function ProjectCard({
                                       border = "0.5px solid $dark-gray",
                                       onClick,
                                     }: ProjectCardProps) {
-  const { id, name, seeds, endDate, amountCollected, amountNeed,city,country } = project;
+  console.log(project)
+  const { id, name,providers, endDate, amountCollected, amountNeed,city,country } = project;
   const progress = getPercentage(amountCollected, amountNeed);
 
   return (
@@ -61,7 +62,7 @@ export default function ProjectCard({
               </div>
               <div className={styles.specific}>
                 <SeedIcon />
-                <span>{seeds.join(", ")}</span>
+                <span>{providers?.map(p =>p.seed)}</span>
               </div>
             </div>
           </div>

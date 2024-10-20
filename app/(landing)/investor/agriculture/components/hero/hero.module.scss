@@ -2,7 +2,7 @@
 @import "@/styles/media.scss";
 .container {
   position: relative;
-  padding: 0 120px ;
+  padding: 0 $hero-horizontal-padding;
   display: flex;
   justify-content: center;
   margin: 180px 0 100px 0;

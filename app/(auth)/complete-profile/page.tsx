@@ -27,7 +27,10 @@ export default function CompleteProfilePage() {
     lastName: '',
     cuit: '',
     phone: '',
-    country: ''
+    country: '',
+    state:'',
+    city:'',
+    address:'',
   });
 
   const handleInputChange = (event: any) => {
@@ -101,6 +104,30 @@ export default function CompleteProfilePage() {
               onChange={handleInputChange}
               error={!!errors.country}
               helperText={errors.country}
+          />
+          <TextField
+              placeholder="Ingresá tu provincia"
+              name="state"
+              label="Provincia"
+              onChange={handleInputChange}
+              error={!!errors.state}
+              helperText={errors.state}
+          />
+          <TextField
+              placeholder="Ingresá tu ciudad"
+              name="city"
+              label="Ciudad"
+              onChange={handleInputChange}
+              error={!!errors.city}
+              helperText={errors.city}
+          />
+          <TextField
+              placeholder="Ingresá tu dirección"
+              name="address"
+              label="Dirección"
+              onChange={handleInputChange}
+              error={!!errors.address}
+              helperText={errors.address}
           />
           <Button className={styles.buttonContainer}>Continuar</Button>
         </form>

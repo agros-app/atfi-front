@@ -12,6 +12,9 @@ const completeUserInfoValidationRules: ValidationRule<CompleteUserInfo>[] = [
     { field: 'cuit', validate: (value) => /^\d+$/.test(value), errorMessage: "El CUIT debe contener solo números." },
     { field: 'phone', validate: (value) => /^\+\d+$/.test(value), errorMessage: 'El número de teléfono debe comenzar con un "+" seguido de números.' },
     { field: 'country', validate: (value) => !!value, errorMessage: "El país no puede estar vacío" },
+    { field: 'city', validate: (value) => !!value, errorMessage: "La ciudad no puede estar vacía" },
+    { field: 'address', validate: (value) => !!value, errorMessage: "La dirección no puede estar vacía" },
+    { field: 'state', validate: (value) => !!value, errorMessage: "El estado no puede estar vacío" },
 ];
 
 export const validateCompleteUserInfo = (data: CompleteUserInfo): Partial<CompleteUserInfo> => {
@@ -65,6 +68,9 @@ export type RegisterData = {
     name: string;
     lastName: string;
     cuit: string;
+    city: string;
+    address: string;
+    state: string;
     password: string;
     confirmPassword: string;
 };
@@ -77,6 +83,9 @@ const registerValidationRules: ValidationRule<RegisterData>[] = [
     { field: 'name', validate: (value) => !!value, errorMessage: "El nombre no puede estar vacío" },
     { field: 'lastName', validate: (value) => !!value, errorMessage: "El apellido no puede estar vacío" },
     { field: 'cuit', validate: (value) => /^\d+$/.test(value), errorMessage: "El CUIT debe contener solo números." },
+    { field: 'city', validate: (value) => !!value, errorMessage: "La ciudad no puede estar vacía" },
+    { field: 'address', validate: (value) => !!value, errorMessage: "La dirección no puede estar vacía" },
+    { field: 'state', validate: (value) => !!value, errorMessage: "El estado no puede estar vacío" },
     { field: 'password', validate: (value) => !!value, errorMessage: "La contraseña no puede estar vacía" },
     { field: 'confirmPassword', validate: (value, data) => value === data?.password, errorMessage: "Las contraseñas no coinciden" },
 ];

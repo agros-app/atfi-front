@@ -2,34 +2,60 @@ import Button from "@/components/button/button";
 import TextField from "@/components/textField/textField";
 import {useState} from "react";
 import styles from "./editModal.module.scss";
-import {User} from "@/types/api";
+import {CompleteUserInfo, User} from "@/types/api";
+import {updateUserInfo} from "@/lib/api";
+import toast from "react-hot-toast";
 
 type EditProfileModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    data: User;
+    data: Partial<User>;
     title: string;
-    name?: boolean;
-    lastName?: boolean;
-    phone?: boolean;
-    country?: boolean;
-    cuit?: boolean;
+    fields: { name: keyof User; label: string; placeholder: string }[];
+    onUpdate: (updatedUser: User) => void;
 }
 
-export default function EditModalForm({isOpen, onClose, data, title, name=false, lastName=false, cuit=false, phone=false, country=false}: EditProfileModalProps) {
-    const [formData, setFormData] = useState({
-        name: data.name,
-        lastName: data.lastName,
-        phone: data.phone,
-        country: data.country,
-        cuit: data.cuit
-    });
+export default function EditModalForm({
+                                                 isOpen,
+                                                 onClose,
+                                                 data,
+                                                 title,
+                                                 fields,
+                                                 onUpdate
+                                             }: EditProfileModalProps) {
+    const [formData, setFormData] = useState(data);
 
     if (!isOpen) return null;
 
     const handleInputChange = (event: any) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
+    };
+    // Función para convertir Partial<User> a CompleteUserInfo
+    const convertToCompleteUserInfo = (user: Partial<User>): CompleteUserInfo => {
+        return {
+            name: user.name || '',
+            lastName: user.lastName || '',
+            phone: user.phone || '',
+            country: user.country || '',
+            cuit: user.cuit || '',
+            city: user.city || '',
+            address: user.address || '',
+            state: user.state || '',
+        };
+    };
+
+    const onSubmit = async () => {
+        try {
+            const completeUserInfo = convertToCompleteUserInfo(formData);
+            const updatedUser = await updateUserInfo(completeUserInfo);
+            toast.success("Información actualizada con éxito");
+            onClose();
+            onUpdate(updatedUser);
+        } catch (error) {
+            toast.error("Hubo un error al actualizar la información");
+            console.error(error);
+        }
     };
 
     return (
@@ -41,43 +67,18 @@ export default function EditModalForm({isOpen, onClose, data, title, name=false,
                         &times;
                     </button>
                 </div>
-                <form className={styles.form}>
-                    {name && (
+                <form className={styles.form} onSubmit={onSubmit}>
+                    {fields.map((field) => (
                         <TextField
-                            placeholder={data.name}
-                            name="name"
+                            key={field.name}
+                            placeholder={field.placeholder}
+                            name={field.name}
                             onChange={handleInputChange}
                         />
-                    )}
-                    {lastName && (
-                        <TextField
-                            placeholder={data.lastName}
-                            name="lastName"
-                            onChange={handleInputChange}
-                        />
-                    )}
-                    {phone && (
-                        <TextField
-                            placeholder={data.phone}
-                            name="phone"
-                            onChange={handleInputChange}
-                        />
-                    )}
-                    {country && (
-                        <TextField
-                            placeholder={data.country}
-                            name="country"
-                            onChange={handleInputChange}
-                        />
-                    )}
-                    {cuit && (
-                        <TextField
-                            placeholder={data.cuit}
-                            name="cuit"
-                            onChange={handleInputChange}
-                        />
-                    )}
-                    <Button className={styles.buttonContainer} variant={"secondary"} onClick={onClose}>Aplicar Cambios</Button>
+                    ))}
+                    <Button className={styles.buttonContainer} variant={"secondary"}>
+                        Aplicar Cambios
+                    </Button>
                 </form>
             </div>
         </div>

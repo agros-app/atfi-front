@@ -14,7 +14,7 @@ export default async function NavBar() {
                     <img src={"/logo.png"} style={{height: "45px", width: "auto"}} alt={"logo"}/> </Link>
                 <div className={styles.links}>
                     <Link href={"/projects"}>
-                        <p>Proyecto</p>
+                        <p>Proyectos</p>
                     </Link>
                     <Link href={"/portfolio"}>
                         <p>Portfolio</p>

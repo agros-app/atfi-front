@@ -1,49 +1,70 @@
-import styles from './producer.module.scss';
-import ProfileImage from "@/components/profileImage/profileImage";
-import TextField from "@/components/textField/textField";
-import Button from "@/components/button/button";
-import {MessageData, ProjectDetailInfo} from "@/types/api";
-import {useState} from "react";
-import useUserInfo from "@/hooks/useUserInfo";
-import toast, {useToaster} from "react-hot-toast";
-import {contactWithProducer} from "@/lib/api";
-import nicoImage from "@assets/images/owners/nico.webp";
+import styles from './producer.module.scss'
+import ProfileImage from '@/components/profileImage/profileImage'
+import TextField from '@/components/textField/textField'
+import Button from '@/components/button/button'
+import { ProjectDetailInfo, ProjectMessage } from '@/types/api'
+import { useState } from 'react'
+import toast, { useToaster } from 'react-hot-toast'
+import nicoImage from '@assets/images/owners/nico.webp'
+import { answerMessage, messageProducerByProjectId } from '@/lib/api'
 
-export default function Producer({producerName,producerLastName,producerEmail}:Partial<ProjectDetailInfo>){
-    const [message, setMessage] = useState('');
-    const {user}= useUserInfo();
-    const onSendMessage = async (message: string) =>{
-        if (message === ''){
-            toast.error('El mensaje no puede estar vacio');
-        }
-        else{
-            const data :MessageData ={
-                to: producerEmail!!,
-                html:message,
-                subject: `Mensaje de ${user.name} ${user.lastName}`
-            }
-            const response = await contactWithProducer(data);
-            if (response.status === 200){
-                toast.success('Mensaje enviado correctamente');
-                setMessage('')
-            }
-            else{
-                toast.error('Error al enviar el mensaje intentelo mas tarde nuevamente');
-                }
-        }
+interface Props {
+  producerName?: string
+  producerLastName?: string
+  producerEmail?: string
+
+  onSuccess: (message: ProjectMessage) => void
+
+  replyId?: number
+}
+
+export default function Producer({
+  producerName,
+  producerLastName,
+  onSuccess,
+  replyId
+}: Props) {
+  const [message, setMessage] = useState('')
+  const onSendMessage = async (message: string) => {
+    if (message === '') {
+      toast.error('El mensaje no puede estar vacio')
+    } else {
+      try {
+        const response = replyId
+          ? await answerMessage(replyId, message)
+          : await messageProducerByProjectId(1, message)
+        toast.success('Mensaje enviado correctamente')
+        setMessage('')
+        onSuccess(response)
+      } catch (error) {
+        toast.error('Error al enviar el mensaje intentelo mas tarde nuevamente')
+      }
     }
+  }
 
-
-    return(
-        <div className={styles.container}>
-            <div className={styles.title}>Productor</div>
-            <div className={styles.profile}>
-                <ProfileImage src={nicoImage.src} size={60} />
-                <div className={styles.name}>{`${producerName} ${producerLastName}`}</div>
-            </div>
-            <div className={styles.title}>Envianos un mensaje</div>
-            <TextField placeholder={"mensaje"} name={"mensaje"} value={message} onChange={(e) => setMessage(e.target.value)} />
-            <Button variant={"primary"} fill onClick={()=> onSendMessage(message)}>Contactar</Button>
-        </div>
-    )
+  return (
+    <div className={styles.container}>
+      {!replyId && (
+        <>
+          <div className={styles.title}>Productor</div>
+          <div className={styles.profile}>
+            <ProfileImage src={nicoImage.src} size={60} />
+            <div
+              className={styles.name}
+            >{`${producerName} ${producerLastName}`}</div>
+          </div>
+          <div className={styles.title}>Envianos un mensaje</div>
+        </>
+      )}
+      <TextField
+        placeholder={'mensaje'}
+        name={'mensaje'}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <Button variant={'primary'} fill onClick={() => onSendMessage(message)}>
+        {replyId ? 'Responder' : 'Contactar'}
+      </Button>
+    </div>
+  )
 }
