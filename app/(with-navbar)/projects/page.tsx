@@ -28,7 +28,7 @@ export default function ProjectsPage() {
     const filterProjects = (projects: any[], filters: { country: string | null; type: string | null }) => {
         return projects.filter((project) => {
             const matchesCountry = filters.country ? project.country === filters.country : true;
-            const matchesType = filters.type ? project.seeds.includes(filters.type.toLowerCase()) : true;
+            const matchesType = filters.type ? project.providers[0].seed.includes(filters.type.toLowerCase()) : true;
             return matchesCountry && matchesType;
         });
     };
