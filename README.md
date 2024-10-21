@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is AGRAS Project.
 
-## Getting Started
+This project was built with Next.JS 14
 
-First, run the development server:
+## Key Folders:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+public/:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Static files like images, fonts, and icons that don’t need to be processed. These are accessible like <img src="/logo.png"/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+app/:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    Source code of application, where you can find all the pages and its corresponding stylesheets.
 
-## Learn More
+components/:
 
-To learn more about Next.js, take a look at the following resources:
+    Reusable UI components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+styles/:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    Global SCSS files (including base styles and variables) for styling.
 
-## Deploy on Vercel
+lib/:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Here are the controllers such as the API one. This allow us to have all the endpoints in just one place.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+hooks/:
+
+    Custom React hooks for organizing logic.
+
+context/:
+
+    React context files for global state management.
+
+utils/:
+
+    General utility functions.
+
+## Standards
+
+The standard we try to follow is following one:
+
+Components
+
+    ├── components/
+    │   ├── component_name/
+    │       ├── componentName.tsx
+    │       ├── componentName.module.scss
+
+You can add them to the page folder instead if the component is only used on that page
+
+## Route Groups
+
+We have 3 main route groups:
+
+    - Auth: where all pages like login, register and complete-profile are included.
+
+    - Landing: where all pages related to the marketing page are.
+
+    - With-navbar: where all pages that has to have the navbar at the top are.
