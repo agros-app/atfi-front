@@ -83,6 +83,7 @@ export default function ProjectCard({
             </div>
           </div>
           <Button
+              onClick={onClick}
               className={`${disabled === true ? styles.disabled : ""}`}
               size="sm"
           >

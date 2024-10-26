@@ -313,7 +313,7 @@ const RadarChart = () => {
 };
 
 interface ComboChartProps {
-    data: number[]; // Definimos el tipo de la prop "data"
+    data: number[];
     median: number;
 }
 const ComboChart = ({ data, median }: ComboChartProps) => {
