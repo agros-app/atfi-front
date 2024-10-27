@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import styles from './tab.module.scss'
 import Map from '../map/map'
 import Shedule from '../schedule/schedule'
@@ -12,6 +12,7 @@ import Comercializador from '@/app/(with-navbar)/project/[id]/components/comerci
 import useProjectYieldata from '@/hooks/useProjectYieldata'
 import CommentThread from '../commentThread/CommentThread'
 import ProductorTab from '../productor_tab/productorTab'
+import useProjectId from "@/hooks/useProjectId";
 type Tabs =
   | 'resumen'
   | 'ubicacion'
@@ -57,7 +58,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     return name.replace(/\s+/g, '_').toLowerCase()
   }
 
-  //TODO: CAMBIAR EL NOMBRE AL TENER LA API CON VALORES REALES
+
   const snakeCaseName = data?.name ? nameToSnakeCase(data.name) : ''
   const { yieldata } = useProjectYieldata('El_Milagro') || { yieldata: {} }
   // const { yieldata } = useProjectYieldata(String(snakeCaseName)) || { yieldata: {} };
@@ -72,15 +73,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       ? words.slice(0, wordLimit).join(' ') + '...'
       : text
   }
-
-//   {
-//     "id": 1,
-//     "projectId": 1,
-//     "userId": 13,
-//     "message": "Quiero comprar el campo, a cuanto el kilito?",
-//     "answer": "No papi, el campito no se vende. Al igual que la patria",
-//     "createdAt": "2024-10-14T18:26:07.659Z"
-// }
 
   const projectMessages: ProjectMessage[] = [
     {
@@ -192,7 +184,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     ),
     detalles: (
       <div className={styles.body}>
-        <DetailsTab yieldata={yieldata} />
+        <DetailsTab yieldata={yieldata} project={data}/>
       </div>
     ),
     progreso: (
