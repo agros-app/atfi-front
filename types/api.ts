@@ -126,3 +126,12 @@ export type ProjectMessage = {
     createdAt: string;
     user: User;
 }
+
+export type UserInvestment={
+    userId: number;
+    projectId: number;
+    projectName: string;
+    amount: number;
+    area:number
+    createdAt: Date;
+}

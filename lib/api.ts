@@ -6,7 +6,7 @@ import {
     ProjectMessage,
     ProjectYieldata,
     transformApiDataToProjectYieldata,
-    User
+    User, UserInvestment
 } from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -113,4 +113,9 @@ export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any>
 
 export const updateUserInfo = async (userInfo: Partial<CompleteUserInfo>): Promise<any> => {
     return await api.put('/user/update-info', userInfo);
+}
+
+export const getUserInvestments= async (): Promise<UserInvestment[]> => {
+    const response = await api.get("/user/investments");
+    return response.data;
 }

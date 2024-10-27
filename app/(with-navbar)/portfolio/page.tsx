@@ -10,6 +10,8 @@ import Corn from '@/assets/icons/corn';
 import Sunflower from '@/assets/icons/sunflower';
 import {useEffect, useState} from "react";
 import {getAgrotokenPricing} from "@/app/api/prices/prices";
+import {useUserInvestments} from "@/hooks/useInvestment";
+import useProjectId from "@/hooks/useProjectId";
 
 interface Price {
     icon: any;
@@ -17,7 +19,10 @@ interface Price {
     price: number;
 }
 
-export default function Investments(){
+export default function Investments() {
+    const [prices, setPrices] = useState<Price[]>([]);
+    const [visibleProjects, setVisibleProjects] = useState(3);
+    const { investments } = useUserInvestments();
 
     useEffect(() => {
         getAgrotokenPricing().then((data) => {
@@ -25,42 +30,7 @@ export default function Investments(){
         });
     }, []);
 
-    const [prices, setPrices] = useState<Price[]>([]);
-    const [visibleProjects, setVisibleProjects] = useState(3);
-
-    const investments = [
-        {
-            id: 1,
-            title: 'Proyecto 1',
-            investedAt: '01/01/2021',
-            investedAmount: 10000,
-            hectares: 3,
-        },
-        {
-            id: 2,
-            title: 'Proyecto 2',
-            investedAt: '01/01/2021',
-            investedAmount: 20000,
-            hectares: 6,
-        },
-        {
-            id: 3,
-            title: 'Proyecto 3',
-            investedAt: '01/01/2021',
-            investedAmount: 50000,
-            hectares: 15,
-        },
-        {
-            id: 4,
-            title: 'Proyecto 4',
-            investedAt: '01/01/2021',
-            investedAmount: 2000,
-            hectares: 0.6,
-        }
-    ]
-
     const parseResponse = (data: any) => {
-
         const icons: any = {
             'SOYA': Soy,
             'CORA': Corn,
@@ -82,75 +52,82 @@ export default function Investments(){
                 title: translations[item.name] || item.name,
                 price: parseFloat((item.price / usdToArs).toFixed(2))
             }));
-
-    }
+    };
 
     const handleShowMore = () => {
         setVisibleProjects((prev) => prev + visibleProjects);
     };
 
-    return <main className={styles.main}>
-        <div className={styles.cardsContainer}>
-            <div className={styles.card}>
-                <h3>Balance</h3>
-                <p className={styles.cost}>U$DT 100.000</p>
-                <p className={styles.description}>Importe que actualmente se encuentra invertido en uno o mas proyectos</p>
-            </div>
-            <div className={styles.card}>
-                <h3>Ganancia historica</h3>
-                <p className={styles.cost}>U$DT 20.000</p>
-                <p className={styles.description}>Importe historico de las ganancias obtenidas en la plataforma</p>
-            </div>
-        </div>
-        <div style={{marginTop: 36}}>
-        <h3>Cotizaciones</h3>
-        <div className={styles.stocksContainer} style={{marginTop: 16}}>
-            {prices.length > 0 && prices.map(quote => <div className={styles.stocksCard}>
-                <div>
-                    <quote.icon/>
-                    <h4>{quote.title}</h4>
+    return (
+        <main className={styles.main}>
+            <div className={styles.cardsContainer}>
+                <div className={styles.card}>
+                    <h3>Balance</h3>
+                    <p className={styles.cost}>U$DT 100.000</p>
+                    <p className={styles.description}>Importe que actualmente se encuentra invertido en uno o mas proyectos</p>
                 </div>
-                <p className={styles.cost}>${quote.price}/t</p>
-            </div>)}
-        </div>
-        </div>
+                <div className={styles.card}>
+                    <h3>Ganancia histórica</h3>
+                    <p className={styles.cost}>U$DT 20.000</p>
+                    <p className={styles.description}>Importe histórico de las ganancias obtenidas en la plataforma</p>
+                </div>
+            </div>
 
-        <div style={{marginTop: 36}}>
-            <h3>Inversiones</h3>
-            <div className={styles.investmentsContainer}>
-                <div>
-                    {investments.slice(0, visibleProjects).map((investment) => (
-                        <div key={investment.id} className={styles.investment}>
-                            <h3>{investment.title}</h3>
-                            <p>${investment.investedAmount}</p>
-                            <p>{investment.hectares}ha</p>
-                            <p>{investment.investedAt}</p>
-                            <Link href={`/project/${investment.id}`}>
-                                <Redirect/>
-                            </Link>
+            <div style={{ marginTop: 36 }}>
+                <h3>Cotizaciones</h3>
+                <div className={styles.stocksContainer} style={{ marginTop: 16 }}>
+                    {prices.length > 0 && prices.map(quote => (
+                        <div key={quote.title} className={styles.stocksCard}>
+                            <div>
+                                <quote.icon />
+                                <h4>{quote.title}</h4>
+                            </div>
+                            <p className={styles.cost}>${quote.price}/t</p>
                         </div>
                     ))}
                 </div>
             </div>
-            {visibleProjects < investments.length && (
-                <p className={styles.viewMore} onClick={handleShowMore}>View More</p>)
-            }
-            <div className={styles.chartsContainer}>
-                <div>
-                    <PieChart data={investments.map(i => ({value: i.investedAmount, name: i.title}))}
-                              title='Invertido en U$DT'/>
+
+            <div style={{ marginTop: 36 }}>
+                <h3>Inversiones</h3>
+                <div className={styles.investmentsContainer}>
+                    <div>
+                        {investments?.slice(0, visibleProjects).map((investment) => (
+                            <div key={investment.projectId} className={styles.investment}>
+                                <h3>{investment.projectName}</h3>
+                                <p>${investment.amount}</p>
+                                <p>{investment.area}ha</p>
+                                <p>{new Date(investment.createdAt).toLocaleDateString()}</p>
+                                <Link href={`/project/${investment.projectId}`}>
+                                    <Redirect />
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div>
-                    <PieChart data={investments.map(i => ({value: i.hectares, name: i.title}))}
-                              title='Invertido en hectareas'/>
+                {visibleProjects < (investments?.length || 0) && (
+                    <p className={styles.viewMore} onClick={handleShowMore}>View More</p>
+                )}
+                <div className={styles.chartsContainer}>
+                    <div>
+                        <PieChart
+                            data={investments?.map(i => ({ value: i.amount, name: i.projectName })) || []}
+                            title="Invertido en U$DT"
+                        />
+                    </div>
+                    <div>
+                        <PieChart
+                            data={investments?.map(i => ({ value: i.area, name: i.projectName })) || []}
+                            title="Invertido en hectáreas"
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    );
 }
 
-
-const PieChart = ({data, title}: { data: { value: number, name: string }[], title?: string }) => {
+const PieChart = ({ data, title }: { data: { value: number, name: string }[], title?: string }) => {
     const options: EChartsOption = {
         title: {
             text: title ?? "",
@@ -165,11 +142,11 @@ const PieChart = ({data, title}: { data: { value: number, name: string }[], titl
             bottom: 0,
         },
         color: [
-            '#1c5739', // Color base
-            '#C8E6C9',  // Very Light Green
-            '#2d7a51',  // Lighter Green
-            '#A5D6A7', // Pale Green
-            '#0f3d28', // Mucho más oscuro que #1c5739
+            '#1c5739',
+            '#C8E6C9',
+            '#2d7a51',
+            '#A5D6A7',
+            '#0f3d28',
         ],
         series: [
             {
@@ -189,5 +166,5 @@ const PieChart = ({data, title}: { data: { value: number, name: string }[], titl
     };
 
     const isMobile = window.innerWidth < 768;
-    return <ReactECharts option={options} style={{width:isMobile ? "100%" : 600}} />;
+    return <ReactECharts option={options} style={{ width: isMobile ? "100%" : 600 }} />;
 };
