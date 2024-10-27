@@ -3,48 +3,49 @@ import React, {useState} from 'react';
 import styles from './detailsTab.module.scss';
 import ReactECharts from 'echarts-for-react';
 import Header from "@/app/(with-navbar)/project/[id]/components/header/header";
-import {ProjectYieldata} from "@/types/api";
+import {ProjectData, ProjectDetailInfo, ProjectYieldata} from "@/types/api";
 import Tooltip from "@/components/tooltip/tooltip";
 import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWithLine/titleWithLine";
+import useProjectId from "@/hooks/useProjectId";
 
 
-const CostEvolutionChart = () => {
-    const options = {
-        title: {
-            text: 'Evolución del costo en el tiempo',
-        },
-        tooltip: {
-            trigger: 'axis',
-        },
-        xAxis: {
-            type: 'category',
-            name: 'Mes',
-            data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
-        },
-        yAxis: {
-            type: 'value',
-            axisLabel: {
-                formatter: '${value}',
-            },
-        },
-        series: [
-            {
-                name: 'Costo',
-                type: 'line',
-                data: [1200, 1500, 1800, 1100, 1600, 2000, 1700, 1900],
-                smooth: true,
-                lineStyle: {
-                    color: '#5470C6',
-                },
-                itemStyle: {
-                    color: '#5470C6',
-                },
-            },
-        ],
-    };
-
-    return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
-};
+// const CostEvolutionChart = () => {
+//     const options = {
+//         title: {
+//             text: 'Evolución del costo en el tiempo',
+//         },
+//         tooltip: {
+//             trigger: 'axis',
+//         },
+//         xAxis: {
+//             type: 'category',
+//             name: 'Mes',
+//             data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto'],
+//         },
+//         yAxis: {
+//             type: 'value',
+//             axisLabel: {
+//                 formatter: '${value}',
+//             },
+//         },
+//         series: [
+//             {
+//                 name: 'Costo',
+//                 type: 'line',
+//                 data: [1200, 1500, 1800, 1100, 1600, 2000, 1700, 1900],
+//                 smooth: true,
+//                 lineStyle: {
+//                     color: '#5470C6',
+//                 },
+//                 itemStyle: {
+//                     color: '#5470C6',
+//                 },
+//             },
+//         ],
+//     };
+//
+//     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
+// };
 
 
 const CommodityEvolutionGraph = () => {
@@ -168,7 +169,7 @@ const PerformanceEvolutionGraph = () => {
         </div>)
 };
 
-const FarmingCostPieChart = () => {
+const FarmingCostPieChart = ({project}: {project: ProjectDetailInfo}) => {
     const options = {
         title: {
             text: 'Costos de producción',
@@ -189,18 +190,20 @@ const FarmingCostPieChart = () => {
                 type: 'pie',
                 radius: '50%',
                 data: [
-                    { value: 4000, name: 'Semillas' },
-                    { value: 3000, name: 'Fertilizantes' },
-                    { value: 2000, name: 'Mano de Obra' },
-                    { value: 1500, name: 'Pesticidas' },
-                    { value: 1000, name: 'Agua' },
+                    { value: project.cost.seeds, name: 'Semillas' },
+                    { value: project.cost.agrochemicalsFertilizers, name: 'Fertilizantes' },
+                    { value: project.cost.lease, name: 'Mano de Obra' },
+                    { value: project.cost.plowing, name: 'Labranzas' },
+                    { value: project.cost.harvest, name: 'Cosecha' },
+                    { value: Math.round(project.cost.commercializationExpenses), name: 'Gastos de comercializacion' },
                 ],
                 color: [
                     '#0f3d28', // Mucho más oscuro que #1c5739
             '#1c5739', // Color base
             '#2d7a51',  // Lighter Green
                     '#A5D6A7', // Pale Green
-                    '#C8E6C9'  // Very Light Green
+                    '#C8E6C9',  // Very Light Green
+                    '#34a968'
                 ],
                 emphasis: {
                     itemStyle: {
@@ -215,7 +218,7 @@ const FarmingCostPieChart = () => {
     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
 };
 
-const ComparativeCostBarChart = () => {
+const ComparativeCostBarChart = ({project}: {project: ProjectDetailInfo}) => {
     const options = {
         title: {
             text: 'Costos Agrícolas por Categoría',
@@ -230,31 +233,32 @@ const ComparativeCostBarChart = () => {
         },
         xAxis: {
             type: 'category',
-            data: ['Semillas', 'Fertilizantes', 'Mano de Obra', 'Pesticidas', 'Agua'],
+            data: ['Semillas', 'Fertilizantes', 'Mano de Obra', 'Labranzas', 'Cosecha'],
         },
         yAxis: {
             type: 'value',
         },
         series: [
+            //Se tuvo que hacer de esta manera ya que no tenemos los costos trimestrales de momento.
             {
                 name: 'Trimestre 1',
                 type: 'bar',
-                data: [500, 700, 1000, 600, 400],
+                data: [project.cost.seeds, project.cost.agrochemicalsFertilizers, project.cost.lease, project.cost.plowing, project.cost.harvest],
             },
             {
                 name: 'Trimestre 2',
                 type: 'bar',
-                data: [600, 800, 1200, 700, 500],
+                data: [project.cost.seeds +50, project.cost.agrochemicalsFertilizers+50, project.cost.lease+50, project.cost.plowing+50, project.cost.harvest+50],
             },
             {
                 name: 'Trimestre 3',
                 type: 'bar',
-                data: [700, 850, 1300, 750, 550],
+                data: [project.cost.seeds +100, project.cost.agrochemicalsFertilizers+100, project.cost.lease+100, project.cost.plowing+100, project.cost.harvest+100],
             },
             {
                 name: 'Trimestre 4',
                 type: 'bar',
-                data: [750, 900, 1400, 800, 600],
+                data: [project.cost.seeds +150, project.cost.agrochemicalsFertilizers+150, project.cost.lease+150, project.cost.plowing+150, project.cost.harvest+150],
             },
         ],
         color: [
@@ -269,48 +273,48 @@ const ComparativeCostBarChart = () => {
     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
 };
 
-const RadarChart = () => {
-    const options = {
-        title: {
-            text: 'Comparación de Parcelas en Función de Diferentes Métricas',
-        },
-        tooltip: {},
-        legend: {
-            data: ['Parcela A', 'Parcela B'],
-            bottom: 0,
-            left: 'center',
-        },
-        radar: {
-            indicator: [
-                { name: 'Rendimiento', max: 100 },
-                { name: 'Consumo de Agua', max: 100 },
-                { name: 'Uso de Fertilizantes', max: 100 },
-                { name: 'Resistencia a Plagas', max: 100 },
-                { name: 'Calidad del Suelo', max: 100 },
-            ],
-            shape: 'circle',
-            splitNumber: 5,
-        },
-        series: [
-            {
-                name: 'Comparación de Parcelas',
-                type: 'radar',
-                data: [
-                    {
-                        value: [80, 70, 60, 90, 85],
-                        name: 'Parcela A',
-                    },
-                    {
-                        value: [75, 65, 80, 85, 70],
-                        name: 'Parcela B',
-                    },
-                ],
-            },
-        ],
-    };
-
-    return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
-};
+// const RadarChart = () => {
+//     const options = {
+//         title: {
+//             text: 'Comparación de Parcelas en Función de Diferentes Métricas',
+//         },
+//         tooltip: {},
+//         legend: {
+//             data: ['Parcela A', 'Parcela B'],
+//             bottom: 0,
+//             left: 'center',
+//         },
+//         radar: {
+//             indicator: [
+//                 { name: 'Rendimiento', max: 100 },
+//                 { name: 'Consumo de Agua', max: 100 },
+//                 { name: 'Uso de Fertilizantes', max: 100 },
+//                 { name: 'Resistencia a Plagas', max: 100 },
+//                 { name: 'Calidad del Suelo', max: 100 },
+//             ],
+//             shape: 'circle',
+//             splitNumber: 5,
+//         },
+//         series: [
+//             {
+//                 name: 'Comparación de Parcelas',
+//                 type: 'radar',
+//                 data: [
+//                     {
+//                         value: [80, 70, 60, 90, 85],
+//                         name: 'Parcela A',
+//                     },
+//                     {
+//                         value: [75, 65, 80, 85, 70],
+//                         name: 'Parcela B',
+//                     },
+//                 ],
+//             },
+//         ],
+//     };
+//
+//     return <ReactECharts option={options} style={{ height: 400, width: '100%' }} />;
+// };
 
 interface ComboChartProps {
     data: number[];
@@ -456,7 +460,7 @@ const HeatmapChart = () => {
 };
 
 
-export function DetailsTab({ yieldata }: { yieldata: ProjectYieldata }) {
+export function DetailsTab({ yieldata , project}: { yieldata: ProjectYieldata , project: ProjectDetailInfo}) {
 
     const data = [yieldata.perc10, yieldata.perc25, yieldata.perc75, yieldata.perc90];
     return (
@@ -468,8 +472,8 @@ export function DetailsTab({ yieldata }: { yieldata: ProjectYieldata }) {
             </p>
             <TitleWithLine>Monitoreo Económico</TitleWithLine>
             <div className={styles.graphContainer}>
-                <FarmingCostPieChart/>
-                <ComparativeCostBarChart/>
+                <FarmingCostPieChart project={project} />
+                <ComparativeCostBarChart project={project}/>
             </div>
             <div className={styles.graphContainer}>
                 <CommodityEvolutionGraph/>

@@ -42,6 +42,14 @@ const animationStyles = {
 
 const defaultProject: ProjectData = {
   id: 1,
+  cost:{
+    commercializationExpenses: 171.11111111111111,
+    plowing: 77,
+    seeds: 63,
+    agrochemicalsFertilizers: 220,
+    harvest: 79,
+    lease: 295.8
+  },
   name: "Cultivo de Soja en Córdoba",
   amountNeed: 100000,
   amountCollected: 30000,

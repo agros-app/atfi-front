@@ -17,7 +17,16 @@ export type Provider={
     seed: string
 }
 
+export type ProjectCost= {
+    commercializationExpenses: number;
+    plowing: number;
+    seeds: number;
+    agrochemicalsFertilizers: number;
+    harvest: number;
+    lease: number;
+}
 export type ProjectData = Project & {
+    cost: ProjectCost
     country: string,
     city: string,
     zipCode: string,

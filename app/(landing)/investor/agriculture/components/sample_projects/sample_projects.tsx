@@ -19,7 +19,14 @@ export default function SampleProjects() {
             { name: "AgroSistemas", seed: "soja" },
             { name: "BioTec", seed: "maíz" },
         ],
-
+        cost:{
+            commercializationExpenses: 171.11111111111111,
+            plowing: 77,
+            seeds: 63,
+            agrochemicalsFertilizers: 220,
+            harvest: 79,
+            lease: 295.8
+        },
 
         country: "Argentina",
         city: "Córdoba",
