@@ -1,5 +1,5 @@
 {
-  "address": "0xe894aAccB26C3a86268FBe643185ea7D3bf4f964",
+  "address": "0x78240f872f9fB4B0B69BdB7864Db5FdC450bC2eC",
   "abi": [
     {
       "inputs": [
@@ -35,7 +35,17 @@
         },
         {
           "internalType": "address",
+          "name": "_producerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
           "name": "_admin",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_comercializerAdress",
           "type": "address"
         }
       ],
@@ -64,7 +74,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "investor",
           "type": "address"
@@ -152,9 +162,42 @@
     },
     {
       "inputs": [],
+      "name": "cancelContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "claimReturns",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "comercializerAdress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractCanceled",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -269,6 +312,19 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "producerAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
         }
       ],
       "stateMutability": "view",

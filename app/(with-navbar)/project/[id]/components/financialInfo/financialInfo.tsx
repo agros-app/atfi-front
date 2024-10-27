@@ -37,7 +37,6 @@ export default function FinancialInfo({
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
-    /*await investByProjectId(projectId, amount);*/
     await investInLending(amount.toString(), mockUSDT, lending);
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
