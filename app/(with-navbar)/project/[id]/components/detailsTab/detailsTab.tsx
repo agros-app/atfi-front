@@ -186,7 +186,7 @@ const FarmingCostPieChart = ({project}: {project: ProjectDetailInfo}) => {
         },
         series: [
             {
-                name: 'Tipo de Costo',
+                name: 'Tipo de Costo (U$S/ha)',
                 type: 'pie',
                 radius: '50%',
                 data: [
