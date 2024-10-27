@@ -10,8 +10,6 @@ import useProjectYieldata from "@/hooks/useProjectYieldata";
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const { project } = useProjectId(Number(id))
-  console.log(id)
-  console.log(project)
 
 
   return (
