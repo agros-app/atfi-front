@@ -91,7 +91,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include tablet {
   .contactFormContainer {
     .content {
       flex-direction: column;
@@ -104,11 +104,12 @@
   }
 }
 
-@media (max-width: 480px) {
+@include mobile {
   .contactFormContainer {
     padding: 32px;
     .heading {
-      font-size: 2rem;
+      font-size: 30px;
+      text-align: center;
       margin-bottom: 40px;
       max-width: 100%;
     }
