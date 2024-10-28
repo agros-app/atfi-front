@@ -36,12 +36,13 @@
 
 .answer {
   margin-left: 20px;
+  margin-top: 5px;
   padding: 10px 15px;
   border-left: 2px solid $gray;
-
-  p{
-    font-size: 18px;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .wrapper:hover {

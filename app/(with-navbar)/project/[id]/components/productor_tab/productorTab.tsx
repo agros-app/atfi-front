@@ -2,7 +2,11 @@ import { ProjectDetailInfo, ProjectMessage } from '@/types/api'
 import { useEffect, useState } from 'react'
 import CommentThread from '../commentThread/CommentThread'
 import ContactForm from '../contactForm/contactForm'
-import { getProjectMessages, removeMessage } from '@/lib/api'
+import {
+  getProjectMessages,
+  messageProducerByProjectId,
+  removeMessage
+} from '@/lib/api'
 import toast from 'react-hot-toast'
 import useUserInfo from '@/hooks/useUserInfo'
 import styles from './productorTab.module.scss'
@@ -18,8 +22,13 @@ export default function ProductorTab({ data }: { data: ProjectDetailInfo }) {
       .catch((error) => toast.error(error.message))
   }, [])
 
-  const handleSuccess = (message: ProjectMessage) => {
-    setMessages([...messages, message])
+  const handleSendMessage = async (message: string) => {
+    try {
+      const res = await messageProducerByProjectId(data.id, message)
+      setMessages([...messages, res])
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const handleBlockMessage = async (messageId: number) => {
@@ -49,7 +58,7 @@ export default function ProductorTab({ data }: { data: ProjectDetailInfo }) {
         />
       ))}
       {!isProducer && (
-        <ContactForm projectId={data.id} onSuccess={handleSuccess} />
+        <ContactForm projectId={data.id} onSendMessage={handleSendMessage} />
       )}
     </>
   )

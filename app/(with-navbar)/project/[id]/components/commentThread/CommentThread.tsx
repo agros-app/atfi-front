@@ -1,13 +1,12 @@
 import ProfileImage from '@/components/profileImage/profileImage'
 import styles from './CommentThread.module.scss'
 import { ProjectMessage } from '@/types/api'
-import Button from '@/components/button/button'
 import ReplyIcon from '@/assets/icons/reply'
 import { useState } from 'react'
 import ContactForm from '../contactForm/contactForm'
 import BlockIcon from '@/assets/icons/block'
-import { removeMessage } from '@/lib/api'
-import toast from 'react-hot-toast'
+import { answerMessage, editMessage } from '@/lib/api'
+import EditIcon from '@/assets/icons/edit'
 
 interface Props {
   incomingMessage: ProjectMessage
@@ -22,14 +21,16 @@ export default function CommentThread({
   canReply
 }: Props) {
   const [message, setMessage] = useState<ProjectMessage>(incomingMessage)
-  const [alreadyAnswered, setAlreadyAnswered] = useState<boolean>(
-    message.answer !== null
-  )
   const [openReply, setOpenReply] = useState<boolean>(false)
+  const [reply, setReply] = useState<string>('')
 
-  const handleMessageReply = (message: ProjectMessage) => {
-    setMessage(message)
-    setAlreadyAnswered(true)
+  const handleMessageReply = async (input: string) => {
+    const newMessage = message.answer
+      ? await editMessage(message.id, input)
+      : await answerMessage(message.id, input)
+
+    setMessage(newMessage)
+    setOpenReply(false)
   }
 
   const userProfilePicture = message?.user?.photoURL
@@ -68,11 +69,25 @@ export default function CommentThread({
           </div>
         </div>
         {message.answer && (
-          <div className={styles.answer}>{message.answer}</div>
+          <div className={styles.answer}>
+            <span>{message.answer}</span>
+            {canReply && (
+              <EditIcon
+                onClick={() => {
+                  setOpenReply(!openReply)
+                  setReply(message?.answer ?? '')
+                }}
+              />
+            )}
+          </div>
         )}
       </article>
-      {canReply && !alreadyAnswered && openReply && (
-        <ContactForm replyId={message.id} onSuccess={handleMessageReply} />
+      {openReply && (
+        <ContactForm
+          replyId={message.id}
+          defaultValue={reply}
+          onSendMessage={handleMessageReply}
+        />
       )}
     </>
   )

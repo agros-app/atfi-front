@@ -4,7 +4,8 @@ const EditIcon = (props: any) => (
     fill="none"
     stroke="currentColor"
     strokeWidth={1.5}
-    className="size-6"
+    width={16}
+    height={16}
     viewBox="0 0 24 24"
     {...props}
   >

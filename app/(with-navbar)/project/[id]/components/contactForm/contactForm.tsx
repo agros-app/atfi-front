@@ -9,15 +9,21 @@ import { answerMessage, messageProducerByProjectId } from '@/lib/api'
 interface Props {
   projectId?: number
 
-  onSuccess: (message: ProjectMessage) => void
+  onSendMessage: (message: string) => void
 
   replyId?: number
+
+  defaultValue?: string
 }
 
-export default function ContactForm({ onSuccess, replyId, projectId }: Props) {
+export default function ContactForm({
+  onSendMessage,
+  replyId,
+  defaultValue
+}: Props) {
   const inputId = 'message'
 
-  const onSendMessage = async (event: FormEvent<HTMLFormElement>) => {
+  const handleMessageSend = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
@@ -26,12 +32,9 @@ export default function ContactForm({ onSuccess, replyId, projectId }: Props) {
       toast.error('El mensaje no puede estar vacio')
     } else {
       try {
-        const response = replyId
-          ? await answerMessage(replyId, message)
-          : await messageProducerByProjectId(projectId ?? 1, message)
+        onSendMessage(message)
         toast.success('Mensaje enviado correctamente')
         form.reset()
-        onSuccess(response)
       } catch (error) {
         console.log(error)
         toast.error('Error al enviar el mensaje intentelo mas tarde nuevamente')
@@ -40,8 +43,13 @@ export default function ContactForm({ onSuccess, replyId, projectId }: Props) {
   }
 
   return (
-    <form className={styles.container} onSubmit={onSendMessage}>
-      <TextField placeholder={'Deja tu mensaje...'} name={inputId} />
+    <form className={styles.container} onSubmit={handleMessageSend}>
+      <TextField
+        placeholder={'Deja tu mensaje...'}
+        name={inputId}
+        // @ts-ignore
+        defaultValue={defaultValue ?? ''}
+      />
       <Button variant={'primary'}>{replyId ? 'Responder' : 'Contactar'}</Button>
     </form>
   )
