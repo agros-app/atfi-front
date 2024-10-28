@@ -4,7 +4,7 @@ import { ProjectMessage } from '@/types/api'
 import Button from '@/components/button/button'
 import ReplyIcon from '@/assets/icons/reply'
 import { useState } from 'react'
-import Producer from '../producer/producer'
+import ContactForm from '../contactForm/contactForm'
 
 interface Props {
   incomingMessage: ProjectMessage
@@ -19,14 +19,21 @@ export default function CommentThread({
   canReply
 }: Props) {
   const [message, setMessage] = useState<ProjectMessage>(incomingMessage)
-  const [alreadyAnswered, setAlreadyAnswered] = useState<boolean>(message.answer !== null)
+  const [alreadyAnswered, setAlreadyAnswered] = useState<boolean>(
+    message.answer !== null
+  )
   const [openReply, setOpenReply] = useState<boolean>(false)
 
   const handleMessageReply = (message: ProjectMessage) => {
     setMessage(message)
     setAlreadyAnswered(true)
   }
-  const profilePic = message?.user?.photoURL ?? '/placeholder.png'
+
+  const userProfilePicture = message?.user?.photoURL
+  const profilePic =
+    userProfilePicture && userProfilePicture !== ''
+      ? userProfilePicture
+      : '/placeholder.png'
   return (
     <>
       <article className={styles.commentContainer}>
@@ -42,11 +49,13 @@ export default function CommentThread({
           >
             <div className={styles.comment}>
               <ProfileImage src={profilePic} size={20} />
-              <p style={{ fontWeight: '500' }} className={styles.pad}>
+              <p style={{ fontWeight: '400' }} className={styles.pad}>
                 {message.message}
               </p>
             </div>
-            {canReply && !message.answer && <ReplyIcon onClick={()=>setOpenReply(!openReply)} />}
+            {canReply && !message.answer && (
+              <ReplyIcon onClick={() => setOpenReply(!openReply)} />
+            )}
           </div>
 
           {handleReply && (
@@ -62,38 +71,13 @@ export default function CommentThread({
           )}
         </div>
         {message.answer && (
-          <article className={styles.commentContainer}>
-            <div className={styles.comment}>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 100 150"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line
-                  x1="10"
-                  y1="10"
-                  x2="10"
-                  y2="90"
-                  stroke="black"
-                  strokeWidth="5"
-                />
-                <line
-                  x1="10"
-                  y1="90"
-                  x2="90"
-                  y2="90"
-                  stroke="black"
-                  strokeWidth="5"
-                />
-              </svg>
-              <p className={styles.pad}>{message.answer}</p>
-            </div>
-          </article>
+          <div className={styles.answer}>
+            <p>{message.answer}</p>
+          </div>
         )}
       </article>
       {canReply && !alreadyAnswered && openReply && (
-        <Producer replyId={message.id} onSuccess={handleMessageReply} />
+        <ContactForm replyId={message.id} onSuccess={handleMessageReply} />
       )}
     </>
   )
