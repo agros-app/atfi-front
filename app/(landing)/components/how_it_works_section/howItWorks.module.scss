@@ -1,13 +1,17 @@
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
+
 .container {
   position: relative;
-  padding: 30px;
-}
-
-.cards {
+  padding: $vertical-padding $horizontal-padding;
   position: relative;
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  padding: 16px;
+
+
+  @include tablet{
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
