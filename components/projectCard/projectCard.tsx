@@ -25,7 +25,6 @@ export default function ProjectCard({
                                       border = "0.5px solid $dark-gray",
                                       onClick,
                                     }: ProjectCardProps) {
-  console.log(project)
   const { id, name,providers, endDate, amountCollected, amountNeed,city,country } = project;
   const progress = getPercentage(amountCollected, amountNeed);
 

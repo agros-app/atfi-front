@@ -36,7 +36,6 @@ function ContactForm() {
     const validate = () => {
         let formErrors: { [key: string]: string }  = {};
 
-        console.log("form data", formData)
         if (!formData.name) formErrors.Name = 'El nombre es requerido.';
         if (!formData.phone) formErrors.phone = 'El numero de telefono es requerido.';
         if (!formData.email) {
@@ -53,7 +52,6 @@ function ContactForm() {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formErrors = validate();
-        console.log("form parameters", formData, formErrors)
 
         if (Object.keys(formErrors).length === 0) {
             try {
@@ -69,7 +67,6 @@ function ContactForm() {
                     'HujsxbtHyu8aGBM1x'
                 );
 
-                console.log("Email sent successfully", result.text);
                 setFormData({
                     name: '',
                     phone: '',
