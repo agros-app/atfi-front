@@ -4,7 +4,11 @@
 .container {
   background-color: $title;
   color: #e2e2e2;
-  padding: 50px $landing-horizontal-padding-primary;
+  
+  padding: $vertical-padding $horizontal-padding;
+  @include tablet {
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
 
 .heading {
@@ -81,7 +85,7 @@
   }
 
   .heading{
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
   }
   .description{

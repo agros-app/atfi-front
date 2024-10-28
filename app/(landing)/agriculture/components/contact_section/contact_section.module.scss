@@ -1,10 +1,15 @@
 @import "@/styles/variables.scss";
+@import "@/styles/media.scss";
 
 .contactFormContainer {
   background-color: $bg-color;
-  padding: 70px $landing-horizontal-padding-primary;
   border-radius: 8px;
   margin: 0 auto;
+
+  padding: $vertical-padding $horizontal-padding;
+  @include tablet{
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 
   .heading {
     font-size: 3.5rem;

@@ -1,15 +1,18 @@
-@import "@/styles/variables.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   background-color: $title;
   color: #e2e2e2;
-  padding: 50px;
+  padding: $vertical-padding $horizontal-padding;
+  @include tablet {
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
 
 .heading {
   font-size: 4rem;
   color: $light-green;
-  margin-left: 100px;
   margin-bottom: 40px;
   font-weight: normal;
 }
