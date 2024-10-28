@@ -16,20 +16,24 @@ export default function DraggableProgressBar({ collected, goal, height, onPercen
         setPercentage((collected / goal) * 100);
     }, [collected, goal]);
 
-    const handleDrag = (event: MouseEvent) => {
+    const handleDrag = (event: MouseEvent | TouchEvent) => {
         const progressBar = document.querySelector(`.${styles.progressBarOutside}`) as HTMLElement;
         if (progressBar) {
-            const newWidth = event.clientX - progressBar.getBoundingClientRect().left;
-            const newPercentage = (newWidth / progressBar.clientWidth) * 100;
-            if (newPercentage >= 0 && newPercentage <= 100) {
-                setPercentage(newPercentage);
-                onPercentageChange(newPercentage); // Actualiza el porcentaje en el componente principal
-            }
+            const clientX = event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+            const newWidth = clientX - progressBar.getBoundingClientRect().left;
+            let newPercentage = (newWidth / progressBar.clientWidth) * 100;
+
+            // Limitar el porcentaje entre 0 y 100
+            newPercentage = Math.max(0, Math.min(newPercentage, 100));
+
+            setPercentage(newPercentage);
+            onPercentageChange(newPercentage);
         }
     };
 
-    const startDrag = (event: React.MouseEvent) => {
-        event.preventDefault(); // Previene la selección de texto
+
+    const startDrag = (event: React.MouseEvent | React.TouchEvent) => {
+        event.preventDefault();
         setIsDragging(true);
     };
 
@@ -41,14 +45,20 @@ export default function DraggableProgressBar({ collected, goal, height, onPercen
         if (isDragging) {
             document.addEventListener("mousemove", handleDrag);
             document.addEventListener("mouseup", stopDrag);
+            document.addEventListener("touchmove", handleDrag);
+            document.addEventListener("touchend", stopDrag);
         } else {
             document.removeEventListener("mousemove", handleDrag);
             document.removeEventListener("mouseup", stopDrag);
+            document.removeEventListener("touchmove", handleDrag);
+            document.removeEventListener("touchend", stopDrag);
         }
 
         return () => {
             document.removeEventListener("mousemove", handleDrag);
             document.removeEventListener("mouseup", stopDrag);
+            document.removeEventListener("touchmove", handleDrag);
+            document.removeEventListener("touchend", stopDrag);
         };
     }, [isDragging]);
 
@@ -61,6 +71,7 @@ export default function DraggableProgressBar({ collected, goal, height, onPercen
                 <div
                     className={styles.resizeCircle}
                     onMouseDown={startDrag}
+                    onTouchStart={startDrag} // Agregar evento táctil para iniciar el arrastre en dispositivos móviles
                 />
             </div>
         </div>
