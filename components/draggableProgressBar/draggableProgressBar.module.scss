@@ -2,6 +2,10 @@
 
 $border-radius: 20px;
 
+.progressBarWrapper {
+  position: relative;
+}
+
 .progressBarOutside {
   height: 7px;
   border-radius: $border-radius;
@@ -31,4 +35,22 @@ $border-radius: 20px;
   right: -7.5px;
   top: 50%;
   transform: translateY(-50%);
+  transition: all 0.3s ease;
+
+  &:hover {
+    outline: 5px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    outline: 10px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+.percentageMarkers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; // Separación de la barra
+  padding: 0 5px; // Ajuste de espaciado en los lados
+  font-size: 14px; // Tamaño de fuente para los números
+  color: #000; // Color de los números
 }

@@ -99,6 +99,7 @@ export default function FinancialInfo({
           <Button fill disabled={loading}>
             Invertir
           </Button>
+          <Button fill disabled={loading}>REPENT</Button>
         </form>
       </div>
     </div>
