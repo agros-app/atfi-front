@@ -85,6 +85,15 @@ export const getProjectMessages = async (projectId: number): Promise<ProjectMess
     return response.data;
 }
 
+export const editMessage = async (messageId: number, answer: string): Promise<ProjectMessage> => {
+    const response = await api.patch(`/project/message/edit/${messageId}`, { answer });
+    return response.data;
+}
+
+export const removeMessage = async (messageId: number): Promise<void> => {
+    return await api.delete(`/project/message/delete/${messageId}`);
+}
+
 
 // ------------------- USER -------------------
 
@@ -115,7 +124,7 @@ export const updateUserInfo = async (userInfo: Partial<CompleteUserInfo>): Promi
     return await api.put('/user/update-info', userInfo);
 }
 
-export const getUserInvestments= async (): Promise<UserInvestment[]> => {
+export const getUserInvestments = async (): Promise<UserInvestment[]> => {
     const response = await api.get("/user/investments");
     return response.data;
 }

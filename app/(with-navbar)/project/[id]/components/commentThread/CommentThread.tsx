@@ -5,17 +5,20 @@ import Button from '@/components/button/button'
 import ReplyIcon from '@/assets/icons/reply'
 import { useState } from 'react'
 import ContactForm from '../contactForm/contactForm'
+import BlockIcon from '@/assets/icons/block'
+import { removeMessage } from '@/lib/api'
+import toast from 'react-hot-toast'
 
 interface Props {
   incomingMessage: ProjectMessage
-  handleReply?: (comment: ProjectMessage) => void
+  handleBlock: (messageId: number) => void
 
   canReply: boolean
 }
 
 export default function CommentThread({
   incomingMessage,
-  handleReply,
+  handleBlock,
   canReply
 }: Props) {
   const [message, setMessage] = useState<ProjectMessage>(incomingMessage)
@@ -37,7 +40,7 @@ export default function CommentThread({
   return (
     <>
       <article className={styles.commentContainer}>
-        <div className={styles.comment}>
+        <div className={styles.wrapper}>
           <div
             style={{
               width: '100%',
@@ -49,31 +52,23 @@ export default function CommentThread({
           >
             <div className={styles.comment}>
               <ProfileImage src={profilePic} size={20} />
-              <p style={{ fontWeight: '400' }} className={styles.pad}>
-                {message.message}
-              </p>
+              <span style={{ fontWeight: '400' }}>{message.message}</span>
             </div>
-            {canReply && !message.answer && (
-              <ReplyIcon onClick={() => setOpenReply(!openReply)} />
-            )}
+            <div className={styles.actions}>
+              {canReply && !message.answer && (
+                <ReplyIcon onClick={() => setOpenReply(!openReply)} />
+              )}
+              {canReply && (
+                <BlockIcon
+                  onClick={() => handleBlock(message.id)}
+                  className={styles.block}
+                />
+              )}
+            </div>
           </div>
-
-          {handleReply && (
-            <div className="reply">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleReply(message)}
-              >
-                Reply
-              </Button>
-            </div>
-          )}
         </div>
         {message.answer && (
-          <div className={styles.answer}>
-            <p>{message.answer}</p>
-          </div>
+          <div className={styles.answer}>{message.answer}</div>
         )}
       </article>
       {canReply && !alreadyAnswered && openReply && (

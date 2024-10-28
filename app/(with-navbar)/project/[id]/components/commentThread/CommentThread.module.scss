@@ -13,21 +13,30 @@
   background-color: transparent;
 }
 
-.comment {
+.wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 2px;
+  padding: 10px 10px;
   gap: 10px;
+  border-radius: 8px;
 
   & > p {
     margin: 0;
   }
 }
 
+.comment{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
 .answer {
-  margin-left: 15px;
-  padding-left: 10px;
+  margin-left: 20px;
+  padding: 10px 15px;
   border-left: 2px solid $gray;
 
   p{
@@ -35,6 +44,18 @@
   }
 }
 
-.comment:hover {
+.wrapper:hover {
   cursor: default;
+  background-color: $light-gray;
+}
+
+.actions{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  .block:hover {
+    stroke: $absolute-red
+  }
+
 }
