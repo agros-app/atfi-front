@@ -128,3 +128,8 @@ export const getUserInvestments = async (): Promise<UserInvestment[]> => {
     const response = await api.get("/user/investments");
     return response.data;
 }
+
+export const getPendingProjects= async (): Promise<ProjectDetailInfo[]> => {
+    const response = await api.get("/project/pending");
+    return response.data;
+}

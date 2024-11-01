@@ -25,6 +25,7 @@ export type ProjectCost= {
     harvest: number;
     lease: number;
 }
+
 export type ProjectData = Project & {
     cost: ProjectCost
     country: string,
