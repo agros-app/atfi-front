@@ -3,7 +3,7 @@ import {
     MessageData,
     ProjectData,
     ProjectDetailInfo,
-    ProjectMessage,
+    ProjectMessage, ProjectStatus,
     ProjectYieldata,
     transformApiDataToProjectYieldata,
     User, UserInvestment
@@ -132,4 +132,8 @@ export const getUserInvestments = async (): Promise<UserInvestment[]> => {
 export const getPendingProjects= async (): Promise<ProjectDetailInfo[]> => {
     const response = await api.get("/project/pending");
     return response.data;
+}
+
+export const updateProjectStatus =async (projectStatus: ProjectStatus) =>{
+    return await api.put('/admin/project/status', projectStatus);
 }

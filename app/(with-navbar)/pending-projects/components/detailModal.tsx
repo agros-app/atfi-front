@@ -11,6 +11,7 @@ type EditProfileModalProps = {
     onClose: () => void;
     data: ProjectDetailInfo;
     title: string;
+    onStatusChange: (newStatus: "APPROVED" | "REJECTED", projectId:number) => void;
 }
 
 export default function DetailModal({
@@ -18,6 +19,7 @@ export default function DetailModal({
                                         onClose,
                                         data,
                                         title,
+                                        onStatusChange
                                     }: EditProfileModalProps) {
     if (!isOpen) return null;
 
@@ -26,6 +28,11 @@ export default function DetailModal({
         description, country, city, zipCode, state, area, latitude, longitude,
         producerName, producerLastName, producerEmail
     } = data;
+
+
+    const handleStatusChange = (newStatus: "APPROVED" | "REJECTED") => {
+        onStatusChange(newStatus, data.id);
+    };
 
     return (
         <div className={styles.container}>
@@ -53,10 +60,18 @@ export default function DetailModal({
                     <p><strong>Email del Productor:</strong> {producerEmail}</p>
                 </div>
                 <div className={styles.form}>
-                    <Button className={styles.buttonContainer} variant="primary" onClick={() => console.log("Aprobado")}>
+                    <Button
+                        className={styles.buttonContainer}
+                        variant="primary"
+                        onClick={() => handleStatusChange("APPROVED")}
+                    >
                         Aprobar
                     </Button>
-                    <Button className={styles.buttonContainer} variant="secondary" onClick={() => console.log("Rechazado")}>
+                    <Button
+                        className={styles.buttonContainer}
+                        variant="secondary"
+                        onClick={() => handleStatusChange("REJECTED")}
+                    >
                         Rechazar
                     </Button>
                 </div>

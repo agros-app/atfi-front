@@ -136,3 +136,8 @@ export type UserInvestment={
     area:number
     createdAt: Date;
 }
+
+export type ProjectStatus = {
+    projectId: number
+    status: Status
+}
