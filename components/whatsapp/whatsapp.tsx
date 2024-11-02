@@ -6,7 +6,7 @@ import whatsAppImage from "@assets/images/whatsapp_icon.png";
 export default function Whatsapp() {
   return (
     <div className={styles.container}>
-        <a href="https://wa.me/541132568564" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/543413306648" target="_blank" rel="noopener noreferrer">
             <Image
                 src={whatsAppImage.src}
                 width={whatsAppImage.width}

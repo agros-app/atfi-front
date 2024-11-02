@@ -1,44 +1,62 @@
-.commentContainer{
-    border-left: 3px solid var(--grey-300);
-    padding: 4px 0px 4px 16px;
+@import '@/styles/variables.scss';
+
+.commentContainer {
+  margin: 20px 0;
 }
 
-.commentContainer > .avatar-container{
-    padding: 0;
+.commentContainer > .avatar-container {
+  padding: 0;
 }
 
 .commentContainer > .avatar-container:hover {
-    cursor: default;
-    background-color: transparent;
+  cursor: default;
+  background-color: transparent;
 }
 
-.comment {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 2px;
-    border-radius: 8px;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px;
+  gap: 10px;
+  border-radius: 8px;
 
-    & > p{
-        margin: 0
-    }
+  & > p {
+    margin: 0;
+  }
 }
 
-
-.pad {
-    padding-left: 8px;
+.comment{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
 }
 
-.reply {
-    display: none;
-    margin-right: 16px;
+.answer {
+  margin-left: 20px;
+  margin-top: 5px;
+  padding: 10px 15px;
+  border-left: 2px solid $gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.comment:hover {
-    cursor: default;
-    background-color: var(--grey-100);
+.wrapper:hover {
+  cursor: default;
+  background-color: $light-gray;
 }
 
-.comment:hover > .reply {
-    display: block;
+.actions{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  .block:hover {
+    stroke: $absolute-red
+  }
+
 }

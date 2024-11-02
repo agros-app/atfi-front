@@ -37,7 +37,6 @@ export default function FinancialInfo({
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
-    await investByProjectId(projectId, amount);
     await investInLending(amount.toString(), mockUSDT, lending);
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
@@ -96,7 +95,12 @@ export default function FinancialInfo({
             min={minAmount}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          <Button fill disabled={loading}>
+          <Button
+              // @ts-ignore
+              type={"submit"}
+              fill
+              disabled={loading}
+          >
             Invertir
           </Button>
           <Button fill disabled={loading}>REPENT</Button>

@@ -6,7 +6,7 @@ import {
     ProjectMessage,
     ProjectYieldata,
     transformApiDataToProjectYieldata,
-    User
+    User, UserInvestment
 } from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -85,6 +85,15 @@ export const getProjectMessages = async (projectId: number): Promise<ProjectMess
     return response.data;
 }
 
+export const editMessage = async (messageId: number, answer: string): Promise<ProjectMessage> => {
+    const response = await api.patch(`/project/message/edit/${messageId}`, { answer });
+    return response.data;
+}
+
+export const removeMessage = async (messageId: number): Promise<void> => {
+    return await api.delete(`/project/message/delete/${messageId}`);
+}
+
 
 // ------------------- USER -------------------
 
@@ -113,4 +122,9 @@ export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any>
 
 export const updateUserInfo = async (userInfo: Partial<CompleteUserInfo>): Promise<any> => {
     return await api.put('/user/update-info', userInfo);
+}
+
+export const getUserInvestments = async (): Promise<UserInvestment[]> => {
+    const response = await api.get("/user/investments");
+    return response.data;
 }

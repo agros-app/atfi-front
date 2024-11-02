@@ -10,6 +10,14 @@ const useProjectId = (id: number) => {
         amountNeed: 0,
         amountCollected: 0,
         minAmount: 0,
+        cost:{
+            commercializationExpenses: 0,
+            plowing: 0,
+            seeds: 0,
+            agrochemicalsFertilizers: 0,
+            harvest: 0,
+            lease: 0
+        },
         startDate: new Date().toISOString(),
         endDate: new Date().toISOString(),
         status: "APPROVED",

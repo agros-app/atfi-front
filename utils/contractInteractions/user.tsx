@@ -68,7 +68,6 @@ export const regretInvestment = async (amount: string, lendingObject: ContractOb
     try {
         const amountInWei = ethers.utils.parseUnits(amount, 6);
         const transaction = await lendingContract.regretInvestment(amountInWei, { gasLimit: 2000000 });
-        console.log(transaction);
     } catch (error) {
         console.error('Error al retirar la inversión:', error);
     }
@@ -84,7 +83,6 @@ export const claimReturns = async (lendingObject: ContractObject) => {
 
     try {
         const transaction = await lendingContract.claimReturns();
-        console.log(transaction);
     } catch (error) {
         console.error('Error al reclamar los retornos:', error);
     }

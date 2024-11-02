@@ -27,6 +27,21 @@ const Polygon = {
     rpcUrl: `https://polygon-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
 };
 
+const LaTesnet = {
+    chainId: 418,
+    name: 'LaTestnet',
+    currency: 'TLA',
+    explorerUrl: 'https://testexplorer.lachain.network/',
+    rpcUrl: `https://rpc.testnet.lachain.network/`
+};
+
+const LaChain = {
+    chainId: 274,
+    name: 'LaChain',
+    currency: 'LAC',
+    explorerUrl: 'https://explorer.lachain.network/',
+    rpcUrl: `https://rpc1.mainnet.lachain.network/`
+};
 
 const metadata = {
     name: 'ATFI',
@@ -70,7 +85,7 @@ export const Web3ContextProvider = ({children}) => {
             enableCoinbase: true,
             rpcUrl: Sepolia.rpcUrl
         }),
-        chains: [Sepolia, Polygon],
+        chains: [Sepolia, Polygon, LaTesnet, LaChain],
         projectId: projectId,
         featuredWalletIds,
         enableAnalytics: true,
@@ -97,6 +112,10 @@ export const Web3ContextProvider = ({children}) => {
             return Sepolia;
         } else if (chainId.toString() === Polygon.chainId.toString()) {
             return Polygon;
+        } else if (chainId.toString() === LaTesnet.chainId.toString()) {
+            return LaTesnet;
+        } else if (chainId.toString() === LaChain.chainId.toString()) {
+            return LaChain;
         }
         return null;
     }
