@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {ProjectData, ProjectDetailInfo} from "@/types/api";
 import {getPendingProjects} from "@/lib/api";
 
-const useProjects = () => {
+const usePendingProjects = () => {
     const [projects, setProjects] = useState<ProjectDetailInfo[]>([]);
 
     useEffect(()=>{
@@ -12,4 +12,4 @@ const useProjects = () => {
     return { projects };
 }
 
-export default useProjects;
+export default usePendingProjects;
