@@ -1,7 +1,7 @@
 @import "styles/variables.scss";
 
 $border-radius: 20px;
-
+// adentro, un rectangulo identico, pero con width en % que es el promedio entre lo recaudado y la meta
 .progressBarOutside {
   height: 7px;
   border-radius: $border-radius;
@@ -9,26 +9,10 @@ $border-radius: 20px;
   display: flex;
   align-items: center;
   width: 100%;
-  position: relative;
 }
 
 .progressBarInside {
   height: 100%;
   border-radius: $border-radius;
   background-color: $dark-green;
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.resizeCircle {
-  width: 15px;
-  height: 15px;
-  background-color: $dark-green;
-  border-radius: 50%;
-  cursor: pointer;
-  position: absolute;
-  right: -7.5px;
-  top: 50%;
-  transform: translateY(-50%);
 }
