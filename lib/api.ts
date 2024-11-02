@@ -130,7 +130,7 @@ export const getUserInvestments = async (): Promise<UserInvestment[]> => {
 }
 
 export const getPendingProjects= async (): Promise<ProjectDetailInfo[]> => {
-    const response = await api.get("/project/pending");
+    const response = await api.get("/admin/project-pending");
     return response.data;
 }
 
