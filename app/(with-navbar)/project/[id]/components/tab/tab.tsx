@@ -11,6 +11,8 @@ import Comercializador from '@/app/(with-navbar)/project/[id]/components/comerci
 import useProjectYieldata from '@/hooks/useProjectYieldata'
 import CommentThread from '../commentThread/CommentThread'
 import ProductorTab from '../productor_tab/productorTab'
+import Simulator from "@/components/simulator/simulator";
+import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWithLine/titleWithLine";
 import useProjectId from "@/hooks/useProjectId";
 type Tabs =
   | 'resumen'
@@ -57,7 +59,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     return name.replace(/\s+/g, '_').toLowerCase()
   }
 
-
+  //TODO: CAMBIAR EL NOMBRE AL TENER LA API CON VALORES REALES
   const snakeCaseName = data?.name ? nameToSnakeCase(data.name) : ''
   const { yieldata } = useProjectYieldata('El_Milagro') || { yieldata: {} }
   // const { yieldata } = useProjectYieldata(String(snakeCaseName)) || { yieldata: {} };
@@ -92,6 +94,8 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
             <Shedule {...data} />
           </div>
         </div>
+        <TitleWithLine>Simulador</TitleWithLine>
+        <Simulator />
       </div>
     ),
     productor: (
@@ -118,7 +122,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       <div className={styles.body}>
         <Stepper steps={steps} />
       </div>
-    )
+    ),
   }
 
   return (
