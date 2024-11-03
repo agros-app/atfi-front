@@ -46,6 +46,7 @@ export default function PasswordModal({isOpen, onClose}: PasswordModalProps){
                         <TextField
                             placeholder={"Contraseña actual"}
                             name={"Contraseña actual"}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     <Button className={styles.buttonContainer} variant={"secondary"}>
                         Enviar
