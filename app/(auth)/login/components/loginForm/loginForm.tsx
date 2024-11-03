@@ -58,11 +58,21 @@ export default function LoginForm() {
                 error={!!errors.password}
                 helperText={errors.password}
             />
+                <Link href="/recover-password" style={{
+                    color: 'red',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                }}>
+                    ¿Olvidaste la contraseña?
+                </Link>
             <Button variant="primary" size="lg" className={styles.button}>
                 Continuar
             </Button>
-            <p style={{ textAlign: 'center' }}>
-                No tienes una cuenta?{' '}
+            <p style={{textAlign: 'center'}}>
+                ¿No tienes una cuenta?{' '}
                 <Link href="/register" style={{
                     color: 'var(--green-850, #14452F)',
                     fontStyle: 'normal',

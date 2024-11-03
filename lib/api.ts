@@ -128,3 +128,16 @@ export const getUserInvestments = async (): Promise<UserInvestment[]> => {
     const response = await api.get("/user/investments");
     return response.data;
 }
+
+export const checkPassword = async (password: string): Promise<any> => {
+    const token = getToken();
+    return await api.post(
+        "/user/checkPassword",
+        { password },
+        {
+            headers: {
+                Authorization: `JWT Bearer ${token}`,
+            }
+        }
+    );
+};

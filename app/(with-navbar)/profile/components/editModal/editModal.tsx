@@ -31,6 +31,7 @@ export default function EditModalForm({
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
+
     // Función para convertir Partial<User> a CompleteUserInfo
     const convertToCompleteUserInfo = (user: Partial<User>): CompleteUserInfo => {
         return {

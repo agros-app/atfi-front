@@ -5,6 +5,7 @@ import ProfileBanner from "@/app/(with-navbar)/profile/components/profileBanner/
 import PersonalData from "@/app/(with-navbar)/profile/components/personalData/personalData";
 import HomeData from "@/app/(with-navbar)/profile/components/personalData/homeData";
 import useUserInfo from "@/hooks/useUserInfo";
+import PasswordData from "@/app/(with-navbar)/profile/components/personalData/passwordData";
 
 export default function ProfilePage()
 {
@@ -18,6 +19,7 @@ export default function ProfilePage()
                 <ProfileBanner user={user}/>
                 <PersonalData {...user}/>
                 <HomeData {...user} />
+                <PasswordData />
             </div>
         </div>
     )
