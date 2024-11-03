@@ -14,6 +14,7 @@ import { useUserInvestments } from '@/hooks/useInvestment'
 import useProjectId from '@/hooks/useProjectId'
 import Stock from './components/stock/Stock'
 import Button from '@/components/button/button'
+import Select from '@/components/select/Select'
 
 interface Price {
   icon: any
@@ -26,6 +27,16 @@ export default function Investments() {
   const [prices, setPrices] = useState<Price[]>([])
   const [visibleProjects, setVisibleProjects] = useState(3)
   const { investments } = useUserInvestments()
+  const [unit, setUnit] = useState('U$DT')
+
+  const unitOptions = [
+    { value: 'U$DT', title: 'U$DT' },
+    { value: 'ha', title: 'Hectáreas' }
+  ]
+
+  const handleUnitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUnit(e.target.value)
+  }
 
   const totalInvestment = investments?.reduce(
     (acc, invest) => acc + invest.amount,
@@ -54,8 +65,6 @@ export default function Investments() {
     const usdToArs = data.find(
       (item: any) => item.name === 'USD' && item.referenceCurrency === 'ARS'
     ).price
-
-    console.log(data)
 
     return data
       .filter((item: any) => icons[item.name])
@@ -102,7 +111,9 @@ export default function Investments() {
                 <p>{investment.area}ha</p>
                 <p>{new Date(investment.createdAt).toLocaleDateString()}</p>
                 <Link href={`/project/${investment.projectId}`}>
-                  <Button size='sm' variant='outlined' fill>Ver proyecto</Button>
+                  <Button size="sm" variant="outlined" fill>
+                    Ver proyecto
+                  </Button>
                 </Link>
               </div>
             ))}
@@ -114,28 +125,28 @@ export default function Investments() {
           </p>
         )}
         <div className={styles.chartsContainer}>
-          <div>
-            <PieChart
-              data={
-                investments?.map((i) => ({
-                  value: i.amount,
-                  name: i.projectName
-                })) || []
-              }
-              title="Invertido en U$DT"
-              unit="U$DT"
+          <div className={styles.select}>
+            <Select
+              placeholder="Unidad de inversión"
+              label='Unidad de inversión'
+              name="unit"
+              options={unitOptions}
+              selected={unit}
+              onChange={handleUnitChange}
             />
           </div>
-          <div>
+          <div className={styles.chart}>
             <PieChart
               data={
-                investments?.map((i) => ({
-                  value: i.area,
-                  name: i.projectName
-                })) || []
+                investments?.map((i) => {
+                  return {
+                    value: unit === 'U$DT' ? i.amount : i.area,
+                    name: i.projectName
+                  }
+                }) ?? []
               }
-              title="Invertido en hectáreas"
-              unit="ha"
+              title={`Invertido en ${unit}`}
+              unit={unit}
             />
           </div>
         </div>
