@@ -13,6 +13,7 @@ import { getAgrotokenPricing } from '@/app/api/prices/prices'
 import { useUserInvestments } from '@/hooks/useInvestment'
 import useProjectId from '@/hooks/useProjectId'
 import Stock from './components/stock/Stock'
+import Button from '@/components/button/button'
 
 interface Price {
   icon: any
@@ -25,6 +26,11 @@ export default function Investments() {
   const [prices, setPrices] = useState<Price[]>([])
   const [visibleProjects, setVisibleProjects] = useState(3)
   const { investments } = useUserInvestments()
+
+  const totalInvestment = investments?.reduce(
+    (acc, invest) => acc + invest.amount,
+    0
+  )
 
   useEffect(() => {
     getAgrotokenPricing().then((data) => {
@@ -67,6 +73,16 @@ export default function Investments() {
 
   return (
     <main className={styles.main}>
+      <div className={styles.cardsContainer}>
+        <div className={styles.card}>
+          <h3>Balance</h3>
+          <p className={styles.cost}>U$DT {totalInvestment}</p>
+          <p className={styles.description}>
+            Importe que actualmente se encuentra invertido en uno o mas
+            proyectos
+          </p>
+        </div>
+      </div>
       <div style={{ marginTop: 36 }}>
         <h3>Cotizaciones</h3>
         <div className={styles.stocksContainer} style={{ marginTop: 16 }}>
@@ -86,7 +102,7 @@ export default function Investments() {
                 <p>{investment.area}ha</p>
                 <p>{new Date(investment.createdAt).toLocaleDateString()}</p>
                 <Link href={`/project/${investment.projectId}`}>
-                  <Redirect />
+                  <Button size='sm' variant='outlined' fill>Ver proyecto</Button>
                 </Link>
               </div>
             ))}

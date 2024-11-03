@@ -3,7 +3,7 @@ import {getUserInvestments} from "@/lib/api";
 import {UserInvestment} from "@/types/api";
 
 export const useUserInvestments = () => {
-    const [investments, setInvestments] = useState<UserInvestment[] | null>(null);
+    const [investments, setInvestments] = useState<UserInvestment[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
