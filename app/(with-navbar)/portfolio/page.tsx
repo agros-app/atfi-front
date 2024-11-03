@@ -123,6 +123,7 @@ export default function Investments() {
                 })) || []
               }
               title="Invertido en U$DT"
+              unit="U$DT"
             />
           </div>
           <div>
@@ -134,6 +135,7 @@ export default function Investments() {
                 })) || []
               }
               title="Invertido en hectáreas"
+              unit="ha"
             />
           </div>
         </div>
@@ -144,10 +146,12 @@ export default function Investments() {
 
 const PieChart = ({
   data,
-  title
+  title,
+  unit
 }: {
   data: { value: number; name: string }[]
   title?: string
+  unit: string
 }) => {
   const options: EChartsOption = {
     title: {
@@ -165,7 +169,7 @@ const PieChart = ({
     color: ['#1c5739', '#C8E6C9', '#2d7a51', '#A5D6A7', '#0f3d28'],
     series: [
       {
-        name: 'Tipo de Costo',
+        name: `Invertido (${unit})`,
         type: 'pie',
         radius: '50%',
         data: data,
