@@ -8,15 +8,19 @@
   align-items: center;
   gap: 16px;
   background-color: $title;
-  padding: 48px 0;
+  padding: $vertical-padding $horizontal-padding;
+
+  @include tablet{
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
 
 .description {
-  max-width: 60%;
   font-size: 32px;
   color: $white;
   font-weight: 300;
   line-height: 1.3;
+  text-align: center;
 }
 
 .visionBorder {
@@ -29,12 +33,10 @@
 .visionContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 1000px;
   margin: 0 auto;
   gap: 20px;
 
   @include laptop{
-    width: 90%;
     display: flex;
     flex-direction: column;
     grid-template-columns: none;

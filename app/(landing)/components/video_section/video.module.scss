@@ -7,8 +7,12 @@
   height: 100vh;
   overflow: hidden;
   align-items: center;
-  padding: 5%;
+  padding: $vertical-padding $horizontal-padding;
   transition-duration: 500ms;
+
+  @include tablet{
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
 
 .backgroundVideo {

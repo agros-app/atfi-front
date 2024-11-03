@@ -1,13 +1,16 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
-  padding: 50px $hero-horizontal-padding;
   display: flex;
   gap: 50px;
   justify-content: center;
-  height: 80vh;
-  margin-top: 150px;
+  align-items: center;
+  height: 100vh;
+  padding: $vertical-padding $horizontal-padding;
+  @include tablet {
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
 
 .backgroundVideo {
@@ -44,7 +47,6 @@
   width: 140px;
 }
 
-
 .imageContainer {
   position: relative;
   width: 60%;
@@ -67,31 +69,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 1200px) {
-    .container {
-        gap: 120px;
-    }
-}
-
-@include laptop{
-  .image{
-    width: 300px;
-  }
-  .secondImage{
-    max-width: 300px;
-    top: 100px;
-  }
+@include tablet {
   .heading {
     font-size: 2.5rem;
   }
 }
 
-@include tablet{
-  .container {
-    padding: 10px;
-    height: 50vh;
-  }
-
+@include mobile {
   .tag {
     margin: auto auto 32px;
   }
