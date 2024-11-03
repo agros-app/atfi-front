@@ -81,7 +81,7 @@ export const answerMessage = async (messageId: number, message: string): Promise
 }
 
 export const getProjectMessages = async (projectId: number): Promise<ProjectMessage[]> => {
-    const response = await api.get(`/project/messages/${projectId}`);
+    const response = await api.get(`/project/message/all/${projectId}`);
     return response.data;
 }
 
