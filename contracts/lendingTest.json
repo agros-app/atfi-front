@@ -1,5 +1,5 @@
 {
-  "address": "0x78240f872f9fB4B0B69BdB7864Db5FdC450bC2eC",
+  "address": "0xD4d305d457048A239ad266aB774537dD4e13259d",
   "abi": [
     {
       "inputs": [
@@ -61,6 +61,19 @@
       "anonymous": false,
       "inputs": [
         {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
+        }
+      ],
+      "name": "ContractCanceled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
           "indexed": false,
           "internalType": "uint256",
           "name": "totalAmount",
@@ -106,6 +119,25 @@
         }
       ],
       "name": "InvestmentReturned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "investor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvestmentWithdrawn",
       "type": "event"
     },
     {

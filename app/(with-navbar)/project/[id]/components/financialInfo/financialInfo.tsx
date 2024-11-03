@@ -30,7 +30,7 @@ export default function FinancialInfo({
     seed,
     area
 }: FinancialInfoProps) {
-  const { investInLending, loading } = useLending();
+  const { investInLending, disburseFunds, loading } = useLending();
   const percentage = Math.floor((currentAmount / goalAmount) * 100);
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
@@ -104,6 +104,9 @@ export default function FinancialInfo({
             Invertir
           </Button>
         </form>
+        <Button onClick={disburseFunds}>
+          Retirar fondos
+        </Button>
       </div>
     </div>
   );

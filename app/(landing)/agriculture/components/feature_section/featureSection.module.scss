@@ -1,15 +1,18 @@
-@import "@/styles/variables.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   background-color: $title;
   color: #e2e2e2;
-  padding: 50px;
+  padding: $vertical-padding $horizontal-padding;
+  @include tablet {
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 }
 
 .heading {
   font-size: 4rem;
   color: $light-green;
-  margin-left: 100px;
   margin-bottom: 40px;
   font-weight: normal;
 }
@@ -62,13 +65,13 @@
   }
 }
 
-@media (max-width: 768px) {
+@include tablet {
   .container {
     padding: 32px;
   }
   .heading {
-    font-size: 1.5rem;
-    margin: 0 0 16px;
+    font-size: 30px;
+    text-align: center;
   }
 
   .description {
@@ -82,11 +85,7 @@
   }
 }
 
-@media (max-width: 480px) {
-  .heading {
-    font-size: 1.5rem;
-  }
-
+@include mobile {
   .description {
     font-size: 0.875rem;
   }

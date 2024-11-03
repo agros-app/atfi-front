@@ -1,10 +1,15 @@
 @import "@/styles/variables.scss";
+@import "@/styles/media.scss";
 
 .contactFormContainer {
   background-color: $bg-color;
-  padding: 70px $landing-horizontal-padding-primary;
   border-radius: 8px;
   margin: 0 auto;
+
+  padding: $vertical-padding $horizontal-padding;
+  @include tablet{
+    padding: $vertical-padding-sm $horizontal-padding-sm;
+  }
 
   .heading {
     font-size: 3.5rem;
@@ -86,7 +91,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include tablet {
   .contactFormContainer {
     .content {
       flex-direction: column;
@@ -99,11 +104,12 @@
   }
 }
 
-@media (max-width: 480px) {
+@include mobile {
   .contactFormContainer {
     padding: 32px;
     .heading {
-      font-size: 2rem;
+      font-size: 30px;
+      text-align: center;
       margin-bottom: 40px;
       max-width: 100%;
     }
