@@ -7,11 +7,13 @@ import ProfileButton from "@/components/profileButton/profileButton";
 
 export default async function NavBar() {
     const user = await getSession();
+
     return (
         <nav className={styles.navbar}>
             <div className={styles.left}>
                 <Link href="/home" >
-                    <img src={"/logo.png"} style={{height: "45px", width: "auto"}} alt={"logo"}/> </Link>
+                    <img src={"/logo.png"} style={{height: "45px", width: "auto"}} alt={"logo"} />
+                </Link>
                 <div className={styles.links}>
                     <Link href={"/projects"}>
                         <p>Proyectos</p>
@@ -22,6 +24,11 @@ export default async function NavBar() {
                     <Link href={"/submit-project"}>
                         <p>Subir proyecto</p>
                     </Link>
+                    {user?.role === "ADMIN" && (
+                        <Link href={"/pending-projects"}>
+                            <p>Proyectos Pendientes</p>
+                        </Link>
+                    )}
                 </div>
             </div>
             <div className={styles.right}>

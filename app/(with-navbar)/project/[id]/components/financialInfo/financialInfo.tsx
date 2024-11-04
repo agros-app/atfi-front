@@ -104,9 +104,9 @@ export default function FinancialInfo({
             Invertir
           </Button>
         </form>
-        <Button onClick={disburseFunds}>
+        {/*<Button onClick={disburseFunds}>
           Retirar fondos
-        </Button>
+        </Button>*/}
       </div>
     </div>
   );

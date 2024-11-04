@@ -25,6 +25,7 @@ export type ProjectCost= {
     harvest: number;
     lease: number;
 }
+
 export type ProjectData = Project & {
     cost: ProjectCost
     country: string,
@@ -134,4 +135,9 @@ export type UserInvestment={
     amount: number;
     area:number
     createdAt: Date;
+}
+
+export type ProjectStatus = {
+    projectId: number
+    status: Status
 }
