@@ -144,3 +144,10 @@ export const checkPassword = async (password: string): Promise<any> => {
         { password }
     );
 };
+
+export const updatePassword = async (password: string): Promise<any> => {
+    return await api.post(
+        "/user/ChangePassword",
+        { password }
+    );
+}
