@@ -1,12 +1,15 @@
 import {
     CompleteUserInfo,
+    Crop,
     MessageData,
     ProjectData,
     ProjectDetailInfo,
     ProjectMessage, ProjectStatus,
     ProjectYieldata,
+    SimulationData,
     transformApiDataToProjectYieldata,
-    User, UserInvestment
+    User, UserInvestment,
+    YieldRange,
 } from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -48,13 +51,26 @@ export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => 
 
 export const investByProjectId = async (id: number, amount: number): Promise<void> => {
     await api.post(`/project/invest`, {
-        body: JSON.stringify({
-            projectId: id,
-            amount
-        })
+        projectId: id,
+        amount
     });
 }
 
+export const regretInvestment = async (id: number, amount: number): Promise<void> => {
+    await api.patch(`/project/investment/cancel/${id}`, {
+        projectId: id,
+        amount
+    });
+}
+
+export const updateProjectPhoto = async(projectId: number): Promise<string> => {
+    const response = await api.patch(`/project/${projectId}/update-photo`);
+    return response.data;
+}
+
+export const deleteProjectPhoto = async(projectId: number, photoId: string): Promise<void> => {
+    await api.delete(`/project/${projectId}/update-photo/${photoId}`);
+}
 
 export const createProject = async (project: ProjectFormData): Promise<ProjectData | any> => {
     const response = await api.post('/project', project);
@@ -76,7 +92,7 @@ export const messageProducerByProjectId = async (projectId: number, message: str
 }
 
 export const answerMessage = async (messageId: number, message: string): Promise<ProjectMessage> => {
-    const response = await api.post(`/project/answer/${messageId}`, { message });
+    const response = await api.post(`/project/message/answer/${messageId}`, { message });
     return response.data;
 }
 
@@ -115,7 +131,15 @@ export const getUserInfo = async (): Promise<User> => {
     return response.data;
 }
 
+export const updateUserPhoto = async (): Promise<string> => {
+    const response = await api.put("/user/update-photo");
+    return response.data;
+}
 
+export const eraseUserPhoto = async (): Promise<void> => {
+    await api.delete("/user/update-photo");
+}
+ 
 export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any> => {
     return await api.post('/user/complete-info', userInfo);
 };
@@ -129,13 +153,33 @@ export const getUserInvestments = async (): Promise<UserInvestment[]> => {
     return response.data;
 }
 
-export const getPendingProjects= async (): Promise<ProjectDetailInfo[]> => {
+export const getPendingProjects = async (): Promise<ProjectDetailInfo[]> => {
     const response = await api.get("/admin/project-pending");
     return response.data;
 }
 
-export const updateProjectStatus =async (projectStatus: ProjectStatus) =>{
+export const updateProjectStatus = async (projectStatus: ProjectStatus) => {
     return await api.put('/admin/project/status', projectStatus);
+}
+
+// ------------------- SIMULATOR -------------------
+
+export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number): Promise<SimulationData> => {
+    const simulation = await api.post('/simulation', {
+        crop,
+        zone,
+        yield: yieldData,
+        investment,
+        hectaresAmount
+    });
+
+    return simulation.data;
+}
+
+export const getYielRangedByCrop = async (crop: Crop): Promise<YieldRange[]> => {
+    const response = await api.get(`/simulation/${crop}`);
+    return response.data;
+
 }
 
 export const checkPassword = async (password: string): Promise<any> => {

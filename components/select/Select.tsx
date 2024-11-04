@@ -11,6 +11,7 @@ type SelectProps = {
   selected?: string
   options: { value: string; title: string }[]
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  required?: boolean
 }
 
 export default function Select({
@@ -22,7 +23,8 @@ export default function Select({
   error,
   options,
   selected = '',
-  onChange
+  onChange,
+  required = false
 }: SelectProps) {
   return (
     <div
@@ -36,7 +38,7 @@ export default function Select({
           {label}
         </label>
       )}
-      <select name={name} className={className} defaultValue={selected}>
+      <select name={name} className={className} defaultValue={selected} required={required}>
         {placeholder && (
           <option value="" hidden>
             {placeholder}

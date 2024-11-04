@@ -10,7 +10,7 @@ export default function WithNavbarLayout({
     <>
       <NavBar />
       <AuthGuard>
-        <div style={{ marginTop: '73px' }}>
+        <div className="layout">
           {children}
         </div>
       </AuthGuard>
