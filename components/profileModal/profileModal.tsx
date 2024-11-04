@@ -7,7 +7,7 @@ import {User} from "@/types/api";
 import ExitIcon from '@/assets/icons/exitIcon';
 import ControlsIcon from '@/assets/icons/controls';
 import WalletIcon from '@/assets/icons/wallet';
-import nicoImage from "@assets/images/owners/nico.webp"
+import {useState, useEffect} from "react";
 
 type ProfileModalProps = {
     closeModal: () => void;
@@ -19,6 +19,14 @@ export default function ProfileModal({closeModal,user}: ProfileModalProps) {
     const router = useRouter();
 
     const { connectWallet, disconnectWallet, isConnected } = useWeb3();
+    const [profileImage, setProfileImage] = useState("/placeholder.png");
+
+    useEffect(() => {
+        if (user && user.photoURL) {
+            setProfileImage(`https://elbucke.s3.us-east-1.amazonaws.com/profile/${user.photoURL}`);
+        }
+    }, [user]);
+
     const handleWallet = () => {
         if (isConnected) {
             disconnectWallet();
@@ -36,7 +44,7 @@ export default function ProfileModal({closeModal,user}: ProfileModalProps) {
         <div className={styles.container}>
             <div className={styles.innerContainer}>
                 <div className={styles.profile}>
-                    <ProfileImage src={nicoImage.src} size={60}></ProfileImage>
+                    <ProfileImage src={profileImage} size={60}></ProfileImage>
                     <div className={styles.data}>
                         <h3 className={styles.title}>{`${user.name} ${user.lastName}`}</h3>
                         <p className={styles.email}>{user.email}</p>

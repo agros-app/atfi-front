@@ -1,6 +1,7 @@
 export type Project = {
     id: number,
     name: string,
+    photoURL?: string,
     amountNeed: number,
     amountCollected: number,
     minAmount: number,
@@ -12,12 +13,12 @@ export type Project = {
     providers: Provider[]
 }
 
-export type Provider={
+export type Provider = {
     name: string,
     seed: string
 }
 
-export type ProjectCost= {
+export type ProjectCost = {
     commercializationExpenses: number;
     plowing: number;
     seeds: number;
@@ -128,12 +129,12 @@ export type ProjectMessage = {
     user: User;
 }
 
-export type UserInvestment={
+export type UserInvestment = {
     userId: number;
     projectId: number;
     projectName: string;
     amount: number;
-    area:number
+    area: number
     createdAt: Date;
 }
 
@@ -141,3 +142,29 @@ export type ProjectStatus = {
     projectId: number
     status: Status
 }
+
+export type SimulationData = {
+    funds: number;
+
+    totalCostPerHectare: number;
+
+    investedHectares: number;
+
+    grossMarginPerHectare: number;
+
+    totalGrossMargin: number;
+
+    returnPercentage: number;
+
+    costs: {
+        costName: string;
+        value: number;
+    }[]
+}
+
+export type YieldRange = {
+    zone: string;
+    yields: number[];
+}
+
+export type Crop = "trigo" | "soja_1ra" | "soja_2da" | "maiz"
