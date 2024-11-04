@@ -66,7 +66,6 @@ export default function RegisterForm() {
         }
 
         const dataToSend = { ...formData, password };
-        console.log(dataToSend);
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/register`, {
                 method: 'POST',

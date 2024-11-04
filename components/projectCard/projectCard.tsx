@@ -6,7 +6,7 @@ import LocationIcon from "@/assets/icons/location";
 import TimeIcon from "@/assets/icons/time";
 import SeedIcon from "@/assets/icons/seed";
 import ProgressBar from "../progressBar/progressBar";
-import {ProjectData} from "@/types/api";
+import {ProjectData, ProjectDetailInfo} from "@/types/api";
 import { getDaysLeft, getPercentage } from "@/utils";
 import farmImage from "@assets/images/farm_image.webp"
 
@@ -16,6 +16,7 @@ type ProjectCardProps = {
   border?: string;
   disabled?: boolean;
   onClick?: () => void;
+  buttonText?: string;
 };
 
 export default function ProjectCard({
@@ -24,9 +25,9 @@ export default function ProjectCard({
                                       bgColor = "fff",
                                       border = "0.5px solid $dark-gray",
                                       onClick,
+                                      buttonText = "Invertir"
                                     }: ProjectCardProps) {
-  console.log(project)
-  const { id, name,providers, endDate, amountCollected, amountNeed,city,country } = project;
+  const { id, name, providers, endDate, amountCollected, amountNeed, city, country } = project;
   const progress = getPercentage(amountCollected, amountNeed);
 
   return (
@@ -62,7 +63,7 @@ export default function ProjectCard({
               </div>
               <div className={styles.specific}>
                 <SeedIcon />
-                <span>{providers?.map(p =>p.seed)}</span>
+                <span>{providers?.map(p => p.seed)}</span>
               </div>
             </div>
           </div>
@@ -83,10 +84,11 @@ export default function ProjectCard({
             </div>
           </div>
           <Button
+              onClick={onClick}
               className={`${disabled === true ? styles.disabled : ""}`}
               size="sm"
           >
-            Invertir
+            {buttonText}
           </Button>
         </div>
       </div>

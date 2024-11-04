@@ -1,5 +1,5 @@
 {
-  "address": "0xe894aAccB26C3a86268FBe643185ea7D3bf4f964",
+  "address": "0xD4d305d457048A239ad266aB774537dD4e13259d",
   "abi": [
     {
       "inputs": [
@@ -35,7 +35,17 @@
         },
         {
           "internalType": "address",
+          "name": "_producerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
           "name": "_admin",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_comercializerAdress",
           "type": "address"
         }
       ],
@@ -46,6 +56,19 @@
       "inputs": [],
       "name": "ReentrancyGuardReentrantCall",
       "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
+        }
+      ],
+      "name": "ContractCanceled",
+      "type": "event"
     },
     {
       "anonymous": false,
@@ -64,7 +87,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "investor",
           "type": "address"
@@ -96,6 +119,25 @@
         }
       ],
       "name": "InvestmentReturned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "investor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvestmentWithdrawn",
       "type": "event"
     },
     {
@@ -152,9 +194,42 @@
     },
     {
       "inputs": [],
+      "name": "cancelContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "claimReturns",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "comercializerAdress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractCanceled",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -269,6 +344,19 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "producerAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
         }
       ],
       "stateMutability": "view",

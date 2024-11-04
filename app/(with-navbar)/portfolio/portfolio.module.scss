@@ -1,143 +1,139 @@
-@import "@/styles/variables.scss";
-@import "@/styles/media.scss";
+@import '@/styles/variables.scss';
+@import '@/styles/media.scss';
 
-.main{
-    padding: 40px 100px;
+.main {
+  padding: 40px 100px;
 
-    @include tablet{
-        padding: 40px 50px;
-    }
+  @include tablet {
+    padding: 40px 50px;
+  }
 }
 
-.cardsContainer, .stocksContainer{
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;    
+.cardsContainer,
+.stocksContainer {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.card{
-    padding: 16px;
-    border-radius: 16px;
-    border: 1px solid #dfdfdf;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: max-content;
+.card {
+  padding: 16px;
+  border-radius: 16px;
 
-    h3{
-        font-size: 20px;
-        // color: $primary-green;
-        font-weight: 300;
-    }
+  background-color: #fafbfc;
+  border: 1px solid #f0f0f0;
 
-    .cost{
-        font-size: 24px;
-        color: $dark-green;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: max-content;
 
-    .description{
-        font-size: 16px;
-        color: $gray;
-        font-weight: 300;
-    }
-}
+  h3 {
+    font-size: 20px;
+    font-weight: 400;
+  }
 
-.stocksCard{
-    padding: 16px;
-    border-radius: 16px;
-    border: 1px solid #dfdfdf;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    
-    & > div{
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 16px;
+  .cost {
+    font-size: 24px;
+    color: $dark-green;
+  }
 
-        & > h4{
-        font-weight: 300;
-        }
-        
-        & > svg {
-        width: 25px;
-        height: 25px;
-        }
-    }
-
-    
-
-    & > p{
-        font-size: 16px;
-        font-weight: 600;
-    }
-
-    @include mobile{
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-.investmentsContainer{
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 16px;
-
-    & > div:first-of-type{
-        flex: 1;
-    }
-
-    @include tablet{
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-}
-.chartsContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0;
-    margin-top: 70px;
-
-    & > div:first-of-type{
-        flex: 0.7;
-    }
-
-    @include tablet{
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-}
-
-.investment{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px;
-    border-radius: 8px;
-    border: 1px solid #dfdfdf;
-    margin-top: 16px;
-    gap: 16px;
-    font-size: 14px;
-
-    h3{
-        font-weight: 400;
-    }
-
-    @include mobile{
-        font-size: 12px;
-    }
-}
-
-.viewMore{
+  .description {
+    font-size: 16px;
     color: $dark-gray;
-    border-bottom: 1px solid $dark-gray;
-    margin: 10px 5px;
-    width: max-content;
-    cursor: pointer;
+    font-weight: 300;
+  }
+}
+
+.investmentsContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  & > div:first-of-type {
+    width: 100%;
+  }
+
+  @include tablet {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+.chartsContainer {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 70px;
+  gap: 24px;
+
+  .chart{
+    width: 100%;
+    display: grid;
+    place-content: center;
+  }
+
+  @include tablet {
+    align-items: center;
+
+    & > div{
+      width: 100%;
+    }
+
+    .chart{
+      display: block;
+    }
+  }
+}
+
+.investment {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 16px;
+  border-radius: 8px;
+
+  background-color: #fafbfc;
+  border: 1px solid #f0f0f0;
+  margin-top: 16px;
+  gap: 16px;
+  font-size: 14px;
+
+  h3 {
+    font-weight: 400;
+    width: 100%;
+  }
+
+  a{
+    width: 80%;
+  }
+
+  @include mobile {
+    font-size: 12px;
+    grid-template-columns: repeat(3, 1fr);
+
+    h3{
+      grid-column: span 3;
+      font-weight: bold;
+    }
+
+    p{
+      grid-row: 2;
+    }
+
+    a{
+      width: 100%;
+      grid-column: span 3;
+    }
+  }
+}
+
+.viewMore {
+  color: $dark-gray;
+  border-bottom: 1px solid $dark-gray;
+  margin: 10px 5px;
+  width: max-content;
+  cursor: pointer;
 }

@@ -3,10 +3,10 @@ import {
     MessageData,
     ProjectData,
     ProjectDetailInfo,
-    ProjectMessage,
+    ProjectMessage, ProjectStatus,
     ProjectYieldata,
     transformApiDataToProjectYieldata,
-    User
+    User, UserInvestment
 } from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -81,8 +81,17 @@ export const answerMessage = async (messageId: number, message: string): Promise
 }
 
 export const getProjectMessages = async (projectId: number): Promise<ProjectMessage[]> => {
-    const response = await api.get(`/project/messages/${projectId}`);
+    const response = await api.get(`/project/message/all/${projectId}`);
     return response.data;
+}
+
+export const editMessage = async (messageId: number, answer: string): Promise<ProjectMessage> => {
+    const response = await api.patch(`/project/message/edit/${messageId}`, { answer });
+    return response.data;
+}
+
+export const removeMessage = async (messageId: number): Promise<void> => {
+    return await api.delete(`/project/message/delete/${messageId}`);
 }
 
 
@@ -114,3 +123,24 @@ export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any>
 export const updateUserInfo = async (userInfo: Partial<CompleteUserInfo>): Promise<any> => {
     return await api.put('/user/update-info', userInfo);
 }
+
+export const getUserInvestments = async (): Promise<UserInvestment[]> => {
+    const response = await api.get("/user/investments");
+    return response.data;
+}
+
+export const getPendingProjects= async (): Promise<ProjectDetailInfo[]> => {
+    const response = await api.get("/admin/project-pending");
+    return response.data;
+}
+
+export const updateProjectStatus =async (projectStatus: ProjectStatus) =>{
+    return await api.put('/admin/project/status', projectStatus);
+}
+
+export const checkPassword = async (password: string): Promise<any> => {
+    return await api.post(
+        "/user/checkPassword",
+        { password }
+    );
+};

@@ -1,36 +1,47 @@
 import ProfileImage from '@/components/profileImage/profileImage'
 import styles from './CommentThread.module.scss'
 import { ProjectMessage } from '@/types/api'
-import Button from '@/components/button/button'
 import ReplyIcon from '@/assets/icons/reply'
 import { useState } from 'react'
-import Producer from '../producer/producer'
+import ContactForm from '../contactForm/contactForm'
+import BlockIcon from '@/assets/icons/block'
+import { answerMessage, editMessage } from '@/lib/api'
+import EditIcon from '@/assets/icons/edit'
 
 interface Props {
   incomingMessage: ProjectMessage
-  handleReply?: (comment: ProjectMessage) => void
+  handleBlock: (messageId: number) => void
 
   canReply: boolean
 }
 
 export default function CommentThread({
   incomingMessage,
-  handleReply,
+  handleBlock,
   canReply
 }: Props) {
   const [message, setMessage] = useState<ProjectMessage>(incomingMessage)
-  const [alreadyAnswered, setAlreadyAnswered] = useState<boolean>(message.answer !== null)
   const [openReply, setOpenReply] = useState<boolean>(false)
+  const [reply, setReply] = useState<string>('')
 
-  const handleMessageReply = (message: ProjectMessage) => {
-    setMessage(message)
-    setAlreadyAnswered(true)
+  const handleMessageReply = async (input: string) => {
+    const newMessage = message.answer
+      ? await editMessage(message.id, input)
+      : await answerMessage(message.id, input)
+
+    setMessage(newMessage)
+    setOpenReply(false)
   }
-  const profilePic = message?.user?.photoURL ?? '/placeholder.png'
+
+  const userProfilePicture = message?.user?.photoURL
+  const profilePic =
+    userProfilePicture && userProfilePicture !== ''
+      ? userProfilePicture
+      : '/placeholder.png'
   return (
     <>
       <article className={styles.commentContainer}>
-        <div className={styles.comment}>
+        <div className={styles.wrapper}>
           <div
             style={{
               width: '100%',
@@ -42,58 +53,41 @@ export default function CommentThread({
           >
             <div className={styles.comment}>
               <ProfileImage src={profilePic} size={20} />
-              <p style={{ fontWeight: '500' }} className={styles.pad}>
-                {message.message}
-              </p>
+              <span style={{ fontWeight: '400' }}>{message.message}</span>
             </div>
-            {canReply && !message.answer && <ReplyIcon onClick={()=>setOpenReply(!openReply)} />}
+            <div className={styles.actions}>
+              {canReply && !message.answer && (
+                <ReplyIcon onClick={() => setOpenReply(!openReply)} />
+              )}
+              {canReply && (
+                <BlockIcon
+                  onClick={() => handleBlock(message.id)}
+                  className={styles.block}
+                />
+              )}
+            </div>
           </div>
-
-          {handleReply && (
-            <div className="reply">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleReply(message)}
-              >
-                Reply
-              </Button>
-            </div>
-          )}
         </div>
         {message.answer && (
-          <article className={styles.commentContainer}>
-            <div className={styles.comment}>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 100 150"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line
-                  x1="10"
-                  y1="10"
-                  x2="10"
-                  y2="90"
-                  stroke="black"
-                  strokeWidth="5"
-                />
-                <line
-                  x1="10"
-                  y1="90"
-                  x2="90"
-                  y2="90"
-                  stroke="black"
-                  strokeWidth="5"
-                />
-              </svg>
-              <p className={styles.pad}>{message.answer}</p>
-            </div>
-          </article>
+          <div className={styles.answer}>
+            <span>{message.answer}</span>
+            {canReply && (
+              <EditIcon
+                onClick={() => {
+                  setOpenReply(!openReply)
+                  setReply(message?.answer ?? '')
+                }}
+              />
+            )}
+          </div>
         )}
       </article>
-      {canReply && !alreadyAnswered && openReply && (
-        <Producer replyId={message.id} onSuccess={handleMessageReply} />
+      {openReply && (
+        <ContactForm
+          replyId={message.id}
+          defaultValue={reply}
+          onSendMessage={handleMessageReply}
+        />
       )}
     </>
   )

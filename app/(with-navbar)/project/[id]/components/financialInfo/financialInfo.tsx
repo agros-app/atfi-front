@@ -30,14 +30,13 @@ export default function FinancialInfo({
     seed,
     area
 }: FinancialInfoProps) {
-  const { investInLending, loading } = useLending();
+  const { investInLending, disburseFunds, loading } = useLending();
   const percentage = Math.floor((currentAmount / goalAmount) * 100);
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
-    await investByProjectId(projectId, amount);
     await investInLending(amount.toString(), mockUSDT, lending);
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
@@ -96,10 +95,18 @@ export default function FinancialInfo({
             min={minAmount}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          <Button fill disabled={loading}>
+          <Button
+              // @ts-ignore
+              type={"submit"}
+              fill
+              disabled={loading}
+          >
             Invertir
           </Button>
         </form>
+        {/*<Button onClick={disburseFunds}>
+          Retirar fondos
+        </Button>*/}
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
 'use client'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import styles from './tab.module.scss'
 import Map from '../map/map'
 import Shedule from '../schedule/schedule'
 import { DetailsTab } from '@/app/(with-navbar)/project/[id]/components/detailsTab/detailsTab'
 import Documents from '@/app/(with-navbar)/project/[id]/components/documents/documents'
-import Producer from '@/app/(with-navbar)/project/[id]/components/producer/producer'
 import Stepper from '@/components/stepper/stepper'
 import { ProjectDetailInfo, ProjectMessage, ProjectYieldata } from '@/types/api'
 import Comercializador from '@/app/(with-navbar)/project/[id]/components/comercializador/comercializador'
 import useProjectYieldata from '@/hooks/useProjectYieldata'
 import CommentThread from '../commentThread/CommentThread'
 import ProductorTab from '../productor_tab/productorTab'
+import useProjectId from "@/hooks/useProjectId";
 type Tabs =
   | 'resumen'
   | 'ubicacion'
@@ -57,7 +57,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     return name.replace(/\s+/g, '_').toLowerCase()
   }
 
-  //TODO: CAMBIAR EL NOMBRE AL TENER LA API CON VALORES REALES
+
   const snakeCaseName = data?.name ? nameToSnakeCase(data.name) : ''
   const { yieldata } = useProjectYieldata('El_Milagro') || { yieldata: {} }
   // const { yieldata } = useProjectYieldata(String(snakeCaseName)) || { yieldata: {} };
@@ -72,87 +72,6 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
       ? words.slice(0, wordLimit).join(' ') + '...'
       : text
   }
-
-//   {
-//     "id": 1,
-//     "projectId": 1,
-//     "userId": 13,
-//     "message": "Quiero comprar el campo, a cuanto el kilito?",
-//     "answer": "No papi, el campito no se vende. Al igual que la patria",
-//     "createdAt": "2024-10-14T18:26:07.659Z"
-// }
-
-  const projectMessages: ProjectMessage[] = [
-    {
-      id: 1,
-      projectId: 101,
-      userId: 201,
-      message: '¿Cuál es el estado del proyecto?',
-      answer: 'El proyecto está en proceso de aprobación.',
-      createdAt: '2024-09-23T10:00:00Z',
-      user: {
-        id: 201,
-        name: 'Juan',
-        lastName: 'Pérez',
-        email: 'juan.perez@example.com',
-        withProvider: false,
-        photoURL: '/agriculture/imagen_campo.webp',
-        role: 'Producer',
-        cuit: '20304050607',
-        phone: '+541234567890',
-        country: 'Argentina',
-        city: 'Buenos Aires',
-        state: 'Buenos Aires',
-        address: 'Av. Corrientes 1234'
-      }
-    },
-    {
-      id: 2,
-      projectId: 102,
-      userId: 202,
-      message: '¿Cuándo comenzará la siembra?',
-      answer: 'La siembra comenzará el 25/09/2024.',
-      createdAt: '2024-09-22T15:30:00Z',
-      user: {
-        id: 202,
-        name: 'Ana',
-        lastName: 'García',
-        email: 'ana.garcia@example.com',
-        withProvider: true,
-        photoURL: '/agriculture/imagen_campo.webp',
-        role: 'Investor',
-        cuit: '20305060708',
-        phone: '+541234567891',
-        country: 'Argentina',
-        city: 'Buenos Aires',
-        state: 'Buenos Aires',
-        address: 'Av. Corrientes 1234'
-      }
-    },
-    {
-      id: 3,
-      projectId: 103,
-      userId: 203,
-      message: '¿Qué tipo de suelo tiene el campo?',
-      answer: 'El campo tiene suelo franco.',
-      createdAt: '2024-09-21T11:45:00Z',
-      user: {
-        id: 203,
-        name: 'Pedro',
-        lastName: 'Martínez',
-        email: 'pedro.martinez@example.com',
-        withProvider: false,
-        photoURL: '/agriculture/imagen_campo.webp',
-        role: 'Producer',
-        cuit: '20306070809',
-        phone: '+541234567892',
-        country: 'Argentina',
-        city: 'Buenos Aires',
-        state: 'Buenos Aires',
-        address: 'Av. Corrientes 1234'
-      }
-    }
-  ]
 
   const content: Record<Tabs, JSX.Element> = {
     resumen: (
@@ -192,7 +111,7 @@ export default function Tab({ data }: { data: ProjectDetailInfo }) {
     ),
     detalles: (
       <div className={styles.body}>
-        <DetailsTab yieldata={yieldata} />
+        <DetailsTab yieldata={yieldata} project={data}/>
       </div>
     ),
     progreso: (

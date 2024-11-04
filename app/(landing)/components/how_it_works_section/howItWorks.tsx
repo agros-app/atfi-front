@@ -33,7 +33,6 @@ const cards: LandingCardProps[] = [
 export default function HowItWorksSection() {
   return (
     <section className={styles.container} id="how-it-works">
-      <div className={styles.cards}>
         {cards.map((item, index) => (
           <LandingCard
             key={index}
@@ -44,7 +43,6 @@ export default function HowItWorksSection() {
 
           />
         ))}
-      </div>
     </section>
   );
 }
