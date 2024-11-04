@@ -36,7 +36,7 @@ export default function CommentThread({
   const userProfilePicture = message?.user?.photoURL
   const profilePic =
     userProfilePicture && userProfilePicture !== ''
-      ? userProfilePicture
+      ? `https://elbucke.s3.us-east-1.amazonaws.com/profile/${userProfilePicture}`
       : '/placeholder.png'
   return (
     <>

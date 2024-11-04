@@ -4,7 +4,6 @@ import ProfileImage from "@/components/profileImage/profileImage";
 import ProfileModal from "@/components/profileModal/profileModal";
 import { useRef, useState, useEffect } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
-import nicoImage from "@assets/images/owners/nico.webp";
 
 export default function ProfileButton() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,6 +11,15 @@ export default function ProfileButton() {
     const profileImageRef = useRef<HTMLDivElement | null>(null);
 
     const { user } = useUserInfo();
+
+    const [profileImage, setProfileImage] = useState("/placeholder.png");
+
+    useEffect(() => {
+        if (user && user.photoURL) {
+            setProfileImage(`https://elbucke.s3.us-east-1.amazonaws.com/profile/${user.photoURL}`);
+        }
+    }, [user]);
+
     const setModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -45,7 +53,7 @@ export default function ProfileButton() {
     return (
         <div className={styles.profileButtonContainer}>
             <div ref={profileImageRef} onClick={setModal} className={styles.image}>
-                <ProfileImage src={nicoImage.src} size={60} />
+                <ProfileImage src={profileImage} size={60} />
             </div>
             {isModalOpen && (
                 <div ref={modalRef}>

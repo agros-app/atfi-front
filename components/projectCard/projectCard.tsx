@@ -9,6 +9,7 @@ import ProgressBar from "../progressBar/progressBar";
 import {ProjectData, ProjectDetailInfo} from "@/types/api";
 import { getDaysLeft, getPercentage } from "@/utils";
 import farmImage from "@assets/images/farm_image.webp"
+import { useState, useEffect } from "react";
 
 type ProjectCardProps = {
   project: ProjectData;
@@ -30,6 +31,14 @@ export default function ProjectCard({
   const { id, name, providers, endDate, amountCollected, amountNeed, city, country } = project;
   const progress = getPercentage(amountCollected, amountNeed);
 
+  const [projectImage, setProfileImage] = useState(farmImage.src);
+
+  useEffect(() => {
+    if (project && project.photoURL) {
+        setProfileImage(`https://elbucke.s3.us-east-1.amazonaws.com/location/${project.photoURL}`);
+    }
+  }, [project]);
+
   return (
       <div
           className={`${styles.container} ${disabled ? styles.disabled : ""}`}
@@ -38,7 +47,7 @@ export default function ProjectCard({
       >
         <div className={styles.top}>
           <Image
-              src={farmImage.src}
+              src={projectImage}
               alt="Farm Image"
               fill
               priority

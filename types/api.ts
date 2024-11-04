@@ -1,6 +1,7 @@
 export type Project = {
     id: number,
     name: string,
+    photoURL?: string,
     amountNeed: number,
     amountCollected: number,
     minAmount: number,
