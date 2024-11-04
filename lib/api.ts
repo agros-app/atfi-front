@@ -51,13 +51,26 @@ export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => 
 
 export const investByProjectId = async (id: number, amount: number): Promise<void> => {
     await api.post(`/project/invest`, {
-        body: JSON.stringify({
-            projectId: id,
-            amount
-        })
+        projectId: id,
+        amount
     });
 }
 
+export const regretInvestment = async (id: number, amount: number): Promise<void> => {
+    await api.patch(`/project/investment/cancel/${id}`, {
+        projectId: id,
+        amount
+    });
+}
+
+export const updateProjectPhoto = async(projectId: number): Promise<string> => {
+    const response = await api.patch(`/project/${projectId}/update-photo`);
+    return response.data;
+}
+
+export const deleteProjectPhoto = async(projectId: number, photoId: string): Promise<void> => {
+    await api.delete(`/project/${projectId}/update-photo/${photoId}`);
+}
 
 export const createProject = async (project: ProjectFormData): Promise<ProjectData | any> => {
     const response = await api.post('/project', project);
@@ -79,7 +92,7 @@ export const messageProducerByProjectId = async (projectId: number, message: str
 }
 
 export const answerMessage = async (messageId: number, message: string): Promise<ProjectMessage> => {
-    const response = await api.post(`/project/answer/${messageId}`, { message });
+    const response = await api.post(`/project/message/answer/${messageId}`, { message });
     return response.data;
 }
 
@@ -118,7 +131,15 @@ export const getUserInfo = async (): Promise<User> => {
     return response.data;
 }
 
+export const updateUserPhoto = async (): Promise<string> => {
+    const response = await api.put("/user/update-photo");
+    return response.data;
+}
 
+export const eraseUserPhoto = async (): Promise<void> => {
+    await api.delete("/user/update-photo");
+}
+ 
 export const completeUserInfo = async (userInfo: CompleteUserInfo): Promise<any> => {
     return await api.post('/user/complete-info', userInfo);
 };

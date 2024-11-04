@@ -5,10 +5,10 @@ import Button from "@/components/button/button";
 import TextIndexComponent from "../TextIndexComponent/textIndexComponent";
 import TextField from "@/components/textField/textField";
 import useLending from "@/hooks/useLending";
-import { FormEventHandler } from "react";
+import {FormEventHandler, useEffect, useState} from "react";
 import mockUSDT from "@/contracts/mockUSDT.json";
 import lending from "@/contracts/lendingTest.json";
-import { investByProjectId } from "@/lib/api";
+import { investByProjectId, regretInvestment as regret} from "@/lib/api";
 
 type FinancialInfoProps = {
   projectId: number;
@@ -30,14 +30,21 @@ export default function FinancialInfo({
     seed,
     area
 }: FinancialInfoProps) {
-  const { investInLending, disburseFunds, loading } = useLending();
+  const { investInLending, disburseFunds, loading, regretInvestment } = useLending();
   const percentage = Math.floor((currentAmount / goalAmount) * 100);
+  const [collected, setCollected] = useState(currentAmount);
+  const [amount, setAmount] = useState<number>(0);
+
+  useEffect(() => {
+    setCollected(currentAmount);
+  }, [currentAmount]);
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
-    await investInLending(amount.toString(), mockUSDT, lending);
+    await investInLending(amount.toString(), mockUSDT, lending, projectId);
+    setCollected(Math.floor(currentAmount + amount))
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
   };
@@ -47,6 +54,10 @@ export default function FinancialInfo({
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const handleRegret = async () => {
+    await regretInvestment(amount.toString(), lending, async () => await regret(projectId, amount));
+    setCollected(Math.floor(currentAmount - amount))
+  }
 
   return (
     <div className={styles.container}>
@@ -54,13 +65,13 @@ export default function FinancialInfo({
         <h3 className={styles.title}>Total Recaudado</h3>
         <div className={styles.amount}>
           <TextIndexComponent
-            text={`$${currentAmount} USD`}
+            text={`$${collected} USD`}
             percentage={`${percentage}`}
             subtext={`Meta: $${goalAmount} USD`}
           />
           <div className={styles.progressBar}>
             <ProgressBar
-              collected={currentAmount}
+              collected={collected}
               goal={goalAmount}
               height={15}
             />
@@ -93,20 +104,23 @@ export default function FinancialInfo({
             type="number"
             // @ts-ignore
             min={minAmount}
+            onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          <Button
-              // @ts-ignore
-              type={"submit"}
-              fill
-              disabled={loading}
-          >
-            Invertir
+            <Button
+                // @ts-ignore
+                type={"submit"}
+                fill
+                disabled={loading}
+            >
+              Invertir
+            </Button>
+          </form>
+        <div style={{marginTop: '16px'}}>
+          <Button disabled={loading} variant={'secondary'} fill onClick={handleRegret}>
+            Revertir inversión
           </Button>
-        </form>
-        <Button onClick={disburseFunds}>
-          Retirar fondos
-        </Button>
+        </div>
       </div>
     </div>
   );
