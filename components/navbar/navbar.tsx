@@ -24,6 +24,9 @@ export default async function NavBar() {
                     <Link href={"/submit-project"}>
                         <p>Subir proyecto</p>
                     </Link>
+                    <Link href={"/simulator"}>
+                        <p>Simulador</p>
+                    </Link>
                     {user?.role === "ADMIN" && (
                         <Link href={"/pending-projects"}>
                             <p>Proyectos Pendientes</p>
