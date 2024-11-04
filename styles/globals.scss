@@ -54,3 +54,11 @@ select {
     font-weight: lighter;
   }
 }
+
+.layout{
+  margin-top: 90px;
+
+  @include tablet{
+    margin-top: 68px;
+  }
+}

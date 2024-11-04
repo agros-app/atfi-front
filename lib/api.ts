@@ -1,12 +1,15 @@
 import {
     CompleteUserInfo,
+    Crop,
     MessageData,
     ProjectData,
     ProjectDetailInfo,
     ProjectMessage, ProjectStatus,
     ProjectYieldata,
+    SimulationData,
     transformApiDataToProjectYieldata,
-    User, UserInvestment
+    User, UserInvestment,
+    YieldRange,
 } from "@/types/api";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -150,11 +153,31 @@ export const getUserInvestments = async (): Promise<UserInvestment[]> => {
     return response.data;
 }
 
-export const getPendingProjects= async (): Promise<ProjectDetailInfo[]> => {
+export const getPendingProjects = async (): Promise<ProjectDetailInfo[]> => {
     const response = await api.get("/admin/project-pending");
     return response.data;
 }
 
-export const updateProjectStatus =async (projectStatus: ProjectStatus) =>{
+export const updateProjectStatus = async (projectStatus: ProjectStatus) => {
     return await api.put('/admin/project/status', projectStatus);
+}
+
+// ------------------- SIMULATOR -------------------
+
+export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number): Promise<SimulationData> => {
+    const simulation = await api.post('/simulation', {
+        crop,
+        zone,
+        yield: yieldData,
+        investment,
+        hectaresAmount
+    });
+
+    return simulation.data;
+}
+
+export const getYielRangedByCrop = async (crop: Crop): Promise<YieldRange[]> => {
+    const response = await api.get(`/simulation/${crop}`);
+    return response.data;
+
 }
