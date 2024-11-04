@@ -34,7 +34,7 @@ export default function HomeData(data: HomeDataProps) {
       <div className={styles.container}>
         <div className={styles.innerContainer}>
           <div className={styles.titleContainer}>
-            <h3 className={styles.title}>Datos Personales</h3>
+            <h3 className={styles.title}>Dirección</h3>
             <p className={styles.editTitle}>
               <img
                   src={'/profile/edit.png'}
@@ -79,7 +79,7 @@ export default function HomeData(data: HomeDataProps) {
             isOpen={isModalOpen}
             onClose={closeModal}
             data={userData}
-            title={'Datos del Hogar'}
+            title={'Dirección'}
             fields={[
               {name: 'country', label: 'País', placeholder: userData.country},
               {name: 'state', label: 'Provincia', placeholder: userData.state},

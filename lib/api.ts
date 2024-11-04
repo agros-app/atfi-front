@@ -181,3 +181,10 @@ export const getYielRangedByCrop = async (crop: Crop): Promise<YieldRange[]> => 
     return response.data;
 
 }
+
+export const checkPassword = async (password: string): Promise<any> => {
+    return await api.post(
+        "/user/checkPassword",
+        { password }
+    );
+};
