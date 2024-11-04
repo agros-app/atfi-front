@@ -1,31 +1,19 @@
-"use client";
-import styles from "./recoverPassword.module.scss";
+"use client"
+import styles from "./recoveryForm.module.scss";
 import TextField from "@/components/textField/textField";
 import Link from "next/link";
 import Button from "@/components/button/button";
 import Logo from "@assets/icons/logo";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import {useState} from "react";
 
 export default function RecoverPassword() {
     const [email, setEmail] = useState("");
-    const router = useRouter();
 
-    function handleSubmit(e: any) {
-        e.preventDefault();
-        // TODO: add logic here once the endpoints exist on the backend
-        // Si el envío es exitoso, guardamos una marca en sessionStorage y redirigimos
-        sessionStorage.setItem("emailSent", "true");
-        router.push("/recover-password/verification");
+    function handleSubmit() {
+
     }
 
     return (
-        <>
-            <Link href="/">
-                <div className={styles.logoContainer}>
-                    <Logo size={150} />
-                </div>
-            </Link>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <h1>Recuperar contraseña</h1>
                 <TextField
@@ -33,11 +21,12 @@ export default function RecoverPassword() {
                     name="email"
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
+                    // error={!!errors.email}
+                    // helperText={errors.email}
                 />
                 <Button variant="primary" size="lg" className={styles.button}>
                     Continuar
                 </Button>
             </form>
-        </>
-    );
+    )
 }
