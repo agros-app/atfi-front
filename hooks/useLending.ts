@@ -5,6 +5,7 @@ import { useWeb3 } from "@/context/web3Modal";
 import toast from 'react-hot-toast';
 import lendingContract from "@/contracts/lendingTest.json";
 import lendingFactory from "@/contracts/lendingFactory.json";
+import {investByProjectId} from "@/lib/api";
 
 interface ContractObject {
     address: string;
@@ -38,7 +39,8 @@ const useLending = () => {
     const investInLending = async (
         amount: string,
         mockUSDTObject: ContractObject,
-        lendingObject: ContractObject
+        lendingObject: ContractObject,
+        projectId: number
     ) => {
         const toastId = toast.loading('Generando inversión...');
         if (!isConnected) {
@@ -73,10 +75,9 @@ const useLending = () => {
         try {
             toast.loading('Invirtiendo...', { id: toastId })
             const transaction = await lendingContract.invest(amountInWei, { gasLimit: 2000000 });
-            toast.success('Inversión enviada con éxito', { id: toastId });
             console.log(transaction);
-
             const receipt = await transaction.wait();
+            await investByProjectId(projectId, Number(amount));
             if (receipt.status === 1) {
                 toast.success('Inversión completada con éxito', { id: toastId });
                 console.log('Transaction was successful:', receipt);
@@ -93,7 +94,7 @@ const useLending = () => {
         }
     };
 
-    const regretInvestment = async (amount: string, lendingObject: ContractObject) => {
+    const regretInvestment = async (amount: string, lendingObject: ContractObject, updateDb: () => {}) => {
         setLoading(true);
         const toastId = toast.loading('Retirando inversión...');
         //@ts-ignore
@@ -111,6 +112,7 @@ const useLending = () => {
         try {
             const amountInWei = ethers.utils.parseUnits(amount, 6);
             const transaction = await lendingContract.regretInvestment(amountInWei, { gasLimit: 2000000 });
+            await updateDb();
             toast.success('Inversión retirada con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);

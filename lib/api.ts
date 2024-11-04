@@ -48,10 +48,15 @@ export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => 
 
 export const investByProjectId = async (id: number, amount: number): Promise<void> => {
     await api.post(`/project/invest`, {
-        body: JSON.stringify({
-            projectId: id,
-            amount
-        })
+        projectId: id,
+        amount
+    });
+}
+
+export const regretInvestment = async (id: number, amount: number): Promise<void> => {
+    await api.patch(`/project/investment/cancel/${id}`, {
+        projectId: id,
+        amount
     });
 }
 
