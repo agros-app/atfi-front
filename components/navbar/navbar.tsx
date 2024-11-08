@@ -1,4 +1,4 @@
-import Logo from "@/assets/icons/logo";
+
 import Link from "next/link";
 import styles from "./navbar.module.scss";
 import { getSession } from "@/lib/session";
@@ -30,9 +30,14 @@ export default async function NavBar() {
                         <p>Simulador</p>
                     </Link>
                     {user?.role === "ADMIN" && (
-                        <Link href={"/pending-projects"}>
-                            <p>Proyectos Pendientes</p>
-                        </Link>
+                        <>
+                            <Link href={"/pending-projects"}>
+                                <p>Proyectos Pendientes</p>
+                            </Link>
+                            <Link href={"/create-producer"}>
+                                <p>Crear productor</p>
+                            </Link>
+                        </>
                     )}
                 </div>
             </div>
