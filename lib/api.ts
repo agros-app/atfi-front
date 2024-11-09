@@ -188,3 +188,9 @@ export const checkPassword = async (password: string): Promise<any> => {
         { password }
     );
 };
+
+export const walletConnection = async (address: string): Promise<any> => {
+    return await api.post(
+        `/account/wallet/${address}`
+    )
+}
