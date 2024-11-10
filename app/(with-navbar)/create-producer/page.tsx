@@ -126,7 +126,7 @@ function ProducerInfoForm({
     );
 }
 
-export function ProducerDetailForm({
+function ProducerDetailForm({
                                        phone,
                                        country,
                                        state,
