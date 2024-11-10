@@ -3,8 +3,11 @@ import styles from "@/app/(with-navbar)/submit-project/submit-project.module.scs
 import React from "react";
 import TextField from "@/components/textField/textField";
 import Button from "@/components/button/button";
+import {createProducer} from "@/lib/api";
+import toast from "react-hot-toast";
+import {useRouter} from "next/navigation";
 
-type ProducerFormData = {
+export type ProducerFormData = {
     name: string;
     lastName: string;
     email: string;
@@ -212,6 +215,7 @@ export default function ProducerForm() {
     });
     const [errors, setErrors] = React.useState<Partial<ProducerFormData>>({});
     const [currentStep, setCurrentStep] = React.useState(0);
+    const router= useRouter()
 
     function updateInfoFields(fields: Partial<ProducerInfoData>) {
         setInfoData({ ...infoData, ...fields });
@@ -253,6 +257,21 @@ export default function ProducerForm() {
         setCurrentStep(currentStep - 1);
     }
 
+    async function handleSubmit() {
+        try {
+            const producerData = { ...infoData, ...detailData };
+            const response = await createProducer(producerData);
+            if (response.status === 201) {
+                toast.success("Productor creado exitosamente.");
+                router.push("/home")
+            } else {
+                toast.error("Hubo un error al crear el productor.");
+            }
+        } catch (error) {
+            toast.error("Hubo un error en el servidor.");
+        }
+    }
+
     return (
         <div className={styles.pageContainer}>
             <StepIndicator currentStep={currentStep} totalSteps={2} />
@@ -283,16 +302,13 @@ export default function ProducerForm() {
                                 Siguiente
                             </Button>
                         ) : (
-                            //TODO ADD HANDLE SUBMIT
-                            <Button onClick={() => console.log("submit")} className={styles.buttonContainer}>
+                            <Button onClick={handleSubmit} className={styles.buttonContainer}>
                                 Crear Productor
                             </Button>
                         )}
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 }
