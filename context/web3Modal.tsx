@@ -8,6 +8,7 @@ import {
     defaultConfig,
     useWeb3Modal
 } from "@web3modal/ethers5/react";
+import {walletConnection} from "@/lib/api";
 
 const projectId = 'dbd9c43d66e4c9498e408154729c019f'
 
@@ -94,9 +95,13 @@ export const Web3ContextProvider = ({children}) => {
 
     const { open } = useWeb3Modal();
 
-    const connectWallet = () => {
+    const connectWallet = async() => {
         try {
-            open().then(() => setWeb3Error(''))
+            await open();
+            setWeb3Error('');
+            if (address){
+                await walletConnection(address)
+            }
         } catch (e) {
             setWeb3Error('Error connecting wallet');
         }
