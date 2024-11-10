@@ -4,7 +4,7 @@ import TextField from "@/components/textField/textField";
 import Link from "next/link";
 import Button from "@/components/button/button";
 import Logo from "@assets/icons/logo";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 
 export default function RecoverPassword() {
@@ -18,6 +18,16 @@ export default function RecoverPassword() {
         sessionStorage.setItem("emailSent", "true");
         router.push("/recover-password/verification");
     }
+    useEffect(() => {
+        // Verifica si existe la marca "emailSent" en sessionStorage
+        const emailSent = sessionStorage.getItem("emailSent");
+
+        // Si no existe, redirige al usuario a /recover-password
+        if (!emailSent) {
+            router.push("/recover-password");
+        }
+    }, [router]);
+
 
     return (
         <>
