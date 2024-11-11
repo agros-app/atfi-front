@@ -1,17 +1,23 @@
 "use client"
 import useProjectId from "@/hooks/useProjectId";
-import Documents from "./components/documents/documents";
 import FinancialInfo from "./components/financialInfo/financialInfo";
 import Header from "./components/header/header";
 import Tab from "./components/tab/tab";
 import styles from "./project.module.scss";
-import useProjectYieldata from "@/hooks/useProjectYieldata";
 import useUserInfo from '@/hooks/useUserInfo'
+import React from "react";
+import Loader from "@/components/loader/Loader";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const { project } = useProjectId(Number(id))
-  const { user } = useUserInfo()
+  const { project, isLoading: isProjectLoading } = useProjectId(Number(id));
+  const { user, isLoading: isUserLoading } = useUserInfo();
+
+  const isLoading = isProjectLoading || isUserLoading;
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.projectPageContainer}>
