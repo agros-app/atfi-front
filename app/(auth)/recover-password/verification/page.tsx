@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 export default function Verification() {
     const [code, setCode] = useState("");
     const router = useRouter();
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const emailSent = sessionStorage.getItem("emailSent");
@@ -33,6 +34,7 @@ export default function Verification() {
                 router.push("/recover-password/new-password");
             }
         } catch (error) {
+            setError("Código inválido");
             console.error("Error validating code:", error);
         }
     }
@@ -40,12 +42,25 @@ export default function Verification() {
     return (
         <form className={styles.form} onSubmit={handleCodeSubmit}>
             <h1>Ingrese el código de verificación</h1>
-            <TextField
-                placeholder="Código de verificación"
-                name="verificationCode"
-                label="Código de verificación"
-                onChange={(e) => setCode(e.target.value)}
-            />
+            {error &&
+                <TextField
+                    placeholder="Código de verificación"
+                    name="verificationCode"
+                    label="Código de verificación"
+                    error={error !== ""}
+                    helperText={error}
+                    onChange={(e) => setCode(e.target.value)}
+                />
+            }
+            {!error &&
+                <TextField
+                    placeholder="Código de verificación"
+                    name="verificationCode"
+                    label="Código de verificación"
+                    onChange={(e) => setCode(e.target.value)}
+                />
+            }
+
             <Button variant="primary" size="lg" className={styles.button}>
                 Verificar
             </Button>

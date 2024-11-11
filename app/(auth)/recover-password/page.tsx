@@ -11,6 +11,7 @@ import {requestRecoverPassword} from "@/lib/api";
 export default function RecoverPassword() {
     const [email, setEmail] = useState("");
     const router = useRouter();
+    const [error, setError] = useState("");
 
     async function handleSubmit(e: any) {
         e.preventDefault();
@@ -22,9 +23,11 @@ export default function RecoverPassword() {
                 sessionStorage.setItem("email", email);
                 router.push("/recover-password/verification");
             } else {
+                setError("Error al enviar el correo de recuperación");
                 console.error('Error en la solicitud de recuperación de contraseña: ', response.status);
             }
         } catch (error) {
+            setError("Error de red o en la solicitud");
             console.error('Error de red o en la solicitud: ', error);
         }
     }
@@ -38,12 +41,24 @@ export default function RecoverPassword() {
             </Link>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <h1>Recuperar contraseña</h1>
-                <TextField
-                    placeholder="Email"
-                    name="email"
-                    label="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                {error &&
+                    <TextField
+                        placeholder="Email"
+                        name="email"
+                        label="Email"
+                        error={error !== ""}
+                        helperText={error}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                }
+                {!error &&
+                    <TextField
+                        placeholder="Email"
+                        name="email"
+                        label="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                }
                 <Button variant="primary" size="lg" className={styles.button}>
                     Continuar
                 </Button>
