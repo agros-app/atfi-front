@@ -18,6 +18,7 @@ type ProjectCardProps = {
   disabled?: boolean;
   onClick?: () => void;
   buttonText?: string;
+  photo?: number;
 };
 
 export default function ProjectCard({
@@ -26,7 +27,8 @@ export default function ProjectCard({
                                       bgColor = "fff",
                                       border = "0.5px solid $dark-gray",
                                       onClick,
-                                      buttonText = "Invertir"
+                                      buttonText = "Invertir",
+                                      photo = 1
                                     }: ProjectCardProps) {
   const { id, name, providers, endDate, amountCollected, amountNeed, city, country } = project;
   const progress = getPercentage(amountCollected, amountNeed);
@@ -36,6 +38,12 @@ export default function ProjectCard({
   useEffect(() => {
     if (project && project.photoURL) {
         setProfileImage(`https://elbucke.s3.us-east-1.amazonaws.com/location/${project.photoURL}`);
+    }
+    else if(photo === 1){
+        setProfileImage("/landing/plantación_de_arroz.webp");
+    }
+    else if(photo === 2){
+        setProfileImage("/landing/cultivo_de_soja.webp");
     }
   }, [project]);
 
