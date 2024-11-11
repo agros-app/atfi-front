@@ -10,12 +10,11 @@ import SimulationPanel from './components/simulation/SimulationPanel'
 import Image from 'next/image'
 
 export default function SimulatorPage() {
-  const [simulation, setSimulation] = useState<SimulationData | null>(null)
+  const [simulation, setSimulation] = useState<SimulationData[]>([])
 
   return (
     <div>
       <div className={styles.header}>
-        
         <div className={styles.textContainer}>
           <p className={styles.title}>Simulador</p>
           <p className={styles.subtitle}>
@@ -41,7 +40,7 @@ export default function SimulatorPage() {
         </div>
         <div className={styles.simulationSide}>
           {simulation ? (
-            <SimulationPanel {...simulation} />
+            <SimulationPanel data={simulation} />
           ) : (
             <h4>Carga los datos y simula tu inversión</h4>
           )}

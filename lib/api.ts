@@ -170,7 +170,7 @@ export const updateProjectStatus = async (projectStatus: ProjectStatus) => {
 
 // ------------------- SIMULATOR -------------------
 
-export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number, includeLease:boolean): Promise<SimulationData> => {
+export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number, includeLease:boolean): Promise<SimulationData[]> => {
     const simulation = await api.post('/simulation', {
         crop,
         zone,
