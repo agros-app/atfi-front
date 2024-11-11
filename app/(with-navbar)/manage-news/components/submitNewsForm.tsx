@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./SubmitNewsForm.module.scss";
+import styles from "./submitNewsForm.module.scss";
 import TextField from "@/components/textField/textField";
 import Button from "@/components/button/button";
 import { createNews } from "@/lib/api";
