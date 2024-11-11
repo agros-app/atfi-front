@@ -5,7 +5,6 @@ import {isAuthorized} from "@/lib/api";
 export default async function middleware(req: NextRequest) {
     const token= await getToken()
     const session = await getSession()
-    const emailSent = req.cookies.get("emailSent"); // Obtenemos la cookie
 
     if (!session?.email && !session?.email) {
         return NextResponse.redirect(new URL('/login', req.nextUrl))
@@ -17,13 +16,9 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL('/complete-profile', req.nextUrl))
     }
 
-    if (req.nextUrl.pathname === "/recover-password/verification" && !emailSent) {
-        return NextResponse.redirect(new URL("/recover-password", req.nextUrl));
-    }
-
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ['/home','/submit-project','/projects','/portfolio','/profile'],
+    matcher: ['/home','/submit-project','/projects','/portfolio','/profile', '/recover-password/new-password'],
 }

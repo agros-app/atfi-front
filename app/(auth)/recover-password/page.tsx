@@ -6,28 +6,28 @@ import Button from "@/components/button/button";
 import Logo from "@assets/icons/logo";
 import {useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
+import {requestRecoverPassword} from "@/lib/api";
 
 export default function RecoverPassword() {
     const [email, setEmail] = useState("");
     const router = useRouter();
 
-    function handleSubmit(e: any) {
+    async function handleSubmit(e: any) {
         e.preventDefault();
-        // TODO: add logic here once the endpoints exist on the backend
-        // Si el envío es exitoso, guardamos una marca en sessionStorage y redirigimos
-        sessionStorage.setItem("emailSent", "true");
-        router.push("/recover-password/verification");
-    }
-    useEffect(() => {
-        // Verifica si existe la marca "emailSent" en sessionStorage
-        const emailSent = sessionStorage.getItem("emailSent");
-
-        // Si no existe, redirige al usuario a /recover-password
-        if (!emailSent) {
-            router.push("/recover-password");
+        try {
+            const response = await requestRecoverPassword(email);
+            if (response.status === 200) {
+                console.log('Correo de recuperación enviado');
+                sessionStorage.setItem("emailSent", "true");
+                sessionStorage.setItem("email", email);
+                router.push("/recover-password/verification");
+            } else {
+                console.error('Error en la solicitud de recuperación de contraseña: ', response.status);
+            }
+        } catch (error) {
+            console.error('Error de red o en la solicitud: ', error);
         }
-    }, [router]);
-
+    }
 
     return (
         <>

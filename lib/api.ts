@@ -201,3 +201,18 @@ export const updatePassword = async (password: string): Promise<any> => {
         { password }
     );
 }
+
+export const requestRecoverPassword = async (email: string): Promise<any> => {
+    return await api.post(
+        "/user/requestPasswordReset",
+        { email }
+    );
+}
+
+export const validatePasswordReset = async (email: string, code: number): Promise<string> => {
+    const response = await api.post("/user/validatePasswordReset",
+        { email,
+            code
+        });
+    return response.data.token; // Asumiendo que el token viene en `response.data.token`
+};
