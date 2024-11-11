@@ -7,6 +7,7 @@ import { ZONES_PER_CROP } from '@/utils/cons'
 import React, { useState, useEffect } from 'react'
 import styles from './form.module.scss'
 import Slider from '@/components/slider/slider'
+import Radio from '@/components/radio/radio'
 
 type FormProps = {
   onSubmit: (data: SimulationData) => void
@@ -18,6 +19,7 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
   const [yieldData, setYieldData] = useState<number>(0)
   const [investment, setInvestment] = useState<number>(500)
   const [hectaresAmount, setHectaresAmount] = useState<number>(1000)
+  const [includeLease, setIncludeLease] = useState<string>('no')
   const [zonesOptions, setZonesOptions] = useState<
     { value: string; title: string }[]
   >([])
@@ -55,7 +57,8 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
           zone,
           yieldData,
           investment,
-          hectaresAmount
+          hectaresAmount,
+          includeLease === 'yes'
         )
         console.log('Simulación:', result)
         onSubmit(result)
@@ -102,6 +105,16 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
         step={0.1}
         onChange={(e) => setYieldData(Number(e.target.value))}
         required
+      />
+
+      <Radio
+        label="Incluir arrendamiento"
+        value={includeLease}
+        options={[
+          { value: 'yes', label: 'Si', name: 'includeLease' },
+          { value: 'no', label: 'No', name: 'includeLease' }
+        ]}
+        onChange={(e) => setIncludeLease(e.target.value)}
       />
 
       <TextField
