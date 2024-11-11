@@ -18,6 +18,8 @@ export type ProjectFormData = {
     description: string;
     startDate: string;
     endDate: string;
+    startFarming: string;
+    endFarming: string;
     country: string;
     state: string;
     city: string;
@@ -27,27 +29,30 @@ export type ProjectFormData = {
     area: number;
     minAmount: number;
     amountNeed: number;
-    projectImage: File |null;
-    seed: string[];
-    providers: string[];
+    providers: ProviderDTO[];
 };
+
+export type ProviderDTO = {
+    name: string;
+    seed: string;
+}
 
 const INITIAL_DATA: ProjectFormData = {
     name: "",
     description: "",
     startDate: "",
     endDate: "",
+    startFarming: "",
+    endFarming: "",
     country: "",
     state: "",
     city: "",
     zipCode: "",
     latitude: "",
     longitude: "",
-    projectImage: null,
     area: 0,
     minAmount: 0,
     amountNeed: 0,
-    seed: [],
     providers: []
 };
 
@@ -115,7 +120,9 @@ export default function ProjectForm() {
             if (isLastStep) {
                 const input : ProjectFormData = {...data,
                     startDate: new Date(data.startDate).toISOString(),
-                    endDate: new Date(data.endDate).toISOString()
+                    endDate: new Date(data.endDate).toISOString(),
+                    startFarming: new Date(data.startFarming).toISOString(),
+                    endFarming: new Date(data.endFarming).toISOString()
                 };
                 await handleResponse(input, router);
             } else {

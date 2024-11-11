@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from "@/components/textField/textField";
 import styles from '../submit-project.module.scss';
 import Button from "@/components/button/button";
+import { ProviderDTO } from '../page';
+import { getProjectSeeds } from '@/lib/api';
 
 type ProjectDetailsData = {
     area: number;
     minAmount: number;
     amountNeed: number;
-    seed: string[];
-    providers: string[]; // Add providers field
+    providers: { name: string; seed: string }[];
 };
 
 type ProjectDetailsFormProps = ProjectDetailsData & {
@@ -17,42 +18,48 @@ type ProjectDetailsFormProps = ProjectDetailsData & {
 };
 
 export function ProjectDetailsForm({
-                                       area,
-                                       minAmount,
-                                       amountNeed,
-                                       seed,
-                                       providers, // Providers state
-                                       updateFields,
-                                       errors
-                                   }: ProjectDetailsFormProps) {
+    area,
+    minAmount,
+    amountNeed,
+    providers,
+    updateFields,
+    errors
+}: ProjectDetailsFormProps) {
+    const [seeds, setSeeds] = useState<{ seed: string; providers: string[] }[]>([]);
 
     useEffect(() => {
-        if (seed.length === 0) {
-            updateFields({ seed: ["Soja"], providers: [""] }); // Initialize providers with an empty string
+        const fetchSeeds = async () => {
+            const projectSeeds = await getProjectSeeds();
+            setSeeds(projectSeeds);
+        };
+        fetchSeeds();
+
+        if (providers.length === 0) {
+            updateFields({ providers: [{ name: "", seed: "" }] });
         }
-    }, [seed, updateFields]);
+    }, [providers, updateFields]);
 
     const handleSeedTypeChange = (index: number, value: string) => {
-        const newSeedTypes = [...seed];
-        newSeedTypes[index] = value;
-        updateFields({ seed: newSeedTypes });
+        const newProviders = [...providers];
+        newProviders[index].seed = value;
+        newProviders[index].name = ""; // Reset provider name when seed changes
+        updateFields({ providers: newProviders });
     };
 
     const handleProviderChange = (index: number, value: string) => {
         const newProviders = [...providers];
-        newProviders[index] = value;
+        newProviders[index].name = value;
         updateFields({ providers: newProviders });
     };
 
-    const addSeedTypeField = () => {
-        updateFields({ seed: [...seed, ""], providers: [...providers, ""] }); // Add new provider when adding a seed
+    const addProviderField = () => {
+        updateFields({ providers: [...providers, { name: "", seed: "" }] });
     };
 
-    const removeSeedTypeField = (index: number) => {
-        if (seed.length > 1) {
-            const newSeedTypes = seed.filter((_, i) => i !== index);
-            const newProviders = providers.filter((_, i) => i !== index); // Remove corresponding provider
-            updateFields({ seed: newSeedTypes, providers: newProviders });
+    const removeProviderField = (index: number) => {
+        if (providers.length > 1) {
+            const newProviders = providers.filter((_, i) => i !== index); 
+            updateFields({ providers: newProviders });
         }
     };
 
@@ -90,50 +97,70 @@ export function ProjectDetailsForm({
             />
 
             <label className={styles.label}>Tipos de Cultivo y Proveedores</label>
-            {seed.map((_, index) => (
-                <div key={index} className={styles.seedTypeField}>
-                    <TextField
-                        placeholder="Ingrese el tipo de cultivo"
-                        name={`seedType-${index}`}
-                        label={`Tipo de Cultivo ${index + 1}`}
-                        value={seed[index]}
-                        error={!!errors.seed}
-                        onChange={(e) => handleSeedTypeChange(index, e.target.value)}
-                        helperText={errors.seed?.toString()}
-                    />
-                    <TextField
-                        placeholder="Ingrese el proveedor"
-                        name={`provider-${index}`}
-                        label={`Proveedor ${index + 1}`}
-                        value={providers[index]}
-                        error={!!errors.providers}
-                        helperText={errors.providers?.toString()}
-                        onChange={(e) => handleProviderChange(index, e.target.value)}
-                    />
-                    <div className={styles.seedTypeButtons}>
-                        {seed.length > 1 && (
+            {providers.map((provider, index) => {
+                // Find the seed options for the selected seed
+                const seedOptions = seeds.find(seed => seed.seed === provider.seed)?.providers || [];
+
+                return (
+                    <div key={index} className={styles.seedTypeField}>
+                        {/* Dropdown for Seed Type */}
+                        <div>
+                            <label>Tipo de Cultivo {index + 1}</label>
+                            <select
+                                value={provider.seed}
+                                onChange={(e) => handleSeedTypeChange(index, e.target.value)}
+                            >
+                                <option value="">Seleccione un cultivo</option>
+                                {seeds.map((seed) => (
+                                    <option key={seed.seed} value={seed.seed}>
+                                        {seed.seed}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Provider Dropdown */}
+                        <div>
+                            <label>Proveedor {index + 1}</label>
+                            <select
+                                value={provider.name}
+                                onChange={(e) => handleProviderChange(index, e.target.value)}
+                                disabled={!provider.seed} // Disable if no seed is selected
+                            >
+                                <option value="">Seleccione un proveedor</option>
+                                {seedOptions.map((providerName, i) => (
+                                    <option key={i} value={providerName}>
+                                        {providerName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className={styles.seedTypeButtons}>
+                            {providers.length > 1 && (
+                                <Button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        removeProviderField(index);
+                                    }}
+                                    className={styles.seedButton}
+                                >
+                                    -
+                                </Button>
+                            )}
                             <Button
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    removeSeedTypeField(index);
+                                    addProviderField();
                                 }}
                                 className={styles.seedButton}
                             >
-                                -
+                                +
                             </Button>
-                        )}
-                        <Button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                addSeedTypeField();
-                            }}
-                            className={styles.seedButton}
-                        >
-                            +
-                        </Button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 }

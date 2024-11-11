@@ -1,4 +1,4 @@
-import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
+import { ProjectFormData, ProviderDTO } from "@/app/(with-navbar)/submit-project/page";
 
 type ValidationRule = {
     field: keyof ProjectFormData;
@@ -13,8 +13,30 @@ const validationRules: Record<number, ValidationRule[]> = {
     0: [
         { field: 'name', validate: (value) => !!value, errorMessage: "El nombre del proyecto no puede estar vacío" },
         { field: 'description', validate: (value) => !!value, errorMessage: "La descripción no puede estar vacía" },
-        { field: 'startDate', validate: (value) => !!value, errorMessage: "La fecha de inicio no puede estar vacía" },
-        { field: 'endDate', validate: (value) => !!value, errorMessage: "La fecha de finalización no puede estar vacía" },
+        { field: 'startDate', validate: (value) => !!value, errorMessage: "La fecha de inicio de financiamiento no puede estar vacía" },
+        { field: 'startDate', validate: (value) => {
+            const date = new Date(value);
+            const today = new Date();
+            return date > today;
+        }, errorMessage: "La fecha de inicio de financiamiento debe ser en el futuro" },
+        { field: 'startFarming', validate: (value) => !!value, errorMessage: "La fecha de inicio de cosecha no puede estar vacía" },
+        { field: 'startFarming', validate: (value) => {
+            const date = new Date(value);
+            const today = new Date();
+            return date > today;
+        }, errorMessage: "La fecha de inicio de cosecha debe ser en el futuro" },
+        { field: 'endDate', validate: (value) => !!value, errorMessage: "La fecha de finalización de financiamiento no puede estar vacía" },
+        { field: 'endDate', validate: (value) => {
+            const date = new Date(value);
+            const today = new Date();
+            return date > today;
+        }, errorMessage: "La fecha de finalización de financiamiento debe ser en el futuro" },
+        { field: 'endFarming', validate: (value) => !!value, errorMessage: "La fecha de finalización de cosecha no puede estar vacía" },
+        { field: 'endFarming', validate: (value) => {
+            const date = new Date(value);
+            const today = new Date();
+            return date > today;
+        }, errorMessage: "La fecha de finalización de cosecha debe ser en el futuro" },
     ],
     1: [
         { field: 'country', validate: (value) => !!value, errorMessage: "El país no puede estar vacío" },
@@ -37,13 +59,25 @@ const validationRules: Record<number, ValidationRule[]> = {
         { field: 'minAmount', validate: (value) => value > 0, errorMessage: "El monto mínimo debe ser mayor que 0" },
         { field: 'amountNeed', validate: (value) => value > 0, errorMessage: "El monto necesario debe ser mayor que 0" },
         {
-            field: 'seed',
-            validate: (value) => value.every((seed: string) => seed.trim() !== ""),
+            field: 'amountNeed',
+            validate: (value) => {
+              const parsedValue = parseInt(value, 10);
+              return !isNaN(parsedValue) && parsedValue > 0;
+            },
+            errorMessage: "El monto necesario debe ser mayor que 0 y debe ser un número válido"
+          },
+        {
+            field: 'providers',
+            validate: (value) => value.length > 0 && value.every((provider: ProviderDTO) => 
+                provider.seed.trim() !== ""
+            ),
             errorMessage: "Cada tipo de semilla debe tener un valor"
         },
         {
             field: 'providers',
-            validate: (value) => value.length > 0 && value.every((provider: string) => provider.trim() !== ""),
+            validate: (value) => value.length > 0 && value.every((provider: ProviderDTO) => 
+                provider.name.trim() !== ""
+            ),
             errorMessage: "Debe asociar un proveedor a cada semilla"
         },
     ],

@@ -56,6 +56,8 @@ const defaultProject: ProjectData = {
   minAmount: 1000,
   startDate: "2024-12-12",
   endDate: "2025-12-12",
+  startFarming: "2025-12-14",
+  endFarming: "2026-12-12",
   status: "APPROVED",
   addressId: 123,
   description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",

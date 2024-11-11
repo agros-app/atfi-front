@@ -12,9 +12,9 @@ export default function ProfilePage()
     const {user} = useUserInfo();
     return(
         <div className={styles.screenDivision}>
-            <div className={styles.leftHandSide}>
+            {/* <div className={styles.leftHandSide}>
                 <SideBar />
-            </div>
+            </div> */}
             <div className={styles.mainContent}>
                 <ProfileBanner user={user}/>
                 <PersonalData {...user}/>
