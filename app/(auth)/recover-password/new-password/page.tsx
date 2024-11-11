@@ -23,7 +23,6 @@ export default function NewPassword() {
         else{
             try{
                 await updatePassword(password);
-                deleteSession();
                 // TODO: ¿borrar el token?
                 router.push("/login");
             } catch (error) {
