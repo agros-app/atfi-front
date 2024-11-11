@@ -5,6 +5,7 @@ import Button from "@/components/button/button";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {updatePassword} from "@/lib/api";
+import {deleteSession} from "@/lib/session";
 
 export default function NewPassword() {
     const [password, setPassword] = useState("");
@@ -22,6 +23,8 @@ export default function NewPassword() {
         else{
             try{
                 await updatePassword(password);
+                deleteSession();
+                // TODO: ¿borrar el token?
                 router.push("/login");
             } catch (error) {
                 console.error("Error al verificar la contraseña:", error);
