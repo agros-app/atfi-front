@@ -33,14 +33,25 @@ export default function NewPassword() {
     return (
         <form className={styles.form} onSubmit={onSubmit}>
             <h1>Ingresa tu nueva contraseña</h1>
-            <TextField
+            {error && <TextField
                 placeholder="Contraseña"
                 name="verificationCode"
                 label="Contraseña"
                 type="password"
+                helperText={error}
                 error={error !== ""}
                 onChange={(e) => setPassword(e.target.value)}
-            />
+            />}
+            {!error &&
+                <TextField
+                    placeholder="Contraseña"
+                    name="verificationCode"
+                    label="Contraseña"
+                    type="password"
+                    error={error !== ""}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            }
             <TextField
                 placeholder="Repetir contraseña"
                 name="verificationCode"
