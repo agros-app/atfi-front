@@ -168,3 +168,5 @@ export type YieldRange = {
 }
 
 export type Crop = "trigo" | "soja_1ra" | "soja_2da" | "maiz"
+
+

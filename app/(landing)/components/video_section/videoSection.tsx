@@ -4,6 +4,10 @@ import styles from "./video.module.scss";
 import Button from "@/components/button/button";
 
 export default function VideoSection() {
+
+    const handleRedirect = () => {
+        window.location.href = "/investor/agriculture";
+    };
   return (
     <section className={styles.container} id="video">
       <video className={styles.backgroundVideo} autoPlay loop muted playsInline>
@@ -41,7 +45,7 @@ export default function VideoSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.75, delay: 0.75 }}
         >
-          <Button size="lg">Conocer más</Button>
+          <Button size="lg" onClick={handleRedirect}>Conocer más</Button>
         </motion.div>
       </div>
     </section>
