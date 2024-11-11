@@ -170,13 +170,14 @@ export const updateProjectStatus = async (projectStatus: ProjectStatus) => {
 
 // ------------------- SIMULATOR -------------------
 
-export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number): Promise<SimulationData> => {
+export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number, includeLease:boolean): Promise<SimulationData> => {
     const simulation = await api.post('/simulation', {
         crop,
         zone,
         yield: yieldData,
         investment,
-        hectaresAmount
+        hectaresAmount,
+        includeLease
     });
 
     return simulation.data;
@@ -229,3 +230,25 @@ export const deleteNewsPhoto = async (newsId: number): Promise<any> => {
 export const deleteNews = async (newsId: number): Promise<any> => {
     return await api.delete(`/news/${newsId}`);
 }
+
+export const updatePassword = async (password: string): Promise<any> => {
+    return await api.post(
+        "/user/ChangePassword",
+        { password }
+    );
+}
+
+export const requestRecoverPassword = async (email: string): Promise<any> => {
+    return await api.post(
+        "/user/requestPasswordReset",
+        { email }
+    );
+}
+
+export const validatePasswordReset = async (email: string, code: number): Promise<string> => {
+    const response = await api.post("/user/validatePasswordReset",
+        { email,
+            code
+        });
+    return response.data.token; // Asumiendo que el token viene en `response.data.token`
+};

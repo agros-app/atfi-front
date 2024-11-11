@@ -2,6 +2,7 @@ import styles from "@/app/(with-navbar)/profile/components/passwordModal/passwor
 import TextField from "@/components/textField/textField";
 import Button from "@/components/button/button";
 import {useState} from "react";
+import {checkPassword, updatePassword} from "@/lib/api";
 
 type ChangePasswordModalProps = {
     isOpen: boolean;
@@ -22,6 +23,11 @@ export default function ChangePasswordModal({isOpen, onClose}: ChangePasswordMod
             setError("Las contraseñas no coinciden");
         }
         else{
+            try{
+                await updatePassword(password);
+            } catch (error) {
+                console.error("Error al verificar la contraseña:", error);
+            }
             // TODO: necesito los endpoints del back.
             onClose();
         }
