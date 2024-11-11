@@ -1,47 +1,79 @@
 import { SimulationData } from '@/types/api'
 import ReactECharts from 'echarts-for-react'
 import styles from './simulation.module.scss'
+import { useState } from 'react'
+interface Props {
+  data: SimulationData[]
+}
 
-export default function SimulationPanel({
-  costs,
-  funds,
-  grossMarginPerHectare,
-  investedHectares,
-  returnPercentage,
-  totalCostPerHectare,
-  totalGrossMargin
-}: SimulationData) {
+export default function SimulationPanel({ data }: Props) {
   const formatNumber = (number: number) =>
     new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD'
     }).format(Math.abs(number))
 
+  const [campaignYear, setCampaignYear] = useState(2024)
+
+  const project = data.find((d) => d.year === campaignYear)
+
+  if (!project) {
+    return <h4>No hay datos para el año seleccionado</h4>
+  }
+
+  const {
+    costs,
+    funds,
+    grossMarginPerHectare,
+    investedHectares,
+    investment,
+    returnPercentage,
+    totalCostPerHectare,
+    totalGrossMargin
+  } = project
+
+  // @ts-ignore
+  const isPositiveReturn = returnPercentage > 0
+  // @ts-ignore
+  const calculatedReturn = investment * (returnPercentage / 100)
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <div>
+        <div
+          className={`${styles.card} ${
+            isPositiveReturn ? styles.up : styles.down
+          }`}
+        >
+          <h4>Retorno:</h4>
+          <p>{returnPercentage.toFixed(2)}%</p>
+          <small>
+            {formatNumber(investment + calculatedReturn)} (
+            <span>
+              {isPositiveReturn ? '+' : '-'}
+              {formatNumber(calculatedReturn)}
+            </span>
+            )
+          </small>
+        </div>
+        <div className={styles.card}>
           <h4>Fondos requeridos para la campaña:</h4>
           <p>{formatNumber(funds)}</p>
         </div>
-        <div>
-          <h4>Porcentaje de Retorno:</h4>
-          <p>{Math.abs(returnPercentage).toFixed(2)}%</p>
-        </div>
-        <div>
+        <div className={styles.card}>
           <h4>Costo total por hectárea:</h4>
           <p>{formatNumber(totalCostPerHectare)}</p>
         </div>
-        <div>
+        <div className={styles.card}>
           <h4>Hectáreas invertidas:</h4>
           <p>{Math.abs(investedHectares).toFixed(2)}ha</p>
         </div>
 
-        <div>
+        <div className={styles.card}>
           <h4>Margen Bruto por hectárea:</h4>
           <p>{formatNumber(grossMarginPerHectare)}</p>
         </div>
-        <div>
+        <div className={styles.card}>
           <h4>Margen Bruto total:</h4>
           <p>{formatNumber(totalGrossMargin)}</p>
         </div>

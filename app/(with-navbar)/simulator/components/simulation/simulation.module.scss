@@ -1,9 +1,9 @@
-@import "styles/variables.scss";
-@import "@/styles/media.scss";
-
+@import 'styles/variables.scss';
+@import '@/styles/media.scss';
 
 .container {
   padding: 24px;
+  padding-top: 0px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -16,20 +16,41 @@
 
 .info {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   align-content: center;
   justify-content: center;
 
-  & > div {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    justify-content: center;
-    align-items: center;
-  }
-
   @include tablet {
     grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 121px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  gap: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 60, 51, 0.15);
+  background-color: $bg-color;
+}
+
+.up {
+  p,
+  span {
+    color: $primary-green;
+  }
+}
+
+.down {
+  p,
+  span {
+    color: $absolute-red;
   }
 }
