@@ -190,6 +190,13 @@ export const checkPassword = async (password: string): Promise<any> => {
     );
 };
 
+
 export const createProducer = async (producer: ProducerFormData): Promise<any> =>{
-    return await api.post('/admin/create-user', producer);
-}
+    return await api.post('/admin/create-user', producer);}
+
+
+
+export const walletConnection = async (address: string): Promise<any> => {
+    return await api.post(
+        `/account/wallet/${address}`
+    )}
