@@ -45,6 +45,11 @@ export const getProjects = async (): Promise<ProjectData[]> => {
     return response.data;
 }
 
+export const getProjectSeeds = async (): Promise<any> => {
+    const response = await api.get("/project/seeds");
+    return response.data;
+}
+
 export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
     const response = await api.get(`/project/info/${id}`);
     return response.data;
@@ -200,3 +205,27 @@ export const walletConnection = async (address: string): Promise<any> => {
     return await api.post(
         `/account/wallet/${address}`
     )}
+
+// ------------------- NEWS -------------------
+
+export const getNews = async (): Promise<any> => {
+    const response = await api.get('/news');
+    return response.data;
+}
+
+export const createNews = async (news: any): Promise<any> => {
+    return await api.post('/news', news);
+}
+
+export const updateNewsPhoto = async (newsId: number): Promise<string> => {
+    const response = await api.put(`/news/update-photo/${newsId}`);
+    return response.data;
+}
+
+export const deleteNewsPhoto = async (newsId: number): Promise<any> => {
+    return await api.delete(`/news/update-photo/${newsId}`);
+}
+
+export const deleteNews = async (newsId: number): Promise<any> => {
+    return await api.delete(`/news/${newsId}`);
+}

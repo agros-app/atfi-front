@@ -11,7 +11,6 @@ type ProjectLocationData = {
     zipCode: string;
     latitude: string;
     longitude: string;
-    projectImage: File | null;
 };
 
 type ProjectLocationFormProps = ProjectLocationData & {
@@ -24,7 +23,6 @@ export function ProjectLocationForm({   state,
                                         zipCode,
                                         latitude,
                                         longitude,
-                                        projectImage,
                                         updateFields ,
                                         errors}
                                         : ProjectLocationFormProps) {
@@ -90,12 +88,6 @@ export function ProjectLocationForm({   state,
                 onChange={(e) => updateFields({ longitude: e.target.value })}
                 error={!!errors.longitude}
                 helperText={errors.longitude}
-            />
-            <ImageUploadField
-                label="Subir Imagen del Proyecto"
-                name="projectImage"
-                onChange={(file) => updateFields({ projectImage: file })}
-                error={!!errors.projectImage}
             />
         </div>
     );

@@ -7,6 +7,8 @@ export type Project = {
     minAmount: number,
     startDate: string,
     endDate: string,
+    startFarming: string,
+    endFarming: string,
     status: Status,
     addressId: number,
     description: string,

@@ -1,7 +1,6 @@
 import styles from '../submit-project.module.scss';
 import React from "react";
 import TextField from "@/components/textField/textField";
-import ImageUploadField from "@/components/imageUploadField/ImageUplaodField";
 import DescriptionField from "@/components/descriptionField/descriptionField";
 
 type ProjectInfoData = {
@@ -9,6 +8,8 @@ type ProjectInfoData = {
     description: string;
     startDate: string;
     endDate: string;
+    startFarming: string;
+    endFarming: string;
 };
 
 type ProjectInfoFormProps = ProjectInfoData & {
@@ -21,6 +22,8 @@ export function ProjectInfoForm({
                                     description,
                                     startDate,
                                     endDate,
+                                    startFarming,
+                                    endFarming,
                                     updateFields,
                                     errors
                                 }: ProjectInfoFormProps) {
@@ -46,7 +49,7 @@ export function ProjectInfoForm({
                 helperText={errors.description}
             />
             <TextField
-                placeholder="Ingrese fecha de inicio"
+                placeholder="Ingrese fecha de inicio de financiamiento"
                 name="initialDate"
                 label="Fecha de Inicio"
                 type="date"
@@ -56,7 +59,7 @@ export function ProjectInfoForm({
                 helperText={errors.startDate}
             />
             <TextField
-                placeholder="Ingrese fecha de finalización"
+                placeholder="Ingrese fecha de finalización de financiamiento"
                 name="endDate"
                 label="Fecha de Finalizacion"
                 type="date"
@@ -65,6 +68,27 @@ export function ProjectInfoForm({
                 error={!!errors.endDate}
                 helperText={errors.endDate}
             />
+            <TextField
+                placeholder="Ingrese fecha de inicio de cosecha"
+                name="initialFarmingDate"
+                label="Fecha de Inicio de cosecha"
+                type="date"
+                value={startFarming}
+                onChange={(e) => updateFields({ startFarming: e.target.value })}
+                error={!!errors.startFarming}
+                helperText={errors.startFarming}
+            />
+            <TextField
+                placeholder="Ingrese fecha de finalización de cosecha"
+                name="endFarmingDate"
+                label="Fecha de Finalizacion de cosecha"
+                type="date"
+                value={endFarming}
+                onChange={(e) => updateFields({ endFarming: e.target.value })}
+                error={!!errors.endFarming}
+                helperText={errors.endFarming}
+            />
+
         </div>
     );
 }
