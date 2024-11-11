@@ -4,6 +4,7 @@ import TextField from "@/components/textField/textField";
 import Button from "@/components/button/button";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import {updatePassword} from "@/lib/api";
 
 export default function NewPassword() {
     const [password, setPassword] = useState("");
@@ -12,13 +13,6 @@ export default function NewPassword() {
 
     const router = useRouter();
 
-    useEffect(() => {
-        // Verificar si el email fue enviado, si no, redirigir a la página de recuperación
-        if (!sessionStorage.getItem("emailSent") || !sessionStorage.getItem("code")) {
-            router.push("/recover-password");
-        }
-    }, [router]);
-
     const onSubmit = async (e: React.FormEvent) =>
     {
         e.preventDefault();
@@ -26,7 +20,12 @@ export default function NewPassword() {
             setError("Las contraseñas no coinciden");
         }
         else{
-            router.push("/login");
+            try{
+                await updatePassword(password);
+                router.push("/login");
+            } catch (error) {
+                console.error("Error al verificar la contraseña:", error);
+            }
         }
     }
 
@@ -34,14 +33,25 @@ export default function NewPassword() {
     return (
         <form className={styles.form} onSubmit={onSubmit}>
             <h1>Ingresa tu nueva contraseña</h1>
-            <TextField
+            {error && <TextField
                 placeholder="Contraseña"
                 name="verificationCode"
                 label="Contraseña"
                 type="password"
+                helperText={error}
                 error={error !== ""}
                 onChange={(e) => setPassword(e.target.value)}
-            />
+            />}
+            {!error &&
+                <TextField
+                    placeholder="Contraseña"
+                    name="verificationCode"
+                    label="Contraseña"
+                    type="password"
+                    error={error !== ""}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            }
             <TextField
                 placeholder="Repetir contraseña"
                 name="verificationCode"
