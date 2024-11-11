@@ -8,7 +8,6 @@ interface AuthGuardProps {
     children: React.ReactNode;
 }
 
-
 const AuthGuard = ({ children }: AuthGuardProps) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
