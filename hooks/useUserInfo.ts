@@ -3,6 +3,7 @@ import {User} from "@/types/api";
 import {getUserInfo} from "@/lib/api";
 
 const useUserInfo  = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState<User>({
         id: 0,
         name: "",
@@ -20,10 +21,12 @@ const useUserInfo  = () => {
     });
 
     useEffect(() => {
-        getUserInfo().then((user) => setUser(user));
+        getUserInfo()
+            .then((user) => setUser(user))
+            .finally(() => setIsLoading(false));
     }, []);
 
-    return { user };
+    return { user, isLoading };
 }
 
 export default useUserInfo;

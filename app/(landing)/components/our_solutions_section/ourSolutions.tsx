@@ -56,6 +56,8 @@ const defaultProject: ProjectData = {
   minAmount: 1000,
   startDate: "2024-12-12",
   endDate: "2025-12-12",
+  startFarming: "2025-12-14",
+  endFarming: "2026-12-12",
   status: "APPROVED",
   addressId: 123,
   description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",
@@ -74,6 +76,9 @@ const defaultProject: ProjectData = {
 }
 
 export default function OurSolutionsSection() {
+  const handleRedirect = () => {
+    window.location.href = "/investor/agriculture";
+  };
   return (
       <>
         <motion.section
@@ -88,7 +93,7 @@ export default function OurSolutionsSection() {
             <h2>
               Participa de proyectos <span>agro</span>
             </h2>
-            <Button>Conocé más</Button>
+            <Button onClick={handleRedirect}>Conocé más</Button>
           </motion.div>
           <motion.div
               className={styles.cardsContainer}

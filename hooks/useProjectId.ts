@@ -4,6 +4,7 @@ import {Project, ProjectData, ProjectDetailInfo} from "@/types/api";
 import { useEffect, useState } from "react";  
 
 const useProjectId = (id: number) => {
+    const [isLoading, setIsLoading] = useState(true);
     const [project, setProject] = useState<ProjectDetailInfo>({
         id: 0,
         name: "string",
@@ -20,6 +21,8 @@ const useProjectId = (id: number) => {
         },
         startDate: new Date().toISOString(),
         endDate: new Date().toISOString(),
+        startFarming: new Date().toISOString(),
+        endFarming: new Date().toISOString(),
         status: "APPROVED",
         addressId: 0,
         description: "string",
@@ -36,10 +39,13 @@ const useProjectId = (id: number) => {
         producerEmail: "string",
     });
 
-    useEffect(()=>{
-        getProjectById(id).then((project) => setProject(project))
-    },[])
-    return { project };
+    useEffect(() => {
+        getProjectById(id)
+            .then((project) => setProject(project))
+            .finally(() => setIsLoading(false));
+    }, [id]);
+
+    return { project, isLoading };
 }
 
 export default useProjectId;

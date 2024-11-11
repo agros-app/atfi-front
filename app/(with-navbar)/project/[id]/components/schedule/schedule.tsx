@@ -1,6 +1,5 @@
 import styles from './schedule.module.scss';
-import {getDaysLeft} from "@/utils";
-
+import { getDaysLeft } from "@/utils";
 import { differenceInCalendarDays, startOfToday, addDays, format } from "date-fns";
 import { es } from "date-fns/locale";
 import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWithLine/titleWithLine";
@@ -8,17 +7,22 @@ import TitleWithLine from "@/app/(with-navbar)/project/[id]/components/titleWith
 type ScheduleProps = {
     startDate: string;
     endDate: string;
+    startFarming?: string;
+    endFarming?: string;
 }
 
-export default function Schedule({ startDate, endDate }: ScheduleProps) {
+export default function Schedule({ startDate, endDate, startFarming, endFarming }: ScheduleProps) {
 
-    //Change this when the start date of cultivation is defined
-    const endDateParsed = addDays(new Date(endDate),90);
-    const roundClosingDate = format(endDateParsed, "d 'de' MMMM 'de' yyyy", { locale: es });
+    const formatOrDefault = (dateStr?: string) => {
+        if (!dateStr) return 'Fecha no disponible';
+        const date = new Date(dateStr);
+        return isNaN(date.getTime()) ? 'Fecha no disponible' : format(date, "d 'de' MMMM 'de' yyyy", { locale: es });
+    };
 
-    //Change this when the return date is defined
-    const returnDate = addDays(endDateParsed, 90);
-    const estimatedReturnDate = format(returnDate, "d 'de' MMMM 'de' yyyy", { locale: es });
+    const roundStartDateFinance = formatOrDefault(startDate);
+    const roundEndDateFinance = formatOrDefault(endDate);
+    const roundStartDateFarming = formatOrDefault(startFarming);
+    const roundEndDateFarming = formatOrDefault(endFarming);
 
     return (
         <div className={styles.container}>
@@ -26,20 +30,38 @@ export default function Schedule({ startDate, endDate }: ScheduleProps) {
             <div className={styles.innerContainer}>
                 <div className={styles.topData}>
                     <div className={styles.leftHandSide}>
-                        <p>Cierre de la ronda</p>
-                        <p>{roundClosingDate}</p>
+                        <p>Inicio ronda de Inversión</p>
+                        <p>{roundStartDateFinance}</p>
                     </div>
                     <div className={styles.rightHandSide}>
-                        <p>{`${getDaysLeft(endDate)} días restantes`}</p>
+                        <p>{getDaysLeft(startDate)}</p>
                     </div>
                 </div>
-                <div className={styles.bottomData}>
+                <div className={styles.topData}>
                     <div className={styles.leftHandSide}>
-                        <p>Mes estipulado de retornos</p>
-                        <p>{estimatedReturnDate}</p>
+                        <p>Cierre de la ronda de Inversión</p>
+                        <p>{roundEndDateFinance}</p>
                     </div>
                     <div className={styles.rightHandSide}>
-                        <p>{`${getDaysLeft(returnDate.toISOString())} días restantes`}</p>
+                        <p>{getDaysLeft(endDate)}</p>
+                    </div>
+                </div>
+                <div className={styles.topData}>
+                    <div className={styles.leftHandSide}>
+                        <p>Inicio de campaña</p>
+                        <p>{roundStartDateFarming}</p>
+                    </div>
+                    <div className={styles.rightHandSide}>
+                        <p>{getDaysLeft(startFarming || '')}</p>
+                    </div>
+                </div>
+                <div className={styles.topData}>
+                    <div className={styles.leftHandSide}>
+                        <p>Cierre de campaña</p>
+                        <p>{roundEndDateFarming}</p>
+                    </div>
+                    <div className={styles.rightHandSide}>
+                        <p>{getDaysLeft(endFarming || '')}</p>
                     </div>
                 </div>
             </div>

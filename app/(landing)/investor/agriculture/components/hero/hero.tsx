@@ -1,8 +1,12 @@
+"use client"
 import styles from "./hero.module.scss";
 import HeroImage from "@/app/(landing)/investor/agriculture/components/hero_image/hero_image";
 import Button from "@/components/button/button";
 
 export default function Hero() {
+    const handleRedirect = () => {
+        window.location.href = "/home";
+    };
     return (
         <div className={styles.container}>
             <div className={styles.screenDivision} >
@@ -19,7 +23,7 @@ export default function Hero() {
                             Selecciona los proyectos que mejor se adapten a tus objetivos. Con una interfaz intuitiva y fácil de usar, acceder al sector agro nunca fue tan fácil.
                         </p>
                         <div className={styles.buttonContainer}>
-                            <Button className={styles.button}>Invertir</Button>
+                            <Button className={styles.button} onClick={handleRedirect}>Invertir</Button>
                         </div>
                     </div>
                 </div>

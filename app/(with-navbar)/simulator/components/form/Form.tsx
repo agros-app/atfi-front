@@ -6,9 +6,11 @@ import { Crop, SimulationData } from '@/types/api'
 import { ZONES_PER_CROP } from '@/utils/cons'
 import React, { useState, useEffect } from 'react'
 import styles from './form.module.scss'
+import Slider from '@/components/slider/slider'
+import Radio from '@/components/radio/radio'
 
 type FormProps = {
-  onSubmit: (data: SimulationData) => void
+  onSubmit: (data: SimulationData[]) => void
 }
 
 const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
@@ -17,6 +19,7 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
   const [yieldData, setYieldData] = useState<number>(0)
   const [investment, setInvestment] = useState<number>(500)
   const [hectaresAmount, setHectaresAmount] = useState<number>(1000)
+  const [includeLease, setIncludeLease] = useState<string>('no')
   const [zonesOptions, setZonesOptions] = useState<
     { value: string; title: string }[]
   >([])
@@ -39,6 +42,12 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
     }
   }, [crop, zone])
 
+  useEffect(() => {
+    if (yieldOptions.length > 0) {
+      return setYieldData(yieldOptions[0])
+    }
+  }, [yieldOptions])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (crop && zone && yieldData && investment && hectaresAmount) {
@@ -48,10 +57,12 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
           zone,
           yieldData,
           investment,
-          hectaresAmount
+          hectaresAmount,
+          includeLease === 'yes'
         )
         console.log('Simulación:', result)
-        onSubmit(result)
+        // @ts-ignore
+        onSubmit(result.map((data) => ({ ...data, investment: investment })))
       } catch (error) {
         console.error('Error simulando los datos:', error)
       }
@@ -73,28 +84,38 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
           { value: 'maiz', title: 'Maíz' }
         ]}
         onChange={(e) => setCrop(e.target.value as Crop)}
+        selected={crop}
         required
       />
 
       <Select
         label="Zona"
-        placeholder="Selecciona la zona"
         name="zone"
         options={zonesOptions}
         onChange={(e) => setZone(e.target.value)}
+        selected={zonesOptions[0]?.value}
+        required
+      />
+      <Slider
+        label="Rendimiento"
+        name="yieldData"
+        value={yieldData}
+        min={yieldOptions[0]}
+        max={yieldOptions[yieldOptions.length - 1]}
+        unit="tn/ha"
+        step={0.1}
+        onChange={(e) => setYieldData(Number(e.target.value))}
         required
       />
 
-      <Select
-        label="Rendimiento (tn/ha)"
-        placeholder="Selecciona el rendimiento"
-        name="yieldData"
-        options={yieldOptions.map((y) => ({
-          value: y.toString(),
-          title: `${y} tons`
-        }))}
-        onChange={(e) => setYieldData(Number(e.target.value))}
-        required
+      <Radio
+        label="Incluir arrendamiento"
+        value={includeLease}
+        options={[
+          { value: 'yes', label: 'Si', name: 'includeLease' },
+          { value: 'no', label: 'No', name: 'includeLease' }
+        ]}
+        onChange={(e) => setIncludeLease(e.target.value)}
       />
 
       <TextField

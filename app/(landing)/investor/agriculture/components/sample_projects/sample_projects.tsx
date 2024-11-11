@@ -12,6 +12,8 @@ export default function SampleProjects() {
         minAmount: 1000,
         startDate: "2024-12-12",
         endDate: "2025-12-12",
+        startFarming: "2025-12-13",
+        endFarming: "2026-12-12",
         status: "APPROVED",
         addressId: 123,
         description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",
@@ -43,7 +45,7 @@ export default function SampleProjects() {
             <div className={styles.screenDivision}>
                 <div className={styles.leftHandSide}>
                     <div className={styles.projects}>
-                        <ProjectCard project={defaultProject} bgColor={"#f0f0e3"} border={"None"}/>
+                        <ProjectCard project={defaultProject} bgColor={"#f0f0e3"} border={"None"} />
                         <ProjectCard project={defaultProject} bgColor={"#f0f0e3"}/>
                     </div>
                 </div>
