@@ -3,7 +3,7 @@ import React from 'react'
 
 type SelectProps = {
   label?: string
-  placeholder: string
+  placeholder?: string
   className?: string
   helperText?: string
   error?: boolean

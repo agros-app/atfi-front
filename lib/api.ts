@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
+import {ProducerFormData} from "@/app/(with-navbar)/create-producer/page";
 
 export const getToken = (): string | undefined => {
     return Cookies.get('session');
@@ -45,9 +46,8 @@ export const getProjects = async (): Promise<ProjectData[]> => {
 }
 
 export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
-     const response = await api.get(`/project/info/${id}`);
-     return response.data;
-
+    const response = await api.get(`/project/info/${id}`);
+    return response.data;
 }
 
 export const investByProjectId = async (id: number, amount: number): Promise<void> => {
@@ -165,13 +165,14 @@ export const updateProjectStatus = async (projectStatus: ProjectStatus) => {
 
 // ------------------- SIMULATOR -------------------
 
-export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number): Promise<SimulationData> => {
+export const simulate = async (crop: Crop, zone: string, yieldData: number, investment: number, hectaresAmount: number, includeLease:boolean): Promise<SimulationData> => {
     const simulation = await api.post('/simulation', {
         crop,
         zone,
         yield: yieldData,
         investment,
-        hectaresAmount
+        hectaresAmount,
+        includeLease
     });
 
     return simulation.data;
@@ -190,11 +191,17 @@ export const checkPassword = async (password: string): Promise<any> => {
     );
 };
 
+
+export const createProducer = async (producer: ProducerFormData): Promise<any> =>{
+    return await api.post('/admin/create-user', producer);}
+
+
+
 export const walletConnection = async (address: string): Promise<any> => {
     return await api.post(
         `/account/wallet/${address}`
-    )
-}
+    )}
+
 
 export const updatePassword = async (password: string): Promise<any> => {
     return await api.post(
