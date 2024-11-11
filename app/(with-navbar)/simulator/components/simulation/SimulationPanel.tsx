@@ -21,7 +21,7 @@ export default function SimulationPanel({
     <div className={styles.container}>
       <div className={styles.info}>
         <div>
-          <h4>Fondos:</h4>
+          <h4>Fondos requeridos para la campaña:</h4>
           <p>{formatNumber(funds)}</p>
         </div>
         <div>
@@ -29,16 +29,16 @@ export default function SimulationPanel({
           <p>{Math.abs(returnPercentage).toFixed(2)}%</p>
         </div>
         <div>
-          <h4>Costo total por hectarea:</h4>
+          <h4>Costo total por hectárea:</h4>
           <p>{formatNumber(totalCostPerHectare)}</p>
         </div>
         <div>
-          <h4>Hectareas invertidas:</h4>
+          <h4>Hectáreas invertidas:</h4>
           <p>{Math.abs(investedHectares).toFixed(2)}ha</p>
         </div>
 
         <div>
-          <h4>Margen Bruto por hectarea:</h4>
+          <h4>Margen Bruto por hectárea:</h4>
           <p>{formatNumber(grossMarginPerHectare)}</p>
         </div>
         <div>
