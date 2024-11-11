@@ -6,6 +6,7 @@ import { Crop, SimulationData } from '@/types/api'
 import { ZONES_PER_CROP } from '@/utils/cons'
 import React, { useState, useEffect } from 'react'
 import styles from './form.module.scss'
+import Slider from '@/components/slider/slider'
 
 type FormProps = {
   onSubmit: (data: SimulationData) => void
@@ -38,6 +39,12 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
       })
     }
   }, [crop, zone])
+
+  useEffect(() => {
+    if (yieldOptions.length > 0) {
+      return setYieldData(yieldOptions[0])
+    }
+  }, [yieldOptions])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,26 +80,26 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
           { value: 'maiz', title: 'Maíz' }
         ]}
         onChange={(e) => setCrop(e.target.value as Crop)}
+        selected={crop}
         required
       />
 
       <Select
         label="Zona"
-        placeholder="Selecciona la zona"
         name="zone"
         options={zonesOptions}
         onChange={(e) => setZone(e.target.value)}
+        selected={zonesOptions[0]?.value}
         required
       />
-
-      <Select
-        label="Rendimiento (tn/ha)"
-        placeholder="Selecciona el rendimiento"
+      <Slider
+        label="Rendimiento"
         name="yieldData"
-        options={yieldOptions.map((y) => ({
-          value: y.toString(),
-          title: `${y} tons`
-        }))}
+        value={yieldData}
+        min={yieldOptions[0]}
+        max={yieldOptions[yieldOptions.length - 1]}
+        unit="tn/ha"
+        step={0.1}
         onChange={(e) => setYieldData(Number(e.target.value))}
         required
       />
