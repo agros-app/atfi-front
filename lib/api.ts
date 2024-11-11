@@ -200,8 +200,8 @@ export const createProducer = async (producer: ProducerFormData): Promise<any> =
 export const walletConnection = async (address: string): Promise<any> => {
     return await api.post(
         `/account/wallet/${address}`
-    )}
-
+    )
+}
 
 export const updatePassword = async (password: string): Promise<any> => {
     return await api.post(
