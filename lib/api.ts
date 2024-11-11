@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
+import {ProducerFormData} from "@/app/(with-navbar)/create-producer/page";
 
 export const getToken = (): string | undefined => {
     return Cookies.get('session');
@@ -189,8 +190,13 @@ export const checkPassword = async (password: string): Promise<any> => {
     );
 };
 
+
+export const createProducer = async (producer: ProducerFormData): Promise<any> =>{
+    return await api.post('/admin/create-user', producer);}
+
+
+
 export const walletConnection = async (address: string): Promise<any> => {
     return await api.post(
         `/account/wallet/${address}`
-    )
-}
+    )}
