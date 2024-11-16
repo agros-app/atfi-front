@@ -1,8 +1,11 @@
 import Image, {StaticImageData} from "next/image";
 import styles from "./news.module.scss";
 import Button from "@/components/button/button";
+import featuresBg from "@assets/images/features_background.webp"
+import { useEffect, useState } from 'react';
 
 type NewsProps = {
+    id: number;
     imageSrc: StaticImageData;
     newspaper: string;
     title: string;
@@ -12,11 +15,19 @@ type NewsProps = {
 
 
 export default function News( news: NewsProps ) {
+    const [projectImage, setProfileImage] = useState(featuresBg.src);
+
+    useEffect(() => {
+        if (news && news.imageSrc) {
+            setProfileImage(`https://elbucke.s3.us-east-1.amazonaws.com/news/${news.imageSrc}`);
+        }
+    }, [news]);
+
     const { imageSrc, newspaper, title, description, onButtonClick } = news;
     return (
         <div className={styles.container}>
             <div className={styles.topSide}>
-                <Image src={imageSrc.src} alt={"image"} className={styles.image} width={imageSrc.width} height={imageSrc.height} />
+                <Image src={projectImage} alt={"image"} className={styles.image} width={featuresBg.width} height={featuresBg.height} />
             </div>
             <div className={styles.bottomSide}>
                 <div className={styles.newspaper}>

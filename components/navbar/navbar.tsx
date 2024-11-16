@@ -37,6 +37,10 @@ export default async function NavBar() {
                             <Link href={"/create-producer"}>
                                 <p>Crear productor</p>
                             </Link>
+                            <Link href={"/manage-news"}>
+                                <p>Manejo Noticias</p>
+                            </Link>
+
                         </>
                     )}
                 </div>

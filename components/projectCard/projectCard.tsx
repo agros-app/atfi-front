@@ -76,7 +76,7 @@ export default function ProjectCard({
               </div>
               <div className={styles.specific}>
                 <TimeIcon />
-                <span>{getDaysLeft(endDate)} días restantes</span>
+                <span>{getDaysLeft(endDate)}</span>
               </div>
               <div className={styles.specific}>
                 <SeedIcon />

@@ -21,6 +21,8 @@ const useProjectId = (id: number) => {
         },
         startDate: new Date().toISOString(),
         endDate: new Date().toISOString(),
+        startFarming: new Date().toISOString(),
+        endFarming: new Date().toISOString(),
         status: "APPROVED",
         addressId: 0,
         description: "string",

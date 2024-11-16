@@ -10,7 +10,7 @@ import Slider from '@/components/slider/slider'
 import Radio from '@/components/radio/radio'
 
 type FormProps = {
-  onSubmit: (data: SimulationData) => void
+  onSubmit: (data: SimulationData[]) => void
 }
 
 const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
@@ -61,7 +61,8 @@ const CropSimulationForm: React.FC<FormProps> = ({ onSubmit }) => {
           includeLease === 'yes'
         )
         console.log('Simulación:', result)
-        onSubmit(result)
+        // @ts-ignore
+        onSubmit(result.map((data) => ({ ...data, investment: investment })))
       } catch (error) {
         console.error('Error simulando los datos:', error)
       }

@@ -7,6 +7,8 @@ export type Project = {
     minAmount: number,
     startDate: string,
     endDate: string,
+    startFarming: string,
+    endFarming: string,
     status: Status,
     addressId: number,
     description: string,
@@ -144,6 +146,8 @@ export type ProjectStatus = {
 }
 
 export type SimulationData = {
+    year: number;
+
     funds: number;
 
     totalCostPerHectare: number;
@@ -155,6 +159,8 @@ export type SimulationData = {
     totalGrossMargin: number;
 
     returnPercentage: number;
+
+    investment: number;
 
     costs: {
         costName: string;
