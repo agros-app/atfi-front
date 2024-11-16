@@ -100,7 +100,7 @@ export default function OurSolutionsSection() {
               {...animationStyles.cardsContainer}
           >
             <ProjectCard disabled project={defaultProject}/>
-            <ProjectCard disabled project={defaultProject}/>
+            <ProjectCard disabled project={defaultProject} photo={2}/>
           </motion.div>
         </motion.section>
         <motion.section
