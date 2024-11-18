@@ -74,6 +74,7 @@ const useLending = () => {
 
         try {
             toast.loading('Invirtiendo...', { id: toastId })
+            console.log(amountInWei)
             const transaction = await lendingContract.invest(amountInWei, { gasLimit: 2000000 });
             console.log(transaction);
             const receipt = await transaction.wait();
