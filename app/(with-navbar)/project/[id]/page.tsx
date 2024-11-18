@@ -32,7 +32,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               projectId={parseInt(id)}
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}
-              minAmount={project.minAmount}
+              minAmount={0}
                 country={project.country}
                 seed={project.providers[0]?.seed ?? "soja"}
                 area={project.area}

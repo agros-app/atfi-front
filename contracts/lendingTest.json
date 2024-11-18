@@ -1,5 +1,5 @@
 {
-  "address": "0xD4d305d457048A239ad266aB774537dD4e13259d",
+  "address": "0x67A6C3107C916d17238A7FC8db19d95CeE1E1C1c",
   "abi": [
     {
       "inputs": [
@@ -42,11 +42,6 @@
           "internalType": "address",
           "name": "_admin",
           "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_comercializerAdress",
-          "type": "address"
         }
       ],
       "stateMutability": "nonpayable",
@@ -78,6 +73,12 @@
           "internalType": "uint256",
           "name": "totalAmount",
           "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
         }
       ],
       "name": "FundsDisbursed",
@@ -97,6 +98,12 @@
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
         }
       ],
       "name": "InvestmentReceived",
@@ -116,6 +123,12 @@
           "internalType": "uint256",
           "name": "returnAmount",
           "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
         }
       ],
       "name": "InvestmentReturned",
@@ -135,6 +148,12 @@
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
         }
       ],
       "name": "InvestmentWithdrawn",
@@ -148,6 +167,12 @@
           "internalType": "uint256",
           "name": "returnAmount",
           "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
         }
       ],
       "name": "ReturnsInjected",
@@ -204,19 +229,6 @@
       "name": "claimReturns",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "comercializerAdress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {

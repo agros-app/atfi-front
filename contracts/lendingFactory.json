@@ -1,5 +1,5 @@
 {
-  "address": "0xE5Ea95F39B1369066Be7e3fb891f5d6038c0D2F5",
+  "address": "0x5D869C75f1cE8fE1F2f5f936A372C02E7a428269",
   "abi": [
     {
       "inputs": [
@@ -68,12 +68,6 @@
           "type": "address"
         },
         {
-          "indexed": false,
-          "internalType": "address",
-          "name": "comercializadora",
-          "type": "address"
-        },
-        {
           "indexed": true,
           "internalType": "uint256",
           "name": "lendingId",
@@ -133,12 +127,6 @@
           "internalType": "address",
           "name": "producerAddress",
           "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "comercializadora",
-          "type": "address"
         }
       ],
       "name": "ProposalCreated",
@@ -179,11 +167,6 @@
         {
           "internalType": "address",
           "name": "_producerAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_comercializadora",
           "type": "address"
         }
       ],
@@ -436,11 +419,6 @@
           "type": "address"
         },
         {
-          "internalType": "address",
-          "name": "comercializadora",
-          "type": "address"
-        },
-        {
           "internalType": "uint256",
           "name": "approvals",
           "type": "uint256"
@@ -527,11 +505,6 @@
         {
           "internalType": "address",
           "name": "_producerAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_comercializadora",
           "type": "address"
         }
       ],
