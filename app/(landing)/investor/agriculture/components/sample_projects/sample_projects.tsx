@@ -45,8 +45,8 @@ export default function SampleProjects() {
             <div className={styles.screenDivision}>
                 <div className={styles.leftHandSide}>
                     <div className={styles.projects}>
-                        <ProjectCard project={defaultProject} bgColor={"#f0f0e3"} border={"None"}/>
-                        <ProjectCard project={defaultProject} bgColor={"#f0f0e3"}  photo={2} />
+                        <ProjectCard project={defaultProject} bgColor={"#f0f0e3"} border={"None"} />
+                        <ProjectCard project={defaultProject} bgColor={"#f0f0e3"}/>
                     </div>
                 </div>
                 <div className={styles.rightHandSide}>
