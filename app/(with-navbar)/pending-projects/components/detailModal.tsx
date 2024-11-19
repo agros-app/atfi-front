@@ -11,7 +11,7 @@ type EditProfileModalProps = {
     onClose: () => void;
     data: ProjectDetailInfo;
     title: string;
-    onStatusChange: (newStatus: "APPROVED" | "REJECTED", projectId:number) => void;
+    onStatusChange: (newStatus: "APPROVED" | "REJECTED", projectId:number, proposalId?: number) => void;
 }
 
 export default function DetailModal({
@@ -31,7 +31,7 @@ export default function DetailModal({
 
 
     const handleStatusChange = (newStatus: "APPROVED" | "REJECTED") => {
-        onStatusChange(newStatus, data.id);
+        onStatusChange(newStatus, data.id, data.proposalId);
     };
 
     return (

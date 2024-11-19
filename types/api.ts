@@ -44,6 +44,7 @@ export type ProjectDetailInfo = ProjectData & {
     producerName: string,
     producerLastName: string,
     producerEmail: string,
+    proposalId?: number,
 }
 
 export type ProjectYieldata = {
