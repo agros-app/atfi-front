@@ -68,7 +68,7 @@ export function ProjectDetailsForm({
             <TextField
                 placeholder="Ingrese el área en m2"
                 name="area"
-                label="Área"
+                label="Área (en m2)"
                 value={area.toString()}
                 type="number"
                 onChange={(e) => updateFields({ area: Number(e.target.value) })}
@@ -78,7 +78,7 @@ export function ProjectDetailsForm({
             <TextField
                 placeholder="Ingrese el monto mínimo"
                 name="minAmount"
-                label="Monto Mínimo"
+                label="Monto Mínimo Requerido"
                 type="number"
                 value={minAmount.toString()}
                 onChange={(e) => updateFields({ minAmount: Number(e.target.value) })}

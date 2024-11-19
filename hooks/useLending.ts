@@ -12,6 +12,7 @@ interface ContractObject {
     abi: any;
 }
 
+
 const isNumberPositive = (amount: string) => {
     const numberAmount = Number(amount);
     return !isNaN(numberAmount) && numberAmount > 0;
@@ -198,6 +199,7 @@ const useLending = () => {
         const signer = provider.getSigner();
         const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
 
+
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
                 icon: '⚠️',
@@ -226,7 +228,68 @@ const useLending = () => {
         }
     }
 
-    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading };
+    const proposeLending = async (
+        amountNeededInUSDT: string,
+        minimumFundingAmount: string,
+        fundingDeadline: number,
+        returnPeriodStart: number,
+        lendingName: string,
+        producerAddress: string,
+    ) => {
+        setLoading(true);
+        const toastId = toast.loading('Proponiendo proyecto...');
+
+        try {
+            //@ts-ignore
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
+
+            if (!isConnected) {
+                toast.error('Primero debes conectar tu wallet', { id: toastId });
+                setLoading(false);
+                return;
+            }
+
+            if (!lendingInstance) {
+                toast.error('Contrato de lending no válido', { id: toastId });
+                console.error('Contrato de lending no válido');
+                setLoading(false);
+                return;
+            }
+
+            if (!ethers.utils.isAddress(producerAddress)) {
+                toast.error('Dirección de productor inválida', { id: toastId });
+                setLoading(false);
+                return;
+            }
+
+            // Conversión de valores a USDT (con 6 decimales)
+            const amountNeededInWei = ethers.utils.parseUnits(amountNeededInUSDT, 6); // Convertir USDT a 6 decimales
+            const minimumFundingInWei = ethers.utils.parseUnits(minimumFundingAmount, 6);
+
+            const transaction = await lendingInstance.proposeLending(
+                amountNeededInWei, // Monto necesario
+                minimumFundingInWei, // Monto mínimo
+                fundingDeadline, // Fecha límite para el financiamiento (timestamp UNIX)
+                returnPeriodStart, // Inicio del periodo de devolución (timestamp UNIX)
+                lendingName, // Nombre del proyecto
+                producerAddress, // Dirección del productor
+                { gasLimit: 2000000 }
+            );
+            toast.success('Propuesta creada con éxito', { id: toastId });
+            console.log(transaction);
+            setLoading(false);
+            return transaction;
+        } catch (error) {
+            console.error('Error al proponer lending:', error);
+            toast.error('Error al proponer el proyecto', { id: toastId });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending };
 };
 
 export default useLending;
