@@ -12,9 +12,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const { project, isLoading: isProjectLoading } = useProjectId(Number(id));
   const { user, isLoading: isUserLoading } = useUserInfo();
-
   const isLoading = isProjectLoading || isUserLoading;
-
   if (isLoading) {
     return <Loader />;
   }
@@ -33,9 +31,10 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}
               minAmount={0}
-                country={project.country}
-                seed={project.providers[0]?.seed ?? "soja"}
-                area={project.area}
+              country={project.country}
+              seed={project.providers[0]?.seed ?? "soja"}
+              area={project.area}
+              contractAdress={project.contractAdress!!}
             />
           </div>
         </div>

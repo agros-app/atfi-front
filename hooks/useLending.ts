@@ -17,14 +17,14 @@ const isNumberPositive = (amount: string) => {
     return !isNaN(numberAmount) && numberAmount > 0;
 }
 
-const useLending = () => {
+const useLending = (contractAddress: string) => {
     const [loading, setLoading] = useState(false);
     const { isConnected } = useWeb3();
 
-    const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract, lendingAddress: string) => {
+    const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract) => {
         const toastId = toast.loading('Aprobando token...');
         try {
-            const tx = await tokenContract.approve(lendingAddress, amount);
+            const tx = await tokenContract.approve(contractAddress, amount);
             await tx.wait();
             toast.success('Token aprobado con éxito', { id: toastId });
             return true;
@@ -42,6 +42,10 @@ const useLending = () => {
         lendingObject: ContractObject,
         projectId: number
     ) => {
+        if (contractAddress === '' || contractAddress === undefined || contractAddress === null) {
+            toast.error('Dirección del contrato no válida');
+            return;
+        }
         const toastId = toast.loading('Generando inversión...');
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
@@ -55,8 +59,9 @@ const useLending = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const tokenContract = new ethers.Contract(mockUSDTObject.address, mockUSDTObject.abi, signer);
-        const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
 
+        const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
+        console.log(lendingContract.address)
         if (!lendingContract || !isNumberPositive(amount)) {
             toast.error('Monto de inversión no válido', { id: toastId });
             setLoading(false);
@@ -64,7 +69,7 @@ const useLending = () => {
         }
 
         const amountInWei = ethers.utils.parseUnits(amount, 6);
-        const approvalSuccess = await approveToken(amountInWei, tokenContract, lendingObject.address);
+        const approvalSuccess = await approveToken(amountInWei, tokenContract);
 
         if (!approvalSuccess) {
             toast.error('La aprobación del token falló o fue rechazada', { id: toastId });
@@ -78,7 +83,7 @@ const useLending = () => {
             const transaction = await lendingContract.invest(amountInWei, { gasLimit: 2000000 });
             console.log(transaction);
             const receipt = await transaction.wait();
-            await investByProjectId(projectId, Number(amount));
+            //await investByProjectId(projectId, Number(amount));
             if (receipt.status === 1) {
                 toast.success('Inversión completada con éxito', { id: toastId });
                 console.log('Transaction was successful:', receipt);
@@ -101,7 +106,7 @@ const useLending = () => {
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
+        const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
 
         if (!lendingContract || !isNumberPositive(amount)) {
             toast.error('Monto de inversión no válido', { id: toastId });
@@ -131,7 +136,7 @@ const useLending = () => {
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lendingContract = new ethers.Contract(lendingObject.address, lendingObject.abi, signer);
+        const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
 
         if (!lendingContract) {
             toast.error('Contrato de lending no válido', { id: toastId });
@@ -159,7 +164,7 @@ const useLending = () => {
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lendingInstance = new ethers.Contract(lendingContract.address, lendingContract.abi, signer);
+        const lendingInstance = new ethers.Contract(contractAddress, lendingContract.abi, signer);
 
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {

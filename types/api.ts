@@ -38,6 +38,7 @@ export type ProjectData = Project & {
     area: number,
     latitude: string,
     longitude: string,
+    contractAdress?: string,
 }
 
 export type ProjectDetailInfo = ProjectData & {

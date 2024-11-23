@@ -18,6 +18,7 @@ type FinancialInfoProps = {
   country: string
   seed: string
   area: number
+  contractAdress: string
 };
 
 
@@ -28,9 +29,11 @@ export default function FinancialInfo({
   minAmount,
     country,
     seed,
-    area
+    area,
+    contractAdress
 }: FinancialInfoProps) {
-  const { investInLending, disburseFunds, loading, regretInvestment } = useLending();
+  console.log(contractAdress)
+  const { investInLending, disburseFunds, loading, regretInvestment } = useLending(contractAdress!!);
   const percentage = Math.floor((currentAmount / goalAmount) * 100);
   const [collected, setCollected] = useState(currentAmount);
   const [amount, setAmount] = useState<number>(0);
