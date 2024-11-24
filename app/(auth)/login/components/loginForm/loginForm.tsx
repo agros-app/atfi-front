@@ -33,6 +33,7 @@ export default function LoginForm() {
         if (response.ok) {
             const data = await response.json();
             document.cookie = `session=${data.token}`;
+            console.log(document.cookie);
             router.push('/home');
         } else {
             toast.error(`Credenciales incorrectas`, { id: 'login-error' });
