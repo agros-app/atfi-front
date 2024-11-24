@@ -39,6 +39,7 @@ const useLending = (contractAddress: string) => {
     const investInLending = async (
         amount: string,
         mockUSDTObject: ContractObject,
+        contractAddress: string,
         lendingObject: ContractObject,
         projectId: number
     ) => {
@@ -57,11 +58,11 @@ const useLending = (contractAddress: string) => {
         setLoading(true);
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
+        console.log(contractAddress)
         const signer = provider.getSigner();
         const tokenContract = new ethers.Contract(mockUSDTObject.address, mockUSDTObject.abi, signer);
-
         const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
-        console.log(lendingContract.address)
+
         if (!lendingContract || !isNumberPositive(amount)) {
             toast.error('Monto de inversión no válido', { id: toastId });
             setLoading(false);

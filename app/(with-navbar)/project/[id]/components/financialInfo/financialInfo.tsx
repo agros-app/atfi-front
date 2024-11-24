@@ -46,7 +46,8 @@ export default function FinancialInfo({
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
-    await investInLending(amount.toString(), mockUSDT, lending, projectId);
+    console.log("invirtiendo en el contrato", contractAdress)
+    await investInLending(amount.toString(), mockUSDT,contractAdress ,lending, projectId);
     setCollected(Math.floor(currentAmount + amount))
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
