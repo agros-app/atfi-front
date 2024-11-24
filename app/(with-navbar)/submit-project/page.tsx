@@ -114,7 +114,7 @@ export default function ProjectForm() {
                 new Date(data.endDate).getTime(), // Asegúrate de usar timestamp UNIX
                 new Date(data.endFarming).getTime(),
                 data.name,
-                "0xBFa52102262966aF3939455E89Dac545fD855d10" // TODO: ESTO ESTÁ BIEN
+                "0xBFa52102262966aF3939455E89Dac545fD855d10" // TODO: ESTO ESTÁ HARDCODEADO
             )
             // Crear el proyecto en el backend
             await createProject(data);
