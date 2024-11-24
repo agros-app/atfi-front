@@ -18,6 +18,7 @@ type FinancialInfoProps = {
   country: string
   seed: string
   area: number
+  contractAdress: string
 };
 
 
@@ -28,9 +29,11 @@ export default function FinancialInfo({
   minAmount,
     country,
     seed,
-    area
+    area,
+    contractAdress
 }: FinancialInfoProps) {
-  const { investInLending, disburseFunds, loading, regretInvestment } = useLending();
+  console.log(contractAdress)
+  const { investInLending, disburseFunds, loading, regretInvestment } = useLending(contractAdress!!);
   const percentage = Math.floor((currentAmount / goalAmount) * 100);
   const [collected, setCollected] = useState(currentAmount);
   const [amount, setAmount] = useState<number>(0);
@@ -43,7 +46,8 @@ export default function FinancialInfo({
     event.preventDefault();
     // @ts-ignore
     const amount = parseInt(event.target.amount.value);
-    await investInLending(amount.toString(), mockUSDT, lending, projectId);
+    console.log("invirtiendo en el contrato", contractAdress)
+    await investInLending(amount.toString(), mockUSDT,contractAdress ,lending, projectId);
     setCollected(Math.floor(currentAmount + amount))
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset();
