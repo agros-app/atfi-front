@@ -78,10 +78,10 @@ export const deleteProjectPhoto = async(projectId: number, photoId: string): Pro
     await api.delete(`/project/${projectId}/update-photo/${photoId}`);
 }
 
-// export const createProject = async (project: ProjectFormData): Promise<ProjectData | any> => {
-//     const response = await api.post('/project', project);
-//     return response.data;
-// }
+export const createProject = async (project: ProjectFormData): Promise<ProjectData | any> => {
+    const response = await api.post('/project', project);
+    return response.data;
+}
 
 export const getProjectYieldataByName = async (name: string): Promise<ProjectYieldata> => {
     const response = await api.get(`/yieldata/campo/filter`, {

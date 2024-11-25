@@ -34,7 +34,7 @@ export default function FinancialInfo({
   contractAdress
 }: FinancialInfoProps) {
   console.log(contractAdress)
-  const { investInLending, disburseFunds, loading, regretInvestment } =
+  const { investInLending, disburseFunds, loading, regretInvestment, injectFunds } =
     useLending(contractAdress!!)
   const percentage = Math.floor((currentAmount / goalAmount) * 100)
   const [collected, setCollected] = useState(currentAmount)
@@ -70,6 +70,11 @@ export default function FinancialInfo({
     console.log("amoutn", amount)
     await regretInvestment(amount.toString(), lending, async () => await regret(projectId, amount));
     setCollected(Math.floor(currentAmount - amount))
+  }
+
+  const handelInject = async () => {
+    console.log("amount", amount)
+    await injectFunds(amount.toString(),  mockUSDT, contractAdress, lending);
   }
 
   return (
@@ -120,22 +125,18 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          <Button
-            // @ts-ignore
-            type={'submit'}
-            fill
-            disabled={loading}
-          >
-            Invertir
-          </Button>
+          {!isProducer && (
+            <Button
+              // @ts-ignore
+              type={'submit'}
+              fill
+              disabled={loading}
+            >
+              Invertir
+            </Button>)
+          }
         </form>
-        {isProducer && (
-          <div style={{ marginTop: '16px' }}>
-            <Button fill onClick={disburseFunds}>
-              Retirar fondos
-            </Button>
-          </div>
-        )}
+        {!isProducer && (
         <div style={{ marginTop: '16px' }}>
           <Button
             disabled={loading}
@@ -145,7 +146,19 @@ export default function FinancialInfo({
           >
             Revertir inversión
           </Button>
-        </div>
+        </div>)}
+        {isProducer && (
+            <div style={{ marginTop: '16px'}} >
+              <Button fill onClick={disburseFunds} >
+                Retirar fondos
+              </Button>
+              <div style={{ marginTop: '16px'}}>
+                <Button variant={'secondary'} fill onClick={handelInject}>
+                  Inyectar retornos
+                </Button>
+              </div>
+            </div>
+        )}
       </div>
     </div>
   )

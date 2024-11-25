@@ -36,7 +36,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               seed={project.providers[0]?.seed ?? "soja"}
               area={project.area}
               contractAdress={project.contractAdress!!}
-              isProducer={project.producerEmail==user.email}
             />
           </div>
         </div>

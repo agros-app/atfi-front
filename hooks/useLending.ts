@@ -37,6 +37,67 @@ const useLending = (contractAddress?: string) => {
         }
     };
 
+    const injectFunds = async (
+        amount: string,
+        mockUSDTObject: ContractObject,
+        contractAddress: string,
+        lendingObject: ContractObject,
+    ) => {
+        if (!contractAddress) {
+            toast.error('Dirección del contrato no válida');
+            return;
+        }
+
+        const toastId = toast.loading('Inyectando retornos...');
+        if (!isConnected) {
+            toast('Primero debes conectar tu wallet', {
+                icon: '⚠️',
+                id: toastId
+            });
+            return;
+        }
+
+        setLoading(true);
+
+        //@ts-ignore
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const tokenContract = new ethers.Contract(mockUSDTObject.address, mockUSDTObject.abi, signer);
+        const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
+
+        if (!lendingContract || !isNumberPositive(amount)) {
+            toast.error('Monto no válido', { id: toastId });
+            setLoading(false);
+            return;
+        }
+
+        const amountInWei = ethers.utils.parseUnits(amount, 6);
+        const approvalSuccess = await approveToken(amountInWei, tokenContract);
+
+        if (!approvalSuccess) {
+            toast.error('La aprobación del token falló o fue rechazada', { id: toastId });
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const transaction = await lendingContract.injectReturns(amountInWei, { gasLimit: 2000000 });
+            const receipt = await transaction.wait();
+            if (receipt.status === 1) {
+                toast.success('Inversión completada con éxito', { id: toastId });
+            } else {
+                toast.error('La transacción falló', { id: toastId });
+            }
+            return transaction;
+        } catch (error) {
+            toast.error('Error al inyectar fondos en el lending', { id: toastId });
+            console.error('Error al inyectar fondos en el lending:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     const investInLending = async (
         amount: string,
         mockUSDTObject: ContractObject,
@@ -298,44 +359,10 @@ const useLending = (contractAddress?: string) => {
         }
     };
 
-    //     const injectFunds = async (
-    //         amount: string,
-    //         mockUSDTObject: ContractObject,
-    //         contractAddress: string,
-    //         lendingObject: ContractObject,
-    //         projectId: number
-    //     ) => {
-    //         if (contractAddress === '' || contractAddress === undefined || contractAddress === null) {
-    //             toast.error('Dirección del contrato no válida');
-    //             return;
-    //         }
-    //         const toastId = toast.loading('Inyectando retornos...');
-    //         if (!isConnected) {
-    //             toast('Primero debes conectar tu wallet', {
-    //                 icon: '⚠️',
-    //                 id: toastId
-    //             });
-    //             return;
-    //         }
-    //         setLoading(true);
-    //
-    //         //@ts-ignore
-    //         const provider = new ethers.providers.Web3Provider(window.ethereum);
-    //         const signer = provider.getSigner();
-    //         const lendingInstance = new ethers.Contract(contractAddress, lendingContract.abi, signer);
-    //
-    //         if (!lendingContract || !isNumberPositive(amount)) {
-    //             toast.error('Monto no válido', { id: toastId });
-    //             setLoading(false);
-    //             return;
-    //         }
-    //
-    //
-    //     }
 
 
 
-    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending };
+    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending, injectFunds };
 };
 
 export default useLending;
