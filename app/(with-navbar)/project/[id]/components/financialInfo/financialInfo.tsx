@@ -13,6 +13,7 @@ import { investByProjectId, regretInvestment as regret } from '@/lib/api'
 type FinancialInfoProps = {
   projectId: number
   isProducer: boolean
+  campaignEnded: boolean
   currentAmount: number
   goalAmount: number
   minAmount: number
@@ -25,6 +26,7 @@ type FinancialInfoProps = {
 export default function FinancialInfo({
   projectId,
   isProducer,
+  campaignEnded,
   currentAmount,
   goalAmount,
   minAmount,
@@ -34,7 +36,7 @@ export default function FinancialInfo({
   contractAdress
 }: FinancialInfoProps) {
   console.log(contractAdress)
-  const { investInLending, disburseFunds, loading, regretInvestment } =
+  const { investInLending, disburseFunds, claimReturns, loading, regretInvestment } =
     useLending(contractAdress!!)
   const percentage = Math.floor((currentAmount / goalAmount) * 100)
   const [collected, setCollected] = useState(currentAmount)
@@ -73,6 +75,10 @@ export default function FinancialInfo({
       async () => await regret(projectId, amount)
     )
     setCollected(Math.floor(currentAmount - amount))
+  }
+
+  const handleClaimReturns = async () => {
+    await claimReturns(lending)
   }
 
   return (
@@ -132,6 +138,13 @@ export default function FinancialInfo({
           <div style={{ marginTop: '16px' }}>
             <Button fill onClick={disburseFunds}>
               Retirar fondos
+            </Button>
+          </div>
+        )}
+        {campaignEnded && (
+          <div style={{ marginTop: '16px' }}>
+            <Button fill onClick={handleClaimReturns}>
+              Retirar ganancias
             </Button>
           </div>
         )}
