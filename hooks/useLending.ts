@@ -185,8 +185,12 @@ const useLending = (contractAddress: string) => {
 
         try {
             const transaction = await lendingInstance.disburseFunds({ gasLimit: 2000000 });
-            toast.success('Fondos retirados con éxito', { id: toastId });
-            console.log(transaction);
+            const receipt = await transaction.wait();
+            if (receipt.status === 1) {
+                toast.success('Fondos retirados con éxito', { id: toastId });
+            } else {
+                toast.error('Los fondos no pudieron ser retirados', { id: toastId });
+            }
             setLoading(false);
             return transaction;
         } catch (error) {
