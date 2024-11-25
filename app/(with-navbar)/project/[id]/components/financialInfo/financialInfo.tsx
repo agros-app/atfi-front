@@ -1,65 +1,77 @@
-"use client";
-import styles from "./financialInfo.module.scss";
-import ProgressBar from "@/components/progressBar/progressBar";
-import Button from "@/components/button/button";
-import TextIndexComponent from "../TextIndexComponent/textIndexComponent";
-import TextField from "@/components/textField/textField";
-import useLending from "@/hooks/useLending";
-import {FormEventHandler, useEffect, useState} from "react";
-import mockUSDT from "@/contracts/mockUSDT.json";
-import lending from "@/contracts/lendingTest.json";
-import { investByProjectId, regretInvestment as regret} from "@/lib/api";
+'use client'
+import styles from './financialInfo.module.scss'
+import ProgressBar from '@/components/progressBar/progressBar'
+import Button from '@/components/button/button'
+import TextIndexComponent from '../TextIndexComponent/textIndexComponent'
+import TextField from '@/components/textField/textField'
+import useLending from '@/hooks/useLending'
+import { FormEventHandler, useEffect, useState } from 'react'
+import mockUSDT from '@/contracts/mockUSDT.json'
+import lending from '@/contracts/lendingTest.json'
+import { investByProjectId, regretInvestment as regret } from '@/lib/api'
 
 type FinancialInfoProps = {
-  projectId: number;
-  currentAmount: number;
-  goalAmount: number;
-  minAmount: number;
+  projectId: number
+  isProducer: boolean
+  currentAmount: number
+  goalAmount: number
+  minAmount: number
   country: string
   seed: string
   area: number
   contractAdress: string
-};
-
+}
 
 export default function FinancialInfo({
   projectId,
+  isProducer,
   currentAmount,
   goalAmount,
   minAmount,
-    country,
-    seed,
-    area,
-    contractAdress
+  country,
+  seed,
+  area,
+  contractAdress
 }: FinancialInfoProps) {
   console.log(contractAdress)
-  const { investInLending, disburseFunds, loading, regretInvestment } = useLending(contractAdress!!);
-  const percentage = Math.floor((currentAmount / goalAmount) * 100);
-  const [collected, setCollected] = useState(currentAmount);
-  const [amount, setAmount] = useState<number>(0);
+  const { investInLending, disburseFunds, loading, regretInvestment } =
+    useLending(contractAdress!!)
+  const percentage = Math.floor((currentAmount / goalAmount) * 100)
+  const [collected, setCollected] = useState(currentAmount)
+  const [amount, setAmount] = useState<number>(0)
 
   useEffect(() => {
-    setCollected(currentAmount);
-  }, [currentAmount]);
+    setCollected(currentAmount)
+  }, [currentAmount])
 
   const handleInvest: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     // @ts-ignore
-    const amount = parseInt(event.target.amount.value);
-    console.log("invirtiendo en el contrato", contractAdress)
-    await investInLending(amount.toString(), mockUSDT,contractAdress ,lending, projectId);
+    const amount = parseInt(event.target.amount.value)
+    console.log('invirtiendo en el contrato', contractAdress)
+    await investInLending(
+      amount.toString(),
+      mockUSDT,
+      contractAdress,
+      lending,
+      projectId
+    )
     setCollected(Math.floor(currentAmount + amount))
     // @ts-ignore  typescript is not recognizing the reset method
-    event.target.reset();
-  };
+    event.target.reset()
+  }
 
   function capitalizeFirstLetter(string?: string) {
-    if (!string) return ""; // Maneja casos donde string sea undefined o null
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    if (!string) return '' // Maneja casos donde string sea undefined o null
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   const handleRegret = async () => {
-    await regretInvestment(amount.toString(), lending, async () => await regret(projectId, amount));
+    await regretInvestment(
+      amount.toString(),
+      lending,
+      async () => await regret(projectId, amount)
+    )
     setCollected(Math.floor(currentAmount - amount))
   }
 
@@ -74,11 +86,7 @@ export default function FinancialInfo({
             subtext={`Meta: $${goalAmount} USD`}
           />
           <div className={styles.progressBar}>
-            <ProgressBar
-              collected={collected}
-              goal={goalAmount}
-              height={15}
-            />
+            <ProgressBar collected={collected} goal={goalAmount} height={15} />
           </div>
         </div>
         <ul className={styles.leaders}>
@@ -111,21 +119,33 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-            <Button
-                // @ts-ignore
-                type={"submit"}
-                fill
-                disabled={loading}
-            >
-              Invertir
+          <Button
+            // @ts-ignore
+            type={'submit'}
+            fill
+            disabled={loading}
+          >
+            Invertir
+          </Button>
+        </form>
+        {isProducer && (
+          <div style={{ marginTop: '16px' }}>
+            <Button fill onClick={disburseFunds}>
+              Retirar fondos
             </Button>
-          </form>
-        <div style={{marginTop: '16px'}}>
-          <Button disabled={loading} variant={'secondary'} fill onClick={handleRegret}>
+          </div>
+        )}
+        <div style={{ marginTop: '16px' }}>
+          <Button
+            disabled={loading}
+            variant={'secondary'}
+            fill
+            onClick={handleRegret}
+          >
             Revertir inversión
           </Button>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -18,7 +18,7 @@ const isNumberPositive = (amount: string) => {
     return !isNaN(numberAmount) && numberAmount > 0;
 }
 
-const useLending = (contractAddress: string) => {
+const useLending = (contractAddress?: string) => {
     const [loading, setLoading] = useState(false);
     const { isConnected } = useWeb3();
 
@@ -108,7 +108,7 @@ const useLending = (contractAddress: string) => {
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
+        const lendingContract = new ethers.Contract(contractAddress!!, lendingObject.abi, signer);
 
         if (!lendingContract || !isNumberPositive(amount)) {
             toast.error('Monto de inversión no válido', { id: toastId });
@@ -138,7 +138,7 @@ const useLending = (contractAddress: string) => {
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lendingContract = new ethers.Contract(contractAddress, lendingObject.abi, signer);
+        const lendingContract = new ethers.Contract(contractAddress!!, lendingObject.abi, signer);
 
         if (!lendingContract) {
             toast.error('Contrato de lending no válido', { id: toastId });
@@ -166,7 +166,7 @@ const useLending = (contractAddress: string) => {
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const lendingInstance = new ethers.Contract(contractAddress, lendingContract.abi, signer);
+        const lendingInstance = new ethers.Contract(contractAddress!!, lendingContract.abi, signer);
 
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
@@ -185,8 +185,12 @@ const useLending = (contractAddress: string) => {
 
         try {
             const transaction = await lendingInstance.disburseFunds({ gasLimit: 2000000 });
-            toast.success('Fondos retirados con éxito', { id: toastId });
-            console.log(transaction);
+            const receipt = await transaction.wait();
+            if (receipt.status === 1) {
+                toast.success('Fondos retirados con éxito', { id: toastId });
+            } else {
+                toast.error('Los fondos no pudieron ser retirados', { id: toastId });
+            }
             setLoading(false);
             return transaction;
         } catch (error) {
