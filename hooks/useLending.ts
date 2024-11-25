@@ -120,7 +120,7 @@ const useLending = (contractAddress: string) => {
         try {
             const amountInWei = ethers.utils.parseUnits(amount, 6);
             const transaction = await lendingContract.regretInvestment(amountInWei, { gasLimit: 2000000 });
-            await updateDb();
+            // await updateDb();
             toast.success('Inversión retirada con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);
@@ -204,7 +204,6 @@ const useLending = (contractAddress: string) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
-
 
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
@@ -294,6 +293,43 @@ const useLending = (contractAddress: string) => {
             setLoading(false);
         }
     };
+
+    //     const injectFunds = async (
+    //         amount: string,
+    //         mockUSDTObject: ContractObject,
+    //         contractAddress: string,
+    //         lendingObject: ContractObject,
+    //         projectId: number
+    //     ) => {
+    //         if (contractAddress === '' || contractAddress === undefined || contractAddress === null) {
+    //             toast.error('Dirección del contrato no válida');
+    //             return;
+    //         }
+    //         const toastId = toast.loading('Inyectando retornos...');
+    //         if (!isConnected) {
+    //             toast('Primero debes conectar tu wallet', {
+    //                 icon: '⚠️',
+    //                 id: toastId
+    //             });
+    //             return;
+    //         }
+    //         setLoading(true);
+    //
+    //         //@ts-ignore
+    //         const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //         const signer = provider.getSigner();
+    //         const lendingInstance = new ethers.Contract(contractAddress, lendingContract.abi, signer);
+    //
+    //         if (!lendingContract || !isNumberPositive(amount)) {
+    //             toast.error('Monto no válido', { id: toastId });
+    //             setLoading(false);
+    //             return;
+    //         }
+    //
+    //
+    //     }
+
+
 
     return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending };
 };

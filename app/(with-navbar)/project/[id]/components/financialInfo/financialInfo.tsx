@@ -19,6 +19,7 @@ type FinancialInfoProps = {
   seed: string
   area: number
   contractAdress: string
+  isProducer: boolean
 };
 
 
@@ -30,7 +31,8 @@ export default function FinancialInfo({
     country,
     seed,
     area,
-    contractAdress
+    contractAdress,
+    isProducer
 }: FinancialInfoProps) {
   console.log(contractAdress)
   const { investInLending, disburseFunds, loading, regretInvestment } = useLending(contractAdress!!);
@@ -59,6 +61,7 @@ export default function FinancialInfo({
   }
 
   const handleRegret = async () => {
+    console.log("amoutn", amount)
     await regretInvestment(amount.toString(), lending, async () => await regret(projectId, amount));
     setCollected(Math.floor(currentAmount - amount))
   }
@@ -125,6 +128,13 @@ export default function FinancialInfo({
             Revertir inversión
           </Button>
         </div>
+        {isProducer && (
+          <div style={{marginTop: '16px'}}>
+            <Button disabled={loading} variant={'tertiary'} fill onClick={disburseFunds}>
+              Inyectar retornos
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
