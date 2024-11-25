@@ -28,6 +28,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className={styles.financialInfo}>
             <FinancialInfo
               projectId={parseInt(id)}
+              isProducer={project.producerEmail==user.email}
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}
               minAmount={0}
