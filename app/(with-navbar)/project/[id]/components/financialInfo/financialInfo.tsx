@@ -132,21 +132,30 @@ export default function FinancialInfo({
           />
           <small>*Minimo de inversión: ${minAmount}</small>
           {!isProducer && (
-            <Button
-              // @ts-ignore
-              type={'submit'}
-              fill
-              disabled={loading}
-            >
-              Invertir
-            </Button>)
-          }
+            < div style={{marginTop: '16px'}}>
+              <Button
+                  // @ts-ignore
+                  type={'submit'} fill disabled={loading}>
+                Invertir
+              </Button>
+              < div style={{marginTop: '16px'}}>
+                <Button disabled={loading} variant={'secondary'} fill onClick={handleRegret}>
+                Revertir inversión
+                </Button>
+              </div>
+            </div>
+          )}
         </form>
         {isProducer && (
-          <div style={{ marginTop: '16px' }}>
-            <Button fill onClick={disburseFunds}>
-              Retirar fondos
-            </Button>
+            <div style={{marginTop: '16px'}}>
+              <Button fill onClick={disburseFunds}>
+                Retirar fondos
+              </Button>
+              <div style={{marginTop: '16px'}}>
+                <Button fill onClick={handelInject} variant={'secondary'}>
+                Inyectar retornos
+              </Button>
+            </div>
           </div>
         )}
         {campaignEnded && (
@@ -156,16 +165,6 @@ export default function FinancialInfo({
             </Button>
           </div>
         )}
-        <div style={{ marginTop: '16px' }}>
-          <Button
-            disabled={loading}
-            variant={'secondary'}
-            fill
-            onClick={handleRegret}
-          >
-            Revertir inversión
-          </Button>
-        </div>
       </div>
     </div>
   )

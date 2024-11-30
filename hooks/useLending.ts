@@ -5,7 +5,6 @@ import { useWeb3 } from "@/context/web3Modal";
 import toast from 'react-hot-toast';
 import lendingContract from "@/contracts/lendingTest.json";
 import lendingFactory from "@/contracts/lendingFactory.json";
-import {investByProjectId} from "@/lib/api";
 
 interface ContractObject {
     address: string;
@@ -181,7 +180,12 @@ const useLending = (contractAddress?: string) => {
         try {
             const amountInWei = ethers.utils.parseUnits(amount, 6);
             const transaction = await lendingContract.regretInvestment(amountInWei, { gasLimit: 2000000 });
-            // await updateDb();
+            const receipt = await transaction.wait();
+            if (receipt.status === 1) {
+                toast.success('Inversión completada con éxito', { id: toastId });
+            } else {
+                toast.error('La transacción falló', { id: toastId });
+            }
             toast.success('Inversión retirada con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);
