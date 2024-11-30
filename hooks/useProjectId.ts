@@ -32,7 +32,6 @@ const useProjectId = (id: number) => {
         zipCode: "string",
         state: "string",
         area: 0,
-        contractAdress: "string",
         city: "string",
         country: "string",
         producerName: "string",

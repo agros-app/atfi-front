@@ -12,7 +12,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const { project, isLoading: isProjectLoading } = useProjectId(Number(id));
   const { user, isLoading: isUserLoading } = useUserInfo();
+
   const isLoading = isProjectLoading || isUserLoading;
+
   if (isLoading) {
     return <Loader />;
   }
@@ -28,14 +30,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className={styles.financialInfo}>
             <FinancialInfo
               projectId={parseInt(id)}
-              isProducer={project.producerEmail==user.email}
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}
               minAmount={0}
-              country={project.country}
-              seed={project.providers[0]?.seed ?? "soja"}
-              area={project.area}
-              contractAdress={project.contractAdress!!}
+                country={project.country}
+                seed={project.providers[0]?.seed ?? "soja"}
+                area={project.area}
             />
           </div>
         </div>

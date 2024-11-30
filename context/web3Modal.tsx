@@ -1,5 +1,6 @@
-'use client';
-import { createContext, useContext, useEffect, useState } from "react";
+'use client'
+import {createContext, useContext, useState} from "react";
+
 import {
     useWeb3ModalAccount,
     useDisconnect,
@@ -7,9 +8,9 @@ import {
     defaultConfig,
     useWeb3Modal
 } from "@web3modal/ethers5/react";
-import { walletConnection } from "@/lib/api";
+import {walletConnection} from "@/lib/api";
 
-const projectId = 'dbd9c43d66e4c9498e408154729c019f';
+const projectId = 'dbd9c43d66e4c9498e408154729c019f'
 
 const Sepolia = {
     chainId: 11155111,
@@ -67,13 +68,14 @@ const initialState = {
     web3Error: ''
 };
 
+
 const Web3Context = createContext(initialState);
 
 // @ts-ignore
-export const Web3ContextProvider = ({ children }) => {
+export const Web3ContextProvider = ({children}) => {
     const [web3Error, setWeb3Error] = useState('');
-    const { address, chainId, isConnected } = useWeb3ModalAccount();
-    const { disconnect } = useDisconnect();
+    const {address, chainId, isConnected} = useWeb3ModalAccount();
+    const {disconnect} = useDisconnect();
 
     createWeb3Modal({
         ethersConfig: defaultConfig({
@@ -93,18 +95,21 @@ export const Web3ContextProvider = ({ children }) => {
 
     const { open } = useWeb3Modal();
 
-    const connectWallet = async () => {
+    const connectWallet = async() => {
         try {
             await open();
             setWeb3Error('');
+            if (address){
+                await walletConnection(address)
+            }
         } catch (e) {
             setWeb3Error('Error connecting wallet');
         }
-    };
+    }
 
     const disconnectWallet = () => {
         disconnect().then(() => setWeb3Error(''));
-    };
+    }
 
     const getCurrentNetwork = () => {
         if (!chainId) return null;
@@ -118,15 +123,7 @@ export const Web3ContextProvider = ({ children }) => {
             return LaChain;
         }
         return null;
-    };
-
-    useEffect(() => {
-        if (address) {
-            walletConnection(address).catch(() =>
-                setWeb3Error('Error connecting wallet')
-            );
-        }
-    }, [address]);
+    }
 
     const value = {
         connectWallet,
@@ -140,8 +137,9 @@ export const Web3ContextProvider = ({ children }) => {
 
     // @ts-ignore
     return <Web3Context.Provider value={value}>{children}</Web3Context.Provider>;
-};
+}
 
 export function useWeb3() {
     return useContext(Web3Context);
 }
+
