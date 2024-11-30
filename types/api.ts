@@ -38,12 +38,14 @@ export type ProjectData = Project & {
     area: number,
     latitude: string,
     longitude: string,
+    contractAdress?: string,
 }
 
 export type ProjectDetailInfo = ProjectData & {
     producerName: string,
     producerLastName: string,
     producerEmail: string,
+    proposalId?: number,
 }
 
 export type ProjectYieldata = {

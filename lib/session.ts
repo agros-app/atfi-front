@@ -19,6 +19,7 @@ export async function encrypt(payload: UserSession): Promise<string> {
         .sign(encodedKey)
 }
 
+// LA cookie existe y se guarda en el navegador, lo que no está pudiendo hacer esta función es sacarle la data.
 export async function decrypt(session: string | undefined = '') {
     try {
         const { payload } = await jwtVerify(session, encodedKey, {
@@ -27,6 +28,8 @@ export async function decrypt(session: string | undefined = '') {
         return payload as UserSession
     } catch (error) {
         console.log('Failed to verify session')
+        console.error(error)
+        console.log('Session:', session)
     }
 }
 
@@ -66,7 +69,7 @@ export const getSession = async (): Promise<UserSession | null> => {
     if (!session) {
         return null
     }
-
+    console.log("get session", session)
     const payload = await decrypt(session)
 
     if (typeof payload === 'undefined') {
