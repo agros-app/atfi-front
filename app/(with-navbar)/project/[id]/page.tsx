@@ -29,6 +29,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <FinancialInfo
               projectId={parseInt(id)}
               isProducer={project.producerEmail==user.email}
+              campaignEnded={new Date(project.endFarming) < new Date()}
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}
               minAmount={0}
