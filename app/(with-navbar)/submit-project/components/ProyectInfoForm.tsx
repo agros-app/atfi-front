@@ -69,7 +69,7 @@ export function ProjectInfoForm({
                 helperText={errors.endDate}
             />
             <TextField
-                placeholder="Ingrese fecha de inicio de siembra"
+                placeholder="Ingrese fecha de inicio de cosecha"
                 name="initialFarmingDate"
                 label="Fecha de Inicio de cosecha"
                 type="date"
@@ -79,7 +79,7 @@ export function ProjectInfoForm({
                 helperText={errors.startFarming}
             />
             <TextField
-                placeholder="Ingrese fecha estipulada de finalización de la cosecha"
+                placeholder="Ingrese fecha de finalización de cosecha"
                 name="endFarmingDate"
                 label="Fecha de Finalizacion de cosecha"
                 type="date"

@@ -12,8 +12,6 @@ import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
 import {isStepValid, validateStep} from "@/utils/validation";
-import UseLending from "@/hooks/useLending";
-import useLending from "@/hooks/useLending";
 
 export type ProjectFormData = {
     name: string;
@@ -81,57 +79,28 @@ function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
 }
 
 
-
+async function handleResponse(data: ProjectFormData, router: AppRouterInstance) {
+    await createProject(data).then(() => {
+            toast.success("El proyecto ha sido creado exitosamente, " +
+                "recibirá un correo de confirmación en los próximos días", {
+                duration: 3000,
+            });
+            router.push("/home")
+        }
+    ).catch((_) => {
+        toast.error("Ha ocurrido un error al crear el proyecto, por favor intente nuevamente")
+    });
+}
 
 export default function ProjectForm() {
     const [data, setData] = useState(INITIAL_DATA);
     const router = useRouter();
     const [errors, setErrors] = useState<Partial<ProjectFormData>>({});
-    const { proposeLending } = useLending(); // TODO Arreglar esto
-
     function updateFields(fields: Partial<ProjectFormData>) {
         setData((prev) => ({
             ...prev,
             ...fields,
         }));
-    }
-
-    // Calculo que acá, hacer createProject(data).then(() -> createContract().then(() -> succes toast
-    async function handleResponse(data: ProjectFormData, router: AppRouterInstance) {
-        try {
-            // Validación previa
-            if (!data.amountNeed || !data.minAmount || !data.endDate || !data.endFarming || !data.name) {
-                toast.error("Datos incompletos para la propuesta de lending.");
-                return;
-            }
-
-            // Proponer el lending en el contrato
-            const producerAddress = "0xProducerAddress"; // Reemplaza con la lógica adecuada
-            console.log("proposing lending");
-            await proposeLending(
-                data.amountNeed.toString(),
-                data.minAmount.toString(),
-                new Date(data.endDate).getTime(), // Asegúrate de usar timestamp UNIX
-                new Date(data.endFarming).getTime(),
-                data.name,
-                "0xBFa52102262966aF3939455E89Dac545fD855d10" // TODO: ESTO ESTÁ HARDCODEADO
-            )
-            // Crear el proyecto en el backend
-            await createProject(data);
-
-            toast.success(
-                "El proyecto ha sido creado exitosamente, " +
-                "recibirá un correo de confirmación en los próximos días",
-                { duration: 3000 }
-            );
-
-            // Redirigir al home
-            router.push("/home");
-
-        } catch (error) {
-            console.error("Error en handleResponse:", error);
-            toast.error("Ha ocurrido un error. Por favor, intente nuevamente.");
-        }
     }
 
     const steps = [

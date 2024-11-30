@@ -16,13 +16,13 @@ export default function LoginForm() {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
         const validationErrors = validateLogin({ email, password });
         if (!isLoginValid(validationErrors)) {
             setErrors(validationErrors);
             toast.error('Por favor, corrija los errores en el formulario.');
             return;
         }
+
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/login`, {
             method: "POST",
             headers: {
