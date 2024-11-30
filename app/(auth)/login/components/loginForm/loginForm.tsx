@@ -16,13 +16,13 @@ export default function LoginForm() {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
         const validationErrors = validateLogin({ email, password });
         if (!isLoginValid(validationErrors)) {
             setErrors(validationErrors);
             toast.error('Por favor, corrija los errores en el formulario.');
             return;
         }
-
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/login`, {
             method: "POST",
             headers: {
@@ -33,7 +33,6 @@ export default function LoginForm() {
         if (response.ok) {
             const data = await response.json();
             document.cookie = `session=${data.token}`;
-            console.log(document.cookie);
             router.push('/home');
         } else {
             toast.error(`Credenciales incorrectas`, { id: 'login-error' });

@@ -68,7 +68,7 @@ export function ProjectDetailsForm({
             <TextField
                 placeholder="Ingrese el área en m2"
                 name="area"
-                label="Área (en m2)"
+                label="Área (en ha)"
                 value={area.toString()}
                 type="number"
                 onChange={(e) => updateFields({ area: Number(e.target.value) })}

@@ -87,7 +87,7 @@ export default function ProjectForm() {
     const [data, setData] = useState(INITIAL_DATA);
     const router = useRouter();
     const [errors, setErrors] = useState<Partial<ProjectFormData>>({});
-    const { proposeLending } = useLending();
+    const { proposeLending } = useLending(); // TODO Arreglar esto
 
     function updateFields(fields: Partial<ProjectFormData>) {
         setData((prev) => ({

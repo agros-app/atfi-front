@@ -36,7 +36,7 @@ export default function FinancialInfo({
   contractAdress
 }: FinancialInfoProps) {
   console.log(contractAdress)
-  const { investInLending, disburseFunds, claimReturns, loading, regretInvestment } =
+  const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds } =
     useLending(contractAdress!!)
   const percentage = Math.floor((currentAmount / goalAmount) * 100)
   const [collected, setCollected] = useState(currentAmount)
@@ -69,12 +69,14 @@ export default function FinancialInfo({
   }
 
   const handleRegret = async () => {
-    await regretInvestment(
-      amount.toString(),
-      lending,
-      async () => await regret(projectId, amount)
-    )
+    console.log("amoutn", amount)
+    await regretInvestment(amount.toString(), lending, async () => await regret(projectId, amount));
     setCollected(Math.floor(currentAmount - amount))
+  }
+
+  const handelInject = async () => {
+    console.log("amount", amount)
+    await injectFunds(amount.toString(),  mockUSDT, contractAdress, lending);
   }
 
   const handleClaimReturns = async () => {
@@ -92,7 +94,11 @@ export default function FinancialInfo({
             subtext={`Meta: $${goalAmount} USD`}
           />
           <div className={styles.progressBar}>
-            <ProgressBar collected={collected} goal={goalAmount} height={15} />
+            <ProgressBar
+              collected={collected}
+              goal={goalAmount}
+              height={15}
+            />
           </div>
         </div>
         <ul className={styles.leaders}>
@@ -125,20 +131,31 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          <Button
-            // @ts-ignore
-            type={'submit'}
-            fill
-            disabled={loading}
-          >
-            Invertir
-          </Button>
+          {!isProducer && (
+            < div style={{marginTop: '16px'}}>
+              <Button
+                  // @ts-ignore
+                  type={'submit'} fill disabled={loading}>
+                Invertir
+              </Button>
+              < div style={{marginTop: '16px'}}>
+                <Button disabled={loading} variant={'secondary'} fill onClick={handleRegret}>
+                Revertir inversión
+                </Button>
+              </div>
+            </div>
+          )}
         </form>
         {isProducer && (
-          <div style={{ marginTop: '16px' }}>
-            <Button fill onClick={disburseFunds}>
-              Retirar fondos
-            </Button>
+            <div style={{marginTop: '16px'}}>
+              <Button fill onClick={disburseFunds}>
+                Retirar fondos
+              </Button>
+              <div style={{marginTop: '16px'}}>
+                <Button fill onClick={handelInject} variant={'secondary'}>
+                Inyectar retornos
+              </Button>
+            </div>
           </div>
         )}
         {campaignEnded && (
@@ -148,16 +165,6 @@ export default function FinancialInfo({
             </Button>
           </div>
         )}
-        <div style={{ marginTop: '16px' }}>
-          <Button
-            disabled={loading}
-            variant={'secondary'}
-            fill
-            onClick={handleRegret}
-          >
-            Revertir inversión
-          </Button>
-        </div>
       </div>
     </div>
   )
