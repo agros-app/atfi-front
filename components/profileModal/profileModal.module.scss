@@ -53,11 +53,14 @@
   padding: 10px 20px;
   align-items: center;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .text{
     font-size: 1rem;
     font-weight: 300;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .redText{

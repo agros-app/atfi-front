@@ -6,12 +6,10 @@ import Button from "@/components/button/button";
 import { User } from "@/types/api";
 import { eraseUserPhoto, updateUserPhoto } from "@/lib/api";
 import toast from "react-hot-toast";
+import useSession from "@/hooks/useSession";
 
-type ProfileBannerProps = {
-    user: User;
-}
-
-export default function ProfileBanner({user}: ProfileBannerProps) {
+export default function ProfileBanner() {
+    const { userData: user } = useSession();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [profileImage, setProfileImage] = useState("/placeholder.png");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -104,8 +102,8 @@ export default function ProfileBanner({user}: ProfileBannerProps) {
                 <ProfileImage src={profileImage} size={100} />
             </div>
             <div className={styles.data}>
-                <h3 className={styles.title}>{user.name + " " + user.lastName}</h3>
-                <p className={styles.email}>{user.email}</p>
+                <h3 className={styles.title}>{user?.name + " " + user?.lastName}</h3>
+                <p className={styles.email}>{user?.email}</p>
             </div>
             <div className={styles.editContainer}>
                 <img className={styles.editIcon} src="/profile/edit.png" alt="Edit" onClick={editModal} />

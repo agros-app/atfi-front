@@ -7,7 +7,6 @@ import News from "@/components/news/news";
 import {useRouter} from "next/navigation";
 import React from "react";
 import { useEffect, useState } from 'react';
-import AuthGuard from "@/guards/AuthGuard";
 import {getNews, getToken} from "@/lib/api";
 
 

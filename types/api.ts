@@ -102,6 +102,7 @@ export type User = {
     city: string;
     address: string;
     state: string;
+    walletDisplayable: boolean,
 }
 
 

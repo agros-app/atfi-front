@@ -8,13 +8,13 @@ import {
   removeMessage
 } from '@/lib/api'
 import toast from 'react-hot-toast'
-import useUserInfo from '@/hooks/useUserInfo'
 import styles from './productorTab.module.scss'
+import useSession from '@/hooks/useSession'
 
 export default function ProductorTab({ data }: { data: ProjectDetailInfo }) {
   const [messages, setMessages] = useState<ProjectMessage[]>([])
-  const { user } = useUserInfo()
-  const isProducer = user.email === data.producerEmail
+  const { userData: user } = useSession()
+  const isProducer = user?.email === data.producerEmail
 
   useEffect(() => {
     getProjectMessages(data.id)

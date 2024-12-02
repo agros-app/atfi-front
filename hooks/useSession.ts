@@ -2,8 +2,9 @@
 import { SessionContext, sessionContext } from '@/context/sessionContext';
 import { useContext } from 'react';
 
-const useSession = (): SessionContext | null => {
+const useSession = (): SessionContext => {
     const session = useContext(sessionContext);
+    // @ts-ignore
     return session;
 }
 
