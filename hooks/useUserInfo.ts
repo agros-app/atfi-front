@@ -17,7 +17,8 @@ const useUserInfo  = () => {
         country: "",
         city: "",
         address: "",
-        state: ""
+        state: "",
+        walletDisplayable: false
     });
 
     useEffect(() => {
