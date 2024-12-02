@@ -10,6 +10,7 @@ import {useRouter} from "next/navigation";
 export type ProducerFormData = {
     name: string;
     lastName: string;
+    walletAddress: string;
     email: string;
     password: string;
     phone: string;
@@ -30,6 +31,7 @@ type StepIndicatorProps = {
 type ProducerInfoData = {
     name: string;
     lastName: string;
+    walletAddress: string;
     email: string;
     password: string;
 };
@@ -78,6 +80,7 @@ function ProducerInfoForm({
                                      lastName,
                                      email,
                                      password,
+                                     walletAddress,
                                      updateFields,
                                      errors
                                  }: ProducerInfoProps) {
@@ -101,6 +104,15 @@ function ProducerInfoForm({
                 onChange={(e) => updateFields({ lastName: e.target.value })}
                 error={!!errors.lastName}
                 helperText={errors.lastName}
+            />
+            <TextField
+                placeholder="Ingrese la wallet del productor"
+                name="walletAddress"
+                label="Wallet asociada al productor"
+                value={walletAddress}
+                onChange={(e) => updateFields({ walletAddress: e.target.value })}
+                error={!!errors.walletAddress}
+                helperText={errors.walletAddress}
             />
             <TextField
                 placeholder="Ingrese el email del productor"
@@ -202,6 +214,7 @@ export default function ProducerForm() {
     const [infoData, setInfoData] = React.useState<ProducerInfoData>({
         name: "",
         lastName: "",
+        walletAddress: "",
         email: "",
         password: ""
     });
@@ -227,10 +240,11 @@ export default function ProducerForm() {
 
     function handleNext() {
         if (currentStep === 0) {
-            if (!infoData.name || !infoData.lastName || !infoData.email || !infoData.password) {
+            if (!infoData.name || !infoData.lastName || !infoData.email || !infoData.password || !infoData.walletAddress) {
                 setErrors({
                     name: !infoData.name ? "El nombre es requerido" : "",
                     lastName: !infoData.lastName ? "El apellido es requerido" : "",
+                    walletAddress: !infoData.walletAddress ? "La dirección de la billetera es requerida" : "",
                     email: !infoData.email ? "El email es requerido" : "",
                     password: !infoData.password ? "La contraseña es requerida" : ""
                 });
