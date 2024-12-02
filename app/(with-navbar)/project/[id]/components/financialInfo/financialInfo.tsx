@@ -21,6 +21,7 @@ type FinancialInfoProps = {
   seed: string
   area: number
   contractAdress: string
+  returnsDate: string
 }
 
 export default function FinancialInfo({
@@ -33,7 +34,8 @@ export default function FinancialInfo({
   country,
   seed,
   area,
-  contractAdress
+  contractAdress,
+  returnsDate,
 }: FinancialInfoProps) {
   console.log(contractAdress)
   const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds } =
@@ -115,6 +117,10 @@ export default function FinancialInfo({
             <span>Tamaño</span>
             <span>{`${area} Ha`}</span>
           </li>
+          <li>
+            <span>Retornos</span>
+            <span>{`${returnsDate}`}</span>
+          </li>
 
           {/*<li>*/}
           {/*  <span>Roi estimado *</span>*/}
@@ -123,7 +129,7 @@ export default function FinancialInfo({
         </ul>
         <form className={styles.form} onSubmit={handleInvest}>
           <TextField
-            placeholder="Monto a invertir"
+              placeholder="Monto a invertir"
             name="amount"
             type="number"
             // @ts-ignore
