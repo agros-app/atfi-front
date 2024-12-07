@@ -31,7 +31,7 @@ export type ProjectFormData = {
     area: number;
     minAmount: number;
     amountNeed: number;
-    providers: ProviderDTO[];
+    // providers: ProviderDTO[];
 };
 
 export type ProviderDTO = {
@@ -55,7 +55,7 @@ const INITIAL_DATA: ProjectFormData = {
     area: 0,
     minAmount: 0,
     amountNeed: 0,
-    providers: []
+    // providers: []
 };
 
 type StepIndicatorProps = {
