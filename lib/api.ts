@@ -252,3 +252,10 @@ export const validatePasswordReset = async (email: string, code: number): Promis
         });
     return response.data.token; // Asumiendo que el token viene en `response.data.token`
 };
+
+
+// --- RIPIO
+export const getRipioProjects = async (): Promise<any> => {
+    const response = await api.get('/admin/ripio-projects');
+    return response.data;
+}
