@@ -14,12 +14,23 @@ export default function SampleProjects() {
         endDate: "2025-12-12",
         startFarming: "2025-12-13",
         endFarming: "2026-12-12",
+        returnsDate: "2026-12-12",
         status: "APPROVED",
         addressId: 123,
         description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",
         providers: [
-            { name: "AgroSistemas", seed: "soja" },
-            { name: "BioTec", seed: "maíz" },
+            { 
+                id: 1,
+                name: "AgroSistemas", 
+                seed: "soja",
+                userId: 1
+            },
+            { 
+                name: "BioTec", 
+                seed: "maíz",
+                id: 2,
+                userId: 2 
+            },
         ],
         cost:{
             commercializationExpenses: 171.11111111111111,
