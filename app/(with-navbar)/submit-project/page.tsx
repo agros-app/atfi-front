@@ -108,6 +108,8 @@ export default function ProjectForm() {
             // Proponer el lending en el contrato
             const producerAddress = "0xProducerAddress"; // Reemplaza con la lógica adecuada
             console.log("proposing lending");
+            // Crear el proyecto en el backend
+            await createProject(data);
             await proposeLending(
                 data.amountNeed.toString(),
                 data.minAmount.toString(),
@@ -116,8 +118,6 @@ export default function ProjectForm() {
                 data.name,
                 "0xBFa52102262966aF3939455E89Dac545fD855d10" // TODO: ESTO ESTÁ HARDCODEADO
             )
-            // Crear el proyecto en el backend
-            await createProject(data);
 
             toast.success(
                 "El proyecto ha sido creado exitosamente, " +

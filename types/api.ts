@@ -16,8 +16,10 @@ export type Project = {
 }
 
 export type Provider = {
+    id: number,
     name: string,
     seed: string
+    userId: number
 }
 
 export type ProjectCost = {

@@ -4,9 +4,10 @@ import FinancialInfo from './components/financialInfo/financialInfo'
 import Header from './components/header/header'
 import Tab from './components/tab/tab'
 import styles from './project.module.scss'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Loader from '@/components/loader/Loader'
 import useSession from '@/hooks/useSession'
+import {getProjectsByProviderId} from "@/lib/api";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params
@@ -24,7 +25,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         name={project.name}
         country={project.country}
         photoURL={project.photoURL}
-        isProducer={project.producerEmail == user?.email}
+        isProducer={project.producerEmail == user?.email || user?.role?.toUpperCase() === "RIPIO"}
       />
       <div className={styles.body}>
         <div className={styles.screenDivision}>
@@ -34,7 +35,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className={styles.financialInfo}>
             <FinancialInfo
               projectId={parseInt(id)}
-              isProducer={project.producerEmail == user?.email}
+              isProducer={project.producerEmail == user?.email || user?.role?.toUpperCase() === "RIPIO"}
+              hasProvider={project.providers.length > 0}
+              isProvider={project.providers.some(provider => provider.userId === user?.id)}
               campaignEnded={new Date(project.endFarming) < new Date()}
               currentAmount={project.amountCollected}
               goalAmount={project.amountNeed}

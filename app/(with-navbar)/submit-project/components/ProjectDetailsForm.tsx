@@ -96,7 +96,7 @@ export function ProjectDetailsForm({
                 helperText={errors.amountNeed?.toString()}
             />
 
-            <label className={styles.label}>Tipos de Cultivo y Proveedores</label>
+            {/*<label className={styles.label}>Tipos de Cultivo y Proveedores</label>*/}
             {/*{providers.map((provider, index) => {*/}
             {/*    // Find the seed options for the selected seed*/}
             {/*    const seedOptions = seeds.find(seed => seed.seed === provider.seed)?.providers || [];*/}
