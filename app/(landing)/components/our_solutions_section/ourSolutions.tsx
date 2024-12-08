@@ -58,12 +58,23 @@ const defaultProject: ProjectData = {
   endDate: "2025-12-12",
   startFarming: "2025-12-14",
   endFarming: "2026-12-12",
+  returnsDate: "2026-12-12",
   status: "APPROVED",
   addressId: 123,
   description: "Proyecto de cultivo de soja en 50 hectáreas con prácticas agrícolas sostenibles.",
     providers: [
-    { name: "AgroSistemas", seed: "soja" },
-    { name: "BioTec", seed: "maíz" },
+    { 
+      name: "AgroSistemas", 
+      seed: "soja" ,
+      id: 1,
+      userId: 1
+    },
+    { 
+      name: "BioTec", 
+      seed: "maíz",
+      id: 2,
+      userId: 2
+    },
     ],
 
   country: "Argentina",
