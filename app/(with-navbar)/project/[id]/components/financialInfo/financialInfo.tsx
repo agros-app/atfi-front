@@ -12,6 +12,7 @@ import { investByProjectId, regretInvestment as regret } from '@/lib/api'
 
 type FinancialInfoProps = {
   projectId: number
+  walletDisplayable?: boolean
   isProducer: boolean
   hasProvider: boolean
   isProvider: boolean
@@ -28,6 +29,7 @@ type FinancialInfoProps = {
 
 export default function FinancialInfo({
   projectId,
+  walletDisplayable,
   isProducer,
     hasProvider,
     isProvider,
@@ -156,7 +158,7 @@ export default function FinancialInfo({
             </div>
           )}
         </form>
-        {isProducer && (
+        {isProducer && walletDisplayable && (
             <div style={{marginTop: '16px'}}>
               <Button fill onClick={disburseFunds}>
                 Retirar fondos
@@ -170,7 +172,7 @@ export default function FinancialInfo({
               }
           </div>
         )}
-        { isProvider  &&
+        { isProvider  && walletDisplayable &&
             (<div style={{marginTop: '16px'}}>
               <Button fill onClick={handelInject} variant={'secondary'}>
                 Inyectar retornos

@@ -40,6 +40,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <div className={styles.financialInfo}>
             <FinancialInfo
               projectId={parseInt(id)}
+              walletDisplayable={user?.walletDisplayable}
               isProducer={project.producerEmail == user?.email || user?.role?.toUpperCase() === "RIPIO"}
               hasProvider={project.providers.length > 0}
               isProvider={project.providers.some(provider => provider.userId === user?.id)}

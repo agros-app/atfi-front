@@ -275,3 +275,19 @@ export const getProjectsByProviderId = async (providerId: number): Promise<Proje
     const response = await api.get(`/project/provider/${providerId}`);
     return response.data
 }
+
+// --- RIPIO
+export const getRipioProjects = async (): Promise<any> => {
+    const response = await api.get('/admin/ripio-projects');
+    return response.data;
+}
+
+export const getUserById = async (userId: number): Promise<User> => {
+    const response = await api.get(`/admin/getUserById/${userId}`);
+    return response.data;
+}
+
+export const walletDisplayable = async (userId: number, display: boolean): Promise<any> => {
+    const response = await api.patch(`/admin/walletDisplayable/${userId}`, {walletDisplayable: display});
+    return response.data;
+}
