@@ -90,6 +90,13 @@ export const createProject = async (project: ProjectFormData): Promise<ProjectDa
     }
 }
 
+export const deleteProject = async (projectId: number): Promise<void> => {
+    await api.delete(`/project/delete`, {
+        data: { projectId },
+    });
+};
+
+
 export const getProjectYieldataByName = async (name: string): Promise<ProjectYieldata> => {
     const response = await api.get(`/yieldata/campo/filter`, {
         params: {
