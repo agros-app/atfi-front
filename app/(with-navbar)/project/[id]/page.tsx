@@ -18,6 +18,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     return <Loader />
   }
 
+  const dateDDMMYY = (date: string) => {
+    const d = new Date(date);
+    return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+  }
+
   return (
     <div className={styles.projectPageContainer}>
       <Header
@@ -40,6 +45,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               isProvider={project.providers.some(provider => provider.userId === user?.id)}
               campaignEnded={new Date(project.endFarming) < new Date()}
               currentAmount={project.amountCollected}
+              returnsDate={dateDDMMYY(project.returnsDate)}
               goalAmount={project.amountNeed}
               minAmount={0}
               country={project.country}

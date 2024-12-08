@@ -22,6 +22,7 @@ export type ProjectFormData = {
     endDate: string;
     startFarming: string;
     endFarming: string;
+    returnsDate: string;
     country: string;
     state: string;
     city: string;
@@ -46,6 +47,7 @@ const INITIAL_DATA: ProjectFormData = {
     endDate: "",
     startFarming: "",
     endFarming: "",
+    returnsDate: "",
     country: "",
     state: "",
     city: "",
@@ -153,7 +155,8 @@ export default function ProjectForm() {
                     startDate: new Date(data.startDate).toISOString(),
                     endDate: new Date(data.endDate).toISOString(),
                     startFarming: new Date(data.startFarming).toISOString(),
-                    endFarming: new Date(data.endFarming).toISOString()
+                    endFarming: new Date(data.endFarming).toISOString(),
+                    returnsDate: new Date(data.returnsDate).toISOString(),
                 };
                 await handleResponse(input, router);
             } else {
