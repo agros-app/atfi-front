@@ -43,6 +43,13 @@ export default async function NavBar() {
 
                         </>
                     )}
+                    {user?.role === "RIPIO" && (
+                        <>
+                            <Link href={"/ripio-backoffice"}>
+                                <p>Productores y Comercializadores</p>
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
             <div className={styles.right}>
