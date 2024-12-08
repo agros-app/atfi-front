@@ -358,6 +358,8 @@ const useLending = (contractAddress?: string) => {
         } catch (error) {
             console.error('Error al proponer lending:', error);
             toast.error('Error al proponer el proyecto', { id: toastId });
+            setLoading(false);
+            throw error;
         } finally {
             setLoading(false);
         }

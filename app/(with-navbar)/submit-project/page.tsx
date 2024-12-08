@@ -7,7 +7,7 @@ import { useMultistepForm } from "@/hooks/useMultiStepForm";
 import { ProjectInfoForm } from "@/app/(with-navbar)/submit-project/components/ProyectInfoForm";
 import { ProjectLocationForm } from "@/app/(with-navbar)/submit-project/components/ProjectLocationForm";
 import { ProjectDetailsForm } from "@/app/(with-navbar)/submit-project/components/ProjectDetailsForm";
-import {createProject} from "@/lib/api";
+import {createProject, deleteProject} from "@/lib/api";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -100,6 +100,7 @@ export default function ProjectForm() {
 
     // Calculo que acá, hacer createProject(data).then(() -> createContract().then(() -> succes toast
     async function handleResponse(data: ProjectFormData, router: AppRouterInstance) {
+        let projectID: number |null = null;
         try {
             // Validación previa
             if (!data.amountNeed || !data.minAmount || !data.endDate || !data.endFarming || !data.name) {
@@ -111,7 +112,8 @@ export default function ProjectForm() {
             const producerAddress = "0xProducerAddress"; // Reemplaza con la lógica adecuada
             console.log("proposing lending");
             // Crear el proyecto en el backend
-            await createProject(data);
+            const created = await createProject(data);
+            projectID = created.id;
             await proposeLending(
                 data.amountNeed.toString(),
                 data.minAmount.toString(),
@@ -131,6 +133,9 @@ export default function ProjectForm() {
             router.push("/home");
 
         } catch (error) {
+            router.push("/submit-project");
+            if(projectID)
+                await deleteProject(projectID);
             console.error("Error en handleResponse:", error);
             toast.error("Ha ocurrido un error. Por favor, intente nuevamente.");
         }
