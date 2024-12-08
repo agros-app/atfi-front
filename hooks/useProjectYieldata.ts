@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 
 const useProjectYieldata = (name: string) => {
     const [yieldata, setYieldata] = useState<ProjectYieldata>({
-        seed: "string",
-        field: "string",
-        series: "string",
-        soilType: "string",
-        yearType: "string",
-        genotype: "string",
-        initialCondition: "string",
+        seed: "",
+        field: "",
+        series: "",
+        soilType: "",
+        yearType: "",
+        genotype: "",
+        initialCondition: "",
         planting: "10/09/2024",
         averageYield: 0,
         coefVar: 0,

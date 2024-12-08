@@ -11,7 +11,7 @@ const useProjectId = (id: number) => {
         amountNeed: 0,
         amountCollected: 0,
         minAmount: 0,
-        returnsDate: "string",
+        returnsDate: "",
         cost:{
             commercializationExpenses: 0,
             plowing: 0,
