@@ -7,10 +7,11 @@ const useProjectId = (id: number) => {
     const [isLoading, setIsLoading] = useState(true);
     const [project, setProject] = useState<ProjectDetailInfo>({
         id: 0,
-        name: "string",
+        name: "",
         amountNeed: 0,
         amountCollected: 0,
         minAmount: 0,
+        returnsDate: "",
         cost:{
             commercializationExpenses: 0,
             plowing: 0,
@@ -25,19 +26,19 @@ const useProjectId = (id: number) => {
         endFarming: new Date().toISOString(),
         status: "APPROVED",
         addressId: 0,
-        description: "string",
+        description: "",
         providers: [],
-        latitude: "string",
-        longitude: "string",
-        zipCode: "string",
-        state: "string",
+        latitude: "",
+        longitude: "",
+        zipCode: "",
+        state: "",
         area: 0,
-        contractAdress: "string",
-        city: "string",
-        country: "string",
-        producerName: "string",
-        producerLastName: "string",
-        producerEmail: "string",
+        contractAdress: "",
+        city: "",
+        country: "",
+        producerName: "",
+        producerLastName: "",
+        producerEmail: "",
     });
 
     useEffect(() => {

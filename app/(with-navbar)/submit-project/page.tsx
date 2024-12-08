@@ -7,7 +7,7 @@ import { useMultistepForm } from "@/hooks/useMultiStepForm";
 import { ProjectInfoForm } from "@/app/(with-navbar)/submit-project/components/ProyectInfoForm";
 import { ProjectLocationForm } from "@/app/(with-navbar)/submit-project/components/ProjectLocationForm";
 import { ProjectDetailsForm } from "@/app/(with-navbar)/submit-project/components/ProjectDetailsForm";
-import {createProject} from "@/lib/api";
+import {createProject, deleteProject} from "@/lib/api";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -22,6 +22,7 @@ export type ProjectFormData = {
     endDate: string;
     startFarming: string;
     endFarming: string;
+    returnsDate: string;
     country: string;
     state: string;
     city: string;
@@ -31,7 +32,7 @@ export type ProjectFormData = {
     area: number;
     minAmount: number;
     amountNeed: number;
-    providers: ProviderDTO[];
+    // providers: ProviderDTO[];
 };
 
 export type ProviderDTO = {
@@ -46,6 +47,7 @@ const INITIAL_DATA: ProjectFormData = {
     endDate: "",
     startFarming: "",
     endFarming: "",
+    returnsDate: "",
     country: "",
     state: "",
     city: "",
@@ -55,7 +57,7 @@ const INITIAL_DATA: ProjectFormData = {
     area: 0,
     minAmount: 0,
     amountNeed: 0,
-    providers: []
+    // providers: []
 };
 
 type StepIndicatorProps = {
@@ -98,6 +100,7 @@ export default function ProjectForm() {
 
     // Calculo que acá, hacer createProject(data).then(() -> createContract().then(() -> succes toast
     async function handleResponse(data: ProjectFormData, router: AppRouterInstance) {
+        let projectID: number |null = null;
         try {
             // Validación previa
             if (!data.amountNeed || !data.minAmount || !data.endDate || !data.endFarming || !data.name) {
@@ -108,6 +111,9 @@ export default function ProjectForm() {
             // Proponer el lending en el contrato
             const producerAddress = "0xProducerAddress"; // Reemplaza con la lógica adecuada
             console.log("proposing lending");
+            // Crear el proyecto en el backend
+            const created = await createProject(data);
+            projectID = created.id;
             await proposeLending(
                 data.amountNeed.toString(),
                 data.minAmount.toString(),
@@ -116,8 +122,6 @@ export default function ProjectForm() {
                 data.name,
                 "0xBFa52102262966aF3939455E89Dac545fD855d10" // TODO: ESTO ESTÁ HARDCODEADO
             )
-            // Crear el proyecto en el backend
-            await createProject(data);
 
             toast.success(
                 "El proyecto ha sido creado exitosamente, " +
@@ -129,6 +133,9 @@ export default function ProjectForm() {
             router.push("/home");
 
         } catch (error) {
+            router.push("/submit-project");
+            if(projectID)
+                await deleteProject(projectID);
             console.error("Error en handleResponse:", error);
             toast.error("Ha ocurrido un error. Por favor, intente nuevamente.");
         }
@@ -153,7 +160,8 @@ export default function ProjectForm() {
                     startDate: new Date(data.startDate).toISOString(),
                     endDate: new Date(data.endDate).toISOString(),
                     startFarming: new Date(data.startFarming).toISOString(),
-                    endFarming: new Date(data.endFarming).toISOString()
+                    endFarming: new Date(data.endFarming).toISOString(),
+                    returnsDate: new Date(data.returnsDate).toISOString(),
                 };
                 await handleResponse(input, router);
             } else {

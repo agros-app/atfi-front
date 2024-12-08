@@ -79,9 +79,23 @@ export const deleteProjectPhoto = async(projectId: number, photoId: string): Pro
 }
 
 export const createProject = async (project: ProjectFormData): Promise<ProjectData | any> => {
-    const response = await api.post('/project', project);
-    return response.data;
+    try {
+        console.log(project)
+        const response = await api.post('/project', project);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        return null;
+    }
 }
+
+export const deleteProject = async (projectId: number): Promise<void> => {
+    await api.delete(`/project/delete`, {
+        data: { projectId },
+    });
+};
+
 
 export const getProjectYieldataByName = async (name: string): Promise<ProjectYieldata> => {
     const response = await api.get(`/yieldata/campo/filter`, {
@@ -200,8 +214,6 @@ export const checkPassword = async (password: string): Promise<any> => {
 export const createProducer = async (producer: ProducerFormData): Promise<any> =>{
     return await api.post('/admin/create-user', producer);}
 
-
-
 export const walletConnection = async (address: string): Promise<any> => {
     return await api.post(
         `/account/wallet/${address}`
@@ -253,6 +265,16 @@ export const validatePasswordReset = async (email: string, code: number): Promis
     return response.data.token; // Asumiendo que el token viene en `response.data.token`
 };
 
+export const getProjectsByUserId = async (producerId: number): Promise<ProjectDetailInfo[]> => {
+    const prodResponse = await api.get(`/project/producer/${producerId}`);
+    const provResponse = await api.get(`/project/provider/${producerId}`);
+    return [...prodResponse.data, ...provResponse.data]; // Combina los arrays
+};
+
+export const getProjectsByProviderId = async (providerId: number): Promise<ProjectDetailInfo[]> => {
+    const response = await api.get(`/project/provider/${providerId}`);
+    return response.data
+}
 
 // --- RIPIO
 export const getRipioProjects = async (): Promise<any> => {
