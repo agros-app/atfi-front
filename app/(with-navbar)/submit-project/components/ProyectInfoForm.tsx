@@ -10,6 +10,7 @@ type ProjectInfoData = {
     endDate: string;
     startFarming: string;
     endFarming: string;
+    returnsDate: string;
 };
 
 type ProjectInfoFormProps = ProjectInfoData & {
@@ -25,6 +26,7 @@ export function ProjectInfoForm({
                                     startFarming,
                                     endFarming,
                                     updateFields,
+                                    returnsDate,
                                     errors
                                 }: ProjectInfoFormProps) {
 
@@ -87,6 +89,16 @@ export function ProjectInfoForm({
                 onChange={(e) => updateFields({ endFarming: e.target.value })}
                 error={!!errors.endFarming}
                 helperText={errors.endFarming}
+            />
+            <TextField
+                placeholder="Ingrese fecha de retornos a inversores"
+                name="ReturnsDate"
+                label="Fecha de Retornos"
+                type="date"
+                value={returnsDate}
+                onChange={(e) => updateFields({ returnsDate: e.target.value })}
+                error={!!errors.returnsDate}
+                helperText={errors.returnsDate}
             />
 
         </div>

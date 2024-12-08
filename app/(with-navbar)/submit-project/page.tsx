@@ -22,6 +22,7 @@ export type ProjectFormData = {
     endDate: string;
     startFarming: string;
     endFarming: string;
+    returnsDate: string;
     country: string;
     state: string;
     city: string;
@@ -31,7 +32,7 @@ export type ProjectFormData = {
     area: number;
     minAmount: number;
     amountNeed: number;
-    providers: ProviderDTO[];
+    // providers: ProviderDTO[];
 };
 
 export type ProviderDTO = {
@@ -46,6 +47,7 @@ const INITIAL_DATA: ProjectFormData = {
     endDate: "",
     startFarming: "",
     endFarming: "",
+    returnsDate: "",
     country: "",
     state: "",
     city: "",
@@ -55,7 +57,7 @@ const INITIAL_DATA: ProjectFormData = {
     area: 0,
     minAmount: 0,
     amountNeed: 0,
-    providers: []
+    // providers: []
 };
 
 type StepIndicatorProps = {
@@ -108,6 +110,8 @@ export default function ProjectForm() {
             // Proponer el lending en el contrato
             const producerAddress = "0xProducerAddress"; // Reemplaza con la lógica adecuada
             console.log("proposing lending");
+            // Crear el proyecto en el backend
+            await createProject(data);
             await proposeLending(
                 data.amountNeed.toString(),
                 data.minAmount.toString(),
@@ -116,8 +120,6 @@ export default function ProjectForm() {
                 data.name,
                 "0xBFa52102262966aF3939455E89Dac545fD855d10" // TODO: ESTO ESTÁ HARDCODEADO
             )
-            // Crear el proyecto en el backend
-            await createProject(data);
 
             toast.success(
                 "El proyecto ha sido creado exitosamente, " +
@@ -153,7 +155,8 @@ export default function ProjectForm() {
                     startDate: new Date(data.startDate).toISOString(),
                     endDate: new Date(data.endDate).toISOString(),
                     startFarming: new Date(data.startFarming).toISOString(),
-                    endFarming: new Date(data.endFarming).toISOString()
+                    endFarming: new Date(data.endFarming).toISOString(),
+                    returnsDate: new Date(data.returnsDate).toISOString(),
                 };
                 await handleResponse(input, router);
             } else {

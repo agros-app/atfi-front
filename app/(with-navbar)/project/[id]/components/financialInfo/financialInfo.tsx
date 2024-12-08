@@ -13,6 +13,8 @@ import { investByProjectId, regretInvestment as regret } from '@/lib/api'
 type FinancialInfoProps = {
   projectId: number
   isProducer: boolean
+  hasProvider: boolean
+  isProvider: boolean
   campaignEnded: boolean
   currentAmount: number
   goalAmount: number
@@ -21,11 +23,14 @@ type FinancialInfoProps = {
   seed: string
   area: number
   contractAdress: string
+  returnsDate: string
 }
 
 export default function FinancialInfo({
   projectId,
   isProducer,
+    hasProvider,
+    isProvider,
   campaignEnded,
   currentAmount,
   goalAmount,
@@ -33,7 +38,8 @@ export default function FinancialInfo({
   country,
   seed,
   area,
-  contractAdress
+  contractAdress,
+  returnsDate,
 }: FinancialInfoProps) {
   console.log(contractAdress)
   const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds } =
@@ -115,6 +121,10 @@ export default function FinancialInfo({
             <span>Tamaño</span>
             <span>{`${area} Ha`}</span>
           </li>
+          <li>
+            <span>Retornos</span>
+            <span>{`${returnsDate}`}</span>
+          </li>
 
           {/*<li>*/}
           {/*  <span>Roi estimado *</span>*/}
@@ -123,7 +133,7 @@ export default function FinancialInfo({
         </ul>
         <form className={styles.form} onSubmit={handleInvest}>
           <TextField
-            placeholder="Monto a invertir"
+              placeholder="Monto a invertir"
             name="amount"
             type="number"
             // @ts-ignore
@@ -131,7 +141,7 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          {!isProducer && (
+          {!isProducer && !isProvider && (
             < div style={{marginTop: '16px'}}>
               <Button
                   // @ts-ignore
@@ -151,14 +161,23 @@ export default function FinancialInfo({
               <Button fill onClick={disburseFunds}>
                 Retirar fondos
               </Button>
-              <div style={{marginTop: '16px'}}>
-                <Button fill onClick={handelInject} variant={'secondary'}>
-                Inyectar retornos
-              </Button>
-            </div>
+              {!hasProvider &&
+                (<div style={{marginTop: '16px'}}>
+                  <Button fill onClick={handelInject} variant={'secondary'}>
+                  Inyectar retornos
+                  </Button>
+                </div>)
+              }
           </div>
         )}
-        {campaignEnded && (
+        { isProvider  &&
+            (<div style={{marginTop: '16px'}}>
+              <Button fill onClick={handelInject} variant={'secondary'}>
+                Inyectar retornos
+              </Button>
+            </div>)
+        }
+        {campaignEnded && !isProducer && !isProvider && (
           <div style={{ marginTop: '16px' }}>
             <Button fill onClick={handleClaimReturns}>
               Retirar ganancias

@@ -66,20 +66,20 @@ const validationRules: Record<number, ValidationRule[]> = {
             },
             errorMessage: "El monto necesario debe ser mayor que 0 y debe ser un número válido"
           },
-        {
-            field: 'providers',
-            validate: (value) => value.length > 0 && value.every((provider: ProviderDTO) => 
-                provider.seed.trim() !== ""
-            ),
-            errorMessage: "Cada tipo de semilla debe tener un valor"
-        },
-        {
-            field: 'providers',
-            validate: (value) => value.length > 0 && value.every((provider: ProviderDTO) => 
-                provider.name.trim() !== ""
-            ),
-            errorMessage: "Debe asociar un proveedor a cada semilla"
-        },
+        // {
+        //     field: 'providers',
+        //     validate: (value) => value.length > 0 && value.every((provider: ProviderDTO) =>
+        //         provider.seed.trim() !== ""
+        //     ),
+        //     errorMessage: "Cada tipo de semilla debe tener un valor"
+        // },
+        // {
+        //     field: 'providers',
+        //     validate: (value) => value.length > 0 && value.every((provider: ProviderDTO) =>
+        //         provider.name.trim() !== ""
+        //     ),
+        //     errorMessage: "Debe asociar un proveedor a cada semilla"
+        // },
     ],
 };
 
