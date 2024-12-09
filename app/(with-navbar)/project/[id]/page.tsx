@@ -35,7 +35,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
       <div className={styles.body}>
         <div className={styles.screenDivision}>
           <div className={styles.leftHandSide}>
-            <Tab data={project} />
+            <Tab data={project} isProducer={project.producerEmail == user?.email}/>
           </div>
           <div className={styles.financialInfo}>
             <FinancialInfo

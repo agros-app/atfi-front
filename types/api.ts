@@ -144,6 +144,7 @@ export type UserInvestment = {
     amount: number;
     area: number
     createdAt: Date;
+    status: string;
 }
 
 export type ProjectStatus = {
