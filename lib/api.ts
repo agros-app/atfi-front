@@ -291,3 +291,8 @@ export const walletDisplayable = async (userId: number, display: boolean): Promi
     const response = await api.patch(`/admin/walletDisplayable/${userId}`, {walletDisplayable: display});
     return response.data;
 }
+
+export const getRipioUsers = async (): Promise<User[]> => {
+    const response = await api.get('/admin/ripio-users');
+    return response.data;
+}
