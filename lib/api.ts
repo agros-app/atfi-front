@@ -15,6 +15,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
 import {ProducerFormData} from "@/app/(with-navbar)/create-producer/page";
+import { ProgressStep } from "@/components/stepper/stepper";
 
 export const getToken = (): string | undefined => {
     return Cookies.get('session');
@@ -53,6 +54,23 @@ export const getProjectSeeds = async (): Promise<any> => {
 export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
     const response = await api.get(`/project/info/${id}`);
     return response.data;
+}
+
+export const getProjectProgress = async (projectId: number): Promise<ProgressStep[]> => {
+    return  (await api.get(`/project/progress/${projectId}`)).data.map((step: any) => ({
+        title: step.title,
+        description: step.progress,
+        date: new Date(step.createdAt).toLocaleDateString(),
+    }));
+}
+
+export const createProjectProgress = async (title: string, description: string, projectId: number, date: Date): Promise<ProgressStep> => {
+    return await api.post(`/project/progress`, {
+        title,
+        progress: description,
+        projectId,
+        createdAt: date,
+    })
 }
 
 export const investByProjectId = async (id: number, amount: number): Promise<void> => {
@@ -218,6 +236,26 @@ export const walletConnection = async (address: string): Promise<any> => {
     return await api.post(
         `/account/wallet/${address}`
     )}
+
+export const getUsers = async (param: string, page: number, limit: number): Promise<User[]> => {
+    return await api.get(`/admin/users`, {
+        params: {
+            searchTerm: param,
+            page,
+            limit,
+        }
+    }).then(response => response.data.users);
+}
+
+export const getUserInvestmentsAdmin = async (userId: number): Promise<UserInvestment[]> => {
+    return (await api.get(`/admin/user-investment/${userId}`)).data
+}
+
+export const displayWallet = async (userId: number, walletDisplayable: boolean): Promise<any> => {
+    return await api.patch(`/admin/walletDisplayable/${userId}`, {
+        walletDisplayable: walletDisplayable,
+    });
+}
 
 // ------------------- NEWS -------------------
 

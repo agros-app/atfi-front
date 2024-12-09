@@ -62,6 +62,87 @@
   width: 100%;
 }
 
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.addButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1c5739;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.saveButton,
+.cancelButton {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.saveButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancelButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.investmentsContainer {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.investmentHeader, .investmentRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.investmentHeader {
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.investmentRow {
+  background-color: #fff;
+}
+
+.investmentRow:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.investmentRow p, .investmentHeader p {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
 
 @media (min-width: 1440px) {
   .body{
