@@ -51,6 +51,14 @@ export type ProjectDetailInfo = ProjectData & {
     proposalId?: number,
 }
 
+export type ProviderProfile = {
+    id: number,
+    userId: number,
+    name: string,
+    seed: string,
+    walletAdress: string
+}
+
 export type ProjectYieldata = {
     seed: string,
     field: string,

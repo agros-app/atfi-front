@@ -50,6 +50,11 @@ export const getProjectSeeds = async (): Promise<any> => {
     return response.data;
 }
 
+export const getProviders = async (): Promise<any> => {
+    const response = await api.get("/project/providers");
+    return response.data;
+}
+
 export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
     const response = await api.get(`/project/info/${id}`);
     return response.data;

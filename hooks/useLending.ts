@@ -259,14 +259,15 @@ const useLending = (contractAddress?: string) => {
             setLoading(false);
             return transaction;
         } catch (error) {
-            toast.error('Error al retirar los fondos', {id: toastId});
+            toast.error('Error al retirar los fondos', { id: toastId });
             console.error('Error al retirar los fondos:', error);
             setLoading(false);
         }
 
     }
 
-    const approveProject = async (projectId: number) => {
+    // For now we'll leave it so that multisign is only done by admin + provider
+    const approveProject = async (proposalId: number | undefined, providerAddress: string) => {
         setLoading(true);
         const toastId = toast.loading('Aprobando proyecto...');
         //@ts-ignore
@@ -290,13 +291,18 @@ const useLending = (contractAddress?: string) => {
         }
 
         try {
-            const transaction = await lendingInstance.approveProject(projectId, { gasLimit: 2000000 });
+            const transaction = await lendingInstance.approveProposal(
+                proposalId, // ID del proyecto
+                [walletAddress, providerAddress], // Wallets de la multifirma
+                providerAddress, // Wallet del productor
+                { gasLimit: 2000000 }
+            );
             toast.success('Proyecto aprobado con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);
             return transaction;
         } catch (error) {
-            toast.error('Error al aprobar el proyecto', {id: toastId});
+            toast.error('Error al aprobar el proyecto', { id: toastId });
             console.error('Error al aprobar el proyecto:', error);
             setLoading(false);
         }
@@ -367,7 +373,7 @@ const useLending = (contractAddress?: string) => {
 
 
 
-    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending, injectFunds };
+    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending, injectFunds, approveProject };
 };
 
 export default useLending;
