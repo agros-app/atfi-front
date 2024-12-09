@@ -19,7 +19,7 @@ const isNumberPositive = (amount: string) => {
 
 const useLending = (contractAddress?: string) => {
     const [loading, setLoading] = useState(false);
-    const { isConnected } = useWeb3();
+    const { isConnected, walletAddress } = useWeb3();
 
     const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract) => {
         const toastId = toast.loading('Aprobando token...');
@@ -308,7 +308,6 @@ const useLending = (contractAddress?: string) => {
         fundingDeadline: number,
         returnPeriodStart: number,
         lendingName: string,
-        producerAddress: string,
     ) => {
         setLoading(true);
         const toastId = toast.loading('Proponiendo proyecto...');
@@ -332,7 +331,7 @@ const useLending = (contractAddress?: string) => {
                 return;
             }
 
-            if (!ethers.utils.isAddress(producerAddress)) {
+            if (!ethers.utils.isAddress(walletAddress!!)) {
                 toast.error('Dirección de productor inválida', { id: toastId });
                 setLoading(false);
                 return;
@@ -348,7 +347,7 @@ const useLending = (contractAddress?: string) => {
                 fundingDeadline, // Fecha límite para el financiamiento (timestamp UNIX)
                 returnPeriodStart, // Inicio del periodo de devolución (timestamp UNIX)
                 lendingName, // Nombre del proyecto
-                producerAddress, // Dirección del productor
+                walletAddress, // Dirección del productor
                 { gasLimit: 2000000 }
             );
             toast.success('Propuesta creada con éxito', { id: toastId });
