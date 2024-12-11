@@ -53,7 +53,7 @@ export function ProjectInfoForm({
             <TextField
                 placeholder="Ingrese fecha de inicio de financiamiento"
                 name="initialDate"
-                label="Fecha de Inicio"
+                label="Fecha de Inicio de Financiamiento"
                 type="date"
                 value={startDate}
                 onChange={(e) => updateFields({ startDate: e.target.value })}
@@ -63,7 +63,7 @@ export function ProjectInfoForm({
             <TextField
                 placeholder="Ingrese fecha de finalización de financiamiento"
                 name="endDate"
-                label="Fecha de Finalizacion"
+                label="Fecha de Finalizacion de Financiamiento"
                 type="date"
                 value={endDate}
                 onChange={(e) => updateFields({ endDate: e.target.value })}
