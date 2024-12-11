@@ -52,6 +52,13 @@ export default async function NavBar() {
                             </Link>
                         </>
                     )}
+                    {(user?.role === "PRODUCER" || user?.role === "PROVIDER") && (
+                        <>
+                            <Link href={"/producer-page"}>
+                                <p>Tus proyectos</p>
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
             <div className={styles.right}>
