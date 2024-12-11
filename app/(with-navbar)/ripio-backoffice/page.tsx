@@ -83,7 +83,7 @@ export default function RipioBackoffice() {
                     <div className={styles.left}>
                         <h2>{`${user.name} ${user.lastName}`}</h2>
                         <p>
-                            <strong>Proyectos:</strong> {user.projects.map((project) => project.name).join(", ")}
+                            <strong>Proyectos:</strong> {user.projects.map((project) => project.name).join(", ") || "No tiene proyectos"}
                         </p>
                     </div>
                     <Button
@@ -96,13 +96,13 @@ export default function RipioBackoffice() {
                 </div>
             ))}
 
-            <h1 style={{ marginBottom: "20px" }}>Proveedores</h1>
+            <h1 style={{ margin: "40px 0 20px 0" }}>Proveedores</h1>
             {providers.map((user) => (
                 <div key={user.userId} className={styles.projects}>
                     <div className={styles.left}>
                         <h2>{`${user.name} ${user.lastName}`}</h2>
                         <p>
-                            <strong>Proyectos:</strong> {user.projects.map((project) => project.name).join(", ")}
+                            <strong>Proyectos:</strong> {user.projects.map((project) => project.name).join(", ") || "No tiene proyectos"}
                         </p>
                     </div>
                     <Button
