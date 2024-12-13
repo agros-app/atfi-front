@@ -7,6 +7,12 @@ interface StepProps {
     date: string;
 }
 
+export type ProgressStep = {
+    title: string; 
+    description: string; 
+    date: string 
+}
+
 const Step: React.FC<StepProps> = ({ title, description, date }) => {
     return (
         <div className={styles.stepContainer}>
@@ -24,16 +30,20 @@ const Step: React.FC<StepProps> = ({ title, description, date }) => {
 };
 
 interface StepperProps {
-    steps: { title: string; description: string; date: string }[];
+    steps: ProgressStep[];
 }
 
 const Stepper: React.FC<StepperProps> = ({ steps }) => {
     return (
         <div className={styles.stepContent}>
-            {steps.map((step, index) => (
+        {steps.length === 0 ? (
+            <p>Aún no hay progreso por parte del Productor</p>
+        ) : (
+            steps.map((step, index) => (
                 <Step key={index} title={step.title} description={step.description} date={step.date} />
-            ))}
-        </div>
+            ))
+        )}
+    </div>
     );
 };
 

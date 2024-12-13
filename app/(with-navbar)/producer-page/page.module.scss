@@ -1,0 +1,21 @@
+@import "@/styles/media.scss";
+
+.main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 60px 80px;
+}
+
+.main p {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+@include mobile{
+  .main {
+    padding: 20px 40px;
+  }
+}
+

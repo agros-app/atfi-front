@@ -40,7 +40,23 @@ export default async function NavBar() {
                             <Link href={"/manage-news"}>
                                 <p>Manejo Noticias</p>
                             </Link>
-
+                            <Link href={"/manage-users"}>
+                                <p>Manejo Usuarios</p>
+                            </Link>
+                        </>
+                    )}
+                    {user?.role === "RIPIO" && (
+                        <>
+                            <Link href={"/ripio-backoffice"}>
+                                <p>Productores y Comercializadores</p>
+                            </Link>
+                        </>
+                    )}
+                    {(user?.role === "PRODUCER" || user?.role === "PROVIDER") && (
+                        <>
+                            <Link href={"/producer-page"}>
+                                <p>Tus proyectos</p>
+                            </Link>
                         </>
                     )}
                 </div>

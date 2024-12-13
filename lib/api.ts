@@ -15,6 +15,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { ProjectFormData } from "@/app/(with-navbar)/submit-project/page";
 import {ProducerFormData} from "@/app/(with-navbar)/create-producer/page";
+import { ProgressStep } from "@/components/stepper/stepper";
 
 export const getToken = (): string | undefined => {
     return Cookies.get('session');
@@ -58,6 +59,23 @@ export const getProviders = async (): Promise<any> => {
 export const getProjectById = async (id: number): Promise<ProjectDetailInfo> => {
     const response = await api.get(`/project/info/${id}`);
     return response.data;
+}
+
+export const getProjectProgress = async (projectId: number): Promise<ProgressStep[]> => {
+    return  (await api.get(`/project/progress/${projectId}`)).data.map((step: any) => ({
+        title: step.title,
+        description: step.progress,
+        date: new Date(step.createdAt).toLocaleDateString(),
+    }));
+}
+
+export const createProjectProgress = async (title: string, description: string, projectId: number, date: Date): Promise<ProgressStep> => {
+    return await api.post(`/project/progress`, {
+        title,
+        progress: description,
+        projectId,
+        createdAt: date,
+    })
 }
 
 export const investByProjectId = async (id: number, amount: number): Promise<void> => {
@@ -224,6 +242,26 @@ export const walletConnection = async (address: string): Promise<any> => {
         `/account/wallet/${address}`
     )}
 
+export const getUsers = async (param: string, page: number, limit: number): Promise<User[]> => {
+    return await api.get(`/admin/users`, {
+        params: {
+            searchTerm: param,
+            page,
+            limit,
+        }
+    }).then(response => response.data.users);
+}
+
+export const getUserInvestmentsAdmin = async (userId: number): Promise<UserInvestment[]> => {
+    return (await api.get(`/admin/user-investment/${userId}`)).data
+}
+
+export const displayWallet = async (userId: number, walletDisplayable: boolean): Promise<any> => {
+    return await api.patch(`/admin/walletDisplayable/${userId}`, {
+        walletDisplayable: walletDisplayable,
+    });
+}
+
 // ------------------- NEWS -------------------
 
 export const getNews = async (): Promise<any> => {
@@ -279,4 +317,25 @@ export const getProjectsByUserId = async (producerId: number): Promise<ProjectDe
 export const getProjectsByProviderId = async (providerId: number): Promise<ProjectDetailInfo[]> => {
     const response = await api.get(`/project/provider/${providerId}`);
     return response.data
+}
+
+// --- RIPIO
+export const getRipioProjects = async (): Promise<any> => {
+    const response = await api.get('/admin/ripio-projects');
+    return response.data;
+}
+
+export const getUserById = async (userId: number): Promise<User> => {
+    const response = await api.get(`/admin/getUserById/${userId}`);
+    return response.data;
+}
+
+export const walletDisplayable = async (userId: number, display: boolean): Promise<any> => {
+    const response = await api.patch(`/admin/walletDisplayable/${userId}`, {walletDisplayable: display});
+    return response.data;
+}
+
+export const getRipioUsers = async (): Promise<User[]> => {
+    const response = await api.get('/admin/ripio-users');
+    return response.data;
 }
