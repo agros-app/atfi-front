@@ -1,13 +1,17 @@
 "use client"
-import { getProjects } from "@/lib/api";
-import {Project, ProjectData} from "@/types/api";
+import {getPastProjects, getProjects} from "@/lib/api";
+import {Project, ProjectData, Status} from "@/types/api";
 import { useEffect, useState } from "react";  
 
-const useProjects = () => {
+
+const useProjects = (status: Status) => {
     const [projects, setProjects] = useState<ProjectData[]>([]);
 
     useEffect(()=>{
-        getProjects().then((projects) => setProjects(projects))
+        if(status !== "RETURNS_INJECTED")
+            getProjects().then((projects) => setProjects(projects))
+        else
+            getPastProjects().then((projects) => setProjects(projects))
     },[])
 
     return { projects };
