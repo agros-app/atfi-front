@@ -9,6 +9,7 @@ import { FormEventHandler, useEffect, useState } from 'react'
 import mockUSDT from '@/contracts/mockUSDT.json'
 import lending from '@/contracts/lendingTest.json'
 import { investByProjectId, regretInvestment as regret } from '@/lib/api'
+import useSession from '@/hooks/useSession'
 
 type FinancialInfoProps = {
   projectId: number
@@ -42,8 +43,9 @@ export default function FinancialInfo({
   returnsDate,
 }: FinancialInfoProps) {
   console.log(contractAdress)
-  const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds } =
+  const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds, signRelease  } =
     useLending(contractAdress!!)
+  const {userData} = useSession()
   const percentage = Math.floor((currentAmount / goalAmount) * 100)
   const [collected, setCollected] = useState(currentAmount)
   const [amount, setAmount] = useState<number>(0)
@@ -158,7 +160,7 @@ export default function FinancialInfo({
         </form>
         {isProducer && (
             <div style={{marginTop: '16px'}}>
-              <Button fill onClick={disburseFunds}>
+              <Button fill onClick={() => disburseFunds(amount)}>
                 Retirar fondos
               </Button>
               {!hasProvider &&
@@ -168,6 +170,13 @@ export default function FinancialInfo({
                   </Button>
                 </div>)
               }
+          </div>
+        )}
+        {userData?.role === "ADMIN" && (
+            <div style={{marginTop: '16px'}}>
+              <Button fill onClick={() => signRelease()}>
+                Liberar fondos
+              </Button>
           </div>
         )}
         { isProvider  &&

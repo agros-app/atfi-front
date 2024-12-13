@@ -1,5 +1,5 @@
 {
-  "address": "0x421991512dF14F483de0bbA8D7903d406a9041cE",
+  "address": "0x75d56D9340A0B6B73993006DB2403c9be0E008d5",
   "abi": [
     {
       "inputs": [
@@ -136,62 +136,6 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_amountNeededInUSDT",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_minimumFundingAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_fundingDeadline",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_returnPeriodStart",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "_lendingName",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_proposer",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_producerAddress",
-          "type": "address"
-        }
-      ],
-      "name": "_createLending",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "lendingAddress",
-          "type": "address"
-        }
-      ],
-      "name": "activateLending",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -213,6 +157,16 @@
           "internalType": "uint256",
           "name": "proposalId",
           "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "approvers",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "providerAddress",
+          "type": "address"
         }
       ],
       "name": "approveProposal",
@@ -243,75 +197,11 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "lendingAddress",
-          "type": "address"
-        }
-      ],
-      "name": "deactivateLending",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "lendingId",
-          "type": "uint256"
-        }
-      ],
-      "name": "getLendingAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getTotalLendings",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
           "name": "",
           "type": "address"
         }
       ],
       "name": "isAdmin",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "lendingAddress",
-          "type": "address"
-        }
-      ],
-      "name": "isLendingActive",
       "outputs": [
         {
           "internalType": "bool",

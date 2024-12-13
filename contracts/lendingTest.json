@@ -1,6 +1,6 @@
 {
   "address": "0x5DB13c9eCEdB2f67f15317ec3369E8eCFE6B7485",
-  "abi": [
+  "abi":[
     {
       "inputs": [
         {
@@ -36,6 +36,16 @@
         {
           "internalType": "address",
           "name": "_producerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_approvers",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address",
+          "name": "_provider",
           "type": "address"
         },
         {
@@ -224,10 +234,68 @@
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "approvals",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "approvers",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "cancelContract",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "cancelSign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "checkMultiSign",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -251,7 +319,13 @@
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amountInUSDT",
+          "type": "uint256"
+        }
+      ],
       "name": "disburseFunds",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -275,9 +349,9 @@
       "name": "fundsDisbursed",
       "outputs": [
         {
-          "internalType": "bool",
+          "internalType": "uint256",
           "name": "",
-          "type": "bool"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -382,6 +456,19 @@
     },
     {
       "inputs": [],
+      "name": "provider",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "refundInvestment",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -424,6 +511,13 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {

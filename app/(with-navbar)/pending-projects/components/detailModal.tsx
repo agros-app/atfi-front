@@ -68,11 +68,19 @@ export default function DetailModal({
 
     {
       title: 'Monto Mínimo',
-      value: minAmount
+      value: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        currencyDisplay: 'narrowSymbol'
+      }).format(minAmount)
     },
     {
       title: 'Monto Necesario',
-      value: amountNeed
+      value: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        currencyDisplay: 'narrowSymbol'
+      }).format(amountNeed)
     },
     {
       title: 'Fecha de Inicio',

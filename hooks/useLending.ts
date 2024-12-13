@@ -225,7 +225,55 @@ const useLending = (contractAddress?: string) => {
         }
     };
 
-    const disburseFunds = async () => {
+    const disburseFunds = async (ammount: number) => {
+        setLoading(true);
+        const toastId = toast.loading('Retirando fondos...');
+        //@ts-ignore
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lendingInstance = new ethers.Contract(contractAddress!!, lendingContract.abi, signer);
+
+        if (!isConnected) {
+            toast('Primero debes conectar tu wallet', {
+                icon: '⚠️',
+                id: toastId
+            });
+            return;
+        }
+
+        if(ammount === 0){
+            return toast('El monto no puede ser cero', {
+                icon: '⚠️',
+                id: toastId
+            });
+        }
+
+        if (!lendingInstance) {
+            toast.error('Contrato de lending no válido', { id: toastId });
+            console.error('Contrato de lending no válido');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const transaction = await lendingInstance.disburseFunds(ammount, { gasLimit: 2000000 });
+            const receipt = await transaction.wait();
+            if (receipt.status === 1) {
+                toast.success('Fondos retirados con éxito', { id: toastId });
+            } else {
+                toast.error('Los fondos no pudieron ser retirados', { id: toastId });
+            }
+            setLoading(false);
+            return transaction;
+        } catch (error) {
+            toast.error('Error al retirar los fondos', { id: toastId });
+            console.error('Error al retirar los fondos:', error);
+            setLoading(false);
+        }
+
+    }
+
+    const signRelease = async() => {
         setLoading(true);
         const toastId = toast.loading('Retirando fondos...');
         //@ts-ignore
@@ -249,12 +297,12 @@ const useLending = (contractAddress?: string) => {
         }
 
         try {
-            const transaction = await lendingInstance.disburseFunds({ gasLimit: 2000000 });
+            const transaction = await lendingInstance.sign({ gasLimit: 2000000 });
             const receipt = await transaction.wait();
             if (receipt.status === 1) {
-                toast.success('Fondos retirados con éxito', { id: toastId });
+                toast.success('Firma exitosa', { id: toastId });
             } else {
-                toast.error('Los fondos no pudieron ser retirados', { id: toastId });
+                toast.error('No se pudo firmar el contrato', { id: toastId });
             }
             setLoading(false);
             return transaction;
@@ -263,7 +311,6 @@ const useLending = (contractAddress?: string) => {
             console.error('Error al retirar los fondos:', error);
             setLoading(false);
         }
-
     }
 
     // For now we'll leave it so that multisign is only done by admin + provider
@@ -272,8 +319,18 @@ const useLending = (contractAddress?: string) => {
         const toastId = toast.loading('Aprobando proyecto...');
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []); // Aseguramos la conexión
         const signer = provider.getSigner();
-        const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
+
+        // Verificamos la wallet conectada
+        const connectedAddress = await signer.getAddress();
+        console.log('Connected address:', connectedAddress);
+
+        const lendingInstance = new ethers.Contract(
+            lendingFactory.address,
+            lendingFactory.abi,
+            signer
+        );
 
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
@@ -291,16 +348,21 @@ const useLending = (contractAddress?: string) => {
         }
 
         try {
+            // Convertimos el proposalId a BigNumber para asegurar compatibilidad
+            const formattedProposalId = ethers.BigNumber.from(proposalId);
+
             const transaction = await lendingInstance.approveProposal(
-                proposalId, // ID del proyecto
-                [walletAddress, providerAddress], // Wallets de la multifirma
-                providerAddress, // Wallet del productor
-                { gasLimit: 2000000 }
+                formattedProposalId,
+                [walletAddress, providerAddress],
+                providerAddress,
+                {
+                    gasLimit: 2000000
+                }
             );
             toast.success('Proyecto aprobado con éxito', { id: toastId });
             console.log(transaction);
             setLoading(false);
-            return transaction;
+            return await transaction.wait();;
         } catch (error) {
             toast.error('Error al aprobar el proyecto', { id: toastId });
             console.error('Error al aprobar el proyecto:', error);
@@ -373,7 +435,7 @@ const useLending = (contractAddress?: string) => {
 
 
 
-    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending, injectFunds, approveProject };
+    return { approveToken, investInLending, signRelease, regretInvestment, claimReturns, disburseFunds, loading, proposeLending, injectFunds, approveProject };
 };
 
 export default useLending;

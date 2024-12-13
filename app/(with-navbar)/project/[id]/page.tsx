@@ -47,7 +47,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               currentAmount={project.amountCollected}
               returnsDate={dateDDMMYY(project.returnsDate)}
               goalAmount={project.amountNeed}
-              minAmount={0}
+              minAmount={project.minAmount}
               country={project.country}
               seed={project.providers[0]?.seed ?? 'soja'}
               area={project.area}
