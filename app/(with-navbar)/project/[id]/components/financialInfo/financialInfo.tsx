@@ -10,6 +10,7 @@ import mockUSDT from '@/contracts/mockUSDT.json'
 import lending from '@/contracts/lendingTest.json'
 import { investByProjectId, regretInvestment as regret } from '@/lib/api'
 import useSession from '@/hooks/useSession'
+import Status from "@/app/(with-navbar)/project/[id]/components/status/status";
 
 type FinancialInfoProps = {
   projectId: number
