@@ -9,6 +9,7 @@ import { FormEventHandler, useEffect, useState } from 'react'
 import mockUSDT from '@/contracts/mockUSDT.json'
 import lending from '@/contracts/lendingTest.json'
 import { investByProjectId, regretInvestment as regret } from '@/lib/api'
+import Status from "@/app/(with-navbar)/project/[id]/components/status/status";
 
 type FinancialInfoProps = {
   projectId: number
@@ -25,6 +26,7 @@ type FinancialInfoProps = {
   area: number
   contractAdress: string
   returnsDate: string
+  status: string
 }
 
 export default function FinancialInfo({
@@ -42,6 +44,7 @@ export default function FinancialInfo({
   area,
   contractAdress,
   returnsDate,
+    status
 }: FinancialInfoProps) {
   console.log(contractAdress)
   const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds } =
@@ -143,7 +146,7 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          {!isProducer && !isProvider && (
+          {!isProducer && !isProvider && status === "APPROVED" && (
             < div style={{marginTop: '16px'}}>
               <Button
                   // @ts-ignore

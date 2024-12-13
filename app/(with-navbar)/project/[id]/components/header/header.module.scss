@@ -12,9 +12,8 @@
 }
 .textInTitle{
   position: absolute;
-  top: 44.5%;
-  left: 300px;
-  transform: translate(-50%, -50%);
+  top: 20%;
+  left: 100px;
   color: $absolute-white;
   gap: 0;
 
@@ -61,7 +60,9 @@
 
 @include tablet{
     .textInTitle{
+      top: 40%;
         left: 60%;
       width: 95%;
+      transform: translate(-50%, -50%);
     }
 }
