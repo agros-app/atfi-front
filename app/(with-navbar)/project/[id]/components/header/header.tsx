@@ -6,8 +6,9 @@ import toast from "react-hot-toast";
 import Button from "@/components/button/button";
 import { deleteProjectPhoto, updateProjectPhoto } from "@/lib/api";
 import ProjectImage from "../projectImage/projectImage";
+import Status from "@/app/(with-navbar)/project/[id]/components/status/status";
 
-export default function Header({id, name, country, photoURL, isProducer}: {id: number, name: string ,country: string, photoURL?: string, isProducer: boolean}) {
+export default function Header({id, name, country, photoURL, isProducer, status}: {id: number, name: string ,country: string, photoURL?: string, isProducer: boolean, status: string}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [projectImage, setProfileImage] = useState(projectBackgroundImage.src);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -100,6 +101,7 @@ export default function Header({id, name, country, photoURL, isProducer}: {id: n
           <div className={styles.textInTitle}>
               <p className={styles.title}>{name}</p>
               <p className={styles.subtitle}>{country}</p>
+              <Status status={status} />
               {isProducer && <Button onClick={editModal} className={styles.editButton}>Editar</Button>}
           </div>
           {isModalOpen && (
