@@ -31,6 +31,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         country={project.country}
         photoURL={project.photoURL}
         isProducer={project.producerEmail == user?.email || user?.role?.toUpperCase() === "RIPIO"}
+        status={project.status}
       />
       <div className={styles.body}>
         <div className={styles.screenDivision}>
@@ -53,6 +54,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               seed={project.providers[0]?.seed ?? 'soja'}
               area={project.area}
               contractAdress={project.contractAdress!!}
+              status={project.status}
             />
           </div>
         </div>

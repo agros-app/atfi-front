@@ -1,0 +1,42 @@
+@import "styles/variables.scss";
+@import "styles/media.scss";
+
+.container{
+  font-weight: 400;
+  width: max-content;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 5px;
+
+}
+
+.pending{
+  background-color: $light-gray;
+  color: $title;
+}
+
+.approved{
+  background-color: $primary-yellow;
+  color: $title;
+}
+
+.cancelled{
+  background-color: $red;
+  color: $white;
+}
+
+.withdrawn{
+    background-color: $title;
+    color: $white;
+}
+
+.returnsInjected{
+    background-color: $white;
+    color: $title;
+}
+
+@include tablet {
+  .container{
+    width: 80%;
+  }
+}

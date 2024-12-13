@@ -26,6 +26,7 @@ type FinancialInfoProps = {
   area: number
   contractAdress: string
   returnsDate: string
+  status: string
 }
 
 export default function FinancialInfo({
@@ -43,6 +44,7 @@ export default function FinancialInfo({
   area,
   contractAdress,
   returnsDate,
+    status
 }: FinancialInfoProps) {
   console.log(contractAdress)
   const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds, signRelease  } =
@@ -145,7 +147,7 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          {!isProducer && !isProvider && (
+          {!isProducer && !isProvider && status === "APPROVED" && (
             < div style={{marginTop: '16px'}}>
               <Button
                   // @ts-ignore
