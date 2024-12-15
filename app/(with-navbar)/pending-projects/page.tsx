@@ -31,7 +31,8 @@ export default function PendingProjectsPage() {
   const handleStatusChange = async (
     newStatus: 'APPROVED' | 'REJECTED',
     providerAddress: string,
-    producerAddress: string
+    producerAddress: string,
+    fee: number
   ) => {
     const { id: projectId } = selectedProject as ProjectDetailInfo
     const checkWallet = producerAddress.match(/^0x[a-fA-F0-9]{40}$/)
@@ -51,23 +52,15 @@ export default function PendingProjectsPage() {
       }
       toast.dismiss(toastId)
 
-      const receipt = await approveProject(
+      await approveProject(
         selectedProject as ProjectDetailInfo,
         providerAddress,
-        producerAddress
+        producerAddress,
+        fee
       )
 
-      if (receipt.status === 1) {
-        removeProject(projectId)
-        toast.success('Proyecto aprobado con éxito', { id: toastId })
-        console.log('Transaction successful:', receipt)
-        closeModal()
-      } else {
-        toast.error('La transacción falló', { id: toastId })
-        console.error('Transaction failed:', receipt)
-      }
-
-      return receipt
+      removeProject(projectId)
+      closeModal()
     } catch (error: any) {
       console.error('Error detallado:', error)
       toast.error(

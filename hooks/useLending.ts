@@ -316,7 +316,7 @@ const useLending = (contractAddress?: string) => {
     }
 
     // For now we'll leave it so that multisign is only done by admin + provider
-    const approveProject = async (projectData: ProjectDetailInfo, providerAddress: string, producerAddress: string) => {
+    const approveProject = async (projectData: ProjectDetailInfo, providerAddress: string, producerAddress: string, fee: number) => {
         setLoading(true);
         const toastId = toast.loading('Aprobando proyecto...');
         //@ts-ignore
@@ -356,7 +356,7 @@ const useLending = (contractAddress?: string) => {
             projectData.name,
             producerAddress,
             [walletAddress, providerAddress],
-            ethers.BigNumber.from(2),
+            ethers.BigNumber.from(fee),
             providerAddress
         ]
 
@@ -372,7 +372,13 @@ const useLending = (contractAddress?: string) => {
             )
 
             setLoading(false);
-            return await transaction.wait();
+            const receipt = await transaction.wait();
+
+            if (receipt.status === 1) {
+                toast.success('Proyecto aprobado con éxito', { id: toastId })
+            } else {
+                throw new Error('La transacción falló')
+            }
         } catch (error) {
             toast.error('Error al aprobar el proyecto', { id: toastId });
             console.error('Error al aprobar el proyecto:', error);

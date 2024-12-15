@@ -48,37 +48,40 @@
   gap: 0;
 }
 
-
-.buttonContainer {
-  margin: 0 24px;
-}
-
 .title {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  position: relative;
   border-bottom: 1px solid $light-black;
+
+  div{
+    display: flex;
+    align-items: center;
+    gap: 12px
+  }
 }
 
 .closeButton {
-  position: absolute;
-  right: 0;
-  background: none;
-  border: none;
+  all: unset;
   font-size: 30px;
   cursor: pointer;
   color: $light-black;
   padding: 5px;
-  transition: color 0.3s ease;
 }
 
-.providerContainer{
+.providerContainer {
   margin-bottom: 20px;
   label {
     text-align: left;
   }
+}
+
+.projectWallet {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
 }
 
 @include laptop {
