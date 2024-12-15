@@ -125,7 +125,7 @@ export type MessageData = {
     subject: string;
     html: string
 }
-export type Status = "APPROVED" | "PENDING" | "REJECTED"
+export type Status = "APPROVED" | "PENDING" | "REJECTED" | "RETURNS_INJECTED" | "CANCELED"
 
 export type ProjectMessage = {
     id: number;

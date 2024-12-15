@@ -46,6 +46,11 @@ export const getProjects = async (): Promise<ProjectData[]> => {
     return response.data;
 }
 
+export const getPastProjects = async (): Promise<ProjectData[]> => {
+    const response = await api.get("/project/pastProjects");
+    return response.data;
+}
+
 export const getProjectSeeds = async (): Promise<any> => {
     const response = await api.get("/project/seeds");
     return response.data;

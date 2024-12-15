@@ -51,7 +51,7 @@ export default function ProjectCard({
       <div
           className={`${styles.container} ${disabled ? styles.disabled : ""}`}
           style={{ backgroundColor: bgColor, border: border }}
-          onClick={!disabled ? onClick : undefined}
+          onClick={onClick}
       >
         <div className={styles.top}>
           <Image

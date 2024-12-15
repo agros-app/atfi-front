@@ -9,9 +9,11 @@ import { useEffect, useState } from "react";
 import { getNews } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import ProducerProjects from "@/components/producerProjects/page";
+import {ProjectData} from "@/types/api";
 
 const Home = () => {
-    const { projects } = useProjects();
+    const projects = useProjects("APPROVED").projects;
+    const pastProjects = useProjects("RETURNS_INJECTED").projects;
     const { userData: user } = useSession();
     const [news, setNews] = useState<any[]>([]);
     const router = useRouter();
@@ -75,8 +77,12 @@ const Home = () => {
                     inversiones.
                 </p>
                 <div className={styles.projects}>
-                    {projects.slice(0, 3).map((project) => (
-                        <ProjectCard disabled={true} project={project} key={project.id} />
+                    {pastProjects.slice(0, 3).map((project) => (
+                        <ProjectCard disabled={true}
+                                     project={project}
+                                     key={project.id}
+                                     onClick={() => handleCardClick(project.id)}
+                        />
                     ))}
                 </div>
             </section>
