@@ -44,6 +44,11 @@
           "type": "address[]"
         },
         {
+          "internalType": "uint256",
+          "name": "_fee",
+          "type": "uint256"
+        },
+        {
           "internalType": "address",
           "name": "_provider",
           "type": "address"
@@ -73,6 +78,31 @@
         }
       ],
       "name": "ContractCanceled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "approval",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "signed",
+          "type": "bool"
+        }
+      ],
+      "name": "ContractSigned",
       "type": "event"
     },
     {
@@ -333,6 +363,19 @@
     },
     {
       "inputs": [],
+      "name": "fee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "fundingDeadline",
       "outputs": [
         {
@@ -483,6 +526,13 @@
         }
       ],
       "name": "regretInvestment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "resetMultiSign",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

@@ -1,5 +1,5 @@
 {
-  "address": "0x75d56D9340A0B6B73993006DB2403c9be0E008d5",
+  "address": "0xe30c27db6c9a924ef620AF905095bF3E74f0D625",
   "abi": [
     {
       "inputs": [
@@ -78,61 +78,6 @@
       "type": "event"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "proposalId",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "proposer",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "amountNeededInUSDT",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "minimumFundingAmount",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "fundingDeadline",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "returnPeriodStart",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "lendingName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "producerAddress",
-          "type": "address"
-        }
-      ],
-      "name": "ProposalCreated",
-      "type": "event"
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -155,13 +100,43 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "proposalId",
+          "name": "amountNeededInUSDT",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minimumFundingAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fundingDeadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "returnPeriodStart",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "lendingName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "producerAddress",
+          "type": "address"
         },
         {
           "internalType": "address[]",
           "name": "approvers",
           "type": "address[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
         },
         {
           "internalType": "address",
@@ -210,197 +185,6 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "lendingActive",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "lendingAddressById",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "lendingCount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "lendingProposals",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "proposer",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountNeededInUSDT",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "minimumFundingAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "fundingDeadline",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "returnPeriodStart",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "lendingName",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "producerAddress",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "approvals",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "executed",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "lendings",
-      "outputs": [
-        {
-          "internalType": "contract LendingContract",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "proposalApprovals",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_amountNeededInUSDT",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_minimumFundingAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_fundingDeadline",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_returnPeriodStart",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "_lendingName",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_producerAddress",
-          "type": "address"
-        }
-      ],
-      "name": "proposeLending",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
