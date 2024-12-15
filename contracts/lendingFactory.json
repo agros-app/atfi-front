@@ -1,5 +1,5 @@
 {
-  "address": "0xe30c27db6c9a924ef620AF905095bF3E74f0D625",
+  "address": "0x66f87e9782618425EB63FeA5aF1d11edb7627894",
   "abi": [
     {
       "inputs": [
@@ -68,10 +68,10 @@
           "type": "address"
         },
         {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "lendingId",
-          "type": "uint256"
+          "indexed": false,
+          "internalType": "address",
+          "name": "providerAddress",
+          "type": "address"
         }
       ],
       "name": "LendingCreated",
