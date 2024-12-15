@@ -256,7 +256,8 @@ const useLending = (contractAddress?: string) => {
         }
 
         try {
-            const transaction = await lendingInstance.disburseFunds(ammount, { gasLimit: 2000000 });
+            const amountInWei = ethers.utils.parseUnits(ammount.toString(), 6);
+            const transaction = await lendingInstance.disburseFunds(amountInWei, { gasLimit: 2000000 });
             const receipt = await transaction.wait();
             if (receipt.status === 1) {
                 toast.success('Fondos retirados con éxito', { id: toastId });
