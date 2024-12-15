@@ -97,3 +97,12 @@
 .custom:hover {
   background-color: darken($light-green, 10%);
 }
+
+.danger{
+  background-color: $red;
+  color: $white;
+}
+
+.danger:hover {
+  background-color: darken($red, 10%);
+}

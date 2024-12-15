@@ -17,7 +17,8 @@ type EditProfileModalProps = {
   onStatusChange: (
     newStatus: 'APPROVED' | 'REJECTED',
     provider: string,
-    producer: string
+    producer: string,
+    fee: number
   ) => void
   providers: ProviderProfile[]
 }
@@ -34,6 +35,7 @@ export default function DetailModal({
     providers[0].walletAdress ?? ''
   )
   const [producerAddress, setProducerAddress] = useState<string>('')
+  const [fee, setFee] = useState<number>(2)
 
   if (!isOpen) return null
 
@@ -57,7 +59,7 @@ export default function DetailModal({
   } = data
 
   const handleStatusChange = (newStatus: 'APPROVED' | 'REJECTED') =>
-    onStatusChange(newStatus, providerSelected, producerAddress.trim())
+    onStatusChange(newStatus, providerSelected, producerAddress.trim(), fee)
 
   const projectInfo = [
     {
@@ -126,9 +128,23 @@ export default function DetailModal({
       <div className={styles.modalContent}>
         <div className={styles.title}>
           <h2>{title}</h2>
-          <button className={styles.closeButton} onClick={onClose}>
-            &times;
-          </button>
+          <div>
+            <Button
+              variant="primary"
+              onClick={() => handleStatusChange('APPROVED')}
+            >
+              Aprobar
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => handleStatusChange('REJECTED')}
+            >
+              Rechazar
+            </Button>
+            <button className={styles.closeButton} onClick={onClose}>
+              &times;
+            </button>
+          </div>
         </div>
         <div className={styles.content}>
           {projectInfo.map((info, index) => (
@@ -149,29 +165,26 @@ export default function DetailModal({
             onChange={(e) => setProviderSelected(e.target.value)}
           />
         </div>
-        <div className={styles.providerContainer}>
-          <TextField
-            name="producer"
-            label="Wallet del productor"
-            placeholder="0x"
-            onChange={(e) => setProducerAddress(e.target.value)}
-          />
-        </div>
-        <div className={styles.form}>
-          <Button
-            className={styles.buttonContainer}
-            variant="primary"
-            onClick={() => handleStatusChange('APPROVED')}
-          >
-            Aprobar
-          </Button>
-          <Button
-            className={styles.buttonContainer}
-            variant="secondary"
-            onClick={() => handleStatusChange('REJECTED')}
-          >
-            Rechazar
-          </Button>
+        <div className={styles.projectWallet}>
+          <div className={styles.providerContainer}>
+            <TextField
+              name="producer"
+              label="Wallet del productor"
+              placeholder="0x"
+              onChange={(e) => setProducerAddress(e.target.value)}
+            />
+          </div>
+          <div className={styles.providerContainer}>
+            <TextField
+              type="number"
+              name="fee"
+              label="Comisión de Agras"
+              // @ts-ignore
+              defaultValue={2}
+              min={0}
+              onChange={(e) => setFee(Number(e.target.value))}
+            />
+          </div>
         </div>
       </div>
     </div>,
