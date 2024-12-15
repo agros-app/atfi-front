@@ -5,19 +5,15 @@ import ProjectCard from '@/components/projectCard/projectCard'
 import { ProjectDetailInfo, ProviderProfile } from '@/types/api'
 import { useEffect, useState } from 'react'
 import DetailModal from '@/app/(with-navbar)/pending-projects/components/detailModal'
-import { getProjectSeeds, getProviders, updateProjectStatus } from '@/lib/api'
-import { ethers } from 'ethers'
-import lendingFactory from '@/contracts/lendingFactory.json'
+import { getProviders, updateProjectStatus } from '@/lib/api'
 import toast from 'react-hot-toast'
 import useLending from '@/hooks/useLending'
-import { useWeb3 } from '@/context/web3Modal'
 
 export default function PendingProjectsPage() {
   const { projects, removeProject } = usePendingProjects()
   const [selectedProject, setSelectedProject] =
     useState<ProjectDetailInfo | null>(null)
   const { approveProject } = useLending()
-  const { isConnected, walletAddress } = useWeb3()
   const [providers, setProviders] = useState<ProviderProfile[]>([])
 
   useEffect(() => {
@@ -34,9 +30,14 @@ export default function PendingProjectsPage() {
 
   const handleStatusChange = async (
     newStatus: 'APPROVED' | 'REJECTED',
-    providerAddress: string
+    providerAddress: string,
+    producerAddress: string
   ) => {
-    const { id: projectId, proposalId } = selectedProject as ProjectDetailInfo
+    const { id: projectId } = selectedProject as ProjectDetailInfo
+    const checkWallet = producerAddress.match(/^0x[a-fA-F0-9]{40}$/)
+    if (!checkWallet) {
+      return toast.error('Dirección de productor inválida')
+    }
     const toastId = toast.loading('Actualizando estado del proyecto...')
 
     try {
@@ -48,49 +49,13 @@ export default function PendingProjectsPage() {
           id: toastId
         })
       }
+      toast.dismiss(toastId)
 
-      if (!isConnected) {
-        return toast('Primero debes conectar tu wallet', {
-          icon: '⚠️',
-          id: toastId
-        })
-      }
-
-      //@ts-ignore
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      await provider.send('eth_requestAccounts', []) // Aseguramos la conexión
-      const signer = provider.getSigner()
-
-      // Verificamos la wallet conectada
-      const connectedAddress = await signer.getAddress()
-      console.log('Connected address:', connectedAddress)
-
-      const factory = new ethers.Contract(
-        lendingFactory.address,
-        lendingFactory.abi,
-        signer
-      )
-
-      // Convertimos el proposalId a BigNumber para asegurar compatibilidad
-      const formattedProposalId = ethers.BigNumber.from(proposalId)
-
-      // Preparamos la transacción con estimación de gas
-      const gasEstimate = await factory.estimateGas.approveProposal(
-        formattedProposalId,
-        [walletAddress, providerAddress],
-        providerAddress
-      )
-
-      const transaction = await factory.approveProposal(
-        formattedProposalId,
-        [walletAddress, providerAddress],
+      const receipt = await approveProject(
+        selectedProject as ProjectDetailInfo,
         providerAddress,
-        {
-          gasLimit: gasEstimate.mul(120).div(100) // Añadimos 20% de margen
-        }
+        producerAddress
       )
-
-      const receipt = await transaction.wait()
 
       if (receipt.status === 1) {
         removeProject(projectId)
