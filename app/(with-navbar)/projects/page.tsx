@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ProjectsPage() {
-    const { projects } = useProjects();
+    const { projects } = useProjects("APPROVED");
     const router = useRouter();
     const [filteredProjects, setFilteredProjects] = useState(projects);
     const [order, setOrder] = useState<'recientes' | 'antiguos'>('recientes');
