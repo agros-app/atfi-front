@@ -7,13 +7,11 @@ import { useMultistepForm } from '@/hooks/useMultiStepForm'
 import { ProjectInfoForm } from '@/app/(with-navbar)/submit-project/components/ProyectInfoForm'
 import { ProjectLocationForm } from '@/app/(with-navbar)/submit-project/components/ProjectLocationForm'
 import { ProjectDetailsForm } from '@/app/(with-navbar)/submit-project/components/ProjectDetailsForm'
-import { createProject, deleteProject } from '@/lib/api'
+import { createProject } from '@/lib/api'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { isStepValid, validateStep } from '@/utils/validation'
-import useLending from '@/hooks/useLending'
-import { useWeb3 } from '@/context/web3Modal'
 
 export type ProjectFormData = {
   name: string
@@ -88,8 +86,6 @@ export default function ProjectForm() {
   const [data, setData] = useState(INITIAL_DATA)
   const router = useRouter()
   const [errors, setErrors] = useState<Partial<ProjectFormData>>({})
-  const { proposeLending } = useLending()
-  const { walletAddress: producerAddress } = useWeb3()
 
   function updateFields(fields: Partial<ProjectFormData>) {
     setData((prev) => ({
@@ -98,7 +94,6 @@ export default function ProjectForm() {
     }))
   }
 
-  // Calculo que acá, hacer createProject(data).then(() -> createContract().then(() -> succes toast
   async function handleResponse(
     data: ProjectFormData,
     router: AppRouterInstance
@@ -115,29 +110,34 @@ export default function ProjectForm() {
         return
       }
 
-      if (!producerAddress) {
-        return toast('Es necesario que conectes tu wallet', { icon: '⚠️' })
-      }
+      // if (!producerAddress) {
+      //   return toast('Es necesario que conectes tu wallet', { icon: '⚠️' })
+      // }
 
-      // First make the proposal to the lending contract
-      await proposeLending(
-        data.amountNeed.toString(),
-        data.minAmount.toString(),
-        new Date(data.endDate).getTime(),
-        new Date(data.endFarming).getTime(),
-        data.name
-      )
-      // once the proposal is made, create the project on the db
-      await createProject(data)
+      // // First make the proposal to the lending contract
+      // await proposeLending(
+      //   data.amountNeed.toString(),
+      //   data.minAmount.toString(),
+      //   new Date(data.endDate).getTime(),
+      //   new Date(data.endFarming).getTime(),
+      //   data.name
+      // )
 
-      toast.success(
-        'El proyecto ha sido creado exitosamente, ' +
-          'recibirá un correo de confirmación en los próximos días',
-        { duration: 3000 }
-      )
+      createProject(data)
+        .catch((error) => {
+          console.error('Error en createProject:', error)
+          toast.error('Ha ocurrido un error. Por favor, intente nuevamente.')
+        })
+        .then(() => {
+          toast.success(
+            'El proyecto ha sido creado exitosamente, ' +
+              'recibirá un correo de confirmación en los próximos días',
+            { duration: 3000 }
+          )
+          router.push('/home')
+        })
 
       // Redirigir al home
-      router.push('/home')
     } catch (error) {
       console.error('Error en handleResponse:', error)
       toast.error('Ha ocurrido un error. Por favor, intente nuevamente.')
