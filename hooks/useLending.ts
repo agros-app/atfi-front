@@ -276,7 +276,7 @@ const useLending = (contractAddress?: string) => {
 
     const signRelease = async() => {
         setLoading(true);
-        const toastId = toast.loading('Retirando fondos...');
+        const toastId = toast.loading('Autorizando liberación...');
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -322,10 +322,6 @@ const useLending = (contractAddress?: string) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []); // Aseguramos la conexión
         const signer = provider.getSigner();
-
-        // Verificamos la wallet conectada
-        const connectedAddress = await signer.getAddress();
-        console.log('Connected address:', connectedAddress);
 
         const lendingInstance = new ethers.Contract(
             lendingFactory.address,
