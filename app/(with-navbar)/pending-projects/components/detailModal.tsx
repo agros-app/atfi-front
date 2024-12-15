@@ -7,13 +7,18 @@ import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import TextField from '@/components/textField/textField'
 import Select from '@/components/select/Select'
+import { createPortal } from 'react-dom'
 
 type EditProfileModalProps = {
   isOpen: boolean
   onClose: () => void
   data: ProjectDetailInfo
   title: string
-  onStatusChange: (newStatus: 'APPROVED' | 'REJECTED', provider: string) => void
+  onStatusChange: (
+    newStatus: 'APPROVED' | 'REJECTED',
+    provider: string,
+    producer: string
+  ) => void
   providers: ProviderProfile[]
 }
 
@@ -28,18 +33,16 @@ export default function DetailModal({
   const [providerSelected, setProviderSelected] = useState<string>(
     providers[0].walletAdress ?? ''
   )
-  console.log(providerSelected)
+  const [producerAddress, setProducerAddress] = useState<string>('')
 
   if (!isOpen) return null
 
   const {
     name,
     amountNeed,
-    amountCollected,
     minAmount,
     startDate,
     endDate,
-    status,
     description,
     country,
     city,
@@ -54,7 +57,7 @@ export default function DetailModal({
   } = data
 
   const handleStatusChange = (newStatus: 'APPROVED' | 'REJECTED') =>
-    onStatusChange(newStatus, providerSelected)
+    onStatusChange(newStatus, providerSelected, producerAddress.trim())
 
   const projectInfo = [
     {
@@ -118,7 +121,7 @@ export default function DetailModal({
     }
   ]
 
-  return (
+  return createPortal(
     <div className={styles.container}>
       <div className={styles.modalContent}>
         <div className={styles.title}>
@@ -146,6 +149,14 @@ export default function DetailModal({
             onChange={(e) => setProviderSelected(e.target.value)}
           />
         </div>
+        <div className={styles.providerContainer}>
+          <TextField
+            name="producer"
+            label="Wallet del productor"
+            placeholder="0x"
+            onChange={(e) => setProducerAddress(e.target.value)}
+          />
+        </div>
         <div className={styles.form}>
           <Button
             className={styles.buttonContainer}
@@ -163,6 +174,7 @@ export default function DetailModal({
           </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
