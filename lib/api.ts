@@ -313,8 +313,8 @@ export const validatePasswordReset = async (email: string, code: number): Promis
     return response.data.token; // Asumiendo que el token viene en `response.data.token`
 };
 
-export const getProjectsByUserId = async (): Promise<ProjectDetailInfo[]> => {
-    const response = await api.get(`/project/user-projects`);
+export const getProjectsByUserId = async (userId: number): Promise<ProjectDetailInfo[]> => {
+    const response = await api.get(`/project/user-projects/${userId}`);
     return response.data;
 };
 
