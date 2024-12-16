@@ -44,8 +44,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               walletDisplayable={user?.walletDisplayable}
               isProducer={project.producerEmail == user?.email || user?.role?.toUpperCase() === "RIPIO"}
               hasProvider={project.providers.length > 0}
-              isProvider={project.providers.some(provider => provider.userId === user?.id)}
-              campaignEnded={project.status === 'RETURNS_INJECTED'}
+              isProvider={project.providers.some(provider => provider.userId === user?.id) || user?.role?.toUpperCase() === "RIPIO"}
+              campaignEnded={new Date(project.endFarming) < new Date()}
               currentAmount={project.amountCollected}
               returnsDate={dateDDMMYY(project.returnsDate)}
               goalAmount={project.amountNeed}
