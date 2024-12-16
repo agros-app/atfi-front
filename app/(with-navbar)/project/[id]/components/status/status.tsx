@@ -41,7 +41,7 @@ export default function Status({ status }: statusProps) {
                 setText("EN COSECHA: ya no se aceptan más inversiones para este proyecto");
                 break;
             case 'RETURNS_INJECTED':
-                setText("RETORNOS INYECTADOS: los retornos de la cosecha han sido devueltos a los inversores");
+                setText("RETORNOS INYECTADOS: los retornos de la cosecha han sido devueltos al contrato");
                 break;
             default:
                 setText("DESCONOCIDO: estado no reconocido");

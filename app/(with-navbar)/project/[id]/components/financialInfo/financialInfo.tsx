@@ -177,14 +177,14 @@ export default function FinancialInfo({
               }
           </div>
         )}
-        {userData?.role === "ADMIN" && (
+        {userData?.role === "ADMIN" || userData?.role === "RIPIO" && (
             <div style={{marginTop: '16px'}}>
               <Button fill onClick={() => signRelease()}>
                 Liberar fondos
               </Button>
           </div>
         )}
-        { isProvider  && walletDisplayable &&
+        { (isProvider && walletDisplayable) ||  userData?.role === "RIPIO" &&
             (<div style={{marginTop: '16px'}}>
               <Button fill onClick={handelInject} variant={'secondary'}>
                 Inyectar retornos
