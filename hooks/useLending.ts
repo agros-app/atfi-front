@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import lendingContract from "@/contracts/lendingTest.json";
 import lendingFactory from "@/contracts/lendingFactory.json";
 import { ProjectDetailInfo } from '@/types/api';
+import { testConnection } from '@/lib/api';
 
 interface ContractObject {
     address: string;
@@ -23,6 +24,10 @@ const useLending = (contractAddress?: string) => {
     const { isConnected, walletAddress } = useWeb3();
 
     const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
         const toastId = toast.loading('Aprobando token...');
         try {
             const tx = await tokenContract.approve(contractAddress, amount);
@@ -43,6 +48,11 @@ const useLending = (contractAddress?: string) => {
         contractAddress: string,
         lendingObject: ContractObject,
     ) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+        
         if (!contractAddress) {
             toast.error('Dirección del contrato no válida');
             return;
@@ -105,6 +115,11 @@ const useLending = (contractAddress?: string) => {
         lendingObject: ContractObject,
         projectId: number
     ) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+
         if (contractAddress === '' || contractAddress === undefined || contractAddress === null) {
             toast.error('Dirección del contrato no válida');
             return;
@@ -164,6 +179,11 @@ const useLending = (contractAddress?: string) => {
     };
 
     const regretInvestment = async (amount: string, lendingObject: ContractObject, updateDb: () => {}) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+
         setLoading(true);
         const toastId = toast.loading('Retirando inversión...');
         //@ts-ignore
@@ -199,6 +219,11 @@ const useLending = (contractAddress?: string) => {
     };
 
     const claimReturns = async (lendingObject: ContractObject) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+
         setLoading(true);
         const toastId = toast.loading('Reclamando retornos...');
         //@ts-ignore
@@ -227,6 +252,11 @@ const useLending = (contractAddress?: string) => {
     };
 
     const disburseFunds = async (ammount: number) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+
         setLoading(true);
         const toastId = toast.loading('Retirando fondos...');
         //@ts-ignore
@@ -276,6 +306,11 @@ const useLending = (contractAddress?: string) => {
     }
 
     const signRelease = async () => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+
         setLoading(true);
         const toastId = toast.loading('Autorizando liberación...');
         //@ts-ignore
@@ -317,6 +352,11 @@ const useLending = (contractAddress?: string) => {
 
     // For now we'll leave it so that multisign is only done by admin + provider
     const approveProject = async (projectData: ProjectDetailInfo, providerAddress: string, producerAddress: string, fee: number) => {
+        if (!((await testConnection()).ok())) {
+            toast.error('El servidor no esta disponible');
+            return false;
+        }
+
         setLoading(true);
         const toastId = toast.loading('Aprobando proyecto...');
         //@ts-ignore
