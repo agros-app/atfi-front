@@ -44,8 +44,8 @@ export default function Select({
             {placeholder}
           </option>
         )}
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
+        {options.map((option, index) => (
+          <option key={`option-${index}-${option.value}`} value={option.value}>
             {option.title}
           </option>
         ))}

@@ -5,6 +5,7 @@ import { useWeb3 } from "@/context/web3Modal";
 import toast from 'react-hot-toast';
 import lendingContract from "@/contracts/lendingTest.json";
 import lendingFactory from "@/contracts/lendingFactory.json";
+import { ProjectDetailInfo } from '@/types/api';
 
 interface ContractObject {
     address: string;
@@ -19,7 +20,7 @@ const isNumberPositive = (amount: string) => {
 
 const useLending = (contractAddress?: string) => {
     const [loading, setLoading] = useState(false);
-    const { isConnected } = useWeb3();
+    const { isConnected, walletAddress } = useWeb3();
 
     const approveToken = async (amount: ethers.BigNumber, tokenContract: ethers.Contract) => {
         const toastId = toast.loading('Aprobando token...');
@@ -225,9 +226,58 @@ const useLending = (contractAddress?: string) => {
         }
     };
 
-    const disburseFunds = async () => {
+    const disburseFunds = async (ammount: number) => {
         setLoading(true);
         const toastId = toast.loading('Retirando fondos...');
+        //@ts-ignore
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const lendingInstance = new ethers.Contract(contractAddress!!, lendingContract.abi, signer);
+
+        if (!isConnected) {
+            toast('Primero debes conectar tu wallet', {
+                icon: '⚠️',
+                id: toastId
+            });
+            return;
+        }
+
+        if (ammount === 0) {
+            return toast('El monto no puede ser cero', {
+                icon: '⚠️',
+                id: toastId
+            });
+        }
+
+        if (!lendingInstance) {
+            toast.error('Contrato de lending no válido', { id: toastId });
+            console.error('Contrato de lending no válido');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const amountInWei = ethers.utils.parseUnits(ammount.toString(), 6);
+            const transaction = await lendingInstance.disburseFunds(amountInWei, { gasLimit: 2000000 });
+            const receipt = await transaction.wait();
+            if (receipt.status === 1) {
+                toast.success('Fondos retirados con éxito', { id: toastId });
+            } else {
+                toast.error('Los fondos no pudieron ser retirados', { id: toastId });
+            }
+            setLoading(false);
+            return transaction;
+        } catch (error) {
+            toast.error('Error al retirar los fondos', { id: toastId });
+            console.error('Error al retirar los fondos:', error);
+            setLoading(false);
+        }
+
+    }
+
+    const signRelease = async () => {
+        setLoading(true);
+        const toastId = toast.loading('Autorizando liberación...');
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -249,30 +299,37 @@ const useLending = (contractAddress?: string) => {
         }
 
         try {
-            const transaction = await lendingInstance.disburseFunds({ gasLimit: 2000000 });
+            const transaction = await lendingInstance.sign({ gasLimit: 2000000 });
             const receipt = await transaction.wait();
             if (receipt.status === 1) {
-                toast.success('Fondos retirados con éxito', { id: toastId });
+                toast.success('Firma exitosa', { id: toastId });
             } else {
-                toast.error('Los fondos no pudieron ser retirados', { id: toastId });
+                toast.error('No se pudo firmar el contrato', { id: toastId });
             }
             setLoading(false);
             return transaction;
         } catch (error) {
-            toast.error('Error al retirar los fondos', {id: toastId});
-            console.error('Error al retirar los fondos:', error);
+            toast.error('Error al liberar los fondos', { id: toastId });
+            console.error('Error al liberar los fondos:', error);
             setLoading(false);
         }
-
     }
 
-    const approveProject = async (projectId: number) => {
+    // For now we'll leave it so that multisign is only done by admin + provider
+    const approveProject = async (projectData: ProjectDetailInfo, providerAddress: string, producerAddress: string, fee: number) => {
         setLoading(true);
         const toastId = toast.loading('Aprobando proyecto...');
         //@ts-ignore
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        await provider.send('eth_requestAccounts', []) // Aseguramos la conexión
+        const signer = provider.getSigner()
+
+
+        const lendingInstance = new ethers.Contract(
+            lendingFactory.address,
+            lendingFactory.abi,
+            signer
+        );
 
         if (!isConnected) {
             toast('Primero debes conectar tu wallet', {
@@ -289,86 +346,112 @@ const useLending = (contractAddress?: string) => {
             return;
         }
 
+        const params = [
+            ethers.utils.parseUnits(projectData.amountNeed.toString(), 6),
+            ethers.utils.parseUnits(projectData.minAmount.toString(), 6),
+            // @ts-ignore
+            new Date(projectData.endDate).getTime(),
+            // @ts-ignore
+            new Date(projectData.returnsDate).getTime(),
+            projectData.name,
+            producerAddress,
+            [walletAddress, providerAddress],
+            ethers.BigNumber.from(fee),
+            providerAddress
+        ]
+
         try {
-            const transaction = await lendingInstance.approveProject(projectId, { gasLimit: 2000000 });
-            toast.success('Proyecto aprobado con éxito', { id: toastId });
-            console.log(transaction);
+
+            const gasEstimate = await lendingInstance.estimateGas.approveProposal(...params)
+
+            const transaction = await lendingInstance.approveProposal(
+                ...params,
+                {
+                    gasLimit: gasEstimate.mul(120).div(100) // Añadimos 20% de margen
+                }
+            )
+
             setLoading(false);
-            return transaction;
+            const receipt = await transaction.wait();
+
+            if (receipt.status === 1) {
+                toast.success('Proyecto aprobado con éxito', { id: toastId })
+            } else {
+                throw new Error('La transacción falló')
+            }
         } catch (error) {
-            toast.error('Error al aprobar el proyecto', {id: toastId});
+            toast.error('Error al aprobar el proyecto', { id: toastId });
             console.error('Error al aprobar el proyecto:', error);
             setLoading(false);
         }
     }
 
-    const proposeLending = async (
-        amountNeededInUSDT: string,
-        minimumFundingAmount: string,
-        fundingDeadline: number,
-        returnPeriodStart: number,
-        lendingName: string,
-        producerAddress: string,
-    ) => {
-        setLoading(true);
-        const toastId = toast.loading('Proponiendo proyecto...');
+    // const proposeLending = async (
+    //     amountNeededInUSDT: string,
+    //     minimumFundingAmount: string,
+    //     fundingDeadline: number,
+    //     returnPeriodStart: number,
+    //     lendingName: string,
+    // ) => {
+    //     setLoading(true);
+    //     const toastId = toast.loading('Proponiendo proyecto...');
 
-        try {
-            //@ts-ignore
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
+    //     try {
+    //         //@ts-ignore
+    //         const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //         const signer = provider.getSigner();
+    //         const lendingInstance = new ethers.Contract(lendingFactory.address, lendingFactory.abi, signer);
 
-            if (!isConnected) {
-                toast.error('Primero debes conectar tu wallet', { id: toastId });
-                setLoading(false);
-                return;
-            }
+    //         if (!isConnected) {
+    //             toast.error('Primero debes conectar tu wallet', { id: toastId });
+    //             setLoading(false);
+    //             return;
+    //         }
 
-            if (!lendingInstance) {
-                toast.error('Contrato de lending no válido', { id: toastId });
-                console.error('Contrato de lending no válido');
-                setLoading(false);
-                return;
-            }
+    //         if (!lendingInstance) {
+    //             toast.error('Contrato de lending no válido', { id: toastId });
+    //             console.error('Contrato de lending no válido');
+    //             setLoading(false);
+    //             return;
+    //         }
 
-            if (!ethers.utils.isAddress(producerAddress)) {
-                toast.error('Dirección de productor inválida', { id: toastId });
-                setLoading(false);
-                return;
-            }
+    //         if (!ethers.utils.isAddress(walletAddress!!)) {
+    //             toast.error('Dirección de productor inválida', { id: toastId });
+    //             setLoading(false);
+    //             return;
+    //         }
 
-            // Conversión de valores a USDT (con 6 decimales)
-            const amountNeededInWei = ethers.utils.parseUnits(amountNeededInUSDT, 6); // Convertir USDT a 6 decimales
-            const minimumFundingInWei = ethers.utils.parseUnits(minimumFundingAmount, 6);
+    //         // Conversión de valores a USDT (con 6 decimales)
+    //         const amountNeededInWei = ethers.utils.parseUnits(amountNeededInUSDT, 6); // Convertir USDT a 6 decimales
+    //         const minimumFundingInWei = ethers.utils.parseUnits(minimumFundingAmount, 6);
 
-            const transaction = await lendingInstance.proposeLending(
-                amountNeededInWei, // Monto necesario
-                minimumFundingInWei, // Monto mínimo
-                fundingDeadline, // Fecha límite para el financiamiento (timestamp UNIX)
-                returnPeriodStart, // Inicio del periodo de devolución (timestamp UNIX)
-                lendingName, // Nombre del proyecto
-                producerAddress, // Dirección del productor
-                { gasLimit: 2000000 }
-            );
-            toast.success('Propuesta creada con éxito', { id: toastId });
-            console.log(transaction);
-            setLoading(false);
-            return transaction;
-        } catch (error) {
-            console.error('Error al proponer lending:', error);
-            toast.error('Error al proponer el proyecto', { id: toastId });
-            setLoading(false);
-            throw error;
-        } finally {
-            setLoading(false);
-        }
-    };
-
+    //         const transaction = await lendingInstance.proposeLending(
+    //             amountNeededInWei, // Monto necesario
+    //             minimumFundingInWei, // Monto mínimo
+    //             fundingDeadline, // Fecha límite para el financiamiento (timestamp UNIX)
+    //             returnPeriodStart, // Inicio del periodo de devolución (timestamp UNIX)
+    //             lendingName, // Nombre del proyecto
+    //             walletAddress, // Dirección del productor
+    //             { gasLimit: 2000000 }
+    //         );
+    //         toast.success('Propuesta creada con éxito', { id: toastId });
+    //         console.log(transaction);
+    //         setLoading(false);
+    //         return transaction;
+    //     } catch (error) {
+    //         console.error('Error al proponer lending:', error);
+    //         toast.error('Error al proponer el proyecto', { id: toastId });
+    //         setLoading(false);
+    //         throw error;
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
 
 
-    return { approveToken, investInLending, regretInvestment, claimReturns, disburseFunds, loading, proposeLending, injectFunds };
+
+    return { approveToken, investInLending, signRelease, regretInvestment, claimReturns, disburseFunds, loading, injectFunds, approveProject };
 };
 
 export default useLending;

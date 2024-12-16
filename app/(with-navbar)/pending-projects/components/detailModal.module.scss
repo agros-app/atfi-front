@@ -11,17 +11,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 12;
 }
 
 .content {
   text-align: left;
   margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 
   p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    color: #333;
+    font-size: 0.9rem;
+    font-weight: 300;
     margin: 8px 0;
   }
 
@@ -35,8 +37,7 @@
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 30%;
-  margin-top: 64px;
+  width: 50%;
 }
 
 .form {
@@ -47,33 +48,40 @@
   gap: 0;
 }
 
-
-.buttonContainer {
-  margin: 0 24px;
-}
-
 .title {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
   margin-bottom: 20px;
-  position: relative;
-}
+  border-bottom: 1px solid $light-black;
 
-.title h2 {
-  flex-grow: 1;
+  div{
+    display: flex;
+    align-items: center;
+    gap: 12px
+  }
 }
 
 .closeButton {
-  position: absolute;
-  right: 0;
-  background: none;
-  border: none;
+  all: unset;
   font-size: 30px;
   cursor: pointer;
   color: $light-black;
   padding: 5px;
-  transition: color 0.3s ease;
+}
+
+.providerContainer {
+  margin-bottom: 20px;
+  label {
+    text-align: left;
+  }
+}
+
+.projectWallet {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
 }
 
 @include laptop {

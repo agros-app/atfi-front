@@ -8,8 +8,8 @@ import useLending from '@/hooks/useLending'
 import { FormEventHandler, useEffect, useState } from 'react'
 import mockUSDT from '@/contracts/mockUSDT.json'
 import lending from '@/contracts/lendingTest.json'
-import { investByProjectId, regretInvestment as regret } from '@/lib/api'
-import Status from "@/app/(with-navbar)/project/[id]/components/status/status";
+import { regretInvestment as regret } from '@/lib/api'
+import useSession from '@/hooks/useSession'
 
 type FinancialInfoProps = {
   projectId: number
@@ -33,8 +33,8 @@ export default function FinancialInfo({
   projectId,
   walletDisplayable,
   isProducer,
-    hasProvider,
-    isProvider,
+  hasProvider,
+  isProvider,
   campaignEnded,
   currentAmount,
   goalAmount,
@@ -44,11 +44,18 @@ export default function FinancialInfo({
   area,
   contractAdress,
   returnsDate,
-    status
+  status
 }: FinancialInfoProps) {
-  console.log(contractAdress)
-  const { investInLending, disburseFunds, loading, regretInvestment,  claimReturns, injectFunds } =
-    useLending(contractAdress!!)
+  const {
+    investInLending,
+    disburseFunds,
+    loading,
+    regretInvestment,
+    claimReturns,
+    injectFunds,
+    signRelease
+  } = useLending(contractAdress!!)
+  const { userData } = useSession()
   const percentage = Math.floor((currentAmount / goalAmount) * 100)
   const [collected, setCollected] = useState(currentAmount)
   const [amount, setAmount] = useState<number>(0)
@@ -62,14 +69,18 @@ export default function FinancialInfo({
     // @ts-ignore
     const amount = parseInt(event.target.amount.value)
     console.log('invirtiendo en el contrato', contractAdress)
-    await investInLending(
-      amount.toString(),
-      mockUSDT,
-      contractAdress,
-      lending,
-      projectId
-    )
-    setCollected(Math.floor(currentAmount + amount))
+    try {
+      await investInLending(
+        amount.toString(),
+        mockUSDT,
+        contractAdress,
+        lending,
+        projectId
+      )
+      setCollected(Math.floor(currentAmount + amount))
+    } catch (e) {
+      console.error(e)
+    }
     // @ts-ignore  typescript is not recognizing the reset method
     event.target.reset()
   }
@@ -80,14 +91,18 @@ export default function FinancialInfo({
   }
 
   const handleRegret = async () => {
-    console.log("amoutn", amount)
-    await regretInvestment(amount.toString(), lending, async () => await regret(projectId, amount));
+    console.log('amoutn', amount)
+    await regretInvestment(
+      amount.toString(),
+      lending,
+      async () => await regret(projectId, amount)
+    )
     setCollected(Math.floor(currentAmount - amount))
   }
 
   const handelInject = async () => {
-    console.log("amount", amount)
-    await injectFunds(amount.toString(),  mockUSDT, contractAdress, lending);
+    console.log('amount', amount)
+    await injectFunds(amount.toString(), mockUSDT, contractAdress, lending)
   }
 
   const handleClaimReturns = async () => {
@@ -105,11 +120,7 @@ export default function FinancialInfo({
             subtext={`Meta: $${goalAmount} USD`}
           />
           <div className={styles.progressBar}>
-            <ProgressBar
-              collected={collected}
-              goal={goalAmount}
-              height={15}
-            />
+            <ProgressBar collected={collected} goal={goalAmount} height={15} />
           </div>
         </div>
         <ul className={styles.leaders}>
@@ -138,7 +149,7 @@ export default function FinancialInfo({
         </ul>
         <form className={styles.form} onSubmit={handleInvest}>
           <TextField
-              placeholder="Monto a invertir"
+            placeholder="Monto a invertir"
             name="amount"
             type="number"
             // @ts-ignore
@@ -146,42 +157,57 @@ export default function FinancialInfo({
             onChange={(e) => setAmount(parseInt(e.target.value))}
           />
           <small>*Minimo de inversión: ${minAmount}</small>
-          {!isProducer && !isProvider && status === "APPROVED" && (
-            < div style={{marginTop: '16px'}}>
+          {!isProducer && !isProvider && status === 'APPROVED' && (
+            <div style={{ marginTop: '16px' }}>
               <Button
-                  // @ts-ignore
-                  type={'submit'} fill disabled={loading}>
+                // @ts-ignore
+                type={'submit'}
+                fill
+                disabled={loading}
+              >
                 Invertir
               </Button>
-              < div style={{marginTop: '16px'}}>
-                <Button disabled={loading} variant={'secondary'} fill onClick={handleRegret}>
-                Revertir inversión
+              <div style={{ marginTop: '16px' }}>
+                <Button
+                  disabled={loading}
+                  variant={'secondary'}
+                  fill
+                  onClick={handleRegret}
+                >
+                  Revertir inversión
                 </Button>
               </div>
             </div>
           )}
         </form>
         {isProducer && walletDisplayable && (
-            <div style={{marginTop: '16px'}}>
-              <Button fill onClick={disburseFunds}>
-                Retirar fondos
-              </Button>
-              {!hasProvider &&
-                (<div style={{marginTop: '16px'}}>
-                  <Button fill onClick={handelInject} variant={'secondary'}>
+          <div style={{ marginTop: '16px' }}>
+            <Button fill onClick={() => disburseFunds(amount)}>
+              Retirar fondos
+            </Button>
+            {!hasProvider && (
+              <div style={{ marginTop: '16px' }}>
+                <Button fill onClick={handelInject} variant={'secondary'}>
                   Inyectar retornos
-                  </Button>
-                </div>)
-              }
+                </Button>
+              </div>
+            )}
           </div>
         )}
-        { isProvider  && walletDisplayable &&
-            (<div style={{marginTop: '16px'}}>
-              <Button fill onClick={handelInject} variant={'secondary'}>
-                Inyectar retornos
-              </Button>
-            </div>)
-        }
+        {(userData?.role === 'ADMIN' || userData?.role === 'RIPIO') && (
+          <div style={{ marginTop: '16px' }}>
+            <Button fill onClick={() => signRelease()}>
+              Liberar fondos
+            </Button>
+          </div>
+        )}
+        {isProvider && walletDisplayable && (
+          <div style={{ marginTop: '16px' }}>
+            <Button fill onClick={handelInject} variant={'secondary'}>
+              Inyectar retornos
+            </Button>
+          </div>
+        )}
         {campaignEnded && !isProducer && !isProvider && (
           <div style={{ marginTop: '16px' }}>
             <Button fill onClick={handleClaimReturns}>
