@@ -14,7 +14,7 @@ const useUserProjects = () => {
         const fetchProjects = async () => {
             if ((user?.role === "PRODUCER" || user?.role === "PROVIDER") && user?.id) {
                 try {
-                    const projects = await getProjectsByUserId(user.id);
+                    const projects = await getProjectsByUserId();
                     if (isMounted) {
                         setUserProjects(projects);
                         setLoading(false);
