@@ -38,6 +38,9 @@ api.interceptors.request.use(config => {
     return config;
 });
 
+export const testConnection = async (): Promise<any> => {
+    return await api.get("/user/connection")
+}
 
 // ------------------- PROJECT -------------------
 
