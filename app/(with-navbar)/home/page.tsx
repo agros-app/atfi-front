@@ -10,6 +10,7 @@ import { getNews } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import ProducerProjects from "@/components/producerProjects/page";
 import {ProjectData} from "@/types/api";
+import UserProjects from "@/components/userProjects/userProjects";
 
 const Home = () => {
     const projects = useProjects("APPROVED").projects;
@@ -47,6 +48,10 @@ const Home = () => {
         <main className={styles.main}>
             {(user?.role === "PRODUCER" || user?.role === "PROVIDER") && (
                 <ProducerProjects />
+            )}
+
+            {user?.role === "USER" && (
+                <UserProjects />
             )}
 
             <section>
